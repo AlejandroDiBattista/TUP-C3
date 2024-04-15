@@ -1,6 +1,6 @@
-//// Repaso del curso de JavaScript
-
-const { formToJSON } = require("axios");
+/* 
+ * Repaso del curso de JavaScript 
+ */
 
 
 /// Identificadores. 
@@ -23,10 +23,9 @@ let nombre = "Juan";     // Declara una variable en un bloque de código
 const Nombre = "Juan";   // Declara una constante en un bloque de código
 
 
-// La declaracion en una forma abreviada de "declarar" y "definir" una variable
+// La declaración en una forma abreviada de "declarar" y "definir" una variable
 let apellido;            // Declarar pero no tiene un valor  => typeof(nombre1) = undefined
 apellido = "Perez"       // Define una variable (le asigna un valor)
-
 
 
 /// Tipos de datos
@@ -40,6 +39,7 @@ let esEstudiante = true;    // Boolean
 calle = "San Martín";       // Comillas dobles 
 calle = 'San Martín';       // Comillas simples
 calle = `San Martín`;       // Comillas invertidas (backticks) => Interpolación de Strings
+
 
 nombreCompleto = nombre + " " + apellido;  // Concatenación de Strings
 nombreCompleto = `${nombre} ${apellido}`;  // Interpolación de Strings
@@ -56,10 +56,10 @@ let subcadena = texto.substring(5, 10);  // Extraer una subcadena
 let caracter = texto.charAt(0);          // Extraer un caracter
 
 let texto2 = "Hola, soy Juan y tengo 30 años";
-let posicion = texto2.indexOf("Juan");   // Buscar la posición de una subcadena
-let contiene = texto2.includes("Juan");  // Verificar si una cadena contiene una subcadena
-let empieza = texto2.startsWith("Hola");  // Verificar si una cadena empieza con una subcadena
-let termina = texto2.endsWith("años");    // Verificar si una cadena termina con una subcadena
+let posicion = texto2.indexOf("Juan");      // Buscar la posición de una subcadena
+let contiene = texto2.includes("Juan");     // Verificar si una cadena contiene una subcadena
+let empieza = texto2.startsWith("Hola");    // Verificar si una cadena empieza con una subcadena
+let termina = texto2.endsWith("años");      // Verificar si una cadena termina con una subcadena
 
 // Number: Números enteros, decimales, positivos, negativos, etc
 let cantidad = 10;
@@ -70,10 +70,10 @@ let total = cantidad * precio;
 let expresion = 1 + 2 * 3       // Primero el producto despues las sumas
 let parentesis = (1 + 2) * 3    // Primero las sumas despues el producto
 let modulo = 10 % 3;            // Resto de la división
-let izquierda = 8 / 4 / 2;     // Asociatividad de izquierda a derecha => (8 / 4) / 2
-let derecha = 8 / (4 / 2);     // Asociatividad de derecha a izquierda => 8 / (4 / 2)
+let izquierda = 8 / 4 / 2;      // Asociatividad de izquierda a derecha => (8 / 4) / 2
+let derecha = 8 / (4 / 2);      // Asociatividad de derecha a izquierda => 8 / (4 / 2)
 
-// Boolean: Verdadero o falso
+// Boolean: Verdadero o falso | true o false
 // El resultado de una decisión (o una comparación) es un valor booleano
 
 let esMayor = edad > 18;
@@ -82,7 +82,7 @@ let esIgual = edad == 18;  // Comparación de igualdad
 
 let esDiferente = edad != 18;  // Comparación de desigualdad
 
-// Todo lo que no sea false, undefined, null, 0, NaN o "" es verdadero
+// Lo que no sea false, undefined, null, 0, NaN o "" es verdadero
 
 true == "a"
 true == 1
@@ -115,7 +115,7 @@ Boolean(0);             // => false
 Boolean("");            // => false
 Boolean("false")        // => true
 
-// Nom mezclar tipos de datos (tipado débil)
+// No mezclar tipos de datos (tipado débil)
 10 + "5"                // => "105"
 10 - "5"                // => 5
 
@@ -132,14 +132,14 @@ let mixto = ["Manzana", 1, true, null, undefined, [1, 2, 3]];
 let primeraFruta = frutas[0];  // Acceder al primer elemento
 let ultimaFruta = frutas[frutas.length - 1];  // Acceder al último elemento
 
-frutas.push("Pera");  // Agregar un elemento al final
-frutas.pop();         // Eliminar el último elemento
+frutas.push("Pera");  // Agregar un elemento al final        => ["Manzana", "Banana", "Naranja", "Pera"]
+frutas.pop();         // Eliminar el último elemento         => ["Manzana", "Banana", "Naranja"]
 
-frutas.unshift("Pera");  // Agregar un elemento al principio
-frutas.shift();         // Eliminar el primer elemento
+frutas.unshift("Pera");  // Agregar un elemento al principio => ["Pera", "Manzana", "Banana", "Naranja"]
+frutas.shift();          // Eliminar el primer elemento      => ["Manzana", "Banana", "Naranja"]
 
-numeros.slice(1, 3);   // Extraer una sublista => [2, 3]
-numeros.splice(1, 3);  // Eliminar elementos => [1, 5]
+numeros.slice(1, 3);     // Extraer una sublista    => [2, 3]
+numeros.splice(1, 3);    // Eliminar elementos      => [1, 5]
 
 numeros.indexOf(3);    // Buscar la posición de un elemento
 numeros.includes(3);   // Verificar si un elemento está en la lista
@@ -213,14 +213,13 @@ let { x: x1, y: y1 } = punto;
 // let y1 = punto.y;
 
 
-
 /// JSON: JavaScript Object Notation
 // Formato de intercambio de datos (ligero, fácil de leer y escribir)
 
-let personaJSON   = JSON.stringify(persona);  // Convertir un objeto a JSON
-let personaObjeto = JSON.parse(personaJSON);     // Convertir JSON a un objeto
+let personaJSON   = JSON.stringify(persona);    // Convertir un objeto a JSON
+let personaObjeto = JSON.parse(personaJSON);    // Convertir JSON a un objeto
 
-let compra = {
+let compra = { // Representación de un objeto en JavaScript
     cliente: { nombre: "Juan", apellido: "Perez" },
     compras: [
         { producto: "Laptop", precio: 1500, cantidad: 1, },
@@ -235,7 +234,7 @@ let compra = {
     total: 1540
 }
 
-compra = {
+compra = {  // Representación de un objeto en JSON
     "cliente": {"nombre": "Juan", "apellido": "Perez"},
     "compras": [
         {"producto": "Laptop", "precio": 1500, "cantidad": 1},
@@ -312,7 +311,7 @@ function nombreCompleto1(persona) {
 
 // usando variables locales 
 function nombreCompleto2(persona) {
-    let nombre = persona.nombre;
+    let nombre   = persona.nombre;
     let apellido = persona.apellido;
     return `${nombre} ${apellido}`;
 }
@@ -345,8 +344,8 @@ function Personas(nombre, apellido) {   // Función constructora (constructor fu
         nombre: nombre,
         apellido: apellido,
         nombreCompleto: function() { return `${this.nombre} ${this.apellido}`;}, 
-        toString() { return this.nombreCompleto();},
-        toJSON()   {JSON.stringify(this);}
+        toString() { return this.nombreCompleto(); },
+        toJSON()   { return JSON.stringify(this); }
     };
 }
 
@@ -356,7 +355,7 @@ let p2 = new Personas("Pedro", "Gomez");
 p1.nombreCompleto();  // "Juan Perez"
 p2.nombreCompleto();  // "Pedro Gomez"
 
-// TODO en javascript es un objeto 
+// En JavaScript todo es un objeto 
 
 "Juan".toUpperCase();  // "JUAN"
 "Juan".toLowerCase();  // "juan"
@@ -489,14 +488,14 @@ for(let i = 0; i < 10; i++){
     console.log(i);
 }
 
-let suma = 0;
+let suma = 0;       // Calcular la suma de los números del 1 al 100
 for(let i = 1; i <= 100; i++){
     suma += i;
 }
 
 let importes = [10, 20, 30, 40, 50];
 let importeTotal = 0;
-for(let i = 0; i < importes.length; i++){
+for(let i = 0; i < importes.length; i++){   // Calcular el importe total de una lista de importes
     let importe = importes[i];	
     importeTotal += importe;
 }
