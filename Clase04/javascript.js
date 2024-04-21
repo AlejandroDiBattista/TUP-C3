@@ -436,3 +436,4 @@ function incluye2(lista, valor) {
 
 const incluye3 = (lista, valor) => lista.includes(valor);
 
+js
