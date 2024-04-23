@@ -1,0 +1,25 @@
+body { 
+    font-family: Arial, sans-serif; 
+    width: 300px;               /* Ancho del contenedor */
+    margin: 0 auto;             /* Centra el contenido */
+}
+
+h1 { 
+    text-align: center;         /* Centra el título */
+}
+
+ul {
+    list-style: none;           /* Quita los puntos de la lista */
+    padding: 0;                 /* Quita el padding de la lista */
+    
+    li {
+        border: 1px solid #ccc; 
+        border-radius: 8px;     /* Bordes redondeados */
+        margin: 8px;            /* Margen entre elementos */
+        padding: 8px;
+    
+        div { 
+           margin: 4px;         /* Separación entre contactos */ 
+        }
+    }
+}

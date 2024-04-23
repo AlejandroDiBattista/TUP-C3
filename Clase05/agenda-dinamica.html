@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Agenda</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <h1>Agenda Dinámica</h1>
+    <div id="listado">ACA VA LA AGENDA</div>
+
+    <script>
+        // Datos de la agenda (simulada)
+        let contactos = [
+            { nombre: "Juan",   apellido: "Perez",       telefono: "344354354" },
+            { nombre: "Carlos", apellido: "Gomez",       telefono: "344354354" },
+            { nombre: "Lucas",  apellido: "Sanchez",     telefono: "344354354" },
+            { nombre: "Jose",   apellido: "Alvarez",     telefono: "344354354" },
+            { nombre: "Maira",  apellido: "Di Battista", telefono: "222222667"}
+        ];
+
+        // Genera el HTML de un contacto 
+        function Contacto({nombre, apellido, telefono}){
+            return `
+            <li>
+                <div>${nombre} <b>${apellido}</b></div>
+                <div>Teléfono: ${telefono}</div>
+            </li>
+            `
+        }
+
+        // Genera el HTML de la agenda
+        function Agenda(personas){
+            return `<ul> ${personas.map(Contacto).join('')} </ul>`
+        }
+
+        // Reemplaza el contenido de #listado por la agenda
+        function generar(){
+            let l = document.getElementById('listado');
+            l.innerHTML = Agenda(contactos);
+        }
+
+        generar()
+    </script>
+</body>
+</html>
