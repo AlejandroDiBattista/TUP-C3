@@ -20,17 +20,30 @@
 
         // Genera el HTML de un contacto 
         function Contacto({nombre, apellido, telefono}){
-            return `
-            <li>
-                <div>${nombre} <b>${apellido}</b></div>
-                <div>Teléfono: ${telefono}</div>
-            </li>
-            `
+            let li = document.createElement('li');
+                let div1 = document.createElement('div');
+                    let text1 = document.createTextNode(`${nombre} `);
+                    div1.appendChild(text1);
+                    let b = document.createElement('b');
+                        let text2 = document.createTextNode(`${apellido}`);
+                        b.appendChild(text2);
+                    div1.appendChild(b);
+                li.appendChild(div1);
+            
+                let div2 = document.createElement('div');
+                    let text3 = document.createTextNode(`Teléfono: ${telefono}`);
+                    div2.appendChild(text3);
+                li.appendChild(div2);
+            return li
         }
 
         // Genera el HTML de la agenda
         function Agenda(personas){
-            return `<ul> ${personas.map(Contacto).join('')} </ul>`
+            let ul = document.createElement('ul');
+            personas.forEach(persona => {
+                ul.appendChild(Contacto(persona));
+            });
+            return ul
         }
 
         // Reemplaza el contenido de #listado por la agenda
