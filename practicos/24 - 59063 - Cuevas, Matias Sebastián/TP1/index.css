@@ -3,25 +3,36 @@ body {
     font-family: Arial, sans-serif;
     margin: 50px;
     padding: 0;
-    box-sizing: border-box;
+    height: 100px;
+   
+   
+    
 
 }
 
-.agenda
+li
 {
-    width: 150px;
-    height: 150px;
+    list-style:none;
+  
 }
+.lista
+{
+    width: 10px;
+    height: 10px;
+}
+
+
 .agenda 
 {
     color: antiquewhite;
     text-align:center;
     width:400px;
-    background: rgb(61, 61, 139);
+    height: 100px;
+    background: rgb(53, 69, 93);
     margin: auto;
     margin-top: 1px;
-    border-radius: 5px;
-    border: 1px solid;   
+    border-radius: 1px;
+    border: 1px solid ;   
 }
 .agenda :hover
 {
