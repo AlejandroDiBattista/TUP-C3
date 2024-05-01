@@ -1,7 +1,29 @@
 body {
-    background-color: #f0f0f0;
+    background-color:black;
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 50px;
     padding: 0;
     box-sizing: border-box;
+
+}
+
+.agenda
+{
+    width: 150px;
+    height: 150px;
+}
+.agenda 
+{
+    color: antiquewhite;
+    text-align:center;
+    width:400px;
+    background: rgb(61, 61, 139);
+    margin: auto;
+    margin-top: 1px;
+    border-radius: 5px;
+    border: 1px solid;   
+}
+.agenda :hover
+{
+    color: black;
 }
