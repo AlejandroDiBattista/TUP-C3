@@ -1,8 +1,6 @@
-import React from 'react';
-
-const Contacto = ({ nombre, apellido, telefono }) => (
+const Contacto = ({ nombre, apellido, telefono, numero }) => (
     <div>
-        <h2>Contacto</h2>
+        <h2>Contacto {numero}</h2>
         <p>Nombre: {nombre}</p>
         <p>Apellido: {apellido}</p>
         <p>Telefono: {telefono}</p>
@@ -19,16 +17,17 @@ let Personas = [
 
 Personas.sort((a,b) => a.nombre.localeCompare(b.nombre))
 
-export const App = () => (
+const App = () => (
     <div className='contenedor'>
         <h1>Agenda</h1>
         <ul>
-            {Personas.map(Persona => (
+            {Personas.map((Persona, index) => (
                 <li key={Persona.id}>
                     <Contacto
                         nombre={Persona.nombre}
                         apellido={Persona.apellido}
                         telefono={Persona.telefono}
+                        numero={index+1}
                     />
                 </li>
             ))}
