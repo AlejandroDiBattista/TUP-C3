@@ -23,7 +23,7 @@ const App = () => (
      {contactos.map(contacto => ( ///Recorremos el array de objetos(Origen de datos)
       <Contacto //Funcion Mostrar
          key={contacto.id} 
-         nombre={contacto.nombre}// Igualamos a los paramatros pasados en Contacto()
+         nombre={contacto.nombre} // Igualamos a los parametros pasados en Contacto()
          apellido={contacto.apellido}
          telefono={contacto.telefono}/>  
   ))}
@@ -31,3 +31,4 @@ const App = () => (
 );
 ///Renderizamos la funcion App y la mostramos en el elemento Root
 ReactDOM.render(<App />, document.getElementById("root"));
+//
