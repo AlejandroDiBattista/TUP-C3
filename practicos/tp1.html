@@ -63,6 +63,12 @@
         .falta {
             color: red;
         }
+
+        .alumno .ver .copia {
+            float: right;
+            font-size: 0.8rem;
+            color: #999;
+        }
     </style>
     <script>
         const datos = [
@@ -326,8 +332,8 @@
     "legajo": 59063,
     "nombre": "Cuevas, Matias Sebastián",
     "inicial": "MSC",
-    "TP1": true,
-    "cambio": true,
+    "TP1": false,
+    "cambio": false,
     "ubicacion": "./24 - 59063 - Cuevas, Matias Sebastián/TP1/index.html"
   },
   {
@@ -598,15 +604,19 @@
     </script>
 
     <script type="text/babel">
+
         const comision = datos[0].comision
 
         const Ver = ({ alumno }) =>
-            <span class="ver">
-                {alumno.cambio ? <a href={alumno.ubicacion}>Ver Entrega</a> : <span class="falta">No entregado</span>}
+            <span className="ver">
+                {alumno.cambio ? 
+                    <a href={alumno.ubicacion}>Ver Entrega</a> : 
+                    <span class="falta">No entregado</span>}
+                {alumno.copia && <span className="copia">😲 {alumno.copia}</span>}
             </span>
         
         const Alumno = ({ alumno }) => (
-            <div class="alumno">
+            <div className="alumno">
                 <h2><span>{alumno.orden}</span> {alumno.nombre}</h2>
                 <Ver alumno={alumno} />
             </div>
@@ -614,7 +624,7 @@
 
         const App = () => (
             <div id="main">
-                <h1>{comision} | Listado de alumnos</h1>
+                <h1>| {comision} | Listado de alumnos</h1>
                 <div>
                     <div>Entregó: {datos.filter(alumno => alumno.cambio).length}</div>
                     <div>Falta entregar: {datos.filter(alumno => !alumno.cambio).length}</div>
