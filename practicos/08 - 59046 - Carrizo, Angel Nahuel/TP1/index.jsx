@@ -64,12 +64,6 @@ const contactos = [
         nombre: "Mariela",
         apellido: "Carrizo",
         telefono: 123456789
-    },
-    {
-        id: 10,
-        nombre: "Exequiel",
-        apellido: "Carrizo",
-        telefono: 123456789
     }
 ];
 
