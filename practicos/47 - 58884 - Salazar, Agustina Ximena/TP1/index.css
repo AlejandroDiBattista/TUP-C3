@@ -1,7 +1,59 @@
+@keyframes cambiaColorFondo {
+    0% { background-color: #fdb8ff; } 
+    50% { background-color: #90fff0; } 
+    100% { background-color: #fdb8ff; } 
+}
+
+
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    animation: cambiaColorFondo 10s infinite; 
+}
+
+
+body {
+    background-color: #c9f5ee; 
+    font-family: 'Courier';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: #3f4d72; 
+}
+
+.contacto {
+    border: 2px dotted #5cb4e7; 
+    border-radius: 10px; 
+    width: 300px;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: #c9fff6; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+    transition: all 0.3s ease; 
+    color: #3f4d72;
+    
+}
+
+.contacto:hover {
+    transform: translateY(-5px); 
+}
+
+#main {
+    width: 80%;
+    max-width: 600px; 
+    margin: 50px auto;
+    background-color: #fff3c2;
+    text-align: center;
+    padding: 40px;
+    border-radius: 15px; 
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); 
+    border: 5px dotted #5ce7d4
+}
+
+p{
+    color: #3f4d72;
 }
