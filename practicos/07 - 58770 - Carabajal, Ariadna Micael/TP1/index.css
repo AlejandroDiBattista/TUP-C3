@@ -1,7 +1,171 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #20201e;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
+
+    background-size: cover;
+    background: linear-gradient(-45deg, #01161e, #3a5b88, #fefcfd, #f61067, #6a66a3);
+    background-size: 400% 800%;
+    height: 100vh;
+    animation: fondo 15s ease infinite;
+}
+
+.gradiente{
+    background: linear-gradient(#20201e, #00000011);
+    position: sticky;
+    z-index: 9;
+}
+
+#main{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+h1{
+    margin-top: 0;
+    padding-top: 30px;
+
+    text-align: center;
+    margin-bottom: 20px;
+    height: 60px;
+    
+    background-color: #20201e;
+    color: #cecec4;
+    
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style:normal;
+    text-align: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 11;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    margin-bottom: 5px;
+    font-family: "Roboto", sans-serif;
+}
+
+
+.contactos-contenedor{
+    display: flex;
+    padding-left: 16%;
+    padding-right: 15%;
+    padding-bottom: 5%;
+}
+
+/*.contenedor{
+    width: 250px;
+    height: 350px;
+
+    margin: 20px;
+    padding: 0%;
+
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+/*Tarjetas*/
+
+.tarjeta{
+    width: 250px;
+    height: 350px;
+
+    display: grid;
+    position: relative;
+    left: 0px;
+
+    background-color: #cecec4;
+
+    transition: 0.5s;
+}
+
+.tarjeta h2{
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#perfil{
+    border-radius: 100px;
+    margin-bottom: 45px;
+    margin-left: 30px;
+}
+
+.contenido{
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/*Para el movimiento de las tarjetas*/
+
+.tarjeta:not(:first-child){
+    margin-left: 50px;
+}
+
+.tarjeta:hover{
+    box-shadow: 1px 8px 8px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+    color: #9b023c;
+    z-index: 10;
+}
+
+/*Scollbar*/
+
+
+/*Animacion*/
+
+@keyframes fondo{
+    0%{
+        background-position: 0%, 50%;
+    }   
+    50%{
+        background-position: 100%, 50%;
+    }   
+    100%{
+        background-position: 0%, 50%;
+    }   
+}
+
+
+@media screen and (max-width:600px){
+    .contactos-contenedor{
+        display: flex;
+        padding-left: 60px;
+        padding-right: 15%;
+        padding-bottom: 5%;
+    }
+
+    .tarjeta:hover{
+        box-shadow: -20px 1px 2px 2px rgba(0, 0, 0, 0.2);
+        transform: translateX(20px);
+        z-index: 10;
+    }
+
+    body {
+        background-color: #20201e;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    
+        background-size: cover;
+        background: linear-gradient(-45deg, #01161e, #3a5b88, #fefcfd, #f61067, #6a66a3);
+        background-size: 400% 800%;
+        height: 100vh;
+        animation: fondo 15s ease infinite;
+    }
 }
