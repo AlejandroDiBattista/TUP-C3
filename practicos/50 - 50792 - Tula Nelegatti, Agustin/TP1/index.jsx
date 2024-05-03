@@ -24,4 +24,4 @@ const Lista = () => (
 
 )
 
-ReactDOM,render (<Lista/>, document.getElementById('root'))
+ReactDOM.render (<Lista/>, document.getElementById('root'))

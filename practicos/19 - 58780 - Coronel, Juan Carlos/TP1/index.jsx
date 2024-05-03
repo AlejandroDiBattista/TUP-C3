@@ -1,5 +1,6 @@
 // lista de contactos 
-const contactos =[{id:1, nombre : 'maria julia', apellido : 'Mendez' , telefono : '4225533'},
+const contactos = [
+{id:1, nombre: 'maria julia', apellido: 'Mendez', telefono: '4225533' },
 {id:2, nombre : 'pedro', apellido : 'Fernandez' , telefono : '4200033' },
 {id:3, nombre : 'maria mercedez', apellido : 'Del Valle', telefono : '4200035' },
 {id:4, nombre :'jose' , apellido : 'alvarez', telefono : '3815856772'},
@@ -9,7 +10,7 @@ const contactos =[{id:1, nombre : 'maria julia', apellido : 'Mendez' , telefono 
 // dentro de constante contacto ,coloco funcion flecha
 const Contacto = ({nombre,apellido,telefono}) => (
     <div className="contacto">
-        <h3>{nombre}<b>{apellido.toUppercase()}</b></h3>
+        <h3>{nombre}<b>{apellido.toUpperCase()}</b></h3>
         <p>Telefono :{telefono}</p>
     </div>
 );
