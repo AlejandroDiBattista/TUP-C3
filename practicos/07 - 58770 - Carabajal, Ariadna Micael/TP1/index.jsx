@@ -107,11 +107,11 @@ const Agenda = () =>  (
                 <h2>Contacto {contacto.id}</h2>
                 <div className="contenido">
                 <ul>
-                    <li><img id="perfil" src=".\img\profile-picture-black.jpg" alt="" width={100} height={100} /></li>
+                    <li><img id="perfil" src=".\profile-picture-black.jpg" alt="" width={100} height={100} /></li>
                     <div className="informacion">
-                    <li><b>Nombre:</b> {contacto.nombre}</li>
-                    <li><b>Apellido:</b> {contacto.apellido}</li>
-                    <li><b>Telefono:</b> {contacto.telefono}</li>
+                        <li><b>Nombre:</b> {contacto.nombre}</li>
+                        <li><b>Apellido:</b> {contacto.apellido}</li>
+                        <li><b>Telefono:</b> {contacto.telefono}</li>
                     </div>
                 </ul>
                 </div>

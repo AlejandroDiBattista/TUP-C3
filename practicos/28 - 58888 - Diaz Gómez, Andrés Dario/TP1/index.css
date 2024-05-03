@@ -2,9 +2,10 @@ body {
     background-color: #a9a9a9;
     font-family: Arial, sans-serif;
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: border-box;
 }
+
 #agendacontactos {
     display: flex;
     flex-direction: column;
@@ -16,7 +17,8 @@ body {
     width: 80%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-#agendacontactos h1{
+
+#agendacontactos h1 {
     align-self: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }

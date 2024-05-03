@@ -10,6 +10,7 @@ const App = () => (
         <Contactos Nombre={"Matias"} Apellido={"Gomez"} Telefono={381405699} Correo={"matuto00@gmail.com"} id={98908732} />
     </div>
 )
+
 const Contactos = ({ Nombre, Apellido, Telefono, Correo, id }) => (
     <div className="caja_contenedor">
         <div className="contenedor">
