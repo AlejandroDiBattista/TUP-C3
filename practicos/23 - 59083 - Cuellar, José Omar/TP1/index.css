@@ -4,4 +4,40 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-align: center;
+}
+
+#Agenda{
+    width: 30%;
+    border: solid 1px #222;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 50px;
+    border: dashed;
+    background-color: #ccffcc; /* Color de fondo para la primera tarjeta */
+    
+}
+#contendor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    
+}
+
+#Nombre, #id2{
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #f22;
+    font-size: 30px;
+}
+#telefono{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #22a;
+    font-weight: 900;
+    font-size: 24px;
+    
 }
