@@ -1,7 +1,39 @@
 body {
-    background-color: #f0f0f0;
+    background-color: #fffdfd;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.tarjeta {
+    border: 1px solid #030303;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    width: 308px;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 50px;
+    transition: transform 0.3 ease;
+}
+.tarjeta:hover {
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00, 0 0 160px #00ff00;
+}
+    #main{
+        width: 340px;
+    margin: 0 auto;
+    background-color: rgb(216, 213, 213);
+    height: 100vh;
+    border: 1px solid #030303;
+    }
+h1{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s ease;
+}
+h1:hover {
+    color:aqua;
+    text-shadow: 0 0 10px  #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00, 0 0 80px #00ff00, 0 0 160px #00ff00;
 }

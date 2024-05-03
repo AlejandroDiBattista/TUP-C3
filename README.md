@@ -1,75 +1,31 @@
-# TUP: Comisión 4
+# TUP: Comisión 3
 
 ## Material de soporte para el dictado de clases 
 
 Este respositorio contiene el material de soporte para el dictado de las clases.
 
-Contiene código fuente asi como material de lectura.
+Contiene código fuente, material de lectura, enunciados y el contenido de los trabajos prácticos.
 
-### Declaración de identificadores
+---
 
-Los identificadores (usado para darle nombre a los distintos elementos de JS) se forman 
-con una secuencia letra, digitos, $ y _, pero no pueden conmenzar un digitos y no pueden ser palabas reservadas
-(if, let, for, etc..)
+# Trabajo Práctico Nº 1
 
+Hacer una app en react que muestre una agenda de contactos
 
-```js
-// Identicadores validos.
-let a = 1
-let A = 2
+1. La lista de contacto debe estar ingresado como una lista de objetos.
+2. Los contactos deben tener id, nombre, apellido y teléfono
+3. Los contactos se deben mostrar como una tarjeta de presentación
+4. Para presentar el trabajo debe:
 
-let $ = 1
-let _ = 2
+    a. Bajar el repositorio del curso (clone)
 
-let a1 = 3
-let _1 = 4
+    b. Crear una nueva rama (new branch)
 
-let a_ = 5
+    c. Abrir la carpeta que le corresponda a cada alumno (practicos/{alumno}/tp1)
 
-let 1a          // No valido | comienza con digito
-let a b = 10    // no valido | tiene un espacio
-```
+    d. Realizar los cambios en los archivos de muestra (no debe cambiar ninguna otra carpeta)
 
-Los identificadores son sensibles a las mayusculas y minusculas
-```js
-    let a = 10
-    let A = 20
-    a != A      // 
-    nombre != Nombre != NOMBRE != nOmbre // etc...
-```
+    e. Confirmar los cambios (commit)
 
-Existen algunas convenciones para la formacion de identificadores.
-
-Las variables y funciones se suelen escribir en "camel case"
-Todo en minusculas, cuando esta formado por varias palabras 
-a partir de la segunda palabra la primer letra va en mayuscula.
-
-```js
-    let nombre = "Juan"
-    let fechaNacimiento = "10/05/2024"
-
-    function precioPromedio(productos){...}
-```
-
-Las clases y constructures se escriben en "Pascal Case" 
-Todas las palabras en menusculas exceto la primer letra. 
-
-```js
-    class PersonaFisica {...}
-    function CrearPersona(){...}
-```
-
-Las constantes se escriben todo en mayusculas.
-Si tienen multiples palabras se separan con "_"
-
-```js
-    const FUERZA_GRAVEDAD = 9.81
-    const PRECIO_MAXIMO = 1000
-```
-
-Se pueden usar acentos pero suelen dificultar la lectura asi que no es habitual
-
-### Variables 
-
-Las variables es darle un nombre a una memoria. 
+    f. Realizar un solicitud de publicacion (pull request)
 
