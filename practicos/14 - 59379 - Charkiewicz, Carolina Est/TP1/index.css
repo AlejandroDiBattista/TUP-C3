@@ -5,3 +5,33 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .agenda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contacto {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 300px;
+  }
+  
+  .nombre {
+    color: #333;
+    margin: 0;
+  }
+  
+  .telefono, .email {
+    margin: 5px 0;
+  }
+  
