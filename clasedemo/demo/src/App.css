@@ -1,0 +1,55 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+body {
+  background-color: #f0faf0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.agenda {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  
+  .card {
+    text-align: center;
+    width: 240px;
+    height: 96px;
+  
+    padding: 16px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  
+    position: relative;
+  
+    .favorito {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  
+    div {
+      margin-top: 20px;
+    }
+  
+    .nombre {
+      font-size: 24px;
+    }
+  
+    .telefono {
+      text-align: right;
+    }
+  }
+}
