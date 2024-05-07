@@ -1,7 +1,95 @@
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
+    
+    background-image: url(https://i.pinimg.com/originals/07/9f/fc/079ffc1c7bc9f4ad54455bb2669073bf.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
+
+
+
+h1{
+    text-align: center;
+    margin-top: 100px;
+    color: #f0f0f0;
+    letter-spacing: 1.5px;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+
+h2,p{
+    word-wrap: break-word;
+    color: #f0f0f0;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.agenda {
+    margin-top: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+   
+}
+
+
+
+.agenda .card{
+    transition: transform 0.3s ease-in-out;
+}
+
+.agenda .card:hover{
+    transform: scale(1.1);
+}
+.numero {
+    font-weight: 900;
+}
+
+.card {
+    width: 170px;
+    height: 254px;
+    margin: 0 auto;
+    background-color: #011522;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 1px 2px 10px 0px rgb(34, 60, 83) ;
+      
+
+   }
+   
+   .tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
+   }
+   
+   .circle {
+    padding: 0 4px;
+   }
+   
+   .box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+   }
+   
+   .red {
+    background-color: #ff605c;
+   }
+   
+   .yellow {
+    background-color: #ffbd44;
+   }
+   
+   .green {
+    background-color: #00ca4e;
+   }
