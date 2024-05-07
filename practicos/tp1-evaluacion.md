@@ -58,6 +58,10 @@
 * Agrega ID para cada contacto
 * Le agrega clase a cada elemento y con nombre compuestos "tarjeta__nombre"
 
+## 27
+* ok
+* No formatea como tarjeta
+
 ## 28 > VER > Clases y funcion 
 * Guarda los datos en clases
 * Llama al componente como una función 
@@ -73,7 +77,8 @@
 * Lo hizo junto a #29
 
 ## 34
-* No adjunto los archivos
+* ok
+* Muestra como tabla en lugar de tarjetas
 
 ## 36
 * Llama al componente como funcion

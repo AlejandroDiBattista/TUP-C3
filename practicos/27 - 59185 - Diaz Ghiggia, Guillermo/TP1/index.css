@@ -1,5 +1,5 @@
 body {
-    
+
     background-image: url(https://i.pinimg.com/originals/07/9f/fc/079ffc1c7bc9f4ad54455bb2669073bf.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,23 +7,19 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
 
-
-
-h1{
+h1 {
     text-align: center;
     margin-top: 100px;
     color: #f0f0f0;
     letter-spacing: 1.5px;
     font-size: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
 }
 
-
-h2,p{
+h2,
+p {
     word-wrap: break-word;
     color: #f0f0f0;
     text-align: center;
@@ -35,18 +31,17 @@ h2,p{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-   
+
 }
 
-
-
-.agenda .card{
+.agenda .card {
     transition: transform 0.3s ease-in-out;
 }
 
-.agenda .card:hover{
+.agenda .card:hover {
     transform: scale(1.1);
 }
+
 .numero {
     font-weight: 900;
 }
@@ -58,38 +53,36 @@ h2,p{
     background-color: #011522;
     border-radius: 8px;
     z-index: 1;
-    box-shadow: 1px 2px 10px 0px rgb(34, 60, 83) ;
-      
+    box-shadow: 1px 2px 10px 0px rgb(34, 60, 83);
+}
 
-   }
-   
-   .tools {
+.tools {
     display: flex;
     align-items: center;
     padding: 9px;
-   }
-   
-   .circle {
+}
+
+.circle {
     padding: 0 4px;
-   }
-   
-   .box {
+}
+
+.box {
     display: inline-block;
     align-items: center;
     width: 10px;
     height: 10px;
     padding: 1px;
     border-radius: 50%;
-   }
-   
-   .red {
+}
+
+.red {
     background-color: #ff605c;
-   }
-   
-   .yellow {
+}
+
+.yellow {
     background-color: #ffbd44;
-   }
-   
-   .green {
+}
+
+.green {
     background-color: #00ca4e;
-   }
+}
