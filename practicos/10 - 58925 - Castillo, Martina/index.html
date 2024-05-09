@@ -29,11 +29,17 @@
         }
 
         .card {
+            position: relative;
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card .fas,
+        .card .far {
+            margin-right: 8px;
         }
 
         .agenda {
@@ -134,7 +140,7 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM;
         const { useState } = React;
-        
+
         const Favorito = ({ marcado }) => {
             return (
                 <span>
@@ -158,7 +164,7 @@
             return (
                 <>
                     <div className="agenda">
-                        {favoritos.map(contacto => <Contacto key={contacto.id} {...contacto}/>)}
+                        {favoritos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
                     </div>
                     <div className="agenda">
                         {resto.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
@@ -172,7 +178,7 @@
                 <h1>Agenda</h1>
                 <Agenda datos={datos} />
             </div>
-            
+
 
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
