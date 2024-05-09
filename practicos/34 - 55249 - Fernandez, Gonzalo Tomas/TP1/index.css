@@ -18,6 +18,7 @@ th,
 td {
   padding: 8px;
   border: 1px solid #ddd;
+  user-select: none;
 }
 
 th {
@@ -25,7 +26,15 @@ th {
   text-align: left;
 }
 
-#title {
+td:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  background-color: #ddd;
+  color: #000;
+  user-select: none;
+}
+
+.title {
   padding: 0;
   margin: 0;
   position: relative;
