@@ -10,7 +10,7 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title> agenda </title>
     <style>
         /* reset */
         body {
@@ -34,6 +34,7 @@
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .agenda {
@@ -100,6 +101,14 @@
                     cursor: pointer;
                 }
             }
+            
+        }
+        .icono-estrella {
+            color: black;
+        }
+
+        .favoritos .icono-estrella {
+            color: gold;
         }
     </style>
 </head>
@@ -108,48 +117,80 @@
     <div id="root"></div>
     <script>
         const datos = [
-            { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 123-4567', favorito: true },
-            { id: 2, nombre: 'Maria', apellido: 'Gomez', telefono: '(381) 123-4567', favorito: false },
-            { id: 3, nombre: 'Pedro', apellido: 'Gonzalez', telefono: '(381) 123-4567', favorito: true },
-            { id: 4, nombre: 'Ana', apellido: 'Fernandez', telefono: '(381) 123-4567', favorito: false },
-            { id: 5, nombre: 'Lucas', apellido: 'Rodriguez', telefono: '(381) 123-4567', favorito: true },
-            { id: 6, nombre: 'Carla', apellido: 'Lopez', telefono: '(381) 123-4567', favorito: false },
-            { id: 7, nombre: 'Jorge', apellido: 'Diaz', telefono: '(381) 123-4567', favorito: true },
-            { id: 8, nombre: 'Luis', apellido: 'Martinez', telefono: '(381) 123-4567', favorito: false },
-            { id: 9, nombre: 'Florencia', apellido: 'Paz', telefono: '(381) 123-4567', favorito: true },
-            { id: 10, nombre: 'Miguel', apellido: 'Rojas', telefono: '(381) 123-4567', favorito: false },
-            { id: 11, nombre: 'Sofia', apellido: 'Acosta', telefono: '(381) 123-4567', favorito: true },
-            { id: 12, nombre: 'Carlos', apellido: 'Vera', telefono: '(381) 123-4567', favorito: false },
-            { id: 13, nombre: 'Valeria', apellido: 'Gimenez', telefono: '(381) 123-4567', favorito: true },
-            { id: 14, nombre: 'Pablo', apellido: 'Sosa', telefono: '(381) 123-4567', favorito: false },
-            { id: 15, nombre: 'Romina', apellido: 'Rios', telefono: '(381) 123-4567', favorito: true },
-            { id: 16, nombre: 'Ezequiel', apellido: 'Molina', telefono: '(381) 123-4567', favorito: false },
-            { id: 17, nombre: 'Agustina', apellido: 'Ortiz', telefono: '(381) 123-4567', favorito: true },
-            { id: 18, nombre: 'Matias', apellido: 'Luna', telefono: '(381) 123-4567', favorito: false },
-            { id: 19, nombre: 'Cecilia', apellido: 'Carrizo', telefono: '(381) 123-4567', favorito: true },
-            { id: 20, nombre: 'Facundo', apellido: 'Paez', telefono: '(381) 123-4567', favorito: false }
+            { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 123-4567', favoritos: true },
+            { id: 2, nombre: 'Maria', apellido: 'Gomez', telefono: '(381) 123-4567', favoritos: false },
+            { id: 3, nombre: 'Pedro', apellido: 'Gonzalez', telefono: '(381) 123-4567', favoritos: true },
+            { id: 4, nombre: 'Ana', apellido: 'Fernandez', telefono: '(381) 123-4567', favoritos: false },
+            { id: 5, nombre: 'Lucas', apellido: 'Rodriguez', telefono: '(381) 123-4567', favoritos: true },
+            { id: 6, nombre: 'Carla', apellido: 'Lopez', telefono: '(381) 123-4567', favoritos: false },
+            { id: 7, nombre: 'Jorge', apellido: 'Diaz', telefono: '(381) 123-4567', favoritos: true },
+            { id: 8, nombre: 'Luis', apellido: 'Martinez', telefono: '(381) 123-4567', favoritos: false },
+            { id: 9, nombre: 'Florencia', apellido: 'Paz', telefono: '(381) 123-4567', favoritos: true },
+            { id: 10, nombre: 'Miguel', apellido: 'Rojas', telefono: '(381) 123-4567', favoritos: false },
+            { id: 11, nombre: 'Sofia', apellido: 'Acosta', telefono: '(381) 123-4567', favoritos: true },
+            { id: 12, nombre: 'Carlos', apellido: 'Vera', telefono: '(381) 123-4567', favoritos: false },
+            { id: 13, nombre: 'Valeria', apellido: 'Gimenez', telefono: '(381) 123-4567', favoritos: true },
+            { id: 14, nombre: 'Pablo', apellido: 'Sosa', telefono: '(381) 123-4567', favoritos: false },
+            { id: 15, nombre: 'Romina', apellido: 'Rios', telefono: '(381) 123-4567', favoritos: true },
+            { id: 16, nombre: 'Ezequiel', apellido: 'Molina', telefono: '(381) 123-4567', favoritos: false },
+            { id: 17, nombre: 'Agustina', apellido: 'Ortiz', telefono: '(381) 123-4567', favoritos: true },
+            { id: 18, nombre: 'Matias', apellido: 'Luna', telefono: '(381) 123-4567', favoritos: false },
+            { id: 19, nombre: 'Cecilia', apellido: 'Carrizo', telefono: '(381) 123-4567', favoritos: true },
+            { id: 20, nombre: 'Facundo', apellido: 'Paez', telefono: '(381) 123-4567', favoritos: false }
         ]
     </script>
 
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+        const Contacto = ({ nombre, apellido, telefono, favoritos, id, convertirFavoritos }) => {
+            const marcarFavoritos = () => {
+                convertirFavoritos(id);
+            };
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+            return (
+                <div className={`card ${favoritos ? 'favoritos' : ''}`} onClick={marcarFavoritos}>
+                    <div>{nombre} <b>{apellido}</b></div>
+                    <div>{telefono}</div>
+                    <span className={`fas fa-star icono-estrella ${favoritos ? 'favoritos' : ''}`} onClick={(e) => { e.stopPropagation(); marcarFavoritos(); }}></span>
+                </div>
+            );
+        };
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
+        const Agenda = ({ datos, marcarFavoritos }) => {
+            const favoritoss = datos.filter(contacto => contacto.favoritos);
+            const nofavoritoss = datos.filter(contacto => !contacto.favoritos);
+
+            favoritoss.sort((a, b) => a.apellido.localeCompare(b.apellido) || a.nombre.localeCompare(b.nombre));
+            nofavoritoss.sort((a, b) => a.apellido.localeCompare(b.apellido) || a.nombre.localeCompare(b.nombre));
+
+            const contactos = [...favoritoss, ...nofavoritoss];
+
+            return (
+                <div className="agenda">
+                    {contactos.map(contacto => <Contacto key={contacto.id} {...contacto} convertirFavoritos={marcarFavoritos} />)}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [data, setData] = React.useState(datos);
+
+            const marcarFavoritos = (id) => {
+                const newData = data.map(contacto =>
+                    contacto.id === id ? { ...contacto, favoritos: !contacto.favoritos } : contacto
+                );
+                setData(newData);
+            };
+
+            return (
+                <div>
+                    <h1>Agenda</h1>
+                    <Agenda datos={data} marcarFavoritos={marcarFavoritos} />
+                </div>
+            );
+        };
+
 
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
