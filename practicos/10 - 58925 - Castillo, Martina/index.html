@@ -141,33 +141,46 @@
         const { createRoot } = ReactDOM;
         const { useState } = React;
 
-        const Favorito = ({ marcado }) => {
+        const Favorito = ({ marcado, onClick }) => {
             return (
-                <span>
+                <span onClick={onClick}>
                     {marcado ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
                 </span>
             )
         }
 
-        const Contacto = ({ nombre, apellido, telefono, favorito }) =>
+        const Contacto = ({ nombre, apellido, telefono, favorito, toggleFavorito }) =>
             <div className="card">
-                <Favorito marcado={favorito} />
+                <Favorito marcado={favorito} onClick={toggleFavorito} />
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
             </div>
 
         const Agenda = ({ datos }) => {
+            const [contactos, setContactos] = useState(datos)
+
+            const toggleFavorito = (id) => {
+                const updatedContactos = contactos.map(contacto => {
+                    if (contacto.id === id) {
+                        return { ...contacto, favorito: !contacto.favorito }
+                    }
+                    return contacto
+                })
+                setContactos(updatedContactos)
+            };
+
             const comparar = (a, b) => a.nombre.localeCompare(b.nombre)
             datos.sort((a, b) => (a.apellido + a.nombre).localeCompare(b.apellido + b.nombre))
-            const favoritos = datos.filter(contacto => contacto.favorito)
-            const resto = datos.filter(contacto => !contacto.favorito)
+            const favoritos = contactos.filter(contacto => contacto.favorito)
+            const resto = contactos.filter(contacto => !contacto.favorito)
+
             return (
                 <>
                     <div className="agenda">
-                        {favoritos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+                        {favoritos.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={() => toggleFavorito(contacto.id)} />)}
                     </div>
                     <div className="agenda">
-                        {resto.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+                        {resto.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={() => toggleFavorito(contacto.id)} />)}
                     </div>
                 </>
             )
