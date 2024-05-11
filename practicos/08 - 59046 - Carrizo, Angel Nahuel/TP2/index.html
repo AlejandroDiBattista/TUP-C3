@@ -42,6 +42,7 @@
             flex-wrap: wrap;
             justify-content: start;
 
+
             >div {
                 text-align: center;
                 width: 240px;
@@ -52,6 +53,12 @@
                     position: absolute;
                     top: 8px;
                     right: 8px;
+                    transition: 500ms;
+                }
+
+                span:hover {
+                    cursor: pointer;
+                    scale: 1.25;
                 }
 
                 div {
@@ -63,6 +70,7 @@
                     text-align: right;
                     font-size: 14px;
                 }
+
             }
         }
 
@@ -99,6 +107,7 @@
                     font-size: 14px;
                     cursor: pointer;
                 }
+
             }
         }
     </style>
@@ -106,7 +115,9 @@
 
 <body>
     <div id="root"></div>
+
     <script>
+        // Datos de las personas
         const datos = [
             { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 123-4567', favorito: true },
             { id: 2, nombre: 'Maria', apellido: 'Gomez', telefono: '(381) 123-4567', favorito: false },
@@ -134,25 +145,64 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        // Se crea la constante favorito, el "?" es lo mismo que usar la condicion "if"
+        const Favorito = ({ marcado, onClick }) => {
+            return <span onClick={onClick}> {
+                marcado ? <i class="fa-solid fa-star"></i> : <i class="fa-regular fa-star"></i>
+            }</span>
+        }
+
+        // Tarjeta de los contactos
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, toggleFavorito }) => (
             <div className="card">
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
+                <Favorito marcado={favorito} onClick={() => toggleFavorito(id)} />
             </div>
+        )
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+        // Se crea la constante favorito y noFavorito dentro de Agenda
+        const Agenda = ({ datos }) => {
+            const ordenados = datos.sort((a, b) => a.apellido.localeCompare(b.apellido))
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const noFavorito = datos.filter(contacto => !contacto.favorito)
 
-        const App = () =>
+            const toggleFavorito = (id) => {
+                datos.forEach(contacto => {
+                    if (contacto.id === id) {
+                        contacto.favorito = !contacto.favorito;
+                    }
+                })
+                renderizar()
+            }
+
+            const renderizar = () => {
+                ReactDOM.render(<Agenda datos={datos} />, document.getElementById('root'))
+            }
+
+            return (
+                <div>
+                    <h2>Favoritos</h2>
+                    <div className="agenda">
+                        {favorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                    <h2>No Favoritos</h2>
+                    <div className="agenda">
+                        {noFavorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                </div>
+            )
+        }
+
+        const App = () => (
             <div>
-                <h1>Agenda</h1>
+                <h1>Agenda de contactos</h1>
                 <Agenda datos={datos} />
             </div>
+        )
 
         const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
+        root.render(<App />)
     </script>
 </body>
 
