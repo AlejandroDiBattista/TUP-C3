@@ -45,20 +45,6 @@
             justify-content: space-between;
             align-items: center;
         }
-        .fas.fa-star{
-            cursor: pointer;
-            color: #ccc;
-        }
-        .fas.fa-star.favourite{
-            color:gold;
-        }
-
-        .card .fas.fa-star{
-            position: absolute;
-            top: 8px;
-            right: 8px;
-        }
-
         .agenda {
             margin-top: 16px;
             display: flex;
@@ -126,6 +112,19 @@
         }
         h1{
             text-align: center;
+        }
+        .fas.fa-star{
+            cursor: pointer;
+            color: #ccc;
+        }
+        .fas.fa-star.favourite{
+            color:gold;
+        }
+
+        .card .fas.fa-star{
+            position: absolute;
+            top: 8px;
+            right: 8px;
         }
     </style>
     </style>
@@ -207,7 +206,7 @@
         <div className="agenda">
             {datos.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavourite={toggleFavourite} />)}
         </div>
-        
+
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
     </script>
