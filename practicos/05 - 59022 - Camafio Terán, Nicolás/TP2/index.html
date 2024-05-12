@@ -134,16 +134,53 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const Favorito = ({star, onClick}) => {
+            return <span onClick={onClick}>{
+                star?
+                <i className="fas fa-star"></i>:
+                <i className="far fa-star"></i>
+            } </span>
+        }
+
+        const Contacto = ({id, nombre, apellido, telefono, favorito, toggleFavorito }) =>
             <div className="card">
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
+                <Favorito star={favorito} onClick={() => toggleFavorito(id)} />
             </div>
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+            const Agenda = ({ datos }) => {
+            const alfabetico = datos.sort((a, b) => a.apellido.localeCompare(b.apellido))
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const noFavorito = datos.filter(contacto => !contacto.favorito)
+
+            const toggleFavorito = (id) => {
+                datos.forEach(contacto => {
+                    if(contacto.id === id) {
+                        contacto.favorito = !contacto.favorito
+                    }
+                })
+                renderizar()
+            }
+            const renderizar = () => {
+                ReactDOM.render(<Agenda datos={datos} />, document.getElementById('root'))
+            }
+
+            return (
+                <div>
+                    <h1>Agenda</h1>
+                    <p><b>Favoritos</b></p>
+                    <div className="agenda">
+                        {favorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                    <p><b>Contactos</b></p>
+                    <div className="agenda">
+                        {noFavorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                </div>
+            )
+        }
+
 
         const App = () =>
             <div>
@@ -155,5 +192,3 @@
         root.render(<App />);
     </script>
 </body>
-
-</html>
