@@ -10,14 +10,14 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>58889</title>
     <style>
         /* reset */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #2c1f1f;
         }
 
         #root {
@@ -32,7 +32,7 @@
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
-            background-color: #ffffff;
+            background-color: #aca4a4;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -64,6 +64,23 @@
                     font-size: 14px;
                 }
             }
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            color: white;
+        }
+        .boton{
+           position: absolute;
+           top: 10px;
+           right: 10px;
+           background-color: #aaa;  
+           border: none;
+           outline: none;
+        }
+        h2{
+            font-size: 30px;
+            color: white;
         }
 
         form {
@@ -132,28 +149,98 @@
     </script>
 
     <script type="text/babel">
-        const { createRoot } = ReactDOM
+       const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
+    const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito }) => {
+        const Sacar = (id) => {
+            let validar = confirm("Desea Sacarlo de Favorito?");
+         if (validar) {
+            onToggleFavorito(id);
+            alert("Se saco de favoritos");
+        }
+    };
+
+    const Agregar = (id) => {
+        let Confirmar = confirm("Desea agregarlo a Favorito?");
+        if (Confirmar) {
+            onToggleFavorito(id);
+            alert("Se agrego a favoritos");
+        }
+    };
+
+    return (
+        <div className="card">
+            <div>{nombre} <b>{apellido}</b>
+                {favorito ? (
+                    <button className='boton' onClick={() => Sacar(id)}><i className="fa-solid fa-star"></i></button>)
+                    :
+                    (<button className='boton' onClick={() => Agregar(id)}><i className="fa-regular fa-star"></i></button>)}
             </div>
+            <div>{telefono}</div>
+        </div>
+    );
+};
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+const Agenda = ({ datos, onToggleFavorito }) => (
+    <div className="agenda">
+        {datos.map(contacto => (
+            <Contacto
+                key={contacto.id}
+                {...contacto}
+                onToggleFavorito={onToggleFavorito}
+            />
+        ))};
+    </div>
+);
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
+const App = ({ datos }) => {
+    const [contactos, setContactos] = React.useState(datos);
 
-        const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
+    const toggleFavorito = id => {
+        const NContactos = contactos.map(contacto => {
+            if (contacto.id === id) {
+                return { ...contacto, favorito: !contacto.favorito };
+            }
+            return contacto;
+        });
+        setContactos(NContactos);
+    };
+
+    const { favoritos, nofavoritos } = favorito(contactos);
+
+    return (
+        <div>
+            <h1>Agenda</h1>
+            <h2>Favoritos</h2>
+            <Agenda datos={favoritos} onToggleFavorito={toggleFavorito} />
+            <h2>General</h2>
+            <Agenda datos={nofavoritos} onToggleFavorito={toggleFavorito} />
+        </div>
+    );
+};
+
+const favorito = (datos) => {
+    const fav = [];
+    const nofav = [];
+    for (let i = 0; i < datos.length; i++) {
+        if (datos[i].favorito === true) {
+            fav.push(datos[i]);
+        }
+        else {
+            nofav.push(datos[i]);
+        }
+    }
+    return { favoritos: fav, nofavoritos: nofav };
+};
+datos.sort((a, b) => {
+    return a.nombre !== b.nombre ? a.nombre.localeCompare(b.nombre) : a.apellido.localeCompare(b.apellido);
+});
+
+const renderApp = () => {
+    const root = document.getElementById('root');
+    ReactDOM.render(<App datos={datos} />, root);
+};
+renderApp();
     </script>
 </body>
-
 </html>
