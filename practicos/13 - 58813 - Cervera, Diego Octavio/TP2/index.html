@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- Enlaces a React, ReactDOM y Babel -->
+    <!-- Enlaces a React, ReactDOM y Babel --> 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -52,6 +52,12 @@
                     position: absolute;
                     top: 8px;
                     right: 8px;
+                    transition: color .25s, scale 1s;
+                }
+                span:hover {
+                    cursor: pointer;
+                    scale: 1.5;
+                    color: rgb(200, 200, 20);
                 }
 
                 div {
@@ -101,8 +107,12 @@
                 }
             }
         }
+        p {
+            font-size: 24px;
+        }
     </style>
 </head>
+
 
 <body>
     <div id="root"></div>
@@ -134,20 +144,55 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const Favorito = ({marcado, onClick}) => {
+            return <span onClick={onClick}>{
+                marcado?
+                <i className="fas fa-star"></i>:
+                <i className="far fa-star"></i>
+            } </span>
+        }
+
+        const Contacto = ({id, nombre, apellido, telefono, favorito, toggleFavorito }) =>
             <div className="card">
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
+                <Favorito marcado={favorito} onClick={() => toggleFavorito(id)} />
             </div>
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+        const Agenda = ({ datos }) => {
+            const alfabetico = datos.sort((a, b) => a.apellido.localeCompare(b.apellido))
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const noFavorito = datos.filter(contacto => !contacto.favorito)
+            
+            const toggleFavorito = (id) => {
+                datos.forEach(contacto => {
+                    if(contacto.id === id) {
+                        contacto.favorito = !contacto.favorito
+                    }
+                })
+                renderizar()
+            }
+            const renderizar = () => {
+                ReactDOM.render(<Agenda datos={datos} />, document.getElementById('root'))
+            }
 
+            return (
+                <div>
+                    <h1>Agenda</h1>
+                    <p><b>Favoritos</b></p>
+                    <div className="agenda">
+                        {favorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                    <p><b>Contactos</b></p>
+                    <div className="agenda">
+                        {noFavorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                    </div>
+                </div>
+            )
+        }
+            
         const App = () =>
             <div>
-                <h1>Agenda</h1>
                 <Agenda datos={datos} />
             </div>
 

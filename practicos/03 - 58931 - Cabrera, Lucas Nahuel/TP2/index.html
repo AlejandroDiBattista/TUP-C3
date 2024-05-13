@@ -65,7 +65,13 @@
                 }
             }
         }
-
+        .favorito {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: gold;
+            cursor: pointer;
+        }
         form {
             width: 240px;
             padding: 16px;
@@ -134,17 +140,64 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, alternar }) =>{
+            const AlternarFavorito = () => {
+            alternar(id);
+            };
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+            return (
+                <div className="card">
+                    <div><b>{apellido}</b> {nombre} </div>
+                    <div>{telefono}</div>
+                    <span className="favorito" onClick={AlternarFavorito}>
+                        {favorito ? (
+                            <i className="fas fa-star"></i>
+                        ) : (
+                            <i className="far fa-star"></i>
+                        )}
+                    </span>
+                </div>
+            );
+        };
 
+        const Agenda = ({ datos }) => 
+        {
+            const [contactos, setContactos] = React.useState(datos);
+
+            const AlternarFavorito = (id) => {
+                const ContactosActualizados = contactos.map(contacto => {
+                    if (contacto.id === id) {
+                        return { ...contacto, favorito: !contacto.favorito };
+                    }
+                    return contacto;
+                });
+                setContactos(ContactosActualizados);
+            };
+
+            const favoritos = contactos.filter(contacto => contacto.favorito).sort((a, b) => a.apellido.localeCompare(b.apellido));
+            const otros = contactos.filter(contacto => !contacto.favorito).sort((a, b) => a.apellido.localeCompare(b.apellido));
+
+            return (
+                <>
+                    <div className="favoritos">
+                        <h2>Favoritos</h2>
+                        <div className="agenda">
+                            {favoritos.map(contacto => (
+                                <Contacto key={contacto.id} {...contacto} alternar={AlternarFavorito} />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="otros">
+                        <h2>Otros</h2>
+                        <div className="agenda">
+                            {otros.map(contacto => (
+                                <Contacto key={contacto.id} {...contacto} alternar={AlternarFavorito} />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            );
+        }
         const App = () =>
             <div>
                 <h1>Agenda</h1>
