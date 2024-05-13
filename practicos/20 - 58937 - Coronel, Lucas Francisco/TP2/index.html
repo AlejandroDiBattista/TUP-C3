@@ -10,29 +10,34 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>Trabajo Practico N2 58937</title>
     <style>
         /* reset */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
+            body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: lightcoral;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 
-        #root {
-            max-width: 1280px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 20px;
-        }
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
         .card {
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
-            background-color: #ffffff;
+            background-color: lightpink;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -64,6 +69,9 @@
                     font-size: 14px;
                 }
             }
+        }
+        h1 {
+            text-align: center;
         }
 
         form {
@@ -105,9 +113,47 @@
 </head>
 
 <body>
-    <div id="root"></div>
-    <script>
-        const datos = [
+    <div id="root">
+
+    <script type="text/babel">
+        const { createRoot } = ReactDOM
+       
+        const Favorito = ({ marcado, onClick }) => {
+        const icono = marcado ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>;
+        return <span onClick={onClick}>{icono}</span>;
+    };
+
+    const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito }) => (
+        <div className="card">
+            <Favorito marcado={favorito} onClick={() => onToggleFavorito(id)} />
+            <div>{nombre} <b>{apellido}</b></div>
+            <div>{telefono}</div>
+        </div>
+    );
+
+    const Agenda = ({ datos, onToggleFavorito }) => {
+        const comparar = (a, b) => a.nombre.localeCompare(b.nombre);
+        datos.sort(comparar);
+        const favoritos = datos.filter(contacto => contacto.favorito);
+        const resto = datos.filter(contacto => !contacto.favorito);
+        return (
+            <>
+                <div className="agenda">
+                    {favoritos.map(contacto => (
+                        <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                    ))}
+                </div>
+                <div className="agenda">
+                    {resto.map(contacto => (
+                        <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                    ))}
+                </div>
+            </>
+        );
+    };
+
+    const App = () => {
+        const [datos, setDatos] = React.useState([
             { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 123-4567', favorito: true },
             { id: 2, nombre: 'Maria', apellido: 'Gomez', telefono: '(381) 123-4567', favorito: false },
             { id: 3, nombre: 'Pedro', apellido: 'Gonzalez', telefono: '(381) 123-4567', favorito: true },
@@ -128,32 +174,33 @@
             { id: 18, nombre: 'Matias', apellido: 'Luna', telefono: '(381) 123-4567', favorito: false },
             { id: 19, nombre: 'Cecilia', apellido: 'Carrizo', telefono: '(381) 123-4567', favorito: true },
             { id: 20, nombre: 'Facundo', apellido: 'Paez', telefono: '(381) 123-4567', favorito: false }
-        ]
-    </script>
+        ]);
+        
 
-    <script type="text/babel">
-        const { createRoot } = ReactDOM
+        const handleToggleFavorito = (id) => {
+            setDatos(prevDatos => prevDatos.map(contacto => {
+                if (contacto.id === id) {
+                    return { ...contacto, favorito: !contacto.favorito };
+                }
+                return contacto;
+            }));
+        };
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
-
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
-
-        const App = () =>
+        return (
             <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
+                <h1>Agenda </h1>
+                <Agenda datos={datos} onToggleFavorito={handleToggleFavorito} />
             </div>
+        );
+    };
 
-        const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
+    const root = createRoot(document.getElementById('root'));
+    root.render(<App />);
     </script>
+</div>
+
+    
 </body>
 
 </html>
+
