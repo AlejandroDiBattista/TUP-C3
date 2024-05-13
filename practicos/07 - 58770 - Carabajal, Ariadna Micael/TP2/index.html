@@ -19,6 +19,19 @@
             padding: 0;
             background-color: #f0f0f0;
         }
+        
+        h1{
+            width: 100%;
+        }
+
+        i{
+            color: #d69d24;
+        }
+
+        i:hover{
+            color: #9b4b00;
+            cursor: pointer;
+        }
 
         #root {
             max-width: 1280px;
@@ -134,20 +147,60 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+    //CONTACTO------------------------------------------------------------
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, cambiarFavorito }) =>
             <div className="card">
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
+                <Favorito marcado={favorito} onClick={() => cambiarFavorito(id)}/> 
             </div>
-
-        const Agenda = ({ datos }) =>
+        
+    //CONTACTO FAVORITO----------------------------------------------------
+        const Favorito = ({ marcado, onClick }) => { 
+            return(
+                <span onClick = {onClick}> 
+                    {marcado ? (
+                        <i className="fa-solid fa-star fa-xl"></i> 
+                    ):(
+                        <i className="fa-regular fa-star fa-xl"></i> 
+                    )
+                    }
+                </span>
+            )
+        }
+    //AGENDA-----------------------------------------------------------------------------   
+        const Agenda = ({ datos }) =>{
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const renderizar = () =>{
+                ReactDOM.render(<Agenda datos = {datos}/>,document.getElementById('root'))
+            }
+            const cambiarFavorito=(id)=>{
+                datos.forEach(contacto=>{
+                    if(contacto.id === id){
+                        contacto.favorito = !contacto.favorito
+                    }
+                })
+                renderizar()
+            }
+            return(
             <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
 
+                <h1>Agenda</h1>
+
+                {datos
+                    .sort((a,b) =>{
+                        if(a.favorito === b.favorito){
+                            return (a.nombre + a.apellido).localeCompare(b.nombre + b.apellido)
+                        }
+                        return a.favorito ? -1 : 1
+                    })
+                    .map(contacto => <Contacto key={contacto.id} {...contacto} cambiarFavorito = {cambiarFavorito} />)}
+            </div>
+            )
+        }
+    //APP---------------------------------------------------------------------------
         const App = () =>
             <div>
-                <h1>Agenda</h1>
                 <Agenda datos={datos} />
             </div>
 
