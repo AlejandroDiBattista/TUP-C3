@@ -134,22 +134,56 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+     // se crea la constante favorito, con etiqueta span,la estrella superior
+     const Favorito = ({marcado}) => {
+                      return <span> {
+                          marcado?
+                      <i className="fas fa-star"></i> :
+                      <i className="far fa-star"></i>
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+                      }</span>
+                  }
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
+          const Contacto = ({ nombre, apellido, telefono, favorito }) =>
+              <div className="card">
+                 <Favorito marcado={favorito}/>
+                  <div>{nombre} <b>{apellido}</b></div>
+                  <div>{telefono}</div> 
+              </div>
+        // se crea la constante favorito y nofavorito dentro de agenda
+          const Agenda = ({ datos }) =>{
+           const cambiar =  () =>{
+            const Favorito = document.getElementById("marcado");
+            Contacto.favorito = !Favorito;
+           }
+            const comparar = (a,b) => a.nombre.localeCompare(b.nombre)
+           datos.sort(comparar);  
+          const favorito = datos.filter(contacto => contacto.favorito)
+          const noFavorito = datos.filter(contacto =>!contacto.favorito)
+          return (
+          <div>
+            
+              <div className="agenda">
+                  {favorito.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+              </div>
+               <div className="agenda">
+                 {noFavorito.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+              </div>
+         </div>
+          )
+          
+          }
+          const App = () =>
+              <div>
+                  <h1>
+                  <Favorito marcado = {true} />
+                  <Favorito marcado = {false} />Agenda
+                  <Favorito marcado = {true} />
+                  <Favorito marcado = {false} />
+                  </h1>
+                  <Agenda datos={datos} />
+              </div>
+          
 
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
