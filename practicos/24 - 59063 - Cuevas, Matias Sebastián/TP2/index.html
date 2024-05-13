@@ -17,11 +17,19 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+           background-color: rgb(91, 81, 153);
+        
+        }
+
+        h1 {
+            text-align: center;
+         
+            border-bottom: 2px solid rgb(168, 109, 109);
+            padding-bottom: 5px;
         }
 
         #root {
-            max-width: 1280px;
+            max-width: 95%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,11 +37,14 @@
         }
 
         .card {
+            font-weight: bold;
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
-            background-color: #ffffff;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            border: black;
+            border: solid;
+            box-shadow: 0 0 4px rgba(211, 204, 204, 0.1);
+        
         }
 
         .agenda {
@@ -47,6 +58,7 @@
                 width: 240px;
                 height: 96px;
                 position: relative;
+
 
                 span {
                     position: absolute;
@@ -75,7 +87,7 @@
             label {
                 display: block;
                 font-size: 12px;
-                color: #aaa;
+                color: #b6a5a5;
             }
 
             input {
@@ -86,6 +98,7 @@
                 padding: 4px;
                 font-size: 16px;
             }
+           
 
             div {
                 display: flex;
@@ -134,23 +147,90 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+
+        //linea agragada/
+        const Favorito = ({ marcado, Click }) => {
+            let iconos
+            if (marcado) {
+                (iconos = <i class="fa-solid fa-star"></i>)
+
+            }
+            else {
+                iconos = <i class="fa-regular fa-star"></i>
+            }
+            return <span onClick={Click} > {iconos}</span>
+        }
+
+
+        //linea agregada/
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito }) =>
+
             <div className="card">
+
+                <Favorito marcado={favorito} Click={() => onToggleFavorito(id)} />
+
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
             </div>
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+        const Agenda = ({ datos, onToggleFavorito }) => {
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
 
+            const comparar = (a, b) => a.nombre.localeCompare(b.nombre);
+
+
+            const favoritos = datos.filter(contacto => contacto.favorito)
+            const resto = datos.filter(contacto => !contacto.favorito)
+
+
+            return (
+                <>
+
+                    <div className="agenda">
+
+                        {favoritos.map(contacto => <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />)}
+                    </div>
+
+
+                    <div className="agenda">
+
+                        {resto.map(contacto => <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />)}
+                    </div>
+
+                </>
+
+
+            )
+        }
+
+
+
+
+
+        const App = () => {
+
+            const [contactos, setContactos] = React.useState(datos);
+
+            const handleToggleFavorito = (id) => {
+                setContactos(prevContactos => {
+                    return prevContactos.map(contacto => {
+                        if (contacto.id === id) {
+                            return { ...contacto, favorito: !contacto.favorito };
+                        }
+                        return contacto;
+                    });
+                });
+            };
+
+
+            return (<div>
+
+                <h1>Agenda de contatos</h1>
+
+                <Agenda datos={contactos} onToggleFavorito={handleToggleFavorito} />
+            </div>)
+
+        };
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
     </script>
