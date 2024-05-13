@@ -17,7 +17,18 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: rgba(0, 0, 0, 0.358);
+        }
+
+        h1{
+            text-align: center;
+            margin: 0;
+        }
+
+        h2{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            border-bottom-style: solid;
+            margin: 0;
         }
 
         #root {
@@ -34,13 +45,50 @@
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            cursor:default;
+        }
+
+        .card:hover div{
+            animation: swing 0.5s ease infinite alternate; 
+        }
+
+        @keyframes swing{
+            0% {
+                transform: rotate(0deg);
+            }
+            25%{
+                transform: rotate(2deg);
+            }
+            75%{
+                transform: rotate(-2deg);
+            }
+            100%{
+                transform:rotate(0deg)
+            }
+        }
+
+        .card i{
+            position:absolute;
+            top: 2px;
+            right: 2px;
+            transition: transform 0.3s, scale 0.3s;
+            cursor:pointer;
+        }
+        
+        .card i:hover{
+            transform: scale(1.2) rotate(95deg);
+        }
+        .fa-solid.fa-star{
+            color: gold;
         }
 
         .agenda {
             margin-top: 16px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: start;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border-radius: 8px;
 
             >div {
                 text-align: center;
@@ -134,22 +182,62 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const Contacto = ({ nombre, apellido, telefono, favorito, alCambiarFavorito }) =>
             <div className="card">
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
+                {favorito ? (
+                    <i class="fa-solid fa-star" onClick={() => alCambiarFavorito()}></i>
+                ):(
+                    <i class="fa-regular fa-star" onClick={() => alCambiarFavorito()}></i>
+                )}
             </div>
 
-        const Agenda = ({ datos }) =>
+        const Agenda = ({ datos, alCambiarFavorito }) =>
             <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} alCambiarFavorito={() => alCambiarFavorito(contacto.id)} />)}
             </div>
 
-        const App = () =>
+        const App = () =>{
+            const [contactos, setContactos] = React.useState(datos);
+            const cambiarFavorito = (id) => {
+                const nuevoscontactos = contactos.map(c => {
+                    if (c.id === id){
+                        return {...c,favorito: !c.favorito};
+                    }
+                    return c;
+                })
+                setContactos(nuevoscontactos);
+            }
+        const favoritos = contactos.filter(c => c.favorito === true)
+        const favoritosSort= favoritos.sort((a,b)=>{
+            if (a.apellido===b.apellido)
+            {
+                return a.nombre.localeCompare(b.nombre);
+            }
+            else{
+                return a.apellido.localeCompare(b.apellido);
+            }
+        })
+        const resto = contactos.filter(c => c.favorito === false);
+        const restoSort= resto.sort((a,b)=>{
+            if (a.apellido===b.apellido)
+            {
+                return a.nombre.localeCompare(b.nombre);
+            }
+            else{
+                return a.apellido.localeCompare(b.apellido);
+            }
+        })
+        return(
             <div>
                 <h1>Agenda</h1>
-                <Agenda datos={datos} />
+                <h2>Contactos favoritos</h2>
+                <Agenda datos={favoritosSort} alCambiarFavorito={cambiarFavorito} />
+                <h2>Lista de contactos</h2>
+                <Agenda datos={restoSort} alCambiarFavorito={cambiarFavorito} />
             </div>
+            )}
 
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);

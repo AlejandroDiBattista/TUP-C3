@@ -15,17 +15,21 @@
         /* reset */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin: auto;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #1f0a22;
+            display: flex;
+            justify-content: center;
+
         }
 
         #root {
-            max-width: 1280px;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 20px;
+            width: 85%;
+
         }
 
         .card {
@@ -35,18 +39,36 @@
             background-color: #ffffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
+        h1{
+            background-color: rgb(187, 145, 169);
+            padding: 1.3em;
+            display: flex;
+            justify-content: center;
+            border: black;
+            border-radius: 1.3em;
+            width: 30%;
+            margin: 1.3em auto;
+            margin-top: 1.5em;
+            color: #2c0e30;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 2em;
+        }
 
         .agenda {
             margin-top: 16px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: start;
+            width: 100%;
+
+            
 
             >div {
                 text-align: center;
                 width: 240px;
                 height: 96px;
                 position: relative;
+                background-color: rgb(187, 145, 169);
+
 
                 span {
                     position: absolute;
@@ -62,20 +84,46 @@
                 div:last-child {
                     text-align: right;
                     font-size: 14px;
+
                 }
             }
         }
+        .favorito {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: gold;
+            cursor: pointer;
+        }
+        .favoritos, .otros{
+            background-color: pink;
+            padding: 1.3em;
+            margin-bottom: 1.2em;
+            border-radius: 1.5em;
+            width: 100%;
 
+        }
+        .favoritos .agenda, .otros .agenda{
+            display: flex;
+            justify-content: center;
+        }
+        h2{
+            text-align: center;
+            font-size: 2em;
+            color: #8e3e76;
+        }
         form {
             width: 240px;
             padding: 16px;
             margin: 8px;
             border-radius: 8px;
 
+
             label {
                 display: block;
                 font-size: 12px;
                 color: #aaa;
+
             }
 
             input {
@@ -85,6 +133,7 @@
                 border: 1px solid #ccc;
                 padding: 4px;
                 font-size: 16px;
+
             }
 
             div {
@@ -98,6 +147,7 @@
                     border-radius: 4px;
                     font-size: 14px;
                     cursor: pointer;
+
                 }
             }
         }
@@ -134,20 +184,67 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, alternar }) =>{
+            const AlternarFav = () => {
+            alternar(id);
+            };
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+            return (
+                <div className="card">
+                    <div><b>{apellido}</b> {nombre} </div>
+                    <div>{telefono}</div>
+                    <span className="favorito" onClick={AlternarFav}>
+                        {favorito ? (
+                            <i className="fas fa-star"></i>
+                        ) : (
+                            <i className="far fa-star"></i>
+                        )}
+                    </span>
+                </div>
+            );
+        };
 
+        const Agenda = ({ datos }) => 
+        {
+            const [contactos, setContactos] = React.useState(datos);
+
+            const AlternarFav = (id) => {
+                const ContactosActualizados = contactos.map(contacto => {
+                    if (contacto.id === id) {
+                        return { ...contacto, favorito: !contacto.favorito };
+                    }
+                    return contacto;
+                });
+                setContactos(ContactosActualizados);
+            };
+
+            const favoritos = contactos.filter(contacto => contacto.favorito).sort((a, b) => a.apellido.localeCompare(b.apellido));
+            const otros = contactos.filter(contacto => !contacto.favorito).sort((a, b) => a.apellido.localeCompare(b.apellido));
+
+            return (
+                <>
+                    <div className="favoritos">
+                        <h2>Favoritos</h2>
+                        <div className="agenda">
+                            {favoritos.map(contacto => (
+                                <Contacto key={contacto.id} {...contacto} alternar={AlternarFav} />
+                            ))}
+                        </div>
+                    </div>
+                    <div className="otros">
+                        <h2>Otros</h2>
+                        <div className="agenda">
+                            {otros.map(contacto => (
+                                <Contacto key={contacto.id} {...contacto} alternar={AlternarFav} />
+                            ))}
+                        </div>
+                    </div>
+                </>
+            );
+        }
         const App = () =>
             <div>
-                <h1>Agenda</h1>
+                <h1>AGENDA</h1>
                 <Agenda datos={datos} />
             </div>
 
@@ -155,5 +252,6 @@
         root.render(<App />);
     </script>
 </body>
+<!-- profe le pido perdon sin querer modifique archivos de otros alumnos pero los puse de nuevo como estaban -->
 
 </html>
