@@ -130,30 +130,70 @@
             { id: 20, nombre: 'Facundo', apellido: 'Paez', telefono: '(381) 123-4567', favorito: false }
         ]
     </script>
-
     <script type="text/babel">
-        const { createRoot } = ReactDOM
-
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const { createRoot } = ReactDOM;
+        const Favorito = ({ marcado, onToggleFavorito }) => {
+            return (
+                <span onClick={onToggleFavorito}>
+                    {marcado ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>}
+                </span>
+            );
+        };
+        const Contacto = ({ nombre, apellido, telefono, favorito, onToggleFavorito }) => (
             <div className="card">
+                <Favorito marcado={favorito} onToggleFavorito={onToggleFavorito}/>
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
             </div>
-
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
-
-        const App = () =>
+        );
+        const Agenda = ({ datos, onToggleFavorito }) => {
+            const favoritos = datos.filter((contacto) => contacto.favorito);
+            favoritos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            const resto = datos.filter((contacto) => !contacto.favorito);
+            resto.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            return (
+                <>
+                <div className="agenda">
+                    {favoritos.map((contacto) => (
+                        <Contacto key={contacto.id} {...contacto} onToggleFavorito={() => onToggleFavorito(contacto.id)} />
+                    ))}
+                    </div>
+                <div className="agenda">
+                {resto.map((contacto) => (
+                    <Contacto key={contacto.id} {...contacto} onToggleFavorito={() => onToggleFavorito(contacto.id)} />
+                    ))}
+                   </div>
+                </>
+            );
+        };
+    class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                datos: props.datos,
+            };
+        }
+        toggleFavorito = (id) => {
+            this.setState(prevState => ({
+            datos: prevState.datos.map(contacto => {
+                if (contacto.id === id) {
+                    return { ...contacto, favorito: !contacto.favorito };
+                }
+                return contacto;
+            })
+        }));
+    };
+    render() {
+        return (
             <div>
                 <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
-
-        const root = createRoot(document.getElementById('root'))
+                <Agenda datos={this.state.datos} onToggleFavorito={this.toggleFavorito} />
+                </div>
+           );
+       }
+    }
+        ReactDOM.render(<App datos={datos} />, document.getElementById("root"));
         root.render(<App />);
     </script>
 </body>
-
 </html>
