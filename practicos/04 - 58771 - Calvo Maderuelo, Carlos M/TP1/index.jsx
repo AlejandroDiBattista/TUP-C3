@@ -1,7 +1,11 @@
-const App = () =>  (
+
+const Persona = ({nombre, edad}) => <p>Hola, soy {nombre} y tengo {edad} años</p>
+const Saludar = () => <h1>¡Hola, mundo!</h1>
+
+const App = () => (
     <div>
-        <h1>¡Hola, mundo!</h1>
-        <p>¡Bienvenidos a React!</p>
+        <Saludar />
+        <Persona nombre="Juan" edad={30} />
     </div>
 )
 
