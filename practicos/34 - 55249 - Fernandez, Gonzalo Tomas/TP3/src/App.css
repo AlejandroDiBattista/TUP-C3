@@ -1,0 +1,30 @@
+footer {
+  text-align: center;
+  font-size: 1.25em;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 3.1em;
+  position: relative;
+  right: 0.3em;
+  top: 0.6em;
+}
+
+.buttonTitle {
+  border: none;
+  background-color: #fff;
+  font-size: 1.1em;
+  position: relative;
+  top: 0.2em;
+  left: 0.6em;
+  cursor: pointer;
+  user-select: none;
+}
