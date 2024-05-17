@@ -17,8 +17,13 @@ function Edit({ product, whenSave, whenCancel, error }) {
   const done = (e) => {
     e.preventDefault();
 
-    if (!name.trim() || !code.trim() || !count.trim()) {
+    if (name === '' || code === '' || count === '') {
       setLocalError('Todos los campos son obligatorios.');
+      return;
+    }
+
+    if (code.length !== 13) {
+      setLocalError('El código EAN debe tener exactamente 13 caracteres.');
       return;
     }
 
@@ -52,7 +57,7 @@ function Edit({ product, whenSave, whenCancel, error }) {
         placeholder="Código EAN"
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        minLength={1}
+        minLength={13}
         maxLength={13}
       />
       <input

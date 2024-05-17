@@ -1,7 +1,7 @@
 🛍️Consigna del TP3🛍️:
 1. El depósito no está bien organizado y aunque no tiene una gran variedad, aproximadamente 30 productos distintos, sí cuenta con un número considerable de unidades, estimando no más de 100 por producto ❌
 
-2. Tras reflexionar, se da cuenta de que solo necesita dos datos de cada producto: el nombre y el código EAN, el número que se encuentra justo debajo del código de barras. ❌
+2. Se necesita dos datos de cada producto: el nombre y el código EAN, el número que se encuentra justo debajo del código de barras. ❌
 
 3. Dado que no dispone de un listado de productos, opta por la posibilidad de agregar productos a medida que los va encontrando. Si localiza un producto que ya está en la lista, con solo seleccionarlo, incrementaría la cantidad en una unidad. ❌
 

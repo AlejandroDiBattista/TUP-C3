@@ -1,5 +1,3 @@
-// App.jsx
-
 import './App.css';
 import { CgAddR } from 'react-icons/cg';
 import { useState } from 'react';
@@ -13,6 +11,14 @@ function App() {
   const [error, setError] = useState(null);
 
   const saveProduct = (product) => {
+    const duplicate = products.some(
+      (p) => p.name === product.name && p.code === product.code
+    );
+    if (duplicate && !product.id) {
+      setError('Ya existe un producto con el mismo nombre y código EAN.');
+      return;
+    }
+
     if (products.length >= 30 && !product.id) {
       setError('No se pueden agregar más de 30 productos.');
       return;
