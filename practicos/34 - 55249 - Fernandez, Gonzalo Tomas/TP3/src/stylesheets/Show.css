@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ccc;
+  width: 30em;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.product-info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.product-count {
+  font-size: 4em;
+  color: #0000ff;
+  text-align: left;
+  margin-top: 0.44em;
+  margin-left: 0.5em;
+  user-select: none;
+  cursor: pointer;
+}
+
+.product-count.align-right {
+  margin-right: 0.1em;
+  margin-left: 0.5em;
+}
+
+.product-details {
+  margin-top: 1.875em;
+  margin-left: 1.875em;
+}
+
+.product-details.align-right {
+  margin-top: 1.875em;
+  margin-left: 1.25em;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 2em;
+  text-align: left;
+  margin: 0;
+}
+
+.product-code {
+  font-size: 1.3em;
+  text-align: left;
+  margin: 0.888em 0 0 0;
+}
+
+.edit-button,
+.delete-button {
+  background-color: #fff;
+  position: absolute;
+  border: none;
+  border-radius: 10px;
+  padding: 0.1em 1.5em;
+  cursor: pointer;
+  font-size: 2.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-button {
+  right: 1em;
+  bottom: 2.9em;
+  left: 12.2em;
+}
+
+.delete-button {
+  right: 1em;
+  bottom: 0.01em;
+  left: 12.2em;
+}
