@@ -10,14 +10,14 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>58884</title>
     <style>
         /* reset */
         body {
-            font-family: Arial, sans-serif;
+            font-family: Times, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #b1fcff;
         }
 
         #root {
@@ -32,9 +32,19 @@
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
-            background-color: #ffffff;
+            background-color: #d4ffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
+
+        .favorito {
+         color: #FFD700; 
+        
+        }
+
+         .favorito.marcado {
+            color: #FFA500; 
+        }
+
 
         .agenda {
             margin-top: 16px;
@@ -132,27 +142,94 @@
     </script>
 
     <script type="text/babel">
-        const { createRoot } = ReactDOM
+        
+        const { createRoot } = ReactDOM;
+        const { useState } = React;
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+     const Favorito = ({ marcado, onToggle }) => {
+     const handleClick = () => {
+        onToggle();
+     };
 
-        const Agenda = ({ datos }) =>
+        return (
+        <span onClick={handleClick}>
+            {marcado ? <i className="fas fa-star favorito marcado"></i> : <i className="far fa-star favorito"></i>}
+         </span>
+         );
+    };
+
+     const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito }) => {
+      const handleClick = () => {
+        onToggleFavorito(id);
+    };
+
+    return (
+        <div className="card" onClick={handleClick}>
+            <Favorito marcado={favorito} />
+            <h2>{apellido} {nombre}</h2>
+            <p>Teléfono: {telefono}</p>
+        </div>
+    );
+};
+
+         const Agenda = ({ datos, onToggleFavorito }) => {
+           
+            const contactosOrdenados = datos.sort((a, b) => {
+           const apellidoA = a.apellido.toLowerCase();
+           const apellidoB = b.apellido.toLowerCase();
+           if (apellidoA < apellidoB) return -1;
+           if (apellidoA > apellidoB) return 1;
+
+           const nombreA = a.nombre.toLowerCase();
+           const nombreB = b.nombre.toLowerCase();
+           if (nombreA < nombreB) return -1;
+           if (nombreA > nombreB) return 1;
+           return 0;
+    });
+
+    const favoritos = contactosOrdenados.filter(contacto => contacto.favorito);
+    const resto = contactosOrdenados.filter(contacto => !contacto.favorito);
+
+    return (
+        <div>
             <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+                {favoritos.map(contacto => (
+                    <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                ))}
             </div>
-
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
+            <div className="agenda">
+                {resto.map(contacto => (
+                    <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                ))}
             </div>
+        </div>
+    );
+};
 
-        const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
+    const App = () => {
+    const [contactos, setContactos] = useState(datos);
+
+    const handleToggleFavorito = (id) => {
+        const updatedContactos = contactos.map(contacto => {
+            if (contacto.id === id) {
+                return { ...contacto, favorito: !contacto.favorito };
+            }
+            return contacto;
+        });
+        setContactos(updatedContactos);
+    };
+
+        return (
+        <div>
+            <h1>Agenda</h1>
+            <Agenda datos={contactos} onToggleFavorito={handleToggleFavorito} />
+            </div>
+          );
+         };
+
+         const root = createRoot(document.getElementById('root'))
+         root.render(<App />);
+
     </script>
 </body>
 
