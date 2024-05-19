@@ -17,7 +17,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #1b0666;
         }
 
         #root {
@@ -32,7 +32,7 @@
             padding: 16px;
             margin: 4px;
             border-radius: 8px;
-            background-color: #ffffff;
+            background-color: #4ccdc58d;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
 
@@ -63,6 +63,7 @@
                     text-align: right;
                     font-size: 14px;
                 }
+                
             }
         }
 
@@ -131,29 +132,87 @@
         ]
     </script>
 
-    <script type="text/babel">
-        const { createRoot } = ReactDOM
+<script type="text/babel">
+    const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
+//Para colocar la estrella al contacto para marcar como favorito
+    const Favorito = ({ id, favorito, cambiarFavorito }) => (
+        <span onClick={() => cambiarFavorito(id)}>
+            {favorito ? 
+                <i className="fas fa-star"></i> : 
+                <i className="far fa-star"></i>
+            }
+        </span>
+    )
+
+//Contactos
+    const Contacto = ({ nombre, apellido, telefono, id, favorito, cambiarFavorito }) => (
+        <div className="card">
+            <div>
+                {nombre} <b>{apellido}</b> 
+                <Favorito id={id} favorito={favorito} cambiarFavorito={cambiarFavorito} />
             </div>
+            <div>{telefono}</div>
+        </div>
+    )
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+//cambiar los favoritos y ordenados alfabeticamente
+    const Agenda = ({ datos, cambiarFavorito }) => {
+        const favoritos = datos.filter(contacto => contacto.favorito);
+        const noFavoritos = datos.filter(contacto => !contacto.favorito);
+        <div className="agenda">
+            {datos
+                .sort((a, b) => {
+                    if (a.apellido === b.apellido) {
+                        return a.nombre.localeCompare(b.nombre);
+                    }
+                    return a.apellido.localeCompare(b.apellido);
+                })
+                .map(contacto => (
+                    <Contacto key={contacto.id} {...contacto} cambiarFavorito={cambiarFavorito} />
+                ))}
+        </div>
+
+        return (
+            <div>
+                <h2>Favoritos</h2>
+                <div className="agenda">
+                    {favoritos.map(contacto => (
+                        <Contacto key={contacto.id} {...contacto} cambiarFavorito={cambiarFavorito} />
+                    ))}
+                </div>
+                <h2>Los demas</h2>
+                <div className="agenda">
+                    {noFavoritos.map(contacto => (
+                        <Contacto key={contacto.id} {...contacto} cambiarFavorito={cambiarFavorito} />
+                    ))}
+                </div>
             </div>
+        );
+    }
 
-        const App = () =>
+//APP
+
+    const App = () => {
+        const [contactos, setContactos] = React.useState(datos);
+
+        const cambiarFavorito = (id) => {
+            setContactos(contactos.map(contacto =>
+                contacto.id === id ? { ...contacto, favorito: !contacto.favorito } : contacto
+            ));
+        }
+
+        return (
             <div>
                 <h1>Agenda</h1>
-                <Agenda datos={datos} />
+                <Agenda datos={contactos} cambiarFavorito={cambiarFavorito} />
             </div>
+        );
+    }
 
-        const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
-    </script>
+    const root = createRoot(document.getElementById('root'))
+    root.render(<App />);
+</script>
 </body>
 
 </html>

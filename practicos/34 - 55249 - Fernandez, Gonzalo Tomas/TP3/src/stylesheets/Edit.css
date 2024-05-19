@@ -1,0 +1,50 @@
+form {
+  width: 27.5em;
+  height: auto;
+  margin: 0 auto 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input {
+  font-size: 1em;
+  width: calc(100% - 7em);
+  margin-bottom: 5px;
+  padding: 0.555em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 1.25em;
+  right: 0.75em;
+}
+
+.acciones button {
+  font-size: 1.1em;
+  width: 5em;
+  padding: 0.313em;
+  border: 2px solid #000;
+  border-radius: 13px;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 0.625em;
+  text-align: center;
+}
