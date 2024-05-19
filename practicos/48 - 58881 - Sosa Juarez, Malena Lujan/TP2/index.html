@@ -10,7 +10,7 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>Legajo: 58881</title>
     <style>
         /* reset */
         body {
@@ -134,22 +134,102 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const Favorito = ({ marcado, onToggle }) => {
+            let icono;
+            if (marcado) {
+                icono = <i className="fas fa-star" onClick={onToggle}></i>;
+            } else {
+                icono = <i className="far fa-star" onClick={onToggle}></i>;
+            }
+            return <span>{icono}</span>;
+        };
+
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito}) =>
             <div className="card">
+                <Favorito marcado={favorito} onToggle={() => onToggleFavorito(id)} />
                 <div>{nombre} <b>{apellido}</b></div>
                 <div>{telefono}</div>
-            </div>
+            </div>;
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+        const Agenda = ({ datos, onToggleFavorito }) => {
+            const favoritos = datos.filter(contacto => contacto.favorito);
+            const otros = datos.filter(contacto => !contacto.favorito);
+            const compararApellidoNombre = (a, b) => {
+                const apellidoA = a.apellido.toLowerCase();
+                const apellidoB = b.apellido.toLowerCase();
+                const nombreA = a.nombre.toLowerCase();
+                const nombreB = b.nombre.toLowerCase();
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
+                if (apellidoA !== apellidoB) {
+                    return apellidoA.localeCompare(apellidoB);
+                } else {
+                    return nombreA.localeCompare(nombreB);
+                }
+            };
+
+            favoritos.sort(compararApellidoNombre);
+            otros.sort(compararApellidoNombre);
+
+            return (
+                <div>
+                    <div className="agenda">
+                        {favoritos.map(contacto => (
+                            <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                        ))}
+                    </div>
+                    <h2>Contactos</h2>
+                    <div className="agenda">
+                        {otros.map(contacto => (
+                            <Contacto key={contacto.id} {...contacto} onToggleFavorito={onToggleFavorito} />
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [contactos, setContactos] = React.useState(datos);
+
+            const toggleFavorito = (id) => {
+                const nuevosContactos = contactos.map(contacto => {
+                    if (contacto.id === id) {
+                        return { ...contacto, favorito: !contacto.favorito };
+                    }
+                    return contacto;
+                });
+                setContactos(nuevosContactos);
+            };
+
+            React.useEffect(() => {
+                const favoritos = [...contactos.filter(contacto => contacto.favorito)];
+                const otros = [...contactos.filter(contacto => !contacto.favorito)];
+                const compararApellidoNombre = (a, b) => {
+                    const apellidoA = a.apellido.toLowerCase();
+                    const apellidoB = b.apellido.toLowerCase();
+                    const nombreA = a.nombre.toLowerCase();
+                    const nombreB = b.nombre.toLowerCase();
+
+                    if (apellidoA !== apellidoB) {
+                        return apellidoA.localeCompare(apellidoB);
+                    } else {
+                        return nombreA.localeCompare(nombreB);
+                    }
+                };
+
+                favoritos.sort(compararApellidoNombre);
+                otros.sort(compararApellidoNombre);
+
+                const contactosOrdenados = [...favoritos, ...otros];
+                setContactos(contactosOrdenados);
+            }, [contactos]);
+
+            return (
+                <div>
+                    <h1>Agenda</h1>
+                    <Agenda datos={contactos} onToggleFavorito={toggleFavorito} />
+                </div>
+            );
+        };
 
         const root = createRoot(document.getElementById('root'))
         root.render(<App />);
