@@ -21,7 +21,4 @@ Con las ideas claras, procede a realizar un diseño gráfico rápido, con la int
 
 ![Diseño](control-deposito.png)
 
-Se trata de un ABM (Alta, Baja, Modificación) simple, ni siquiera va a tener que hacer un servidor ni conectarse a una base de datos, solo va guardar los datos en el armacenamiento local de navegador. 
-
-Tiene que salir perfecto!! al fin y al cabo es para lucirse asi que se va a tomar una semana para completar el trabajo.
-NOTA: *Fecha de entrega Miercoles 22/05 hasta 23:59hs*
+Se trata de un ABM (Alta, Baja, Modificación) simple, y aunque no debería ser complicado de implementar, desea destacarse. Por ello, se tomará una semana para completar el trabajo.
