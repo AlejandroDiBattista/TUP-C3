@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>59347</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <style>
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        .App {
+            width: 350px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            font-size: 35px;
+            color: #333333;
+        }
+        
+        .add-button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .panel {
+            position: relative;
+            padding: 15px;
+            border: 1px solid #cecdcd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      
+        .panel .cantidad {
+            font-size: 55px;
+            color: blue;
+            margin-right: 30px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .panel .detalles p {
+            flex-grow: 1px;
+            margin-left: 1px;
+        }
+        
+        .panel p {
+            margin: 10px 0;
+            color: #000000;
+            font-size: 20px;
+        }
+        
+        .panel .acciones {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            height: 90%;
+            right: 10px;
+        }
+        .panel .acciones .editar {
+            margin-top: 5px;
+        }
+        .panel .acciones .borrar {
+            margin-top: auto;
+            margin-bottom: 5px;
+        }
+        .panel .acciones button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #000000;
+        }
+        .panel .acciones button:hover {
+            color: #000000;
+        }
+        
+        .item-edit {
+            position: relative;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-top: 10px; 
+        }
+        .item-edit input {
+            margin: 2px ;
+            padding: 4px;
+            font-size: 14px;
+            width: 66%;
+            border-radius: 7px;
+            border: 1px solid #ccc;
+        }
+        .item-edit .button-container {
+            position: absolute;
+            top: 2px;
+            right: 1px;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-edit .button-container button {
+            margin: 2px 6px;
+            padding: 3px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+      
+        const initialProducts = [
+            { id: 1, name: '7up', code: '7799876543210', quantity: 7 },
+            { id: 2, name: 'Coca Cola', code: '7791234567890', quantity: 9 },
+            { id: 3, name: 'Fanta', code: '7793219876540', quantity: 5 },
+            { id: 4, name: 'Mirinda', code: '7797894561230', quantity: 6 },
+            { id: 5, name: 'Sprite', code: '7796543219870', quantity: 4 },
+            { id: 6, name: 'Pepsi Cola', code: '7799876543210', quantity: 3 },
+            { id: 7, name: 'Manaos', code: '7794567891230', quantity: 1 }
+        ];
+        
+      
+
+        const ProductEdit = ({ formData, setFormData, onSave, onCancel }) => (
+            <div className="item-edit">
+                <div className="button-container">
+                    <button onClick={onSave}>Aceptar</button>
+                    <button onClick={onCancel}>Cancelar</button>
+                </div>
+                <input
+                    placeholder="Nombre"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
+                <input
+                    placeholder="Código"
+                    value={formData.code}
+                    onChange={(e) => setFormData({ ...formData, code: e.target.value })}
+                />
+                <input
+                    placeholder="Cantidad"
+                    value={formData.quantity}
+                    onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                />
+            </div>
+        );
+       
+        const Product = ({ product, onEdit, onDelete }) => (
+            <div className="panel">
+                <div className="cantidad">{product.quantity}</div>
+                <div className="detalles">
+                    <p><strong>{product.name}</strong></p>
+                    <p>{product.code}</p>
+                </div>
+                <div className="acciones">
+                    <button className="editar" onClick={onEdit}><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button className="borrar" onClick={onDelete}><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+        );
+       
+        const App = () => {
+            const [products, setProducts] = useState(initialProducts.sort((a, b) => a.name.localeCompare(b.name)));
+            const [editing, setEditing] = useState([]);
+            const [formData, setFormData] = useState({});
+        
+            const handleEdit = (product) => {
+                setEditing([...editing, product.id]);
+                setFormData({ ...formData, [product.id]: { name: product.name, code: product.code, quantity: product.quantity } });
+            };
+       
+            const handleSave = (id) => {
+                const updatedProducts = products.map(product => (
+                    product.id === id ? { ...product, ...formData[id], quantity: Number(formData[id].quantity) } : product
+                ));
+                setProducts(updatedProducts.sort((a, b) => a.name.localeCompare(b.name)));
+                setEditing(editing.filter(editId => editId !== id));
+                setFormData(prevData => {
+                    const newData = { ...prevData };
+                    delete newData[id];
+                    return newData;
+                });
+            };
+  
+            const handleDelete = (id) => {
+                const updatedProducts = products.filter(product => product.id !== id);
+                setProducts(updatedProducts.sort((a, b) => a.name.localeCompare(b.name)));
+                setEditing(editing.filter(editId => editId !== id));
+                setFormData(prevData => {
+                    const newData = { ...prevData };
+                    delete newData[id];
+                    return newData;
+                });
+            };
+        
+            const handleAdd = () => {
+                const newId = Date.now();
+                const newProduct = { id: newId, name: formData.new.name, code: formData.new.code, quantity: Number(formData.new.quantity) };
+                const updatedProducts = [...products, newProduct];
+                setProducts(updatedProducts.sort((a, b) => a.name.localeCompare(b.name)));
+                setFormData(prevData => {
+                    const newData = { ...prevData };
+                    delete newData.new;
+                    return newData;
+                });
+                setEditing(editing.filter(editId => editId !== 'new'));
+            };
+        
+            return (
+                <div className="App">
+                    <div className="header">
+                        <h1>Control Depósito</h1>
+                        <div className="add-button" onClick={() => setEditing([...editing, 'new'])}><i class="fa-regular fa-square-plus"></i></div>
+                    </div>
+                    {products.map(product => (
+                        editing.includes(product.id) ? (
+                            <ProductEdit
+                                key={product.id}
+                                formData={formData[product.id]}
+                                setFormData={(newData) => setFormData({ ...formData, [product.id]: newData })}
+                                onSave={() => handleSave(product.id)}
+                                onCancel={() => setEditing(editing.filter(editId => editId !== product.id))}
+                            />
+                        ) : (
+                            <Product
+                                key={product.id}
+                                product={product}
+                                onEdit={() => handleEdit(product)}
+                                onDelete={() => handleDelete(product.id)}
+                            />
+                        )
+                    ))}
+                    {editing.includes('new') && (
+                        <div className="item-edit">
+                            <div className="button-container">
+                                <button onClick={handleAdd}>Aceptar</button>
+                                <button onClick={() => setEditing(editing.filter(editId => editId !== 'new'))}>Cancelar</button>
+                            </div>
+                            <input
+                                placeholder="Nombre"
+                                value={formData.new?.name || ''}
+                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, name: e.target.value } })}
+                            />
+                            <input
+                                placeholder="Código"
+                                value={formData.new?.code || ''}
+                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, code: e.target.value } })}
+                            />
+                            <input
+                                placeholder="Cantidad"
+                                value={formData.new?.quantity || ''}
+                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, quantity: e.target.value } })}
+                            />
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
