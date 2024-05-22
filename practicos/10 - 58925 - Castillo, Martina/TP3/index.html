@@ -300,17 +300,11 @@
                     )}
                     {error && <p className="error">{error}</p>}
                     {nuevasBebidas.map(bebida => (
-                        <Mostrar key={bebida.ean}
+                        <Mostrar
+                            key={bebida.ean}
                             bebida={bebida}
-                            alGuardar={bebidaActualizada => {
-                                const bebidasActualizadas = nuevasBebidas.map(b =>
-                                    b.ean === bebidaActualizada.ean ? bebidaActualizada : b
-                                );
-                                setNuevasBebidas(bebidasActualizadas);
-                            }}
-                            alBorrar={(ean) => {
-                                setNuevasBebidas(nuevasBebidas.filter(b => b.ean !== ean));
-                            }}
+                            alGuardar={bebidaActualizada => setNuevasBebidas(nuevasBebidas.map(b => b.ean === bebidaActualizada.ean ? bebidaActualizada : b))}
+                            alBorrar={ean => setNuevasBebidas(nuevasBebidas.filter(b => b.ean !== ean))}
                             bebidas={nuevasBebidas}
                         />
                     ))}
