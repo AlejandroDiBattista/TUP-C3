@@ -304,7 +304,9 @@
         const incrementarCantidad = producto => {
             const productosActualizados = productos.map(p => {
                 if (p.id === producto.id) {
-                    return { ...p, cantidad: p.cantidad + 1 };
+                    const nuevaCantidad = parseInt(p.cantidad) + 1;
+                    const cantidadLimitada = nuevaCantidad > 100 ? 100 : nuevaCantidad;
+                    return { ...p, cantidad: cantidadLimitada };
                 }
                 return p;
             });
