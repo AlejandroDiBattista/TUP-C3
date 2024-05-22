@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        #root {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .add-button {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+
+        .panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .panel:hover {
+            background-color: #e9ecef;
+        }
+
+        .panel .quantity {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .panel .details {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .panel .details p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .panel .details p.name {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .panel .details p.ean {
+            color: #6c757d;
+        }
+
+        .panel .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .panel .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6c757d;
+            transition: color 0.3s;
+        }
+
+        .panel .actions button:hover {
+            color: #007bff;
+        }
+
+        .edit-form {
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f1f3f5;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-form label {
+            display: block;
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+
+        .edit-form input {
+            width: calc(100% - 10px);
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .edit-form .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .edit-form .actions button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .edit-form .actions .save {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .edit-form .actions .save:hover {
+            background-color: #218838;
+        }
+
+        .edit-form .actions .cancel {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .edit-form .actions .cancel:hover {
+            background-color: #c82333;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Editar({ producto, alGuardar, alCancelar }) {
+        const [nombre, setNombre] = useState(producto.nombre || '');
+        const [codigoEAN, setCodigoEAN] = useState(producto.codigoEAN || '');
+        const [cantidad, setCantidad] = useState(producto.cantidad || 1);
+        const [error, setError] = useState(false);
+
+        const cambiarNombre = e => {
+            setNombre(e.target.value);
+            setError(false);
+        };
+
+        const cambiarCodigoEAN = e => {
+            setCodigoEAN(e.target.value);
+            setError(false);
+        };
+
+        const cambiarCantidad = e => {
+            setCantidad(e.target.value);
+            setError(false);
+        };
+
+        const guardar = e => {
+            e.preventDefault();
+            if (nombre.trim() === '' || codigoEAN.trim() === '' || cantidad <= 0) {
+                setError(true);
+                return;
+            }
+            alGuardar({ ...producto, nombre, codigoEAN, cantidad });
+        };
+
+        const cancelar = e => {
+            e.preventDefault();
+            alCancelar();
+        };
+
+        return (
+            <form className="edit-form">
+                <label>Nombre</label>
+                <input type="text" value={nombre} onChange={cambiarNombre} />
+
+                <label>Código EAN</label>
+                <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} />
+
+                <label>Cantidad</label>
+                <input type="number" value={cantidad} onChange={cambiarCantidad} />
+                {error && <p className="error">Todos los campos son obligatorios y la cantidad debe ser mayor que 0</p>}
+                <div className="actions">
+                    <button className="save" onClick={guardar}>Aceptar</button>
+                    <button className="cancel" onClick={cancelar}>Cancelar</button>
+                </div>
+            </form>
+        );
+    }
+
+    function Mostrar({ producto, alEditar, alBorrar, alIncrementar }) {
+        return (
+            <>
+                <div className="panel" onClick={alIncrementar}>
+                    <div className="quantity">{producto.cantidad}</div>
+                    <div className="details">
+                        <p className="name">{producto.nombre}</p>
+                        <p className="ean">{producto.codigoEAN}</p>
+                    </div>
+                    <div className="actions" onClick={(e) => e.stopPropagation()}>
+                        <button onClick={alEditar} title="Editar">
+                            <i className="fas fa-pencil-alt"></i>
+                        </button>
+                        <button onClick={alBorrar} title="Eliminar">
+                            <i className="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    function App() {
+        
+        const [productos, setProductos] = useState([
+            { id: 1, nombre: 'Coca Cola', codigoEAN: '1234567890123', cantidad: 10 },
+            { id: 2, nombre: 'Pepsi', codigoEAN: '2345678901234', cantidad: 8 },
+            { id: 3, nombre: 'Fanta', codigoEAN: '3456789012345', cantidad: 5 },
+            { id: 4, nombre: 'Sprite', codigoEAN: '4567890123456', cantidad: 3 },
+            { id: 5, nombre: '7Up', codigoEAN: '5678901234567', cantidad: 12 }
+        ].sort((a, b) => a.nombre.localeCompare(b.nombre)));
+        const [editando, setEditando] = useState(null);
+
+        const agregarProducto = () => {
+            setEditando({ nombre: '', codigoEAN: '', cantidad: 1 });
+        };
+
+        const guardarProducto = producto => {
+            if (producto.id) {
+                setProductos(prevProductos => {
+                    const productosActualizados = prevProductos.map(p => p.id === producto.id ? producto : p);
+                    return productosActualizados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                });
+            } else {
+                producto.id = Date.now();
+                setProductos(prevProductos => {
+                    const nuevosProductos = [...prevProductos, producto];
+                    return nuevosProductos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                });
+            }
+            setEditando(null);
+        };
+
+        const cancelarEdicion = () => {
+            setEditando(null);
+        };
+
+        const editarProducto = producto => {
+            setEditando(producto);
+        };
+
+        const borrarProducto = id => {
+            setProductos(prevProductos => prevProductos.filter(p => p.id !== id));
+        };
+
+        const incrementarCantidad = producto => {
+            const productosActualizados = productos.map(p => {
+                if (p.id === producto.id) {
+                    return { ...p, cantidad: p.cantidad + 1 };
+                }
+                return p;
+            });
+            setProductos(productosActualizados.sort((a, b) => a.nombre.localeCompare(b.nombre)));
+        };
+
+        return (
+            <div>
+                <h1>Inventario</h1>
+                <button className="add-button" onClick={agregarProducto}>
+                    <i className="fas fa-plus"></i>
+                </button>
+                {editando && (
+                    <Editar
+                        producto={editando}
+                        alGuardar={guardarProducto}
+                        alCancelar={cancelarEdicion}
+                    />
+                )}
+                {productos.map(producto => (
+                    <div key={producto.id}>
+                        <Mostrar
+                            producto={producto}
+                            alEditar={() => editarProducto(producto)}
+                            alBorrar={() => borrarProducto(producto.id)}
+                            alIncrementar={() => incrementarCantidad(producto)}
+                        />
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
