@@ -151,6 +151,7 @@
         }
 
         .icono.editar {
+        .icono.eliminar {
             top: 10px;
             right: 10px;
         }
@@ -174,34 +175,32 @@
             { ean: '3124567', nombre: "Fanta", cantidad: 5 },
             { ean: '4987654', nombre: "Mirinda", cantidad: 6 },
             { ean: '5345552', nombre: "Sprite", cantidad: 4 }
-        ];
+        ]
 
         function Editar({ bebida, alGuardar, alCancelar, bebidas }) {
-            const [nombre, setNombre] = useState(bebida.nombre);
-            const [cantidad, setCantidad] = useState(bebida.cantidad);
-            const [ean, setEan] = useState(bebida.ean);
-            const [error, setError] = useState('');
+            const [ean, setEan] = useState(bebida.ean)
+            const [error, setError] = useState('')
 
-            const cambiarNombre = e => setNombre(e.target.value);
-            const cambiarCantidad = e => setCantidad(e.target.value);
-            const cambiarEan = e => setEan(e.target.value);
+            const cambiarNombre = e => setNombre(e.target.value)
+            const cambiarCantidad = e => setCantidad(e.target.value)
+            const cambiarEan = e => setEan(e.target.value)
 
             const guardar = e => {
                 e.preventDefault();
                 if (nombre.trim() === '' || cantidad.trim() === '' || ean.trim() === '') {
-                    setError('Todos los campos son obligatorios');
-                    return;
+                    setError('Todos los campos son obligatorios')
+                    return
                 }
                 if (bebidas.some(b => b.ean === ean && b.ean !== bebida.ean)) {
-                    setError('El código EAN ya existe');
-                    return;
+                    setError('El código EAN ya existe')
+                    return
                 }
-                alGuardar({ ...bebida, nombre, cantidad: parseInt(cantidad), ean });
+                alGuardar({ ...bebida, nombre, cantidad: parseInt(cantidad), ean })
             }
 
             const cancelar = e => {
-                e.preventDefault();
-                alCancelar();
+                e.preventDefault()
+                alCancelar()
             }
 
             return (
@@ -217,17 +216,17 @@
                         <button onClick={cancelar}>Cancelar</button>
                     </div>
                 </form>
-            );
+            )
         }
 
         function Mostrar({ bebida, alGuardar, alBorrar, bebidas }) {
-            const [editando, setEditando] = useState(false);
+            const [editando, setEditando] = useState(false)
 
-            const iniciarEdicion = () => setEditando(true);
-            const cancelarEdicion = () => setEditando(false);
+            const iniciarEdicion = () => setEditando(true)
+            const cancelarEdicion = () => setEditando(false)
             const guardarEdicion = bebidaEditada => {
-                alGuardar(bebidaEditada);
-                cancelarEdicion();
+                alGuardar(bebidaEditada)
+                cancelarEdicion()
             }
 
             return (
@@ -255,32 +254,32 @@
                         </>
                     )}
                 </div>
-            );
+            )
         }
 
         function Stock({ bebidas }) {
-            const [nuevasBebidas, setNuevasBebidas] = useState(bebidas);
-            const [mostrarFormulario, setMostrarFormulario] = useState(false);
-            const [error, setError] = useState('');
+            const [nuevasBebidas, setNuevasBebidas] = useState(bebidas)
+            const [mostrarFormulario, setMostrarFormulario] = useState(false)
+            const [error, setError] = useState('')
 
             const abrirFormulario = () => {
-                setMostrarFormulario(true);
-                setError('');
-            };
+                setMostrarFormulario(true)
+                setError('')
+            }
             const cerrarFormulario = () => {
-                setMostrarFormulario(false);
-                setError('');
-            };
+                setMostrarFormulario(false)
+                setError('')
+            }
 
             const agregar = (nuevaBebida) => {
                 if (nuevasBebidas.some(b => b.ean === nuevaBebida.ean)) {
-                    setError('El código EAN ya existe');
-                    return;
+                    setError('El código EAN ya existe')
+                    return
                 }
-                const nuevasBebidasActualizadas = [...nuevasBebidas, nuevaBebida];
-                nuevasBebidasActualizadas.sort((a, b) => a.nombre.localeCompare(b.nombre));
-                setNuevasBebidas(nuevasBebidasActualizadas);
-                cerrarFormulario();
+                const nuevasBebidasActualizadas = [...nuevasBebidas, nuevaBebida]
+                nuevasBebidasActualizadas.sort((a, b) => a.nombre.localeCompare(b.nombre))
+                setNuevasBebidas(nuevasBebidasActualizadas)
+                cerrarFormulario()
             }
 
             return (
@@ -314,17 +313,17 @@
                         />
                     ))}
                 </div>
-            );
+            )
         }
 
         function App() {
             return (
                 <Stock bebidas={bebidasIniciales} />
-            );
+            )
         }
 
-        const root = createRoot(document.getElementById('root'));
-        root.render(<App />);
+        const root = createRoot(document.getElementById('root'))
+        root.render(<App />)
     </script>
 </body>
 
