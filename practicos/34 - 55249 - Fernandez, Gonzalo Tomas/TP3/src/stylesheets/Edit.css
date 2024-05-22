@@ -1,28 +1,32 @@
+/*Edit.css*/
+
 form {
-  width: 27.5em;
+  width: 30em;
   height: auto;
   margin: 0 auto 10px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 15px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: var(--card);
+  box-shadow: 0 3px 6px var(--shadow);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 input {
-  font-size: 1em;
+  font-weight: bold;
   width: calc(100% - 7em);
-  margin-bottom: 5px;
-  padding: 0.555em;
-  border: 1px solid #ccc;
+  padding: 0.3em;
+  border: 1px solid var(--border);
   border-radius: 5px;
   box-sizing: border-box;
+  margin-bottom: 7px !important;
+  color: var(--text);
+  background: var(--back);
 }
 
-.acciones {
+.actions {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -30,21 +34,56 @@ input {
   right: 0.75em;
 }
 
-.acciones button {
+.actions button {
   font-size: 1.1em;
+  font-weight: 400;
   width: 5em;
-  padding: 0.313em;
-  border: 2px solid #000;
-  border-radius: 13px;
-  background-color: #fff;
+  padding: 0.1em;
+  border: 2px solid var(--text);
+  border-radius: 10px;
+  color: var(--text);
+  background-color: var(--back);
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.actions button:hover {
+  background-color: var(--hover);
   cursor: pointer;
   user-select: none;
-  margin-bottom: 5px;
-  text-align: center;
 }
 
 .error {
   color: #ff0000;
   margin-top: 0.625em;
   text-align: center;
+}
+
+/*Mobile L (425px) and Mobile M (375px)*/
+
+@media (max-width: 505px) {
+  form {
+    width: auto;
+    margin: 2.8%;
+  }
+  input {
+    width: 70%;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  form {
+    width: auto;
+    margin: 2%;
+  }
+  input {
+    width: 60%;
+    font-size: 0.9em;
+  }
+  .actions button {
+    font-size: 1em;
+    border: 1.5px solid var(--text);
+  }
 }
