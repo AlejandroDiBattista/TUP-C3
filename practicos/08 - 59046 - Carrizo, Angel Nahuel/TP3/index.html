@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Link de los iconos  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #root {
+            padding: 20px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Nav {
+            display: flex;
+            align-items: self-end;
+
+            span {
+                margin-left: 30px;
+                margin-bottom: 20px;
+                scale: 3;
+            }
+        }
+
+        h1 {
+            font-size: 46px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .panel {
+            width: 400px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px 0 5px 5px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .descripcionStock {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: blue;
+
+            p {
+                font-size: 65px;
+            }
+        }
+
+        .descripcion {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .acciones {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            span:nth-child(1) {
+                margin-top: 5px;
+                margin-right: 5px;
+            }
+
+            span:nth-child(2) {
+                margin-bottom: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        span {
+            cursor: pointer;
+            scale: 1.7;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .panelEdicion {
+            width: 400px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .descripcionEdicion {
+            width: 70%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            input {
+                border-color: #ccc;
+                border-style: solid;
+                border-radius: 5px;
+            }
+        }
+
+        .accionesEdicion {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            button {
+                height: calc(100 / 3);
+                margin: 0 10px;
+                background-color: transparent;
+                border-color: black;
+                border-style: solid;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            p {
+                margin: 0 10px;
+                text-align: center;
+            }
+        }
+
+        .panel .panelEdicion {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const DepositoInicial = [
+            { nombre: '7up', codigo: '7790001000011', stock: 89 },
+            { nombre: 'Coca Cola', codigo: '7790001000022', stock: 10 },
+            { nombre: 'Fanta', codigo: '7790001000033', stock: 5 },
+            { nombre: 'Sprite', codigo: '7790001000044', stock: 3 },
+            { nombre: 'Pepsi', codigo: '7790001000051', stock: 8 },
+            { nombre: 'Mirinda', codigo: '7790001000068', stock: 4 },
+            { nombre: 'Mountain Dew', codigo: '7790001000075', stock: 6 },
+            { nombre: 'Dr Pepper', codigo: '7790001000082', stock: 9 },
+            { nombre: 'Aquafina', codigo: '7790001000099', stock: 12 },
+            { nombre: 'Gatorade', codigo: '7790001000105', stock: 15 },
+            { nombre: 'Powerade', codigo: '7790001000112', stock: 14 },
+            { nombre: 'Nestea', codigo: '7790001000129', stock: 11 },
+            { nombre: 'Lipton Ice Tea', codigo: '7790001000136', stock: 13 },
+            { nombre: 'Red Bull', codigo: '7790001000143', stock: 20 },
+            { nombre: 'Monster', codigo: '7790001000150', stock: 18 },
+            { nombre: 'Rockstar', codigo: '7790001000167', stock: 17 },
+            { nombre: 'V8', codigo: '7790001000174', stock: 5 },
+            { nombre: 'Minute Maid', codigo: '7790001000181', stock: 9 },
+            { nombre: 'Tropicana', codigo: '7790001000198', stock: 6 },
+            { nombre: 'Sunny Delight', codigo: '7790001000204', stock: 8 },
+            { nombre: 'Oasis', codigo: '7790001000211', stock: 10 },
+            { nombre: 'Capri Sun', codigo: '7790001000228', stock: 7 },
+            { nombre: 'Arizona', codigo: '7790001000235', stock: 11 },
+            { nombre: 'Snapple', codigo: '7790001000242', stock: 12 },
+            { nombre: 'Vitamin Water', codigo: '7790001000259', stock: 14 },
+            { nombre: 'Vita Coco', codigo: '7790001000266', stock: 9 },
+            { nombre: 'Zico', codigo: '7790001000273', stock: 6 },
+            { nombre: 'Fiji Water', codigo: '7790001000280', stock: 5 },
+            { nombre: 'Smartwater', codigo: '7790001000297', stock: 8 },
+            { nombre: 'Evian', codigo: '7790001000303', stock: 7 },
+            { nombre: 'Perrier', codigo: '7790001000310', stock: 12 },
+            { nombre: 'San Pellegrino', codigo: '7790001000327', stock: 14 },
+            { nombre: 'LaCroix', codigo: '7790001000334', stock: 15 },
+            { nombre: 'Topo Chico', codigo: '7790001000341', stock: 10 },
+            { nombre: 'Bai', codigo: '7790001000358', stock: 11 },
+            { nombre: 'Hint', codigo: '7790001000365', stock: 13 },
+            { nombre: 'S.Pellegrino', codigo: '7790001000372', stock: 17 },
+            { nombre: 'Celsius', codigo: '7790001000389', stock: 9 },
+            { nombre: 'Crystal Geyser', codigo: '7790001000396', stock: 8 },
+            { nombre: 'Dasani', codigo: '7790001000402', stock: 5 },
+            { nombre: 'Poland Spring', codigo: '7790001000419', stock: 6 },
+            { nombre: 'Arrowhead', codigo: '7790001000426', stock: 7 },
+            { nombre: 'Ice Mountain', codigo: '7790001000433', stock: 4 }
+        ];
+
+        function Editar({ producto, alGuardar, alCancelar }) {
+            const [nombre, setNombre] = useState(producto.nombre || '');
+            const [codigo, setCodigo] = useState(producto.codigo || '');
+            const [stock, setStock] = useState(producto.stock || '');
+            const [error, setError] = useState(false);
+
+            const cambiarNombre = (e) => {
+                setNombre(e.target.value);
+                setError(false);
+            };
+
+            const cambiarCodigo = (e) => {
+                setCodigo(e.target.value);
+                setError(false);
+            };
+
+            const cambiarStock = (e) => {
+                setStock(e.target.value);
+                setError(false);
+            };
+
+            const guardar = (e) => {
+                e.preventDefault();
+                if (nombre === '') {
+                    setError(true);
+                    return;
+                } else if (codigo === '') {
+                    setError(true);
+                    return;
+                } else if (stock === '' || stock > 99) {
+                    setError(true);
+                    return;
+                } else if (nombre !== producto.nombre || codigo !== producto.codigo || stock !== producto.stock.toString()) {
+                    alGuardar({ ...producto, nombre, codigo, stock: parseInt(stock) });
+                }
+            };
+
+            const cancelar = (e) => {
+                e.preventDefault();
+                alCancelar();
+            };
+
+            return (
+                <form className="panelEdicion">
+                    <div className="descripcionEdicion">
+                        <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Producto" />
+                        <input type="text" value={codigo} onChange={cambiarCodigo} placeholder="Codigo" />
+                        <input type="text" value={stock} onChange={cambiarStock} placeholder="Stock" />
+                    </div>
+                    <div className="accionesEdicion">
+                        <button onClick={guardar}>Guardar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                        {error && <p className="error">Todos los campos son obligatorios</p>}
+                    </div>
+                </form>
+            );
+        }
+
+        const IconoEditar = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-pen-to-square"></i></span>
+        }
+
+        const IconoBasura = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-trash-can"></i></span>
+        }
+
+        function Mostrar({ producto, alGuardar, alBorrar, incrementarStock }) {
+            const [editando, setEditando] = useState(false);
+
+            const editar = () => {
+                setEditando(true);
+            };
+
+            const cancelar = () => {
+                setEditando(false);
+            };
+
+            const incrementar = () => {
+                incrementarStock(producto.codigo);
+            };
+
+            return (
+                <div className="panel">
+                    {editando ? (
+                        <Editar producto={producto} alGuardar={(productoEditado) => { alGuardar(productoEditado); setEditando(false); }} alCancelar={cancelar} />
+                    ) : (
+                        <>
+                            <div className="descripcionStock" onClick={incrementar}>
+                                <p><strong>{producto.stock}</strong></p>
+                            </div>
+                            <div className="descripcion" onClick={incrementar}>
+                                <p><strong>{producto.nombre}</strong></p>
+                                <p>{producto.codigo}</p>
+                            </div>
+                            <div className="acciones">
+                                <IconoEditar onClick={editar} />
+                                <IconoBasura onClick={() => alBorrar(producto.codigo)} />
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        const IconoAñadir = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-square-plus"></i></span>
+        }
+
+        function Agenda({ productos, alAgregar, alGuardar, alBorrar, incrementarStock }) {
+            return (
+                <>
+                    {productos.map(producto => (
+                        <Mostrar
+                            key={producto.codigo}
+                            producto={producto}
+                            alGuardar={alGuardar}
+                            alBorrar={alBorrar}
+                            incrementarStock={incrementarStock}
+                        />
+                    ))}
+                </>
+            );
+        }
+
+        function App() {
+            const [productos, setProductos] = useState(DepositoInicial.map(producto => ({ ...producto, id: `${Date.now()}-${Math.random()}` })));
+            const [mostrarPanelEdicion, setMostrarPanelEdicion] = useState(false);
+
+            const guardar = (productoEditado) => {
+                setProductos(productos.map(producto => producto.id === productoEditado.id ? productoEditado : producto));
+            };
+
+            const agregar = () => {
+                setMostrarPanelEdicion(true);
+            };
+
+            const cancelar = () => {
+                setMostrarPanelEdicion(false);
+            };
+
+            const borrar = (codigo) => {
+                setProductos(productos.filter(producto => producto.codigo !== codigo));
+            };
+
+            const incrementarStock = (codigo) => {
+                setProductos(productos.map(producto =>
+                    producto.codigo === codigo && producto.stock < 99 ? { ...producto, stock: producto.stock + 1 } : producto
+                ));
+            };
+
+            productos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+            return (
+                <>
+                    {productos.length === 0 && (
+                        <>
+                            <h1>No hay productos</h1>
+                        </>
+                    )}
+                    {productos.length > 0 && (
+                        <div className="Nav">
+                            <h1>Control Depósito</h1>
+                            <IconoAñadir onClick={agregar} />
+                        </div>
+                    )}
+                    {mostrarPanelEdicion && (
+                        <Editar producto={{ nombre: '', codigo: '', stock: '' }} alGuardar={(nuevoProducto) => { setProductos([...productos, { ...nuevoProducto }]); setMostrarPanelEdicion(false); }} alCancelar={cancelar} />
+                    )}
+                    <Agenda
+                        productos={productos}
+                        alGuardar={guardar}
+                        alBorrar={borrar}
+                        incrementarStock={incrementarStock}
+                    />
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+
+</html>
