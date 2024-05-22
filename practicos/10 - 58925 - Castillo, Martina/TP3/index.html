@@ -150,13 +150,12 @@
             position: absolute;
         }
 
-        .icono.editar {
         .icono.eliminar {
             top: 10px;
             right: 10px;
         }
 
-        .icono.eliminar {
+        .icono.editar {
             bottom: 10px;
             right: 10px;
         }
@@ -170,14 +169,18 @@
         const { createRoot } = ReactDOM;
 
         const bebidasIniciales = [
-            { ean: '1234567', nombre: "7up", cantidad: 7 },
+            { ean: '2399678', nombre: "Agua", cantidad: 9 },
             { ean: '2345678', nombre: "Coca Cola", cantidad: 2 },
             { ean: '3124567', nombre: "Fanta", cantidad: 5 },
-            { ean: '4987654', nombre: "Mirinda", cantidad: 6 },
-            { ean: '5345552', nombre: "Sprite", cantidad: 4 }
+            { ean: '4987654', nombre: "Pepsi", cantidad: 6 },
+            { ean: '5345552', nombre: "Sprite", cantidad: 4 },
+            { ean: '1234567', nombre: "Manaos", cantidad: 7 }
+
         ]
 
         function Editar({ bebida, alGuardar, alCancelar, bebidas }) {
+            const [nombre, setNombre] = useState(bebida.nombre)
+            const [cantidad, setCantidad] = useState(bebida.cantidad)
             const [ean, setEan] = useState(bebida.ean)
             const [error, setError] = useState('')
 
@@ -276,8 +279,7 @@
                     setError('El código EAN ya existe')
                     return
                 }
-                const nuevasBebidasActualizadas = [...nuevasBebidas, nuevaBebida]
-                nuevasBebidasActualizadas.sort((a, b) => a.nombre.localeCompare(b.nombre))
+                const nuevasBebidasActualizadas = [...nuevasBebidas, nuevaBebida].sort((a, b) => a.nombre.localeCompare(b.nombre))
                 setNuevasBebidas(nuevasBebidasActualizadas)
                 cerrarFormulario()
             }
