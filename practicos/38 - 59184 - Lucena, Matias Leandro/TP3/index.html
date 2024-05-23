@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Legajo:59184</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f1f1f1;
+        }
+
+        #root {
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .panel {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 10px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cantidad {
+            font-size: 36px;
+            font-weight: bold;
+            color: blue;
+        }
+
+        .info {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .nombre {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .codigoEAN {
+            font-size: 16px;
+            color: #000;
+            margin: 0;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .botonagregar {
+            height: 50px;
+            border-radius: 5px;
+            border: none;
+            color: black;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .botonbasura,
+        .botoneditar {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: black;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header h1 {
+            margin: 0;
+            margin-right: 20px;
+        }
+
+        .form-editar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .form-editar .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 70%;
+        }
+
+        .form-editar .botones-editar {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-end;
+            justify-content: center;
+            width: 30%;
+        }
+
+        .form-editar input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .boton-editar {
+            padding: 5px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            width: 70px;
+            text-align: center;
+        }
+
+        .botonaceptar,
+        .botoncancelar {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+            width: 70px;
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const ProductoInicial = [
+            { id: 1, nombre: "Coca Cola", codigoEAN: "100011", cantidad: 90 },
+            { id: 2, nombre: "Fanta", codigoEAN: "202100", cantidad: 10},
+        ];
+
+        function Mostrar({ deposito, alGuardar, alBorrar, alIncrementar }) {
+            const [editando, setEditando] = useState(deposito.nombre === '');
+            const [nombre, setNombre] = useState(deposito.nombre);
+            const [codigoEAN, setCodigoEAN] = useState(deposito.codigoEAN);
+            const [cantidad, setCantidad] = useState(deposito.cantidad);
+            const [error, setError] = useState(false);
+
+            const editar = (e) => {
+                e.stopPropagation();
+                setEditando(true);
+                setCantidad(deposito.cantidad);
+            };
+
+            const cancelar = (e) => {
+                e.stopPropagation();
+                if (deposito.nombre === '') {
+                    alBorrar(deposito.id);
+                } else {
+                    setEditando(false);
+                    setNombre(deposito.nombre);
+                    setCodigoEAN(deposito.codigoEAN);
+                    setCantidad(deposito.cantidad);
+                    setError(false);
+                }
+            };
+
+            const guardar = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (nombre === '' || codigoEAN === '' || cantidad === '') {
+                    setError(true);
+                    return;
+                }
+                alGuardar({ ...deposito, nombre, codigoEAN, cantidad });
+                setEditando(false);
+                setCantidad(deposito.cantidad);
+            };
+
+            const borrar = (e) => {
+                e.stopPropagation();
+                alBorrar(deposito.id);
+            };
+
+            return (
+                <div className="panel" onClick={() => alIncrementar(deposito.id)}>
+                    {editando ? (
+                        <form className="form-editar" onSubmit={guardar}>
+                            <div className="inputs">
+                                <input type="text" value={nombre} onChange={e => setNombre(e.target.value)} placeholder="Nombre del producto" />
+                                <input type="text" value={codigoEAN} onChange={e => setCodigoEAN(e.target.value)} placeholder="Código EAN" />
+                                <input type="text" value={cantidad} onChange={e => setCantidad(e.target.value)} placeholder="Cantidad" />
+                                {error && <p className="error">Todos los campos son obligatorios</p>}
+                            </div>
+                            <div className="botones-editar">
+                                <button className="botonaceptar" type="submit">Aceptar</button>
+                                <button className="botoncancelar" type="button" onClick={cancelar}>Cancelar</button>
+                            </div>
+                        </form>
+                    ) : (
+                        <>
+                            <div className="cantidad">{deposito.cantidad}</div>
+                            <div className="info">
+                                <p className="nombre">{deposito.nombre}</p>
+                                <p className="codigoEAN">{deposito.codigoEAN}</p>
+                            </div>
+                            <div className="botones">
+                                <button className="botoneditar" onClick={editar}><i className="fas fa-edit"></i></button>
+                                <button className="botonbasura" onClick={borrar}><i className="fas fa-trash"></i></button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function ListaDeposito({ deposito, alAgregar, alGuardar, alBorrar, alIncrementar }) {
+            const depositoOrdenado = [...deposito].sort((a, b) => a.nombre.localeCompare(b.nombre));
+            return (
+                <>
+                    <div className="header">
+                        <h1>Control Depósito</h1>
+                        <button className="botonagregar" onClick={alAgregar}><i className="fa-regular fa-square-plus"></i></button>
+                    </div>
+                    {depositoOrdenado.map(d => (
+                        <Mostrar key={d.id} deposito={d} alGuardar={alGuardar} alBorrar={alBorrar} alIncrementar={alIncrementar} />
+                    ))}
+                </>
+            );
+        }
+
+        function App() {
+            const [depositos, setDepositos] = useState(() => {
+                const datosGuardados = localStorage.getItem('depositos');
+                return datosGuardados ? JSON.parse(datosGuardados) : ProductoInicial;
+            });
+
+            const guardarEnLocalStorage = (depositosActualizados) => {
+                localStorage.setItem('depositos', JSON.stringify(depositosActualizados));
+            };
+
+            const guardar = (depositoEditado) => {
+                const nuevosDepositos = depositos.map(d => d.id === depositoEditado.id ? depositoEditado : d);
+                setDepositos(nuevosDepositos);
+                guardarEnLocalStorage(nuevosDepositos);
+            };
+
+            const agregar = () => {
+                const id = depositos.length > 0 ? Math.max(...depositos.map(d => d.id)) + 1 : 1;
+                const nuevoDeposito = { id, nombre: '', codigoEAN: '', cantidad: '' };
+                const nuevosDepositos = [nuevoDeposito, ...depositos];
+                setDepositos(nuevosDepositos);
+                guardarEnLocalStorage(nuevosDepositos);
+            };
+
+            const borrar = (id) => {
+                const nuevosDepositos = depositos.filter(d => d.id !== id);
+                setDepositos(nuevosDepositos);
+                guardarEnLocalStorage(nuevosDepositos);
+            };
+
+            const incrementarCantidad = (id) => {
+    const nuevosDepositos = depositos.map(d => {
+        if (d.id === id) {
+            const nuevaCantidad = parseInt(d.cantidad) + 1;
+            if (nuevaCantidad <= 100) {
+                return { ...d, cantidad: nuevaCantidad.toString() };
+            } else {
+                return d; // No hacemos cambios si excede 100
+            }
+        }
+        return d;
+    });
+    setDepositos(nuevosDepositos);
+    guardarEnLocalStorage(nuevosDepositos);
+};
+
+            return (
+                <ListaDeposito
+                    deposito={depositos}
+                    alAgregar={agregar}
+                    alGuardar={guardar}
+                    alBorrar={borrar}
+                    alIncrementar={incrementarCantidad}
+                />
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
