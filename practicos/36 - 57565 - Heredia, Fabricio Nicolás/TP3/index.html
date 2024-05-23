@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fabricio Heredia 57565</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+    
+        #contenedor {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+    
+        .titulo {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .titulo span {
+            margin-left: 10px;
+            font-size: 24px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    
+        .tarjeta-producto {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            position: relative;
+        }
+    
+        .detalles-producto {
+            display: flex;
+            align-items: center;
+        }
+    
+        .cantidad-producto {
+            font-size: 48px;
+            font-weight: bold;
+            color: blue;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    
+        .info-producto {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .nombre-producto {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    
+        .codigo-producto {
+            font-weight: normal;
+        }
+    
+        .acciones {
+            display: flex;
+            align-items: center;
+        }
+    
+        .acciones button {
+            margin-left: 5px;
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    
+        .acciones button:hover {
+            opacity: 0.8;
+        }
+    
+        .acciones button:last-child {
+            color: rgb(8, 3, 3);
+        }
+    
+        .entrada-producto {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .entrada-producto input[type="text"],
+        .entrada-producto input[type="number"] {
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+        .entrada-producto input[type="number"]::-webkit-outer-spin-button,
+        .entrada-producto input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenedor"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const ProductoItem = ({ producto, onEditar, onEliminar, onIncrementar }) => {
+            const [estaEditando, setEstaEditando] = useState(false);
+            const [nombreProducto, setNombreProducto] = useState(producto.nombre);
+            const [codigoProducto, setCodigoProducto] = useState(producto.codigo);
+            const [cantidadProducto, setCantidadProducto] = useState(producto.cantidad);
+
+            const manejarEdicion = () => {
+                setEstaEditando(true);
+            };
+
+            const manejarCancelar = () => {
+                setEstaEditando(false);
+                setNombreProducto(producto.nombre);
+                setCodigoProducto(producto.codigo);
+                setCantidadProducto(producto.cantidad);
+            };
+
+            const manejarGuardar = () => {
+                onEditar(producto.id, { nombre: nombreProducto, codigo: codigoProducto, cantidad: cantidadProducto });
+                setEstaEditando(false);
+            };
+
+            const manejarIncremento = () => {
+                const nuevaCantidad = cantidadProducto + 1;
+                setCantidadProducto(nuevaCantidad);
+                onIncrementar(producto.id, nuevaCantidad);
+            };
+
+            return (
+                <div className="tarjeta-producto">
+                    {estaEditando ? (
+                        <div className="entrada-producto">
+                            <input type="text" value={nombreProducto} onChange={(e) => setNombreProducto(e.target.value)} />
+                            <input type="text" value={codigoProducto} onChange={(e) => setCodigoProducto(e.target.value)} />
+                            <input type="number" value={cantidadProducto} onChange={(e) => setCantidadProducto(parseInt(e.target.value))} />
+                            <div className="acciones">
+                                <button onClick={manejarGuardar}>Aceptar</button>
+                                <button onClick={manejarCancelar}>Cancelar</button>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="detalles-producto">
+                                <span className="cantidad-producto" onClick={manejarIncremento}>{cantidadProducto}</span>
+                                <div className="info-producto">
+                                    <div className="nombre-producto">{nombreProducto}</div>
+                                    <div className="codigo-producto">{codigoProducto}</div>
+                                </div>
+                            </div>
+                            <div className="acciones">
+                                <button onClick={manejarEdicion}><i className="fa-regular fa-pen-to-square"></i></button>
+                                <button onClick={() => onEliminar(producto.id)}><i className="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [productosLista, setProductosLista] = useState([
+                { id: 1, nombre: '7up', codigo: '134316813813', cantidad: 7 },
+                { id: 2, nombre: 'Coca Cola', codigo: '55818616813', cantidad: 92 },
+                { id: 3, nombre: 'Fanta', codigo: '531681318464', cantidad: 5 },
+                { id: 4, nombre: 'Pepsi', codigo: '684684351545', cantidad: 8 },
+                { id: 5, nombre: 'Mirinda', codigo: '846768435812', cantidad: 6 },
+                { id: 6, nombre: 'Sprite', codigo: '8416432184512', cantidad: 4 }
+            ]);
+
+            const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', codigo: '', cantidad: 0 });
+            const [estaAgregando, setEstaAgregando] = useState(false);
+
+            const manejarEditarProducto = (id, productoActualizado) => {
+                const productosActualizados = productosLista.map((producto) =>
+                    producto.id === id ? { ...producto, ...productoActualizado } : producto
+                );
+                setProductosLista(productosActualizados);
+            };
+
+            const manejarIncrementoProducto = (id, nuevaCantidad) => {
+                const productosActualizados = productosLista.map((producto) =>
+                    producto.id === id ? { ...producto, cantidad: nuevaCantidad } : producto
+                );
+                setProductosLista(productosActualizados);
+            };
+
+            const manejarEliminarProducto = (id) => {
+                const productosActualizados = productosLista.filter((producto) => producto.id !== id);
+                setProductosLista(productosActualizados);
+            };
+
+            const manejarAgregarProducto = () => {
+                setEstaAgregando(true);
+            };
+
+            const manejarGuardarNuevoProducto = () => {
+                if (nuevoProducto.nombre && nuevoProducto.codigo && nuevoProducto.cantidad > 0) {
+                    const nuevoProductoNuevo = {
+                        ...nuevoProducto,
+                        id: productosLista.length + 1,
+                    };
+                    const productosActualizados = [nuevoProductoNuevo, ...productosLista].sort((a, b) => a.nombre.localeCompare(b.nombre));
+                    setProductosLista(productosActualizados);
+                    setNuevoProducto({ nombre: '', codigo: '', cantidad: 0 });
+                    setEstaAgregando(false);
+                } else {
+                    alert("Debe completar todos los campos");
+                }
+            };
+
+            const manejarCancelarAgregar = () => {
+                setEstaAgregando(false);
+                setNuevoProducto({ nombre: '', codigo: '', cantidad: 0 });
+            };
+
+            return (
+                <div id="contenedor">
+                    <h1 className="titulo">
+                        Lista De Productos
+                        <span onClick={manejarAgregarProducto}><i className="fa-solid fa-plus"></i></span>
+                    </h1>
+                    {estaAgregando && (
+                        <div className="tarjeta-producto">
+                            <div className="entrada-producto">
+                                <input
+                                    type="text"
+                                    placeholder="Nombre"
+                                    value={nuevoProducto.nombre}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, nombre: e.target.value })}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Código"
+                                    value={nuevoProducto.codigo}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, codigo: e.target.value })}
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Cantidad"
+                                    value={nuevoProducto.cantidad}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, cantidad: parseInt(e.target.value) })}
+                                />
+                                <div className="acciones">
+                                    <button onClick={manejarGuardarNuevoProducto}>Aceptar</button>
+                                    <button onClick={manejarCancelarAgregar}>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {productosLista.map((producto) => (
+                        <ProductoItem
+                            key={producto.id}
+                            producto={producto}
+                            onEditar={manejarEditarProducto}
+                            onEliminar={manejarEliminarProducto}
+                            onIncrementar={manejarIncrementoProducto}
+                        />
+                    ))}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('contenedor'));
+    </script>
+</body>
+
+</html>
