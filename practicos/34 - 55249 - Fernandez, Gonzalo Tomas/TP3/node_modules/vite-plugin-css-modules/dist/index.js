@@ -1,0 +1,302 @@
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
+};
+exports.__esModule = true;
+var pluginutils_1 = require("@rollup/pluginutils");
+var fs = require("fs/promises");
+var postcss_1 = require("postcss");
+var postcssModules = require("postcss-modules");
+var cssLangs = "\\.(scss|less|styl|stylus|pcss|postcss)($|\\?)";
+var imgLangs = "\\.(png|webp|jpg|gif|jpeg|tiff|svg|bmp)($|\\?)";
+var cssLangRE = new RegExp(cssLangs);
+var imgLangRE = new RegExp(imgLangs);
+var cssModuleRE = new RegExp("\\.module" + cssLangs);
+var modulesOptions = {
+    scopeBehaviour: "local", localsConvention: "camelCaseOnly", compact: true
+};
+var nodeLess = require("less");
+function plugin(opts) {
+    var _this = this;
+    if (opts === void 0) { opts = {}; }
+    var precompilers = opts.precompilers ? opts.precompilers : [
+        {
+            regExp: /.(less)$/,
+            ompiler: function (code, file) { return __awaiter(_this, void 0, void 0, function () {
+                var cssCode;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4, nodeLess.render(code, {
+                                syncImport: true,
+                                javascriptEnabled: true
+                            })];
+                        case 1:
+                            cssCode = (_a.sent()).css;
+                            return [2, cssCode];
+                    }
+                });
+            }); }
+        }
+    ];
+    var urlCodeReg = /url?(\()?('|")(\w|\/|.)+('|")(\))/g;
+    var urlReg = /(url|\(|'|"|\))/g;
+    var jsFileReg = /(.jsx?|.tsx?)$/;
+    var name = "vite-plugin-css-modules";
+    var server;
+    var plugin = {
+        enforce: "post",
+        name: name,
+        configureServer: function (_server) {
+            server = _server;
+        },
+        handleHotUpdate: function (_a) {
+            var server = _a.server, file = _a.file, modules = _a.modules;
+            if (cssLangRE.test(file) && !file.includes("node_modules") && !cssModuleRE.test(file)) {
+                var updates_1 = [];
+                var loopFn_1 = function (modules) {
+                    modules &&
+                        modules.forEach(function (module) {
+                            var fileUrl = module.url;
+                            if (jsFileReg.test(fileUrl)) {
+                                updates_1.push({
+                                    type: "js-update",
+                                    timestamp: new Date().getTime(),
+                                    path: fileUrl,
+                                    acceptedPath: fileUrl
+                                });
+                                return;
+                            }
+                            module.importers &&
+                                module.importers.forEach(function (ModuleNode) {
+                                    var fileUrl = ModuleNode.url;
+                                    if (jsFileReg.test(fileUrl)) {
+                                        updates_1.push({
+                                            type: "js-update",
+                                            timestamp: new Date().getTime(),
+                                            path: ModuleNode.url,
+                                            acceptedPath: ModuleNode.url
+                                        });
+                                    }
+                                    else {
+                                        loopFn_1(ModuleNode.importers);
+                                    }
+                                });
+                        });
+                };
+                loopFn_1(modules);
+                server.ws.send({
+                    type: "update",
+                    updates: updates_1
+                });
+            }
+        },
+        transform: function (raw, id) {
+            return __awaiter(this, void 0, void 0, function () {
+                var styleCon, singlelineCommentsRE, _a, css_1, modules, urls, moduleGraph, thisModule, _loop_1, _i, _b, item, _c, precompilers_1, precompiler, modulesCode, resStr;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0:
+                            if (!(cssLangRE.test(id) && !id.includes("node_modules") && !cssModuleRE.test(id))) return [3, 12];
+                            return [4, fs.readFile(id, "utf8")];
+                        case 1:
+                            styleCon = _d.sent();
+                            singlelineCommentsRE = /\/\/.*/g;
+                            styleCon = styleCon.replace(singlelineCommentsRE, '');
+                            return [4, compileCSS(id, styleCon, opts.postcssPlugins || [], opts.postcssModulesOpts || {})];
+                        case 2:
+                            _a = _d.sent(), css_1 = _a.code, modules = _a.modules;
+                            urls = css_1.match(urlCodeReg) || [];
+                            urls.forEach(function (urlVal) {
+                                var url = urlVal.replace(urlReg, "");
+                                if (imgLangRE.test(url)) {
+                                    var newUrl = getRequireFilePage(id, url);
+                                    css_1 = css_1.replace(url, newUrl);
+                                }
+                            });
+                            moduleGraph = server.moduleGraph;
+                            thisModule = moduleGraph.getModuleById(id);
+                            if (!thisModule) return [3, 7];
+                            _loop_1 = function (item) {
+                                var fileUrl, impFC, impFCByTransformed, key, module_1, impFCByTransformedCode, urls_1;
+                                return __generator(this, function (_e) {
+                                    switch (_e.label) {
+                                        case 0:
+                                            fileUrl = item.file;
+                                            return [4, fs.readFile(fileUrl, "utf8")];
+                                        case 1:
+                                            impFC = _e.sent();
+                                            return [4, compileCSS(fileUrl, impFC, opts.postcssPlugins || [], opts.postcssModulesOpts || {})];
+                                        case 2:
+                                            impFCByTransformed = _e.sent();
+                                            for (key in impFCByTransformed.modules) {
+                                                module_1 = impFCByTransformed.modules[key];
+                                                modules[key] = module_1;
+                                            }
+                                            impFCByTransformedCode = impFCByTransformed.code;
+                                            urls_1 = impFCByTransformedCode.match(urlCodeReg) || [];
+                                            urls_1.forEach(function (urlVal) {
+                                                var url = urlVal.replace(urlReg, "");
+                                                if (imgLangRE.test(url)) {
+                                                    var newUrl = getRequireFilePage(fileUrl, url);
+                                                    impFCByTransformedCode = impFCByTransformedCode.replace(url, newUrl);
+                                                }
+                                            });
+                                            css_1 = impFCByTransformedCode + "\n " + css_1;
+                                            return [2];
+                                    }
+                                });
+                            };
+                            _i = 0, _b = thisModule.importedModules;
+                            _d.label = 3;
+                        case 3:
+                            if (!(_i < _b.length)) return [3, 6];
+                            item = _b[_i];
+                            return [5, _loop_1(item)];
+                        case 4:
+                            _d.sent();
+                            _d.label = 5;
+                        case 5:
+                            _i++;
+                            return [3, 3];
+                        case 6:
+                            css_1 = css_1.replace(/(@import)\s+(url)?(\()?('|")(\w|\/|.)+('|")(\))?;?/gi, "");
+                            _d.label = 7;
+                        case 7:
+                            _c = 0, precompilers_1 = precompilers;
+                            _d.label = 8;
+                        case 8:
+                            if (!(_c < precompilers_1.length)) return [3, 11];
+                            precompiler = precompilers_1[_c];
+                            if (!precompiler.regExp.test(id)) return [3, 10];
+                            return [4, precompiler.ompiler(css_1, id)];
+                        case 9:
+                            css_1 = _d.sent();
+                            _d.label = 10;
+                        case 10:
+                            _c++;
+                            return [3, 8];
+                        case 11:
+                            modulesCode = modules &&
+                                pluginutils_1.dataToEsm(modules, {
+                                    namedExports: true,
+                                    preferConst: true
+                                });
+                            resStr = [
+                                "\nimport { updateStyle, removeStyle } from \"/@vite/client\"",
+                                "const id = \"" + id + "\"",
+                                "const css = `" + css_1 + "`;",
+                                "updateStyle(id, css);",
+                                "" + (modulesCode || "import.meta.hot.accept()\nexport default css"),
+                                "import.meta.hot.prune(() => removeStyle(id))",
+                            ].join("\n");
+                            return [2, {
+                                    code: resStr,
+                                    css: css_1,
+                                    modulesCode: modulesCode
+                                }];
+                        case 12: return [2, undefined];
+                    }
+                });
+            });
+        }
+    };
+    return plugin;
+}
+exports["default"] = plugin;
+function compileCSS(id, code, _postcssPlugins, _postcssModules) {
+    return __awaiter(this, void 0, void 0, function () {
+        var modules, postcssPlugins, postcssResult;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    postcssPlugins = __spreadArray([], _postcssPlugins);
+                    postcssPlugins.unshift(postcssModules(__assign(__assign(__assign({}, modulesOptions), _postcssModules), { getJSON: function (cssFileName, _modules, outputFileName) {
+                            modules = _modules;
+                            if (modulesOptions && typeof modulesOptions.getJSON === "function") {
+                                modulesOptions.getJSON(cssFileName, _modules, outputFileName);
+                            }
+                            if (_postcssModules && typeof _postcssModules.getJSON === "function") {
+                                _postcssModules.getJSON(cssFileName, _modules, outputFileName);
+                            }
+                        } })));
+                    return [4, postcss_1["default"](postcssPlugins).process(code, {
+                            to: id,
+                            from: id,
+                            map: {
+                                inline: false,
+                                annotation: false
+                            }
+                        })];
+                case 1:
+                    postcssResult = _a.sent();
+                    return [2, {
+                            ast: postcssResult,
+                            modules: modules,
+                            code: postcssResult.css,
+                            messages: postcssResult.messages
+                        }];
+            }
+        });
+    });
+}
+function getRequireFilePage(fileSrc, requireSrc) {
+    var _a;
+    var parentLevel = ((_a = requireSrc.match(/(\.\.\/)/g)) === null || _a === void 0 ? void 0 : _a.length) || 0;
+    var requireSrcLoc = requireSrc.replace(/(\.\.\/|\.\/)/g, "");
+    var arrrs = fileSrc.split("/").reverse();
+    arrrs.splice(0, parentLevel + 1);
+    var reqPath = arrrs.reverse().join("/");
+    var reaSrc = reqPath + "/" + requireSrcLoc;
+    reaSrc = reaSrc.replace(process.cwd().replace(/\\/g, "/"), "");
+    return "" + reaSrc;
+}
+//# sourceMappingURL=index.js.map

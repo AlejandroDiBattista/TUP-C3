@@ -1,0 +1,95 @@
+/* App.css */
+
+footer {
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.title {
+  text-align: center;
+  font-size: 3em;
+  position: relative;
+  right: 0.3em;
+}
+
+.buttonTitle {
+  border: none;
+  color: #111;
+  background-color: #fff;
+  font-size: 1.1em;
+  position: relative;
+  left: 0.6em;
+  bottom: 0.01em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nothing {
+  text-align: center;
+  font-size: 2.25em;
+  font-weight: 500;
+  padding: 4em;
+}
+
+/*Mobile L (425px)*/
+
+@media (max-width: 505px) {
+  footer {
+    font-size: 1em;
+  }
+  
+  .title {
+    font-size: 2.44em;
+  }
+  
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+  
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}
+
+/*Mobile M (375px)*/
+
+@media (max-width: 405px) {
+  footer {
+    font-size: 1em;
+  }
+  
+  .title {
+    font-size: 2.15em;
+  }
+  
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+  
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  footer {
+    font-size: 1em;
+  }
+  
+  .title {
+    font-size: 1.8em;
+  }
+  
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+  
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}

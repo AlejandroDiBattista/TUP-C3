@@ -1,0 +1,190 @@
+/*Show.css*/
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh;
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 6px #00000066;
+  border: 1px solid #ccc;
+  width: 30em;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.product-info {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.product-count {
+  font-size: 4em;
+  color: #0000ff;
+  text-align: left;
+  margin-top: 0.6em;
+  margin-left: 0.5em;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-count.align-right {
+  margin-right: 0.1em;
+  margin-left: 0.5em;
+}
+
+.product-details {
+  margin-top: 1.6em;
+  margin-left: 1.875em;
+}
+
+.product-details.align-right {
+  margin-top: 1.85em;
+  margin-left: 1.25em;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+}
+
+.product-code {
+  font-size: 1.3em;
+  text-align: left;
+  margin: 0.888em 0 0 0;
+}
+
+.button-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-button,
+.delete-button {
+  width: 0;
+  height: 0;
+  color: #111;
+  background-color: #fff;
+  position: absolute;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 2.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-button {
+  top: 0;
+  left: 12.1em;
+}
+
+.delete-button {
+  top: 2.5em;
+  left: 12.1em;
+}
+
+/*Mobile L (425px)*/
+
+@media (max-width: 505px) {
+  .edit-button,
+  .delete-button {
+    position: static;
+    font-size: 2.2em;
+    margin: 0 1em 1.2em 0;
+    padding: 0;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative; 
+    justify-content: space-evenly;
+  }
+  .product-name {
+    font-size: 1.8em;
+  }
+
+  .product-code {
+    font-size: 1.1em;
+  }
+  .product-count {
+    font-size: 4rem;
+  }
+}
+
+/*Mobile M (375px)*/
+
+@media (max-width: 405px) {
+  .edit-button,
+  .delete-button {
+    position: static;
+    font-size: 1.9em;
+    margin: 0 1.2em 1.2em 0;
+    padding: 0;
+  }
+
+  .product-details.align-right {
+    margin-right: 0.6em;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative; 
+    justify-content: space-evenly;
+  }
+  .product-name {
+    font-size: 1.8em;
+  }
+
+  .product-code {
+    font-size: 1.1em;
+  }
+  .product-count {
+    font-size: 4rem;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  .edit-button,
+  .delete-button {
+    font-size: 2em;
+    margin: 0 1em 1.3em 0.5em;
+    padding: 0;
+  }
+
+  .product-details.align-right {
+    margin-left: -0.1em;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative; 
+    justify-content: space-evenly;
+  }
+  .product-name {
+    font-size: 1.6em;
+  }
+
+  .product-code {
+    font-size: 0.8em;
+  }
+  .product-count {
+    font-size: 2.8rem;
+  }
+}

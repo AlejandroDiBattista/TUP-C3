@@ -1,0 +1,89 @@
+/*Edit.css*/
+
+form {
+  width: 30em;
+  height: auto;
+  margin: 0 auto 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px #00000066;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input {
+  font-weight: bold;
+  width: calc(100% - 7em);
+  padding: 0.3em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 7px !important;
+  color: #111;
+  background: #fff;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 1.25em;
+  right: 0.75em;
+}
+
+.actions button {
+  font-size: 1.1em;
+  font-weight: 400;
+  width: 5em;
+  padding: 0.1em;
+  border: 2px solid #111;
+  border-radius: 10px;
+  color: #111;
+  background-color: #fff;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.actions button:hover {
+  background-color: #eee;
+  cursor: pointer;
+  user-select: none;
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 0.625em;
+  text-align: center;
+}
+
+/*Mobile L (425px) and Mobile M (375px)*/
+
+@media (max-width: 505px) {
+  form {
+    width: auto;
+    margin: 2.8%;
+  }
+  input {
+    width: 70%;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  form {
+    width: auto;
+    margin: 2%;
+  }
+  input {
+    width: 60%;
+    font-size: 0.9em;
+  }
+  .actions button {
+    font-size: 1em;
+    border: 1.5px solid #111;
+  }
+}
