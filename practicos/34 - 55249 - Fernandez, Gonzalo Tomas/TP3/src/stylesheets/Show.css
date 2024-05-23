@@ -8,11 +8,11 @@
 }
 
 .panel {
-  background-color: var(--card);
+  background-color: #fff;
   border-radius: 15px;
   margin-bottom: 10px;
-  box-shadow: 0 3px 6px var(--shadow);
-  border: 1px solid var(--border);
+  box-shadow: 0 3px 6px #00000066;
+  border: 1px solid #ccc;
   width: 30em;
   height: 10em;
   display: flex;
@@ -29,7 +29,7 @@
 
 .product-count {
   font-size: 4em;
-  color: var(--count) !important;
+  color: #0000ff;
   text-align: left;
   margin-top: 0.6em;
   margin-left: 0.5em;
@@ -71,12 +71,11 @@
 }
 
 .edit-button,
-.delete-button,
-.favorite-button {
+.delete-button {
   width: 0;
   height: 0;
-  color: var(--text);
-  background-color: var(--card);
+  color: #111;
+  background-color: #fff;
   position: absolute;
   border: none;
   border-radius: 1px;
@@ -96,17 +95,11 @@
   left: 12.1em;
 }
 
-.favorite-button {
-  top: 1.2em;
-  left: 12.1em;
-}
-
 /*Mobile L (425px)*/
 
 @media (max-width: 505px) {
   .edit-button,
-  .delete-button,
-  .favorite-button {
+  .delete-button {
     position: static;
     font-size: 2.2em;
     margin: 0 1em 1.2em 0;
@@ -135,8 +128,7 @@
 
 @media (max-width: 405px) {
   .edit-button,
-  .delete-button,
-  .favorite-button {
+  .delete-button {
     position: static;
     font-size: 1.9em;
     margin: 0 1.2em 1.2em 0;
@@ -169,8 +161,7 @@
 
 @media (max-width: 325px) {
   .edit-button,
-  .delete-button,
-  .favorite-button {
+  .delete-button {
     font-size: 2em;
     margin: 0 1em 1.3em 0.5em;
     padding: 0;

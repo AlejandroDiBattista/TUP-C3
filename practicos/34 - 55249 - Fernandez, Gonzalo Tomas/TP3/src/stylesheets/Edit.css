@@ -5,10 +5,10 @@ form {
   height: auto;
   margin: 0 auto 10px;
   padding: 20px;
-  border: 1px solid var(--border);
+  border: 1px solid #ccc;
   border-radius: 15px;
-  background-color: var(--card);
-  box-shadow: 0 3px 6px var(--shadow);
+  background-color: #fff;
+  box-shadow: 0 3px 6px #00000066;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -18,12 +18,12 @@ input {
   font-weight: bold;
   width: calc(100% - 7em);
   padding: 0.3em;
-  border: 1px solid var(--border);
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
   margin-bottom: 7px !important;
-  color: var(--text);
-  background: var(--back);
+  color: #111;
+  background: #fff;
 }
 
 .actions {
@@ -39,16 +39,16 @@ input {
   font-weight: 400;
   width: 5em;
   padding: 0.1em;
-  border: 2px solid var(--text);
+  border: 2px solid #111;
   border-radius: 10px;
-  color: var(--text);
-  background-color: var(--back);
+  color: #111;
+  background-color: #fff;
   margin-bottom: 5px;
   user-select: none;
 }
 
 .actions button:hover {
-  background-color: var(--hover);
+  background-color: #eee;
   cursor: pointer;
   user-select: none;
 }
@@ -84,6 +84,6 @@ input {
   }
   .actions button {
     font-size: 1em;
-    border: 1.5px solid var(--text);
+    border: 1.5px solid #111;
   }
 }

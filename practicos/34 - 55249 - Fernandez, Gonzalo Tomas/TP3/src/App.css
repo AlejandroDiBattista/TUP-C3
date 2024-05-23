@@ -14,8 +14,8 @@ footer {
 
 .buttonTitle {
   border: none;
-  color: var(--text);
-  background-color: var(--back);
+  color: #111;
+  background-color: #fff;
   font-size: 1.1em;
   position: relative;
   left: 0.6em;
