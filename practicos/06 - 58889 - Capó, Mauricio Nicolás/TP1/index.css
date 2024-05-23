@@ -1,0 +1,43 @@
+body {
+    
+    background-image: url(https://images.hdqwalls.com/download/a-boy-with-balloon-walking-in-field-1c-1920x1080.jpg);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+}
+.Informacion  p {
+  color: rgb(182, 158, 158);
+  text-align: start;
+   
+}
+.Informacion  b {
+    color: rgb(160, 156, 156);
+     
+  }
+  .Informacion{
+    text-align: center;
+    margin: 20px auto 20px auto;
+    padding: 10px;
+    background-color: rgb(47, 59, 48);
+    border-style: outset;
+    border-color: rgb(0, 0, 0);
+    max-width: 250px;
+    border-radius: 100px;
+  }
+  ul{
+    list-style-type: none; 
+  }
+  h1{
+    font-size: 65px;
+    font-family: "Jersey 15", sans-serif;
+    text-align: center;
+    border-style: dotted;
+    border-color: rgb(156, 161, 79);
+    border-radius: 100px;
+    border-width: 5px;
+    max-width: 300px; 
+    margin: 20px auto 20px auto;
+   
+  }

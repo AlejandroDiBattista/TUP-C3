@@ -4,9 +4,39 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+<<<<<<< HEAD
 }
 
 body {
   margin: 0;
   padding: 0;
 }
+=======
+  --back: #fff;
+  --card: #fff;
+  --text: #111;
+  --count: #0000ff;
+  --border: #ccc;
+  --hover: #f0f0f0;
+  --shadow: #00000066;
+  --primary: #4144ed;
+  --secondary: #50d0ea;
+}
+
+body {
+  background-color: var(--back) !important;
+  color: var(--text) !important;
+}
+
+[data-theme="dark"] {
+  --back: #1e1e1e;
+  --card: #222;
+  --text: #eee;
+  --count: #0084ff;
+  --border: #333;
+  --hover: #111;
+  --shadow: #ffffff47;
+  --primary: #50d0ea;
+  --secondary: #4144ed;
+}
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10

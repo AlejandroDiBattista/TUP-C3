@@ -1,0 +1,39 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgba(0, 88, 15, 0.583)
+}
+
+h1 {
+    color: rgb(132, 209, 152);
+}
+
+.tarjeta{
+    text-align: center;
+    border-radius: 10px;
+    width: 350px;
+    padding: 10px;
+    margin: 25px;
+    border: 3px solid;
+    margin-left: 225px;
+    
+}
+
+.contenedor :hover {
+    scale: 1.1;
+    background-color: rgb(233, 227, 227,.4);
+}
+
+
+
+
+#container {
+    width: 850px;
+    margin: 0 auto;
+    text-align: center;
+    border: solid ;
+    background-color: rgb(2, 166, 172);
+}
+

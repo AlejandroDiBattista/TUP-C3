@@ -1,0 +1,60 @@
+body {
+  background: linear-gradient(to right, #4144ed, #50d0ea);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  user-select: none;
+}
+
+th {
+  background-color: #cdc8c88b;
+  text-align: left;
+}
+
+td:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  background-color: #ddd;
+  color: #000;
+  user-select: none;
+}
+
+.title {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  text-align: center;
+  border: 3px solid #f0f0f0;
+  color: #fff;
+  background-color: #f0f0f03e;
+}
+
+.contact {
+  color: #fff;
+  border: 4px solid #ddd;
+  border-radius: 5px;
+  background-color: #3e3c3cd3;
+  padding: 0px;
+  margin: 10px;
+  box-shadow: 1px 3px 10px #1b1a1a9b;
+}
+
+.footer {
+  color: #fff;
+  text-align: center;
+}

@@ -4,11 +4,16 @@ import { useState, useEffect } from 'react';
 import initialProducts from './data/initialProducts.js';
 import Edit from './components/Edit.jsx';
 import Show from './components/Show.jsx';
+<<<<<<< HEAD
+=======
+import NavBar from './components/NavBar.jsx';
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
 
 function App() {
   // Estados
   const [products, setProducts] = useState(initialProducts); // Llamar mi localStorage
   const [editingProduct, setEditingProduct] = useState(null); // Añadir producto
+<<<<<<< HEAD
   const [error, setError] = useState(''); // Controlar errores
 
   useEffect(() => {
@@ -24,6 +29,28 @@ function App() {
   // Función para añadir producto
   const addProduct = () => {
     setEditingProduct({ id: null, name: '', code: '', count: '' });
+=======
+  const [searchTerm, setSearchTerm] = useState(''); // Buscar producto
+  const [error, setError] = useState(''); // Controlar errores
+  const [theme, setTheme] = useState(() => {
+    const themeStorage = window.localStorage.getItem('theme');
+    return themeStorage ?? 'dark';
+  }); // Cambiar el tema
+  
+  // Renderizado
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  // Función para añadir producto
+  const addProduct = () => {
+    setEditingProduct({ id: null, name: '', code: '', count: '', editing: true });
+  };
+
+  // Función de NavBar.jsx
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
   };
 
   // Funciones de Edit.jsx
@@ -32,7 +59,11 @@ function App() {
       (p) => (p.name === product.name || p.code === product.code) && p.id !== product.id
     );
     if (duplicate) {
+<<<<<<< HEAD
       setError('Ya existe un producto con el mismo nombre o código EAN.');
+=======
+      setError('Ya existe un producto con el mismo nombre y código EAN.');
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
       return;
     }
 
@@ -83,12 +114,39 @@ function App() {
     );
   };
 
+<<<<<<< HEAD
+=======
+  const toggleFavorite = (productId) => {
+    const updatedProducts = products.map((product) =>
+      product.id === productId ? { ...product, favorite: !product.favorite } : product
+    );
+    setProducts(updatedProducts);
+  };
+
+  const sortProductsByFavorite = (a, b) => {
+    if (a.favorite === b.favorite) {
+      return a.name.localeCompare(b.name);
+    }
+    return b.favorite - a.favorite;
+  };
+
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
   const updateCount = (productId, newCount) => {
     setProducts(products.map(p => p.id === productId ? { ...p, count: newCount } : p));
   };
 
   return (
     <>
+<<<<<<< HEAD
+=======
+      <NavBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        theme={theme}
+        setTheme={handleThemeChange}
+      />
+      <br />
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
       <h1 className="title">
         Control Depósito
         <button className="buttonTitle" onClick={addProduct}>
@@ -111,6 +169,13 @@ function App() {
           </div>
         ) : (
           products
+<<<<<<< HEAD
+=======
+            .filter((product) =>
+              product.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .sort(sortProductsByFavorite)
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
             .map((product) =>
               product.editing ? (
                 <Edit
@@ -127,6 +192,10 @@ function App() {
                   product={product}
                   whenEdit={() => editProduct(product)}
                   whenDelete={() => deleteProduct(product)}
+<<<<<<< HEAD
+=======
+                  whenToggleFavorite={() => toggleFavorite(product.id)}
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
                   updateCount={updateCount}
                 />
               )

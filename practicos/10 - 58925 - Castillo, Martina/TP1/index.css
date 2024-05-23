@@ -1,0 +1,46 @@
+body {
+    background-color: #abbeca;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.contenedor{
+    background-color: bisque;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px;
+}
+
+h1{
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+li{
+    margin-bottom: 10px;
+    border: 1px dotted #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nombre{
+    font-weight: bold;
+}
+
+.telefono{
+    color: #d188b3;
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        #root {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: center; /* Centrar contenido dentro de #root */
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+        .add-product-toggle {
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        .add-product {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .add-product input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .add-product button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .product,
+        .edit-form {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            width: 100%; /* Ajustar ancho */
+        }
+        .product strong:first-child {
+            font-size: 36px;
+            color: blue;
+            margin-right: 20px;
+        }
+        .product .info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product .info strong {
+            font-size: 18px;
+        }
+        .product .info span {
+            font-size: 14px;
+            color: #666;
+        }
+        .product .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .product .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .product .actions button.edit {
+            color: #007bff;
+        }
+        .product .actions button.delete {
+            color: #dc3545;
+        }
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            cursor: default; /* El cursor no cambia en el panel de edición */
+            width: 100%; /* Ajustar ancho */
+        }
+        .edit-form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .edit-form .actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .edit-form .actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-form .actions button.save {
+            background-color: #28a745;
+            color: white;
+        }
+        .edit-form .actions button.cancel {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function Product({ product, onEdit, onDelete, onIncrement }) {
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedProduct, setEditedProduct] = useState(product);
+    const [nombre, setNombre] = useState(product.name);
+    const [ean, setEan] = useState(product.ean);
+    const [quantity, setQuantity] = useState(product.quantity);
+
+    // En Product.js
+    const handleSaveEdit = () => {
+    onEdit({ ...product, name: nombre, ean: ean, quantity: quantity }); // Actualizar los datos del producto editado
+    setIsEditing(false);
+};
+const handleCancelEdit = () => {
+    setIsEditing(false);
+    // Restaurar los valores originales del producto al cancelar la edición
+    setNombre(product.name);
+    setEan(product.ean);
+    setQuantity(product.quantity);
+};
+    const handleClick = () => {
+        if (!isEditing) {
+            onIncrement(product.id);
+        }
+    };
+    const handleEditClick = (e) => {
+        e.stopPropagation();
+        setIsEditing(true);
+    };
+    return (
+        <div className="product" onClick={handleClick}>
+            {isEditing ? (
+                <div className="edit-form">
+                    <input
+                        type="text"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        value={ean}
+                        onChange={(e) => setEan(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(parseInt(e.target.value))}
+                    />
+                    <div className="actions">
+                        <button className="save" onClick={handleSaveEdit}>Aceptar</button>
+                        <button className="cancel" onClick={handleCancelEdit}>Cancelar</button>
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <strong>{product.quantity}</strong>
+                    <div className="info">
+                        <strong>{product.name}</strong>
+                        <span>{product.ean}</span>
+                    </div>
+                    <div className="actions">
+                        <button className="edit" onClick={handleEditClick}>
+                            <i className="fas fa-edit"></i>
+                        </button>
+                        <button className="delete" onClick={(e) => { e.stopPropagation(); onDelete(product.id); }}>
+                            <i className="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
+        function AddProductForm({ onAdd }) {
+            const [newProduct, setNewProduct] = useState({ name: '', ean: '' });
+
+
+            const handleAddProduct = () => {
+                if (newProduct.name.trim() === '' || newProduct.ean.trim() === '') return;
+
+                onAdd(newProduct);
+                setNewProduct({ name: '', ean: '' });
+            };
+
+            const handleInputChange = (e, field) => {
+                setNewProduct({ ...newProduct, [field]: e.target.value });
+            };
+            return (
+                <div className="add-product">
+                    <input
+                        type="text"
+                        placeholder="Nombre del producto"
+                        value={newProduct.name}
+                        onChange={(e) => handleInputChange(e, 'name')}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Código EAN"
+                        value={newProduct.ean}
+                        onChange={(e) => handleInputChange(e, 'ean')}
+                    />
+                    <button onClick={handleAddProduct}>Agregar</button>
+                </div>
+            );
+        }
+        function App() {
+    const [products, setProducts] = useState([
+        { id: 1, name: '7up', ean: '7799876543210', quantity: 7 },
+        { id: 2, name: 'Coca Cola', ean: '7791234567890', quantity: 92 },
+        { id: 3, name: 'Fanta', ean: '7793219876540', quantity: 5 },
+        { id: 4, name: 'Sprite', ean: '7796543219870', quantity: 4 }
+    ]);
+    const [showAddForm, setShowAddForm] = useState(false);
+    const [newProduct, setNewProduct] = useState({ name: '', ean: '', quantity: 0 });
+    const handleEditProduct = (updatedProduct) => {
+    const updatedProducts = products.map(p => (p.id === updatedProduct.id ? updatedProduct : p));
+    setProducts(updatedProducts);
+};
+    const handleDeleteProduct = (id) => {
+        const updatedProducts = products.filter(p => p.id !== id);
+        setProducts(updatedProducts);
+    };
+    const handleAddProduct = () => {
+        setShowAddForm(true);
+    };
+    const handleSaveNewProduct = () => {
+        if (newProduct.name && newProduct.ean && newProduct.quantity > 0) {
+            const id = Math.max(...products.map(p => p.id)) + 1;
+            const updatedProducts = [...products, { ...newProduct, id }];
+            updatedProducts.sort((a, b) => a.name.localeCompare(b.name)); // Ordenar alfabéticamente por nombre
+            setProducts(updatedProducts);
+            setNewProduct({ name: '', ean: '', quantity: 0 });
+            setShowAddForm(false);
+        } else {
+            alert("Todos los campos son obligatorios y la cantidad debe ser mayor que 0");
+        }
+    };
+    const handleCancelAdd = () => {
+        setShowAddForm(false);
+        setNewProduct({ name: '', ean: '', quantity: 0 });
+    };
+// En App.js
+const handleIncrement = (productId) => {
+    setProducts(prevProducts => {
+        return prevProducts.map(product => {
+            if (product.id === productId && product.quantity < 99) {
+                return { ...product, quantity: product.quantity + 1 };
+            }
+            return product;
+        });
+    });
+};
+    return (
+        <div>
+            <h1>Control Depósito</h1>
+            <div className="add-product-toggle" onClick={handleAddProduct}>
+                {showAddForm ? '✖' : '➕'}
+            </div>
+            {showAddForm && (
+                <div className="add-product">
+                    <input
+                        type="text"
+                        placeholder="Nombre del producto"
+                        value={newProduct.name}
+                        onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Código EAN"
+                        value={newProduct.ean}
+                        onChange={(e) => setNewProduct({ ...newProduct, ean: e.target.value })}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Cantidad"
+                        value={newProduct.quantity}
+                        onChange={(e) => setNewProduct({ ...newProduct, quantity: parseInt(e.target.value) })}
+                    />
+                    <div className="actions">
+                        <button onClick={handleSaveNewProduct}>Agregar</button>
+                        <button onClick={handleCancelAdd}>Cancelar</button>
+                    </div>
+                </div>
+            )}
+            {products.length === 0 ? (
+                <p>No hay productos</p>
+            ) : (
+                products.map(product => (
+                    <Product
+                        key={product.id}
+                        product={product}
+                        onEdit={handleEditProduct}
+                        onDelete={handleDeleteProduct}
+                        onIncrement={handleIncrement}
+                    />
+                ))
+            )}
+        </div>
+    );
+}
+        const rootElement = document.getElementById('root');
+        ReactDOM.createRoot(rootElement).render(<App />);
+    </script>
+</body>
+</html>

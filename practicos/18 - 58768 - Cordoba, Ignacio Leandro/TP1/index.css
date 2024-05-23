@@ -1,0 +1,29 @@
+body {
+    background-color: #011334e2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #2418cf;
+}
+
+.Contacto {
+    border: 5px solid #2418cf;
+    border-radius: 5px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    
+}
+
+#main {
+    width: 350px;
+    margin: 0 auto;
+    background-color: black;
+    color: #ffffff;
+}

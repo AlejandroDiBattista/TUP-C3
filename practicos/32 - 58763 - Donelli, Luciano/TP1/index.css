@@ -1,0 +1,37 @@
+body {
+    background-color:lightblue;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('https://clipart-library.com/images/rcLo89p7i.png');
+    background-size: cover;
+    background-position: center;
+}
+.contacto {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .tarjeta {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    background-color: #fff;
+  }
+  .tarjeta h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .tarjeta ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  h1{
+    text-align: center;
+  }

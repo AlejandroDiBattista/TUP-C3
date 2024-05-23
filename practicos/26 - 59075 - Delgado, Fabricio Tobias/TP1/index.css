@@ -1,0 +1,86 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #001;
+}
+
+.agenda__titulo
+{
+    text-transform: uppercase;
+    text-align: center;
+    background-color: #73f;
+    color: #fff;
+    padding: 20px 0 20px 0;
+}
+
+.Contacto__lista
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tarjeta__contacto
+{
+    background-color: #002;
+    width: 450px;
+    height: 200px;
+    border-radius: 1rem;
+    color: #fff;
+}
+.caja__contenedor
+{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.tarjeta__contacto
+{
+    border: 3px solid #fff;
+}
+.tarjeta__nombre
+{
+    padding-left: 20px ;
+    text-transform: uppercase;
+}
+
+.tarjeta__email, .tarjeta__numero
+{
+    padding-left: 40px;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.tarjeta__nombre, .tarjeta__numero
+{
+    letter-spacing: 5px;
+}
+.tarjeta__parrafo
+{
+    letter-spacing: 3px;
+    padding-left: 40px;
+    text-transform: uppercase;
+}
+.tarjeta__button
+{
+    padding: 40px;
+    background-color: #007;
+    border: none;
+    position: absolute;
+    top: 24%;
+    right: 480px;
+    border-radius: 50%;
+}
+
+#fabricio, #mario, #matias, #lucas
+{
+    position: relative;
+    right: 50px;
+}
+#seba, #franco, #gonzalo
+{
+    position: relative;
+    right: -50px;
+}

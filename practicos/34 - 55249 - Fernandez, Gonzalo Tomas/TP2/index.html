@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Enlaces a React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Firma -->
+    <link rel="icon" href="./Firma.ico">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <title>TP2</title>
+    <style>
+        /* reset */
+        body {
+            background: linear-gradient(to right, #4144ed, #50d0ea);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 240px;
+            padding: 16px;
+            margin: 8px;
+            border-radius: 8px;
+
+            label {
+                display: block;
+                font-size: 12px;
+                color: #aaa;
+            }
+
+            input {
+                width: calc(100% - 8px);
+                border-radius: 4px;
+                margin: 4px 0;
+                border: 1px solid #ccc;
+                padding: 4px;
+                font-size: 16px;
+            }
+
+            div {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 16px;
+
+                button {
+                    padding: 8px 16px;
+                    border: none;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        div {
+            margin-top: 25px;
+            font-size: 20px;
+        }
+
+        div:last-child {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        #root {
+            max-width: 1280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        .title {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            text-align: center;
+            border: 3px solid #f0f0f0;
+            color: #fff;
+            background-color: #f0f0f03e;
+        }
+
+        .footer {
+            color: #fff;
+            text-align: center;
+            font-size: large;
+        }
+
+        .card {
+            padding: 16px;
+            margin: 4px;
+            border-radius: 8px;
+            background-color: #ebd9d9b3;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+            user-select: none;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+            background-color: #2b2b2b;
+            color: #ddd;
+            user-select: none;
+        }
+
+        .agenda {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            >div {
+                text-align: center;
+                width: 240px;
+                height: 96px;
+                position: relative;
+
+                span {
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                }
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const data = () => [
+            { id: 1, username: 'Julian', lastname: 'Rodriguez', phone: '(381) 456-7890', favorite: false },
+            { id: 2, username: 'Karen', lastname: 'Gonzalez', phone: '(381) 567-8901', favorite: false },
+            { id: 3, username: 'Gabriel', lastname: 'Santillan', phone: '(381) 678-9012', favorite: false },
+            { id: 4, username: 'Lourdes', lastname: 'Olea', phone: '(381) 789-0123', favorite: true },
+            { id: 5, username: 'Macarena', lastname: 'Sanchez', phone: '(381) 890-1234', favorite: false },
+            { id: 6, username: 'Lourdes', lastname: 'Rodriguez', phone: '(381) 901-2345', favorite: false },
+            { id: 7, username: 'Gabriel', lastname: 'Isa', phone: '(381) 012-3456', favorite: true },
+            { id: 8, username: 'Barbara', lastname: 'Santillan', phone: '(381) 123-4567', favorite: true },
+            { id: 9, username: 'Leandro', lastname: 'Ausar', phone: '(381) 234-5678', favorite: false },
+            { id: 10, username: 'Valentin', lastname: 'Gimenez', phone: '(381) 345-6789', favorite: false },
+            { id: 11, username: 'Sofia', lastname: 'Portillo', phone: '(381) 123-4567', favorite: false },
+            { id: 12, username: 'Benjamin', lastname: 'Rey', phone: '(381) 123-4567', favorite: true },
+            { id: 13, username: 'Rocio', lastname: 'Vasquez', phone: '(381) 123-4567', favorite: false },
+            { id: 14, username: 'Lucas', lastname: 'Alvarado', phone: '(381) 123-4567', favorite: true },
+            { id: 15, username: 'Andres', lastname: 'Fernandez', phone: '(381) 123-4567', favorite: true },
+            { id: 16, username: 'Alvaro', lastname: 'Flores', phone: '(381) 123-4567', favorite: false },
+            { id: 17, username: 'Paul', lastname: 'Urcan', phone: '(381) 123-4567', favorite: true },
+            { id: 18, username: 'Carlos', lastname: 'Perez', phone: '(381) 123-4567', favorite: true },
+            { id: 19, username: 'Gonzalo', lastname: 'Gambarte', phone: '(381) 123-4567', favorite: false },
+            { id: 20, username: 'Facundo', lastname: 'Fernandez', phone: '(381) 123-4567', favorite: false }
+        ];
+    </script>
+
+    <script type="text/babel">
+        const { createRoot } = ReactDOM;
+
+        const Favorite = ({ favorite, onClick }) => (
+            <span className="favorite-icon" onClick={onClick}>
+                {favorite ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>}
+            </span>
+        );
+
+        const Contact = ({ id, username, lastname, phone, favorite, onToggleFavorite }) => (
+            <div key={id} className={`card ${favorite ? 'favorite' : ''}`} onClick={onToggleFavorite}>
+                <div><b>{lastname}</b>, {username}</div>
+                <div>{phone}</div>
+                <Favorite favorite={favorite} />
+            </div>
+        );
+
+        const Agenda = ({ data, onToggleFavorite }) => {
+            const favorites = data.filter(contact => contact.favorite);
+            const nonFavorites = data.filter(contact => !contact.favorite);
+
+            const sortedFavorites = favorites.sort((a, b) =>
+                a.lastname.localeCompare(b.lastname) || a.username.localeCompare(b.username)
+            );
+            const sortedNonFavorites = nonFavorites.sort((a, b) =>
+                a.lastname.localeCompare(b.lastname) || a.username.localeCompare(b.username)
+            );
+
+            const sortedContacts = [...sortedFavorites, ...sortedNonFavorites];
+
+            return (
+                <div className="agenda">
+                    {sortedContacts.map(contact => (
+                        <Contact
+                            key={contact.id}
+                            username={contact.username}
+                            lastname={contact.lastname}
+                            phone={contact.phone}
+                            favorite={contact.favorite}
+                            onToggleFavorite={() => onToggleFavorite(contact.id)}
+                        />
+                    ))}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [contacts, setContacts] = React.useState(data());
+
+            const handleToggleFavorite = (id) => {
+                setContacts(prevContacts =>
+                    prevContacts.map(user => {
+                        const { id: contactId, ...restContact } = user;
+                        if (contactId === id) {
+                            return { ...restContact, favorite: !user.favorite };
+                        }
+                        return user;
+                    })
+                );
+            };
+
+            return (
+                <div>
+                    <h1 className="title">🕵️‍♂️ Mi Agenda 🕵️‍♂️</h1>
+                    <Agenda data={contacts} onToggleFavorite={handleToggleFavorite} />
+                    <footer className="footer">
+                        <p>@Gonzalo Tomas Fernandez</p>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+
+</html>

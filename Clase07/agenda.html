@@ -1,0 +1,211 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .acciones {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .panel {
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React
+
+        function Editar({ contacto, alGuardar }) {
+            let [nombre, setNombre] = useState(contacto.nombre)
+            let [apellido, setApellido] = useState(contacto.apellido)
+            let [telefono, setTelefono] = useState(contacto.telefono)
+
+            let [error, setError] = useState(false)
+            const cambiarNombre = (e) => {
+                console.log("Nombre:", e.target.value)
+                setNombre(e.target.value)
+                setError(false)
+            }
+
+            const cambiarApellido = (e) => {
+                console.log("Apellido:", e.target.value)
+                setApellido(e.target.value)
+                setError(false)
+            }
+
+            const cambiarTelefono = (e) => {
+                console.log("Teléfono:", e.target.value)
+                setTelefono(e.target.value)
+                setError(false)
+            }
+
+            const aceptar = (e) => {
+                e.preventDefault()
+                console.log("Guardar")
+                if(!nombre || !apellido || !telefono) {
+                    setError(true)
+                    return
+                }
+                alGuardar({ nombre, apellido, telefono })
+            }
+
+            const cancelar = (e) => {
+                e.preventDefault()
+                console.log("Cancelar")
+                alGuardar(null)
+            }
+
+            return <>
+                <form className="panel">
+                    <label>Nombre:</label>
+                    <input type="text"
+                        value={nombre}
+                        onChange={cambiarNombre}
+                    />
+
+                    <label>Apellido:</label>
+                    <input type="text"
+                        value={apellido}
+                        onChange={cambiarApellido}
+                    />
+
+                    <label>Teléfono:</label>
+                    <input type="text"
+                        value={telefono}
+                        onChange={cambiarTelefono}
+                    />
+
+                    {error && 
+                        <p style={{color: 'red'}}>Todos los campos son obligatorios</p>
+                    }
+                    <div className="acciones">
+                        <button onClick={aceptar}>Guardar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </form>
+            </>
+        }
+
+        function Mostrar({ contacto, alEditar, alBorrar }) {
+            const editar = () => {
+                console.log("Editar")
+                alEditar()
+            }
+            const borrar = () => {
+                console.log("Borrar")
+                alBorrar()
+            }
+
+            return <>
+                <div className="panel">
+                    <div>{contacto.nombre} <b>{contacto.apellido}</b></div>
+                    <p>{contacto.telefono}</p>
+                    <div className="acciones">
+                        <button onClick={editar}>Editar</button>
+                        <button onClick={borrar}>Borrar</button>
+                    </div>
+                </div>
+            </>
+
+        }
+
+        function Agenda({ contactos, alAgregar, alEditar, alBorrar }) {
+            return <>
+                <h1>Agenda</h1>
+                <div>
+                    <button onClick={alAgregar}>Agregar</button>
+                    {contactos.map(contacto => (
+                        <Mostrar key={contacto.id} 
+                            contacto={contacto}
+                            alEditar={() => alEditar(contacto.id)}
+                            alBorrar={() => alBorrar(contacto.id)} />
+                    ))}
+                </div>
+            </>
+        }
+    
+        const Contactos = [
+            { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 345-1234' },
+            { id: 2, nombre: 'Ana', apellido: 'Gomez', telefono: '(381) 345-5678' },
+            { id: 3, nombre: 'Pedro', apellido: 'Garcia', telefono: '(381) 345-8765' },
+            { id: 4, nombre: 'Maria', apellido: 'Rodriguez', telefono: '(381) 345-4321' },
+        ]
+
+        function App() {
+            let [contacto, setContacto] = useState({})
+            let [editando, setEditando] = useState(false)
+            let [agregando, setAgregando] = useState(false)
+            let [contactos, setContactos] = useState(Contactos)
+
+            const guardar = (contacto) => {
+                setEditando(false)
+                if (!contacto) return
+                if(agregando){
+                    let copia = [...contactos, contacto]
+                    setContactos(copia)
+                    setAgregando(false)
+                    return 
+                }
+                setContacto(contacto)
+                console.log("Guardar contacto:", contacto)
+                setAgregando(false)
+            }
+
+            const editar = (id) => {
+                console.log("Editar contacto", id)
+                setContacto(contactos.find(c => c.id === id))
+                setEditando(true)
+            }
+
+            const agregar = () => {
+                console.log("Agregar contacto")
+                setContacto({})
+                setEditando(true)
+                setAgregando(true)
+            }
+ 
+            const borrar = (id) => {
+                console.log("Borrar contacto", id)
+                setContactos(contactos.filter(c => c.id !== id))
+            }
+
+            return (
+                <>
+                    {
+                        editando
+                            ? <Editar
+                                contacto={contacto}
+                                alGuardar={guardar} />
+                            : <Agenda 
+                                contactos={contactos}
+                                alAgregar={agregar}
+                                alEditar={editar}
+                                alBorrar={borrar} />
+                    }
+                </>
+            )
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

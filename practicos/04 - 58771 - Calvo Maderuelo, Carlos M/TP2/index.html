@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Enlaces a React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <title>58771</title>
+    <style>
+        /* reset */
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(117, 183, 250);
+        }
+
+        h1 {
+            text-align: center;
+            width: 200px;
+            background-color: rgb(98, 153, 207);
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+
+        #root {
+            max-width: 1280px;
+            align-items: center;
+            margin: 0 20px;
+        }
+
+        .tarjeta {
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+            padding: 16px;
+            margin: 4px auto;
+            border-radius: 10px;
+            background-color: #ffffff;
+            width: 200px;
+            height: 100px;
+
+        }
+
+        .agenda {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contenido {
+            padding: 20px 0px;
+        }
+
+        i {
+            color:dodgerblue;
+        }
+
+        i:hover {
+            color:rgb(16, 81, 146);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script>
+        const datos = [
+            { id: 1, nombre: 'Juan', apellido: 'Perez', telefono: '(381) 123-4567', favorito: true },
+            { id: 2, nombre: 'Maria', apellido: 'Gomez', telefono: '(381) 123-4567', favorito: false },
+            { id: 3, nombre: 'Pedro', apellido: 'Gonzalez', telefono: '(381) 123-4567', favorito: true },
+            { id: 4, nombre: 'Ana', apellido: 'Fernandez', telefono: '(381) 123-4567', favorito: false },
+            { id: 5, nombre: 'Lucas', apellido: 'Rodriguez', telefono: '(381) 123-4567', favorito: true },
+            { id: 6, nombre: 'Carla', apellido: 'Lopez', telefono: '(381) 123-4567', favorito: false },
+            { id: 7, nombre: 'Jorge', apellido: 'Diaz', telefono: '(381) 123-4567', favorito: true },
+            { id: 8, nombre: 'Luis', apellido: 'Martinez', telefono: '(381) 123-4567', favorito: false },
+            { id: 9, nombre: 'Florencia', apellido: 'Paz', telefono: '(381) 123-4567', favorito: true },
+            { id: 10, nombre: 'Miguel', apellido: 'Rojas', telefono: '(381) 123-4567', favorito: false },
+            { id: 11, nombre: 'Sofia', apellido: 'Acosta', telefono: '(381) 123-4567', favorito: true },
+            { id: 12, nombre: 'Carlos', apellido: 'Vera', telefono: '(381) 123-4567', favorito: false },
+            { id: 13, nombre: 'Valeria', apellido: 'Gimenez', telefono: '(381) 123-4567', favorito: true },
+            { id: 14, nombre: 'Pablo', apellido: 'Sosa', telefono: '(381) 123-4567', favorito: false },
+            { id: 15, nombre: 'Romina', apellido: 'Rios', telefono: '(381) 123-4567', favorito: true },
+            { id: 16, nombre: 'Ezequiel', apellido: 'Molina', telefono: '(381) 123-4567', favorito: false },
+            { id: 17, nombre: 'Agustina', apellido: 'Ortiz', telefono: '(381) 123-4567', favorito: true },
+            { id: 18, nombre: 'Matias', apellido: 'Luna', telefono: '(381) 123-4567', favorito: false },
+            { id: 19, nombre: 'Cecilia', apellido: 'Carrizo', telefono: '(381) 123-4567', favorito: true },
+            { id: 20, nombre: 'Facundo', apellido: 'Paez', telefono: '(381) 123-4567', favorito: false }
+        ]
+    </script>
+
+    <script type="text/babel">
+        const { createRoot } = ReactDOM
+        
+        const Contacto = ({id, nombre, apellido, telefono, favorito, cambiar }) =>
+            <div className="tarjeta">
+                <div className="Boton">
+                    <Favorito marcado={favorito} onClick={() => cambiar(id)}/>
+                </div>
+                <div className="contenido">
+                    <div>{nombre} <b>{apellido}</b></div>
+                    <div>{telefono}</div>
+                </div>
+            </div>
+
+        const Favorito = ({ marcado, onClick }) => { 
+            return(
+                <span onClick = {onClick}> 
+                    {marcado ? (
+                        <i className="fa-solid fa-star fa-xl"></i> 
+                    ):(
+                        <i className="fa-regular fa-star fa-xl"></i> 
+                    )
+                    }
+                </span>
+            )
+        }
+        
+        const Agenda = ({ datos }) =>{
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const renderizar = () =>{
+                ReactDOM.render(<Agenda datos = {datos}/>,document.getElementById('root'))
+            }
+            const cambiar=(id)=>{
+                datos.forEach(contacto=>{
+                    if(contacto.id === id){
+                        contacto.favorito = !contacto.favorito
+                    }
+                })
+                renderizar()
+            }
+            return(
+            <div>
+                <h1>Agenda</h1>
+                <div className="agenda">
+                    {datos
+                        .sort((a,b) =>{
+                            if(a.favorito === b.favorito){
+                                return (a.nombre + a.apellido).localeCompare(b.nombre + b.apellido)
+                            }
+                            return a.favorito ? -1 : 1
+                        })
+                        .map(contacto => <Contacto key={contacto.id} {...contacto} cambiar = {cambiar} />)}
+                </div>
+            </div>
+            )
+        }
+
+        const App = () =>
+            <div>
+                <Agenda datos={datos} />
+            </div>
+
+        const root = createRoot(document.getElementById('root'))
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

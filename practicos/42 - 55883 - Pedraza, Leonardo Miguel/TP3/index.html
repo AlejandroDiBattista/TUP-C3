@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Productos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        .panel {
+            border: 3px solid #dfd9d9;
+            padding: 20px;
+            margin: 10px auto;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 120px;
+        }
+
+        .panel p {
+            margin: 2px;
+        }
+
+        .panel input {
+            padding: 5px;
+            margin: 2px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .acciones button {
+            background: none;
+            cursor: pointer;
+            font-size: 1.3em;
+            color: black;
+        }
+
+        .titulo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .botonAgregar {
+            color: black;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 10px;
+            border: 3px solid black;
+        }
+
+        form input {
+            width: calc(65% - 22px);
+        }
+        .numeroCantidad{
+            color: blue;
+            font-size: 65px;
+        }
+        .acciones{
+            position: relative;
+        }
+        .botonEdicion{
+            position: absolute;
+            top: -70px;
+            right: -20px;
+            border: none;
+            padding: 10px;
+        }
+        .botonEliminar{
+            position: absolute;
+            top: 30px;
+            right: -20px;
+            border: none;
+            padding: 10px;
+        }
+        .botonGuardar{
+            position: absolute;
+            top: -95px;
+            right: 40px;
+            border: 3px solid black;
+            border-radius: 20px;
+        }
+        .botonCancelar{
+            position: absolute;
+            top: -60px;
+            right: 40px;
+            border: 3px solid black;
+            border-radius: 20px;
+        }
+        .panelMostrar{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const productosIniciales = [
+            { id: 1, cantidad: '11', nombre: 'coca cola', codigo: '64132154357', edicion: false },
+            { id: 2, cantidad: '12', nombre: 'sprite', codigo: '164546434534321', edicion: true },
+            { id: 3, cantidad: '7', nombre: 'manaos', codigo: '134886375434725', edicion: false },
+            { id: 4, cantidad: '5', nombre: 'pepsi', codigo: '564134354234354', edicion: false},
+            { id: 5, cantidad: '1', nombre: 'secco', codigo: '654132145435438574', edicion: true }
+        ];
+
+        function Mostrar({ producto, editarProducto, borrarProducto }) {
+            const [editando, setEditando] = useState(producto.edicion);
+            const [nombre, setNombre] = useState(producto.nombre);
+            const [codigo, setCodigo] = useState(producto.codigo);
+            const [cantidad, setCantidad] = useState(producto.cantidad);
+
+            const cambiarNombre = e => setNombre(e.target.value);
+            const cambiarCodigo = e => setCodigo(e.target.value);
+            const cambiarCantidad = e => setCantidad(e.target.value);
+
+            const guardar = () => {
+                editarProducto({ ...producto, nombre, codigo, cantidad, edicion: false });
+                setEditando(false);
+            };
+
+            return (
+                <div className="panel">
+                    {!editando ? (
+                        <>
+                            <h1 className="numeroCantidad">{producto.cantidad}</h1>
+                            <div>
+                                <h1>{producto.nombre}</h1>
+                                <p>{producto.codigo}</p>
+                            </div>
+                            <div className="acciones">
+                                <button className="botonEdicion" onClick={() => setEditando(true)}>✏️</button>
+                                <button className="botonEliminar" onClick={borrarProducto}>🗑️</button>
+                            </div>
+                        </>
+                    ) : (
+                        <form onSubmit={guardar}>
+                            <input type="text" value={nombre} onChange={cambiarNombre} />
+                            <input type="text" value={codigo} onChange={cambiarCodigo} />
+                            <input type="text" value={cantidad} onChange={cambiarCantidad} />
+                            <div className="acciones">
+                                <button className="botonGuardar" type="submit">Acceptar</button>
+                                <button className="botonCancelar" type="button" onClick={() => setEditando(false)}>Cancelar</button>
+                            </div>
+                        </form>
+                    )}
+                </div>
+            );
+        }
+
+        function Lista({ productos, editarProducto, borrarProducto, agregarProducto }) {
+            const ordenarAlfabeticamente = [...productos].sort((a, b) => a.nombre.localeCompare(b.nombre));
+            return (
+                <>
+                    <div className="titulo">
+                        <h1>Lista Productos</h1>
+                        <button className="botonAgregar" onClick={agregarProducto}>➕</button>
+                    </div>
+                    {ordenarAlfabeticamente.map(producto =>
+                        <Mostrar
+                            key={producto.id}
+                            producto={producto}
+                            editarProducto={editarProducto}
+                            borrarProducto={() => borrarProducto(producto.id)}
+                        />
+                    )}    
+                </>
+            );
+        }
+
+        function App() {
+            const [productos, setProductos] = useState(productosIniciales);
+
+            const editarProducto = productoEditado => {
+                const nuevosProductos = productos.map(producto =>
+                    producto.id === productoEditado.id ? productoEditado : producto
+                );
+                setProductos(nuevosProductos);
+            };
+
+            const borrarProducto = id => {
+                const nuevosProductos = productos.filter(producto => producto.id !== id);
+                setProductos(nuevosProductos);
+            };
+
+            const agregarProducto = () => {
+                const nuevoId = productos.length > 0 ? productos[productos.length - 1].id + 1 : 1;
+                const nuevoProducto = { id: nuevoId, nombre: '', codigo: '', cantidad: '', edicion: true };
+                setProductos([...productos, nuevoProducto]);
+            };
+
+            return <Lista productos={productos} editarProducto={editarProducto} borrarProducto={borrarProducto} agregarProducto={agregarProducto} />;
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

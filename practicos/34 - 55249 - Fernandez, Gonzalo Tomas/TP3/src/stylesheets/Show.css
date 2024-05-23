@@ -8,11 +8,19 @@
 }
 
 .panel {
+<<<<<<< HEAD
   background-color: #fff;
   border-radius: 15px;
   margin-bottom: 10px;
   box-shadow: 0 3px 6px #00000066;
   border: 1px solid #ccc;
+=======
+  background-color: var(--card);
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 6px var(--shadow);
+  border: 1px solid var(--border);
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
   width: 30em;
   height: 10em;
   display: flex;
@@ -29,7 +37,11 @@
 
 .product-count {
   font-size: 4em;
+<<<<<<< HEAD
   color: #0000ff;
+=======
+  color: var(--count) !important;
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
   text-align: left;
   margin-top: 0.6em;
   margin-left: 0.5em;
@@ -71,11 +83,20 @@
 }
 
 .edit-button,
+<<<<<<< HEAD
 .delete-button {
   width: 0;
   height: 0;
   color: #111;
   background-color: #fff;
+=======
+.delete-button,
+.favorite-button {
+  width: 0;
+  height: 0;
+  color: var(--text);
+  background-color: var(--card);
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
   position: absolute;
   border: none;
   border-radius: 1px;
@@ -95,11 +116,24 @@
   left: 12.1em;
 }
 
+<<<<<<< HEAD
+=======
+.favorite-button {
+  top: 1.2em;
+  left: 12.1em;
+}
+
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
 /*Mobile L (425px)*/
 
 @media (max-width: 505px) {
   .edit-button,
+<<<<<<< HEAD
   .delete-button {
+=======
+  .delete-button,
+  .favorite-button {
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
     position: static;
     font-size: 2.2em;
     margin: 0 1em 1.2em 0;
@@ -128,7 +162,12 @@
 
 @media (max-width: 405px) {
   .edit-button,
+<<<<<<< HEAD
   .delete-button {
+=======
+  .delete-button,
+  .favorite-button {
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
     position: static;
     font-size: 1.9em;
     margin: 0 1.2em 1.2em 0;
@@ -161,7 +200,12 @@
 
 @media (max-width: 325px) {
   .edit-button,
+<<<<<<< HEAD
   .delete-button {
+=======
+  .delete-button,
+  .favorite-button {
+>>>>>>> c0193d821ec4af1f5733e4e2dcfc8bcebd3c7e10
     font-size: 2em;
     margin: 0 1em 1.3em 0.5em;
     padding: 0;

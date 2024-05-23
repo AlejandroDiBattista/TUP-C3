@@ -1,0 +1,27 @@
+body {
+    background-color: navajowhite;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    background-color:rgb(215, 187, 146);
+    width: 200px;
+    text-align: center;
+    text-decoration: underline;
+    border-radius: 10px;
+    margin: 15px auto
+}
+
+.tarjeta {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    background-color:white;
+    font-size: 20px;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 300px;
+    display: block;
+    margin: 15px auto;
+}

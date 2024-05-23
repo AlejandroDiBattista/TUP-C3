@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Depósito</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        #root {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 span {
+            margin-left: 10px;
+            font-size: 24px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .product-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            display: flex;
+            align-items: center;
+        }
+
+        .product-details span {
+            font-size: 48px;
+            font-weight: bold;
+            color: blue;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info div {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .product-info div:last-child {
+            font-weight: normal;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .actions button {
+            margin-left: 5px;
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            opacity: 0.8;
+        }
+
+        .actions button:last-child {
+            color: rgb(8, 3, 3);
+        }
+
+        .product-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-input input[type="text"],
+        .product-input input[type="number"] {
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .product-input input[type="number"]::-webkit-outer-spin-button,
+        .product-input input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Producto = ({ producto, onEdit, onDelete, onIncrement }) => {
+            const [isEditing, setIsEditing] = useState(false);
+            const [nombre, setNombre] = useState(producto.nombre);
+            const [codigo, setCodigo] = useState(producto.codigo);
+            const [cantidad, setCantidad] = useState(producto.cantidad);
+
+            const handleEdit = () => {
+                setIsEditing(true);
+            };
+
+            const handleCancel = () => {
+                setIsEditing(false);
+                setNombre(producto.nombre);
+                setCodigo(producto.codigo);
+                setCantidad(producto.cantidad);
+            };
+
+            const handleSave = () => {
+                onEdit(producto.id, { nombre, codigo, cantidad });
+                setIsEditing(false);
+            };
+
+            const handleIncrement = () => {
+                const newCantidad = parseInt(cantidad, 10) + 1;
+                setCantidad(newCantidad);
+                onIncrement(producto.id, newCantidad);
+            };
+
+            return (
+                <div className="product-card">
+                    {isEditing ? (
+                        <div className="product-input">
+                            <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                            <input type="text" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+                            <input type="number" value={cantidad} onChange={(e) => setCantidad(parseInt(e.target.value))} />
+                            <div className="actions">
+                                <button onClick={handleSave}>Aceptar</button>
+                                <button onClick={handleCancel}>Cancelar</button>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="product-details">
+                                <span onClick={handleIncrement}>{cantidad}</span>
+                                <div className="product-info">
+                                    <div>{nombre}</div>
+                                    <div>{codigo}</div>
+                                </div>
+                            </div>
+                            <div className="actions">
+                                <button onClick={handleEdit}><i class="fa-solid fa-pen"></i></button>
+                                <button onClick={() => onDelete(producto.id)}><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [productos, setProductos] = useState([
+                { id: 1, nombre: '7up', codigo: '7799876543210', cantidad: 7 },
+                { id: 2, nombre: 'Cola Cola', codigo: '7791234567890', cantidad: 92 },
+                { id: 3, nombre: 'Fanta', codigo: '7793219876540', cantidad: 5 },
+                { id: 4, nombre: 'Mirinda', codigo: '7797894561230', cantidad: 6 },
+                { id: 5, nombre: 'Sprite', codigo: '7796543219870', cantidad: 4 },
+            ]);
+
+            const [nuevoProducto, setNuevoProducto] = useState({ nombre: '', codigo: '', cantidad: 0 });
+            const [isAdding, setIsAdding] = useState(false);
+
+            const handleEditProduct = (id, updatedProduct) => {
+                const updatedProducts = productos.map((producto) =>
+                    producto.id === id ? { ...producto, ...updatedProduct } : producto
+                );
+                setProductos(updatedProducts);
+            };
+
+            const handleIncrementProduct = (id, newCantidad) => {
+                const updatedProducts = productos.map((producto) =>
+                    producto.id === id ? { ...producto, cantidad: newCantidad } : producto
+                );
+                setProductos(updatedProducts);
+            };
+
+            const handleDeleteProduct = (id) => {
+                const updatedProducts = productos.filter((producto) => producto.id !== id);
+                setProductos(updatedProducts);
+            };
+
+            const handleAddProduct = () => {
+                setIsAdding(true);
+            };
+
+            const handleSaveNewProduct = () => {
+                if (nuevoProducto.nombre && nuevoProducto.codigo && nuevoProducto.cantidad > 0) {
+                    const newProduct = {
+                        ...nuevoProducto,
+                        id: productos.length + 1,
+                    };
+                    const updatedProducts = [newProduct, ...productos].sort((a, b) => a.nombre.localeCompare(b.nombre));
+                    setProductos(updatedProducts);
+                    setNuevoProducto({ nombre: '', codigo: '', cantidad: 0 });
+                    setIsAdding(false);
+                } else {
+                    alert("Todos los campos son obligatorios y la cantidad debe ser mayor que 0");
+                }
+            };
+
+            const handleCancelAdd = () => {
+                setIsAdding(false);
+                setNuevoProducto({ nombre: '', codigo: '', cantidad: 0 });
+            };
+
+            return (
+                <div>
+                    <h1>
+                        Control Depósito
+                        <span onClick={handleAddProduct}><i class="fa-solid fa-plus"></i></span>
+                    </h1>
+                    {isAdding && (
+                        <div className="product-card">
+                            <div className="product-input">
+                                <input
+                                    type="text"
+                                    placeholder="Nombre"
+                                    value={nuevoProducto.nombre}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, nombre: e.target.value })}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Código"
+                                    value={nuevoProducto.codigo}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, codigo: e.target.value })}
+                                />
+                                <input
+                                    type="number"
+                                    placeholder="Cantidad"
+                                    value={nuevoProducto.cantidad}
+                                    onChange={(e) => setNuevoProducto({ ...nuevoProducto, cantidad: parseInt(e.target.value) })}
+                                />
+                                <div className="actions">
+                                    <button onClick={handleSaveNewProduct}>Aceptar</button>
+                                    <button onClick={handleCancelAdd}>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {productos.map((producto) => (
+                        <Producto
+                            key={producto.id}
+                            producto={producto}
+                            onEdit={handleEditProduct}
+                            onDelete={handleDeleteProduct}
+                            onIncrement={handleIncrementProduct}
+                        />
+                    ))}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

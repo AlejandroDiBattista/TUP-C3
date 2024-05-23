@@ -1,0 +1,36 @@
+body {
+    background-color: #e6f7ff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    color: #333;
+}
+
+h3
+{
+    color: black;
+    font-size: 50px;
+}
+
+h2 {
+    text-align: center;
+    background-color: #f9f1e9;
+    padding: 10px;
+    border: 2px solid #a67c52;
+    border-radius: 10px;
+    display: inline-block;
+    color: #8b4513;
+    margin-left: 40%;
+    margin-right: auto;
+}
+
+h4
+{
+    text-align: center;
+}

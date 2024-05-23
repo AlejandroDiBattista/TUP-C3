@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(149, 165, 166);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.div {
+    width: 350px;
+    margin: 0 auto;
+    background-color: rgb(25, 88, 69);
+    color: #000000;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #000000; 
+}
+
+.Contactos {
+    border: 5px solid black;
+    border-radius: 5px;
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+}

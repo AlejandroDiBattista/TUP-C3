@@ -1,0 +1,54 @@
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.tarjeta-contacto {
+    margin: 10px auto;
+    padding: 10px;
+    border: 3px solid #000000;
+    width: 300px;
+    text-align: left;
+    border-radius: 15px;
+    background-color: aliceblue;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.tarjeta-contacto:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta-contacto h2 {
+    margin: 5px 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.id-pelotita {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #f9d74e;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}

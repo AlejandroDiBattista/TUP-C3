@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>59060</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+            width: 100%;
+        }
+
+        .root {
+            width: 50%;
+        }
+
+        .panel {
+            width: 60%;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            height: 70px;
+
+        }
+
+        .divUnidades {
+            width: 23%;
+            color: rgb(4, 4, 135);
+            font-size: 50px;
+            text-align: center;
+        }
+
+        .divUnidades p {
+            margin: 5px
+        }
+
+        .tacho {
+            height: 20px;
+            cursor: pointer;
+            justify-content: end;
+            margin-top: 30px;
+        }
+
+        .divMercaderia {
+            width: 40%;
+            text-align: left;
+        }
+
+        .divMercaderia b {
+            font-size: 25px;
+        }
+
+        .acciones {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .Titulo {
+            width: 60%;
+            display: flex;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .agregar {
+            margin-top: 30px;
+            margin-left: 25px;
+        }
+
+        .form {
+            width: 30em;
+            margin: 0 auto 10px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        form .acciones {
+            margin: 2%;
+            flex-direction: row;
+            padding: 5px;
+        }
+
+        form label {
+            padding: 10px;
+        }
+
+        input {
+            margin-left: 2%;
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root" id="root"></div>
+    <script type="text/babel">
+        const { useState } = React
+
+        const MercaderiaInicial = [
+            {
+                id: 1,
+                mercaderia: '7up',
+                unidades: 7,
+                codigo: '123123123'
+            },
+
+            {
+                id: 2,
+                mercaderia: 'Coca Cola',
+                unidades: 92,
+                codigo: '456456456'
+            },
+
+            {
+                id: 3,
+                mercaderia: 'Fanta',
+                unidades: 5,
+                codigo: '789789789'
+            },
+
+            {
+                id: 4,
+                mercaderia: 'Manaos',
+                unidades: 1,
+                codigo: '198098098'
+            },
+
+            {
+                id: 5,
+                mercaderia: 'Mirinda',
+                unidades: 6,
+                codigo: '48392010'
+            },
+
+            {
+                id: 6,
+                mercaderia: 'Pepsi Cola',
+                unidades: 3,
+                codigo: '2244668812'
+            },
+
+            {
+                id: 7,
+                mercaderia: 'Sprite',
+                unidades: 4,
+                codigo: '1223345678'
+            },
+        ]
+
+        function Editar({ producto, alGuardar, alCancelar }) {
+            let [mercaderia, setMercaderia] = useState(producto.mercaderia)
+            let [unidades, setUnidades] = useState(producto.unidades)
+            let [codigo, setCodigo] = useState(producto.codigo)
+            let [error, setError] = useState(false)
+
+            const cambiarMercaderia = e => {
+                setMercaderia(e.target.value)
+                setError(false)
+            }
+            const cambiarUnidades = e => {
+                setUnidades(e.target.value)
+                setError(false)
+            }
+            const cambiarCodigo = e => {
+                setCodigo(e.target.value)
+                setError(false)
+            }
+
+            const guardar = e => {
+                e.preventDefault()
+                if (mercaderia.trim() === '' || unidades.trim() === '' || codigo.trim() === '') {
+                    setError(true)
+                    return
+                }
+                alGuardar({ ...producto, mercaderia, unidades, codigo })
+            }
+
+            const cancelar = e => {
+                e.preventDefault()
+                alCancelar()
+            }
+
+            return <>
+                <form className="form">
+                    <label>Mercadería</label>
+                    <input type="text" value={mercaderia} onChange={cambiarMercaderia} />
+
+                    <label>Unidades</label>
+                    <input type="text" value={unidades} onChange={cambiarUnidades} />
+
+                    <label>Código</label>
+                    <input type="text" value={codigo} onChange={cambiarCodigo} />
+                    {error && <p className="error">¡Error! complete todos los campos</p>}
+
+                    <div className="acciones">
+                        <button onClick={guardar}>Guardar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </form>
+            </>
+
+
+        }
+
+        function Mostrar({ producto, alEditar, alBorrar }) {
+            const editar = (e) => alEditar()
+            const borrar = (e) => alBorrar()
+            return <>
+                <div className="panel">
+                    <div className="divUnidades">
+                        <p><b>{producto.unidades}</b></p>
+                    </div>
+
+                    <div className="divMercaderia">
+                        <p><b>{producto.mercaderia}</b></p>
+                        <p>{producto.codigo}</p>
+                    </div>
+
+                    <div className="acciones">
+                        <div className="lapiz">
+                            <span className="spanEditar" onClick={editar}>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </span>
+                        </div>
+
+                        <div className="tacho">
+                            <span className="spanBorrar" onClick={borrar}>
+                                <i class="fa-regular fa-trash-can"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </>
+        }
+
+        function ListadoProductos({ productos, alAgregar, alEditar, alBorrar }) {
+            if (productos.length === 0)
+                return <h1>No hay ningún producto</h1>
+
+            return <>
+                <div className="Titulo">
+                    <h1>Control Deposito</h1>
+                    <div className="agregar">
+                        <span className="spanAgregar" onClick={alAgregar}>
+                            <i className="fa-regular fa-square-plus"></i>
+                        </span>
+                    </div>
+                </div>
+
+                {productos.map(producto =>
+                    <Mostrar producto={producto}
+                        alEditar={() => alEditar(producto.id)}
+                        alBorrar={() => alBorrar(producto.id)} />
+                )}
+
+            </>
+        }
+
+        function ordenAlfabetico(a, b) {
+            if (a.stock < b.stock) return -1
+            if (a.stock > b.stock) return +1
+
+            if (a.mercaderia < b.mercaderia) return -1
+            if (a.mercaderia > b.mercaderia) return +1
+
+            return 0
+        }
+
+        function App() {
+            let [producto, setProducto] = useState({})
+            let [editando, setEditando] = useState(false)
+            let [productos, setProductos] = useState(MercaderiaInicial)
+
+            const agregar = () => {
+                setProducto({});
+                setEditando(true);
+            };
+
+            const guardar = (producto) => {
+                if (producto.id) {
+                    let copia = productos.map(c => c.id === producto.id ? producto : c);
+                    setProductos(copia);
+                } else {
+                    let id = productos.length > 0 ? Math.max(...productos.map(c => c.id)) + 1 : 1;
+                    let copia = [...productos, { ...producto, id }];
+                    setProductos(copia);
+                }
+            };
+
+
+            const cancelar = () => {
+                setProducto({})
+                setEditando(false)
+                console.log("Cancelar")
+            }
+
+            const editar = (id) => {
+                let producto = productos.find(c => c.id === id)
+                setProducto(producto)
+                setEditando(true)
+            }
+
+            const borrar = (id) => {
+                let copia = productos.filter(c => c.id !== id)
+                setProductos(copia)
+            }
+
+            productos.sort(ordenAlfabetico)
+            return <>
+                {editando
+                    ? <Editar
+                        producto={producto}
+                        alGuardar={guardar}
+                        alCancelar={cancelar} />
+
+                    : <ListadoProductos productos={productos}
+                        alAgregar={agregar}
+                        alEditar={editar}
+                        alBorrar={borrar} />
+                }
+            </>
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
