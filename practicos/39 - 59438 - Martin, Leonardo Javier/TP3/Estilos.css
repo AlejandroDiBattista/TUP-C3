@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0%;
+    padding: 22px;
+    background-color: #1600642a;
+}
+
+#root {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 44px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(26, 26, 26);
+}
+
+.panel {
+    width: 100%;
+    border: 1px solid #440a919f;
+    background-color: #fff;
+    margin-bottom: 11px;
+    border-radius: 11px;
+    padding: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+input {
+    width: auto;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+label {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 5px;
+    color: #646363;
+}
+
+
+
+.acciones {
+    gap: 20px;
+    display: flex;
+
+}
+
+button {
+    padding: 8px 10px;
+    font-size: 25px;
+    border: none;
+    border-radius: 12px;
+    background-color: #380446b2;
+    color: #fff;
+    cursor: pointer;
+}
+
+button svg {
+    vertical-align: middle;
+    display: flex;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 25px;
+    flex-direction: column;
+    display: flex;
+    color: #64086d;
+}
+
+/* Parte de los productos para libros y etc. */
+.stock-info {
+    padding: 5px;
+    flex-grow: 3;
+    margin-left: 10px;
+}
+
+.codigoEAN {
+    font-size: 16px;
+    color: #777;
+}
+.nombre-productos {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* Fin - - Productos/seccion */
+
+.cantidad {
+    font-size: 55px;
+    font-weight: bold;
+    display: flex;
+    color: rgb(162, 0, 255);
+}
+
+.edit-inputs {
+    flex-grow: 3;
+    margin-right: 11px;
+}
+
+.error {
+    color: brown;
+    font-size: 12px;
+}
