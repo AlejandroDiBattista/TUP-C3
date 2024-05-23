@@ -175,10 +175,10 @@
 
             const guardar = e => {
                 e.preventDefault();
-                if (nombre.trim() === '' || cantidad.trim() === '') {
-                    setError(true);
-                    return;
-                }
+                if (nombre.trim() === '' || cantidad.trim() === '') {//en este if no pongo como requisito el codigoEAN 
+                    setError(true);                                     //porque me parece mas practico a mi, poder
+                    return;                                         //ingresar la cantidad de productos y luego, en otro
+                }                                                   //momento ingresar el codigo EAN
                 alGuardar({...producto, codigoEAN, nombre, cantidad});
             };
             const cancelar = e => {
@@ -265,6 +265,7 @@
             let [producto, setProducto] = useState({});
             let [editando, setEditando] = useState(false);
             let [productos, setProductos] = useState(ProductosIniciales);
+
 
             const incrementarCant = (id) => {
                 setProductos(productos.map(producto =>
