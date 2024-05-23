@@ -1,14 +1,33 @@
+/* index.css */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --back: #fff;
+  --card: #fff;
+  --text: #111;
+  --count: #0000ff;
+  --border: #ccc;
+  --hover: #f0f0f0;
+  --shadow: #00000066;
+  --primary: #4144ed;
+  --secondary: #50d0ea;
+}
 
-  color-scheme: light;
-  color: #000;
-  background-color: #fff;
+body {
+  background-color: var(--back) !important;
+  color: var(--text) !important;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+[data-theme="dark"] {
+  --back: #1e1e1e;
+  --card: #222;
+  --text: #eee;
+  --count: #0084ff;
+  --border: #333;
+  --hover: #111;
+  --shadow: #ffffff47;
+  --primary: #50d0ea;
+  --secondary: #4144ed;
 }
