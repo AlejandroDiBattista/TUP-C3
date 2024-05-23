@@ -1,0 +1,213 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Importar librerias React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1 {
+            font-family: sans-serif;
+
+        }
+
+        .tarjetaCambiar {
+            background-color: white;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            width:420px;
+            border: 1px solid;
+            box-shadow: 5px 5px 5px;
+            border-radius:15px;
+            font-family: sans-serif;
+        }
+
+        .tarjetaNormal {
+            margin: 10px;
+            background-color: white;
+            justify-content:space-between;
+            width:420px;
+            border: 1px solid;
+            box-shadow: 5px 5px 5px;
+            border-radius: 15px;
+            font-family: sans-serif;
+        }
+        
+        .acciones {
+            
+        }
+
+        .botonAcciones {
+            background-color: dodgerblue;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React
+        const { createRoot } = ReactDOM
+
+        const ProductosIniciales = [
+            {id: 1, nombre: 'Coca Cola', cantidad: '10', codigo: '12345'},
+            {id: 2, nombre: 'Fanta', cantidad: '10', codigo: '23456'},
+            {id: 3, nombre: 'Pepsi', cantidad: '10', codigo: '34567'},
+            {id: 4, nombre: 'Mirinda', cantidad: '10', codigo: '45678'}
+        ]
+
+        function Editar({producto, alGuardar, alCancelar}) {
+            let [nombre, setNombre] = useState(producto.nombre)
+            let [cantidad, setCantidad] = useState(producto.cantidad)
+            let [codigo, setCodigo] = useState(producto.codigo)
+            let [error, setError] = useState(false)
+
+            const cambiarNombre = e => {// Funciones para manejar los eventos
+                setNombre(e.target.value) 
+                setError(false)
+            }
+            const cambiarCantidad = e => {
+                setCantidad(e.target.value)
+                setError(false)
+            }
+            const cambiarCodigo = e => {
+                setCodigo(e.target.value)
+                setError(false)
+            }
+
+            const guardar = e => {
+                e.preventDefault()
+                if(nombre.trim() === '' || cantidad.trim() === '' || codigo.trim() === ''){
+                    setError(true)
+                    return
+                }
+                alGuardar({...producto, nombre, cantidad, codigo})
+            }
+
+            const cancelar = e => {
+                e.preventDefault()
+                alCancelar()
+            }
+
+            return <>
+                <form className="tarjetaCambiar">
+                    <label>Nombre</label>
+                    <input type="text" value={nombre} onChange={cambiarNombre}/>
+
+                    <label>Cantidad</label>
+                    <input type="text" value={cantidad} onChange={cambiarCantidad}/>
+
+                    <label>Codigo</label>
+                    <input type="text" value={codigo} onChange={cambiarCodigo}/>
+                    {error && <p className="error">Todos los campos son obligatorios</p>}
+                    <div className="acciones">
+                        <button onClick={guardar}>Guardar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </form>
+            </>
+        }
+
+        function Mostrar({ producto, alEditar, alBorrar }) {
+            const editar = (e) => alEditar()
+            const borrar = (e) => alBorrar()
+            return <>
+                <div className="tarjetaNormal">
+                    <p><strong>Nombre:</strong> {producto.nombre}</p>
+                    <p><strong>Cantidad:</strong> {producto.cantidad}</p>
+                    <p><strong>Codigo:</strong> {producto.codigo}</p>
+                    <div className="acciones">
+                        <button className="botonAcciones" onClick={editar}>Editar</button>
+                        <button className="botonAcciones" onClick={borrar}>Borrar</button>
+                    </div>
+                </div>
+            </>
+        }
+
+        function Ficha({productos, alAgregar, alEditar, alBorrar}){
+            if(productos.length === 0)
+                return <h1>No hay productos</h1>
+
+            return <>
+                <h1>Carrito de Compras</h1>
+                <button onClick={()=>alAgregar()}>Agregar</button>
+                {productos.map(producto => 
+                    <Mostrar producto={producto} 
+                        alEditar={()=>alEditar(producto.id)}
+                        alBorrar={()=>alBorrar(producto.id)}/>
+                    )}
+            </>
+        }
+
+        function ordenAlfabetico(a, b){
+            if(a.nombre < b.nombre) return -1
+            if(a.nombre > b.nombre) return +1
+            return 0
+        }
+
+        function App() {
+            let [producto, setProducto] = useState({})
+            let [editando, setEditando] = useState(false)
+            let [productos, setProductos] = useState(ProductosIniciales)
+
+            const guardar = (producto) => {
+                if(producto.id){
+                    //Modificar elemento
+                    let copia = productos.map(c => c.id === producto.id ? producto : c)
+                    setProductos(copia)
+                } else {
+                    //Alta
+                    let id = Math.max(...productos.map(c => c.id)) + 1
+                    let copia = [...productos, {...productos, id}]
+                    setProductos(copia)
+                }
+                setEditando(false)
+            }
+
+            const cancelar = () => {
+                setProducto({})
+                setEditando(false)
+                console.log("Cancelar")
+            }
+
+            const agregar = () => {
+                setProducto({})
+                setEditando(true)
+            }
+
+            const editar = (id) => {
+                let producto = productos.find(c => c.id === id) // Busca una id dentro de la lista de los contactos iniciales y cuando lo localiza lo deja en contacto
+                setProducto(producto)
+                setEditando(true) // y la pone en modo edicion
+            }
+
+            const borrar = (id) => {
+                // Baja
+                let copia = productos.filter(c => c.id !== id)
+                setProductos(copia)
+            }
+
+            productos.sort(ordenAlfabetico)
+
+            return <>
+                {editando
+                    ?   <Editar producto={producto} alGuardar={guardar} alCancelar={cancelar}/>
+                    :   <Ficha productos={productos} 
+                        alAgregar={agregar}
+                        alEditar={editar} 
+                        alBorrar={borrar}/>
+                }
+            </>
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<App />);
+    </script>
+</body>
+</html>
