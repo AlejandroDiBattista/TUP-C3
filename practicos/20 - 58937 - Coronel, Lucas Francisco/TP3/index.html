@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <title>TP N°3- Lucas Coronel</title>
+
+</head>
+
+<body>
+
+  <style>
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.agenda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .card {
+    position: relative;
+    border: 3.5px solid #0b0a0a;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 150px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+} 
+
+.cantidad {
+    font-size: 80px;
+    font-weight: bold;
+    color: blue;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.info {
+    font-size: 20px;
+    margin-left: 60px;
+    text-align: start;
+    flex-grow: 1;
+}
+
+.iconos {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.iconoEditar {
+    top: 20px;
+    right: 7px;
+}
+
+.iconoBorrar {
+    bottom: 20px;
+    right: 10px;
+}
+
+.formulario-contenedor {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    width: 600px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin: 0;
+    border: solid black;
+} 
+
+.formulario-contenedor input {
+    margin: 5px 0;
+    padding: 5px;
+    width: 90%;
+}
+
+.formulario-contenedor button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: 3px solid #0b0a0a;
+    color: #0b0a0a;
+}
+
+.botones-formulario {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.mensaje-error {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+  </style>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        const { createRoot } = ReactDOM;
+
+        const ArticuloLimpieza = [
+            { id: 1, marca: "Colgate", cantidad: 5, codigo: 54654},
+            { id: 2, marca: "Hilo Dental", cantidad: 5, codigo: 546466},
+            { id: 3, marca: "Cepillo de Dientes", cantidad: 4, codigo: 5987984 },
+            { id: 4, marca: "Shampoo", cantidad: 7, codigo: 98498},
+            { id: 5, marca: "Acondicionador", cantidad: 6, codigo: 132516 },
+            { id: 6, marca: "Prestobarba", cantidad: 3, codigo: 894984894 },  
+        ];
+
+        const ListadoArticulos = ({ producto, alEnviar, alCancelar }) => {
+            const [marca, setMarca] = useState(producto ? producto.marca : "");
+            const [cantidad, setCantidad] = useState(producto ? producto.cantidad : "");
+             const [codigo, setCodigo] = useState(producto ? producto.codigo : "");
+            const [error, setError] = useState("");
+
+            const manejarEnvio = (e) => {
+                e.preventDefault();
+
+                if (!marca || !cantidad || !codigo) {
+                    setError("Todos los campos son obligatorios");
+                    return;
+                } else {
+                    setError("");
+                }
+
+                alEnviar({ marca, cantidad, codigo });
+            };
+
+            return (
+                <form className="formulario-contenedor" onSubmit={manejarEnvio}>
+                    <input
+                        placeholder="Marca"
+                        value={marca}
+                        onChange={(e) => setMarca(e.target.value)}
+                    />
+                    <input
+                        placeholder="Cantidad"
+                        value={cantidad}
+                        onChange={(e) => setCantidad(e.target.value)}
+                    />
+                    <input
+                        placeholder="Código"
+                        value={codigo}
+                        onChange={(e) => setCodigo(e.target.value)}
+                    />
+                    <div className="mensaje-error">{error}</div>
+                    <div className="botones-formulario">
+                        <button type="submit">Guardar</button>
+                        <button type="button" onClick={() => alCancelar()}>Cancelar</button>
+                    </div>
+                </form>
+            );
+        };
+
+        const Producto = ({producto, alEditar, alBorrar, editando, alEnviar, alCancelar,}) => (
+            <div className="card">
+                {editando ? (
+                    <ListadoArticulos
+                        producto={producto}
+                        alEnviar={alEnviar}
+                        alCancelar={alCancelar}/>):(
+                    <>
+                    <span className="cantidad">{producto.cantidad}</span>
+                        <div className="info">
+                            <span>{producto.marca}</span>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <span>{producto.codigo}</span>
+                        </div>
+                        <i className="fa-regular fa-pen-to-square iconos iconoEditar"
+                            onClick={() => alEditar(producto.codigo)}></i>
+
+                        <i className="fa-solid fa-trash iconos iconoBorrar"
+                            onClick={() => alBorrar(producto.codigo)}></i>
+                    </>
+                )}
+            </div>
+        );
+
+        const App = () => {
+            const [productos, establecerProductos] = useState(ArticuloLimpieza);
+            const [editando, establecerEditando] = useState([]);
+            const [agregando, establecerAgregando] = useState(false);
+
+            const manejarAgregar = (producto) => {
+                const nuevoProducto = { ...producto, id: productos.length + 1 };
+                establecerProductos([...productos, nuevoProducto]);
+                establecerAgregando(false);
+            };
+
+            const manejarEditar = (codigo) => {
+                establecerEditando((prev) => [...prev, codigo]);
+            };
+
+            const manejarBorrar = (codigo) => {
+                establecerProductos(productos.filter((p) => p.codigo !== codigo));
+            };
+
+            const manejarGuardar = (producto) => {
+                establecerProductos(
+                    productos.map((p) => (p.codigo === producto.codigo ? producto : p))
+                );
+                establecerEditando((prev) =>
+                    prev.filter((codigoEditando) => codigoEditando !== producto.codigo)
+                );
+            };
+
+            const manejarCancelar = () => {
+                establecerEditando([]);
+                establecerAgregando(false);
+            };
+
+            const productosOrdenados = productos.slice().sort((a, b) => {
+                if (a.marca < b.marca) {
+                    return -1;
+                }
+                if (a.marca > b.marca) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            return (
+                <div>
+                    <h1>
+                        Control Depósito
+                        <i className="fa-regular fa-square-plus" style={{ cursor: "pointer" }}
+                        onClick={() => establecerAgregando(true)}></i>
+                    </h1>
+                    <div className="agenda">
+                        {agregando && (
+                            <ListadoArticulos
+                                alEnviar={manejarAgregar}
+                                alCancelar={manejarCancelar}
+                            />
+                        )}
+                        {productosOrdenados.map((producto) => (
+                            <Producto
+                                key={producto.codigo}
+                                producto={producto}
+                                editando={editando.includes(producto.codigo)}
+                                alEditar={manejarEditar}
+                                alBorrar={manejarBorrar}
+                                alEnviar={manejarGuardar}
+                                alCancelar={() => establecerEditando([])}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>
