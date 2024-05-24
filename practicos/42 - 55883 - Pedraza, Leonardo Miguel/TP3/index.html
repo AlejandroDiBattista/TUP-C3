@@ -129,11 +129,17 @@
                 setEditando(false);
             };
 
+            const incrementarCantidad = () => {
+                const nuevaCantidad = parseInt(cantidad) + 1;
+                setCantidad(nuevaCantidad.toString());
+                editarProducto({ ...producto, cantidad: nuevaCantidad.toString() });
+            };
+
             return (
                 <div className="panel">
                     {!editando ? (
                         <>
-                            <h1 className="numeroCantidad">{producto.cantidad}</h1>
+                            <h1 className="numeroCantidad" onClick={incrementarCantidad}>{producto.cantidad}</h1>
                             <div>
                                 <h1>{producto.nombre}</h1>
                                 <p>{producto.codigo}</p>
