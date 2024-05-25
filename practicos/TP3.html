@@ -1,73 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-
     <!-- Enlaces a React, ReactDOM y Babel -->
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>TP1</title>
+    <title>Control del depósito</title>
     <style>
         body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            border: 3.5px solid #580101;
+            padding: 10px;
+            margin: 10px;
+            width: 600px;
+            height: 100px;
+            justify-content: space-between;
             font-family: Arial, sans-serif;
+            max-width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            text-align: left;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+        }
+
+        .amount {
+            font-size: 65px;
+            font-weight: bold;
+            color: rgb(74, 1, 1);
+            margin-left: 60px;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .info {
+            font-size: 28px;
+            margin-right: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 5px;
+        }
+
+        p {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
         }
 
-        #main {
-            margin: 0 auto;
-            width: 450px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            align-items: center;
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: #333;
-            margin: 0;
-            padding: 0;
+        .functions {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
         }
 
-        h2 span {
-            font-size: 2rem;
+        .last {
+            margin-bottom: 60px;
+        }
+
+        .forms {
             display: inline-block;
-            color: #999;
-            width: 40px;
         }
 
-        .alumno {
-            background-color: #fff;
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            margin: 10px auto;
+        input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
         }
 
-        .ver {
-            font-size: 1rem;
-            color: #333;
-            padding-left: 45px;
+        button {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
+            border-radius: 10px;
         }
 
-        .ver a {
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .falta {
-            color: red;
-        }
-
-        .alumno .ver .copia {
-            float: right;
-            font-size: 0.8rem;
-            color: #999;
+        .input-amount {
+            width: 170px;
         }
     </style>
     <script>
@@ -700,41 +721,201 @@
     </script>
 
     <script type="text/babel">
+        const { createRoot } = ReactDOM;
+        const { useState } = React;
 
-        const comision = datos[0].comision
+        const initialInventory = [
+            { id: 1, brand: "Mirinda", code: "123789", stock: "15", editing: false },
+            { id: 2, brand: "Agua Palau", code: "123890", stock: "20", editing: false },
+            { id: 3, brand: "7up", code: "123891", stock: "30", editing: false },
+            { id: 4, brand: "Manaos", code: "123892", stock: "25", editing: false },
+            { id: 5, brand: "Fanta", code: "123893", stock: "18", editing: false },
+            { id: 6, brand: "Coca Cola", code: "9876098745", stock: "10", editing: false }
+        ];
 
-        const Ver = ({ alumno }) =>
-            <span className="ver">
-                {alumno.cambio ? 
-                    <a href={alumno.ubicacion}>Ver Entrega</a> : 
-                    <span class="falta">No entregado</span>}
-                {alumno.copia && <span className="copia">😲 {alumno.copia}</span>}
-            </span>
-        
-        const Alumno = ({ alumno }) => (
-            <div className="alumno">
-                <h2><span>{alumno.orden}</span> {alumno.nombre}</h2>
-                <Ver alumno={alumno} />
-            </div>
-        )
+        function Display({ item, onEdit, onDelete, increaseStock }) {
+            let deleteIcon = <i className="fa-solid fa-trash"></i>;
+            let editIcon = <i className="fa-regular fa-pen-to-square"></i>;
 
-        const App = () => (
-            <div id="main">
-                <h1>| {comision} | Listado de alumnos</h1>
-                <div>
-                    <div>Entregó: {datos.filter(alumno => alumno.cambio).length}</div>
-                    <div>Falta entregar: {datos.filter(alumno => !alumno.cambio).length}</div>
+            const edit = (e) => {
+                e.stopPropagation();
+                onEdit(item.id);
+            };
+            const deleteItem = (e) => {
+                e.stopPropagation();
+                onDelete(item.id);
+            };
+            const increase = () => increaseStock(item.id);
+
+            return (
+                <div className="card" onClick={increase}>
+                    <div>
+                        <p className="amount">{item.stock}</p>
+                    </div>
+                    <div className="info">
+                        <p>{item.brand}</p>
+                        <p>{item.code}</p>
+                    </div>
+                    <div className="functions">
+                        <span onClick={edit}>{editIcon}</span>
+                        <span onClick={deleteItem}>{deleteIcon}</span>
+                    </div>
                 </div>
-                {datos.map(alumno => <Alumno key={alumno.id} alumno={alumno} />)}
-            </div>
-        )
+            );
+        }
 
-        ReactDOM.render(<App />, document.getElementById('root'))
+        function Edit({ item, onSave, onCancel }) {
+            const [brand, setBrand] = useState(item.brand);
+            const [code, setCode] = useState(item.code);
+            const [stock, setStock] = useState(item.stock);
+
+            const save = () => onSave(item.id, brand, code, stock);
+            const cancel = () => onCancel(item.id);
+            const changeStock = (e) => setStock(e.target.value);
+            const changeBrand = (e) => setBrand(e.target.value);
+            const changeCode = (e) => setCode(e.target.value);
+
+            return (
+                <div className="card">
+                    <div>
+                        <input className="input-amount" type="text" value={stock} onChange={changeStock} />
+                        <input type="text" value={brand} onChange={changeBrand} />
+                        <input type="text" value={code} onChange={changeCode} />
+                    </div>
+                    <div className="functions">
+                        <button onClick={save}>Guardar</button>
+                        <button onClick={cancel}>Cancelar</button>
+                    </div>
+                </div>
+            );
+        }
+
+        function Add({ onAddNew, onCancelAdd }) {
+            const [brand, setBrand] = useState("");
+            const [code, setCode] = useState("");
+            const [stock, setStock] = useState("");
+
+            const addNew = () => {
+                onAddNew(brand, code, stock);
+                setBrand("");
+                setCode("");
+                setStock("");
+            };
+            const cancel = () => onCancelAdd();
+
+            return (
+                <div className="card">
+                    <div>
+                        <input className="input-amount" type="text" placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} />
+                        <input type="text" placeholder="Marca" value={brand} onChange={(e) => setBrand(e.target.value)} />
+                        <input type="text" placeholder="Código" value={code} onChange={(e) => setCode(e.target.value)} />
+                    </div>
+                    <div className="functions">
+                        <button onClick={addNew}>Agregar</button>
+                        <button onClick={cancel}>Cancelar</button>
+                    </div>
+                </div>
+            );
+        }
+
+        function Inventory({ data, onEdit, onSave, onCancel, onDelete, onAdd, onAddNew, onCancelAdd, increaseStock }) {
+            let addIcon = <i className="fa-regular fa-square-plus"></i>;
+
+            return (
+                <>
+                    <h2>
+                        CONTROL DEPÓSITO <span onClick={onAdd}>{addIcon}</span>
+                    </h2>
+                    {data.adding && <Add onAddNew={onAddNew} onCancelAdd={onCancelAdd} />}
+                    {data.items.map((item) =>
+                        item.editing ? (
+                            <Edit key={item.id} item={item} onSave={onSave} onCancel={onCancel} />
+                        ) : (
+                            <Display key={item.id} item={item} onEdit={onEdit} onDelete={onDelete} increaseStock={increaseStock} />
+                        )
+                    )}
+                </>
+            );
+        }
+
+        const App = () => {
+            const [inventory, setInventory] = useState({ items: initialInventory, adding: false });
+
+            const editItem = (id) => {
+                setInventory({
+                    ...inventory,
+                    items: inventory.items.map((item) => item.id === id ? { ...item, editing: true } : item)
+                });
+            };
+
+            const saveItem = (id, brand, code, stock) => {
+                setInventory({
+                    ...inventory,
+                    items: inventory.items.map((item) => item.id === id ? { ...item, brand, code, stock, editing: false } : item)
+                });
+            };
+
+            const cancelEdit = (id) => {
+                setInventory({
+                    ...inventory,
+                    items: inventory.items.map((item) => item.id === id ? { ...item, editing: false } : item)
+                });
+            };
+
+            const deleteItem = (id) => {
+                setInventory({
+                    ...inventory,
+                    items: inventory.items.filter((item) => item.id !== id)
+                });
+            };
+
+            const addItem = () => {
+                setInventory({ ...inventory, adding: true });
+            };
+
+            const cancelAdd = () => {
+                setInventory({ ...inventory, adding: false });
+            };
+
+            const addNewItem = (brand, code, stock) => {
+                const newItem = {
+                    id: inventory.items.length + 1,
+                    brand,
+                    code,
+                    stock,
+                    editing: false
+                };
+                setInventory({
+                    ...inventory,
+                    items: [...inventory.items, newItem],
+                    adding: false
+                });
+            };
+
+            const increaseStock = (id) => {
+                setInventory({
+                    ...inventory,
+                    items: inventory.items.map((item) => item.id === id ? { ...item, stock: parseInt(item.stock) + 1 } : item)
+                });
+            };
+
+            return (
+                <Inventory
+                    data={inventory}
+                    onEdit={editItem}
+                    onSave={saveItem}
+                    onCancel={cancelEdit}
+                    onDelete={deleteItem}
+                    onAdd={addItem}
+                    onAddNew={addNewItem}
+                    onCancelAdd={cancelAdd}
+                    increaseStock={increaseStock}
+                />
+            );
+        };
+
+        const root = createRoot(document.getElementById("root"));
+        root.render(<App />);
     </script>
-</head>
-
-<body>
-    <div id="root"></div>
 </body>
-
 </html>

@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 import '../stylesheets/Show.css';
 import { BiEdit } from 'react-icons/bi';
 import { FiTrash } from 'react-icons/fi';
-import { FaStar, FaRegStar } from 'react-icons/fa';
 
-function Show({ product, whenEdit, whenDelete, whenToggleFavorite, updateCount }) {
+function Show({ product, whenEdit, whenDelete, updateCount }) {
   const [count, setCount] = useState(product.count);
-  const [successMessage, setSuccessMessage] = useState('');
 
   const getCountAlignmentClass = () => {
     return count >= 10 || count >= 100 ? 'product-count align-right' : 'product-count';
@@ -23,11 +21,6 @@ function Show({ product, whenEdit, whenDelete, whenToggleFavorite, updateCount }
     const newCount = Math.min(count + 1, 100);
     setCount(newCount);
     updateCount(product.id, newCount);
-
-    setSuccessMessage('Producto modificado');
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 3000);
   };
 
   return (
@@ -45,15 +38,11 @@ function Show({ product, whenEdit, whenDelete, whenToggleFavorite, updateCount }
             <button className="edit-button" onClick={whenEdit}>
               <BiEdit />
             </button>
-            <button className="favorite-button" onClick={whenToggleFavorite}>
-              {product.favorite ? <FaStar /> : <FaRegStar />}
-            </button>
             <button className="delete-button" onClick={whenDelete}>
               <FiTrash />
             </button>
           </div>
         </div>
-        {successMessage && <div className="success">{successMessage}</div>}
       </div>
     </div>
   );
@@ -65,12 +54,10 @@ Show.propTypes = {
     count: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     code: PropTypes.string.isRequired,
-    favorite: PropTypes.bool.isRequired,
     editing: PropTypes.bool,
   }).isRequired,
   whenEdit: PropTypes.func.isRequired,
   whenDelete: PropTypes.func.isRequired,
-  whenToggleFavorite: PropTypes.func.isRequired,
   updateCount: PropTypes.func.isRequired,
 };
 

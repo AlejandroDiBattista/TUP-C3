@@ -9,7 +9,6 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <style>
-       
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -26,7 +25,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
         .header {
             display: flex;
             justify-content: space-between;
@@ -37,7 +35,6 @@
             font-size: 35px;
             color: #333333;
         }
-        
         .add-button {
             display: inline-flex;
             justify-content: center;
@@ -51,7 +48,6 @@
             cursor: pointer;
             border: none;
         }
-        
         .panel {
             position: relative;
             padding: 15px;
@@ -62,8 +58,8 @@
             display: flex;
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
-      
         .panel .cantidad {
             font-size: 55px;
             color: blue;
@@ -71,18 +67,15 @@
             font-weight: bold;
             margin-left: 10px;
         }
-        
         .panel .detalles p {
             flex-grow: 1px;
             margin-left: 1px;
         }
-        
         .panel p {
             margin: 10px 0;
             color: #000000;
             font-size: 20px;
         }
-        
         .panel .acciones {
             display: flex;
             flex-direction: column;
@@ -107,7 +100,6 @@
         .panel .acciones button:hover {
             color: #000000;
         }
-        
         .item-edit {
             position: relative;
             padding: 15px;
@@ -143,13 +135,18 @@
             border-radius: 10px;
             background-color: #ffffff;
         }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div id="root"></div>
     <script type="text/babel">
         const { useState } = React;
-      
+
         const initialProducts = [
             { id: 1, name: '7up', code: '7799876543210', quantity: 7 },
             { id: 2, name: 'Coca Cola', code: '7791234567890', quantity: 9 },
@@ -159,57 +156,69 @@
             { id: 6, name: 'Pepsi Cola', code: '7799876543210', quantity: 3 },
             { id: 7, name: 'Manaos', code: '7794567891230', quantity: 1 }
         ];
-        
-      
 
-        const ProductEdit = ({ formData, setFormData, onSave, onCancel }) => (
-            <div className="item-edit">
-                <div className="button-container">
-                    <button onClick={onSave}>Aceptar</button>
-                    <button onClick={onCancel}>Cancelar</button>
+        const ProductEdit = ({ formData, setFormData, onSave, onCancel }) => {
+            const [errorMessage, setErrorMessage] = useState('');
+
+            const handleSave = () => {
+                if (formData.quantity > 100) {
+                    setErrorMessage("La cantidad no puede ser mayor a 100.");
+                    return;
+                }
+                onSave();
+            };
+
+            return (
+                <div className="item-edit">
+                    <div className="button-container">
+                        <button onClick={handleSave}>Aceptar</button>
+                        <button onClick={onCancel}>Cancelar</button>
+                    </div>
+                    <input
+                        placeholder="Nombre"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    />
+                    <input
+                        placeholder="Código"
+                        value={formData.code}
+                        onChange={(e) => setFormData({ ...formData, code: e.target.value })}
+                    />
+                    <input
+                        placeholder="Cantidad"
+                        type="number"
+                        value={formData.quantity}
+                        onChange={(e) => setFormData({ ...formData, quantity: Number(e.target.value) })}
+                    />
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                 </div>
-                <input
-                    placeholder="Nombre"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                />
-                <input
-                    placeholder="Código"
-                    value={formData.code}
-                    onChange={(e) => setFormData({ ...formData, code: e.target.value })}
-                />
-                <input
-                    placeholder="Cantidad"
-                    value={formData.quantity}
-                    onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                />
-            </div>
-        );
-       
-        const Product = ({ product, onEdit, onDelete }) => (
-            <div className="panel">
+            );
+        };
+
+        const Product = ({ product, onEdit, onDelete, onIncrement }) => (
+            <div className="panel" onClick={onIncrement}>
                 <div className="cantidad">{product.quantity}</div>
                 <div className="detalles">
                     <p><strong>{product.name}</strong></p>
                     <p>{product.code}</p>
                 </div>
-                <div className="acciones">
+                <div className="acciones" onClick={(e) => e.stopPropagation()}>
                     <button className="editar" onClick={onEdit}><i class="fa-regular fa-pen-to-square"></i></button>
                     <button className="borrar" onClick={onDelete}><i class="fa-solid fa-trash"></i></button>
                 </div>
             </div>
         );
-       
+
         const App = () => {
             const [products, setProducts] = useState(initialProducts.sort((a, b) => a.name.localeCompare(b.name)));
             const [editing, setEditing] = useState([]);
             const [formData, setFormData] = useState({});
-        
+
             const handleEdit = (product) => {
                 setEditing([...editing, product.id]);
                 setFormData({ ...formData, [product.id]: { name: product.name, code: product.code, quantity: product.quantity } });
             };
-       
+
             const handleSave = (id) => {
                 const updatedProducts = products.map(product => (
                     product.id === id ? { ...product, ...formData[id], quantity: Number(formData[id].quantity) } : product
@@ -222,7 +231,7 @@
                     return newData;
                 });
             };
-  
+
             const handleDelete = (id) => {
                 const updatedProducts = products.filter(product => product.id !== id);
                 setProducts(updatedProducts.sort((a, b) => a.name.localeCompare(b.name)));
@@ -233,8 +242,11 @@
                     return newData;
                 });
             };
-        
+
             const handleAdd = () => {
+                if (formData.new?.quantity > 100) {
+                    return;
+                }
                 const newId = Date.now();
                 const newProduct = { id: newId, name: formData.new.name, code: formData.new.code, quantity: Number(formData.new.quantity) };
                 const updatedProducts = [...products, newProduct];
@@ -246,13 +258,32 @@
                 });
                 setEditing(editing.filter(editId => editId !== 'new'));
             };
-        
+
+            const handleIncrement = (id) => {
+                const product = products.find(product => product.id === id);
+                if (product.quantity >= 100) {
+                    return;
+                }
+                const updatedProducts = products.map(product => (
+                    product.id === id ? { ...product, quantity: product.quantity + 1 } : product
+                ));
+                setProducts(updatedProducts.sort((a, b) => a.name.localeCompare(b.name)));
+            };
+
             return (
                 <div className="App">
                     <div className="header">
                         <h1>Control Depósito</h1>
                         <div className="add-button" onClick={() => setEditing([...editing, 'new'])}><i class="fa-regular fa-square-plus"></i></div>
                     </div>
+                    {editing.includes('new') && (
+                        <ProductEdit
+                            formData={formData.new || { name: '', code: '', quantity: 0 }}
+                            setFormData={(newData) => setFormData({ ...formData, new: newData })}
+                            onSave={handleAdd}
+                            onCancel={() => setEditing(editing.filter(editId => editId !== 'new'))}
+                        />
+                    )}
                     {products.map(product => (
                         editing.includes(product.id) ? (
                             <ProductEdit
@@ -268,32 +299,10 @@
                                 product={product}
                                 onEdit={() => handleEdit(product)}
                                 onDelete={() => handleDelete(product.id)}
+                                onIncrement={() => handleIncrement(product.id)}
                             />
                         )
                     ))}
-                    {editing.includes('new') && (
-                        <div className="item-edit">
-                            <div className="button-container">
-                                <button onClick={handleAdd}>Aceptar</button>
-                                <button onClick={() => setEditing(editing.filter(editId => editId !== 'new'))}>Cancelar</button>
-                            </div>
-                            <input
-                                placeholder="Nombre"
-                                value={formData.new?.name || ''}
-                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, name: e.target.value } })}
-                            />
-                            <input
-                                placeholder="Código"
-                                value={formData.new?.code || ''}
-                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, code: e.target.value } })}
-                            />
-                            <input
-                                placeholder="Cantidad"
-                                value={formData.new?.quantity || ''}
-                                onChange={(e) => setFormData({ ...formData, new: { ...formData.new, quantity: e.target.value } })}
-                            />
-                        </div>
-                    )}
                 </div>
             );
         };

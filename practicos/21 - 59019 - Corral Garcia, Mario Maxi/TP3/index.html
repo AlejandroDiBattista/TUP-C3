@@ -11,110 +11,101 @@
     />
     <title>TP3</title>
     <style>
- h1 {
-  text-align: center;
-  font-size: 70px;
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
+        
+ 
+  h1 {
+        text-align: center;
+        font-size: 70px;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+      .agenda {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        position: relative;
+        border: 3.5px solid #0b0a0a;
+        padding: 10px;
+        margin: 10px;
+        width: 600px;
+        height: auto;
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+      }
+      .cantidad {
+        font-size: 65px;
+        font-weight: bold;
+        color: blue;
+        margin-left: 20px;
+        flex-shrink: 0;
+      }
+      .info {
+        font-size: 20px;
+        margin-left: 40px;
+        text-align: start;
+        flex-grow: 1;
+      }
+      .iconos {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+      .iconoEditar {
+        top: 10px;
+        right: 10px;
+      }
+      .iconoBorrar {
+        bottom: 10px;
+        right: 10px;
+      }
+      .formulario-contenedor {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+        width: 600px;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        margin: 0;
+        border: solid black;
+      }
+      .formulario-contenedor input {
+        margin: 5px 0;
+        padding: 5px;
+        width: 90%;
+      }
+      .formulario-contenedor button {
+        margin-top: 10px;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #ffffff;
+        border: 3px solid #0b0a0a;
+        color: #0b0a0a;
+      }
+      .botones-formulario {
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+      }
+      .mensaje-error {
+        font-size: 14px;
+        color: #0b0a0a;
+        font-weight: bold;
+        margin-top: 5px;
+        text-align: center;
+        width: 100%;
+      }
 
-.agenda {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card {
-  position: relative;
-  border: 3.5px solid #8b4513; /* Marrón */
-  padding: 10px;
-  margin: 10px;
-  width: 600px;
-  height: auto;
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.cantidad {
-  font-size: 65px;
-  font-weight: bold;
-  color: #8a2be2; /* Violeta */
-  margin-left: 20px;
-  flex-shrink: 0;
-}
-
-.info {
-  font-size: 20px;
-  margin-left: 40px;
-  text-align: start;
-  flex-grow: 1;
-}
-
-.iconos {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-}
-
-.iconoEditar {
-  top: 10px;
-  right: 10px;
-}
-
-.iconoBorrar {
-  bottom: 10px;
-  right: 10px;
-}
-
-.formulario-contenedor {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border-radius: 10px;
-  width: 600px;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffa07a; /* Salmón */
-  margin: 0;
-  border: 3.5px solid #008000; /* Verde */
-}
-
-.formulario-contenedor input {
-  margin: 5px 0;
-  padding: 5px;
-  width: 90%;
-}
-
-.formulario-contenedor button {
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: #4682b4; /* Azul acero */
-  border: 3px solid #00008b; /* Azul oscuro */
-  color: #ffff; /* Blanco */
-}
-
-.botones-formulario {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-}
-
-.mensaje-error {
-  font-size: 14px;
-  color: #800000; /* Borgoña */
-  font-weight: bold;
-  margin-top: 5px;
-  text-align: center;
-  width: 100%;
-}
 
     </style>
   </head>
@@ -139,7 +130,7 @@
         );
         const [codigo, setCodigo] = useState(producto ? producto.codigo : "");
         const [error, setError] = useState("");
-
+       
         const manejarEnvio = (e) => {
           e.preventDefault();
 
@@ -151,7 +142,9 @@
             setError("");
           }
 
-          alEnviar({ nombre, cantidad, codigo });
+          alEnviar({ ...producto, nombre, cantidad, codigo }); // Enviar los datos editados
+  
+
         };
 
         return (
@@ -190,8 +183,11 @@
         editando,
         alEnviar,
         alCancelar,
+        alIncrementar,   //primero 
       }) => (
-        <div className="card">
+        
+        //2incremento
+        <div className="card"onClick={() => alIncrementar(producto.codigo)}> 
           {editando ? (
             <FormularioProducto
               producto={producto}
@@ -208,12 +204,18 @@
                 <span>{producto.codigo}</span>
               </div>
               <i
-                className="fa-regular fa-pen-to-square iconos iconoEditar"
-                onClick={() => alEditar(producto.codigo)}
+              className="fa-regular fa-pen-to-square iconos iconoEditar"
+          onClick={(e) => {
+            e.stopPropagation(); // Evita que el evento se propague al contenedor padre
+            alEditar(producto.codigo);
+          }}
               ></i>
               <i
-                className="fa-solid fa-trash iconos iconoBorrar"
-                onClick={() => alBorrar(producto.codigo)}
+              className="fa-solid fa-trash iconos iconoBorrar"
+          onClick={(e) => {
+            e.stopPropagation(); // Evita que el evento se propague al contenedor padre
+            alBorrar(producto.codigo);
+                }}
               ></i>
             </>
           )}
@@ -225,6 +227,16 @@
         const [productos, establecerProductos] = useState(stockBebidas);
         const [editando, establecerEditando] = useState([]);
         const [agregando, establecerAgregando] = useState(false);
+        const manejarIncremento = (codigo) => {
+    //3 Actualizamos el estado de los productos para incrementar la cantidad del producto correspondiente
+    establecerProductos(
+      productos.map((producto) =>
+        producto.codigo === codigo
+          ? { ...producto, cantidad: producto.cantidad + 1 } // Incrementamos la cantidad si el código coincide
+          : producto
+      )
+    );
+  };
 
         const manejarAgregar = (producto) => {
           const nuevoProducto = { ...producto, id: productos.length + 1 };
@@ -291,6 +303,7 @@
                   alBorrar={manejarBorrar}
                   alEnviar={manejarGuardar}
                   alCancelar={() => establecerEditando([])}
+                  alIncrementar={manejarIncremento} //4 Pasamos la función manejarIncremento como prop
                 />
               ))}
             </div>

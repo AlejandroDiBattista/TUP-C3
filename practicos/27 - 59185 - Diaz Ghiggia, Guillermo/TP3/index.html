@@ -17,8 +17,6 @@
             box-sizing: border-box;
         }
 
-    
-
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -38,9 +36,9 @@
             font-size: 40px;
             margin-left: 15px;
             text-align: center;
+            cursor:pointer; 
+            user-select: none; /*para q no se nos ponga el texto en azul*/
         }
-
-        
 
         .card {
             background: #f9f9f9;
@@ -81,8 +79,6 @@
         .acciones button:hover {
             color: rgb(0, 0, 254);
         }
-
-        
 
         input[type="text"],
         input[type="number"] {
@@ -139,8 +135,12 @@
                 setError(false);
             };
 
-            return (
-                <div className="card">
+            const handleCantidadClick = () => {
+                alIncrementar(producto.id);
+            };
+
+            return ( /// Añadir onClick al div de la tarjeta para manejar el incremento de cantidad
+                <div className="card"> 
                     {editando ? (
                         <>
                             <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
@@ -151,8 +151,8 @@
                             {error && <div style={{ color: 'red' }}>Todos los campos son obligatorios</div>}
                         </>
                     ) : (
-                        <>
-                            <strong className="cantidad">{producto.cantidad}</strong>
+                        < >
+                            <strong className="cantidad" onClick={handleCantidadClick}>{producto.cantidad}</strong>
                             <div className="info">
                                 <p><strong>{producto.nombre}</strong></p>
                                 <p>{producto.codigoEAN}</p>
@@ -197,7 +197,7 @@
 
             const incrementar = (id) => {
                 const copia = productos.map(p => {
-                    if (p.id === id) p.cantidad += 1;
+                    if (p.id === id && p.cantidad < 100) p.cantidad += 1; // Limitar a 100
                     return p;
                 });
                 setProductos(copia);

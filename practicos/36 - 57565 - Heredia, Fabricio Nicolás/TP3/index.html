@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         body {
@@ -20,13 +21,11 @@
             height: 100vh;
             background-color: #f5f5f5;
         }
-    
         #contenedor {
             width: 100%;
             max-width: 400px;
             padding: 20px;
         }
-    
         .titulo {
             text-align: center;
             font-size: 24px;
@@ -35,16 +34,13 @@
             justify-content: center;
             align-items: center;
         }
-    
+
         .titulo span {
             margin-left: 10px;
             font-size: 24px;
-            border: 1px solid #000;
-            border-radius: 50%;
             padding: 5px 10px;
             cursor: pointer;
         }
-    
         .tarjeta-producto {
             display: flex;
             justify-content: space-between;
@@ -57,12 +53,10 @@
             font-size: 16px;
             position: relative;
         }
-    
         .detalles-producto {
             display: flex;
             align-items: center;
         }
-    
         .cantidad-producto {
             font-size: 48px;
             font-weight: bold;
@@ -70,48 +64,40 @@
             margin-right: 10px;
             cursor: pointer;
         }
-    
         .info-producto {
             display: flex;
             flex-direction: column;
         }
-    
         .nombre-producto {
             font-size: 20px;
             font-weight: bold;
         }
-    
         .codigo-producto {
             font-weight: normal;
         }
-    
         .acciones {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: center; 
+            gap: 20px; 
         }
-    
         .acciones button {
-            margin-left: 5px;
             padding: 5px;
-            font-size: 14px;
+            font-size: 18px;
             border: none;
             background: none;
             cursor: pointer;
         }
-    
         .acciones button:hover {
             opacity: 0.8;
         }
-    
-        .acciones button:last-child {
-            color: rgb(8, 3, 3);
+        .acciones button i {
+            color: #000; 
         }
-    
         .entrada-producto {
             display: flex;
             flex-direction: column;
         }
-    
         .entrada-producto input[type="text"],
         .entrada-producto input[type="number"] {
             padding: 5px;
@@ -119,7 +105,6 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-    
         .entrada-producto input[type="number"]::-webkit-outer-spin-button,
         .entrada-producto input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -184,7 +169,7 @@
                             </div>
                             <div className="acciones">
                                 <button onClick={manejarEdicion}><i className="fa-regular fa-pen-to-square"></i></button>
-                                <button onClick={() => onEliminar(producto.id)}><i className="fa-regular fa-trash-can"></i></button>
+                                <button onClick={() => onEliminar(producto.id)}><i className="material-icons">delete_outline</i></button>
                             </div>
                         </>
                     )}
@@ -251,8 +236,8 @@
             return (
                 <div id="contenedor">
                     <h1 className="titulo">
-                        Lista De Productos
-                        <span onClick={manejarAgregarProducto}><i className="fa-solid fa-plus"></i></span>
+                        Control De Deposito
+                        <span onClick={manejarAgregarProducto}><i class="fa-regular fa-square-plus"></i></span>
                     </h1>
                     {estaAgregando && (
                         <div className="tarjeta-producto">
