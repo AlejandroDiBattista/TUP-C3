@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Enlaces a React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <title>Control de deposito</title>
+    <style>
+        *{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cantidad{
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(0, 0, 254);
+            font-weight: 900;
+            font-size: 40px;
+            margin-left: 15px;
+            text-align: center;
+            cursor:pointer; 
+            user-select: none; /*para q no se nos ponga el texto en azul*/
+        }
+
+        .card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px; 
+            box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .acciones {
+            display: flex;
+            gap: 5px;
+        }
+
+       .aceptar, .cancelar {
+          
+           color: black;
+           padding: 5px 10px;
+           border-radius: 4px;
+           margin: 1px;
+       }
+
+        .aceptar:hover, .cancelar:hover {
+            background-color:#303030;
+            color: #f4f4f4;
+        }
+
+        .acciones button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .acciones button:hover {
+            color: rgb(0, 0, 254);
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        input[type="text"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const productosIniciales = [
+            { id: 1, nombre: '7up', codigoEAN: '569578277', cantidad: 14 },
+            { id: 2, nombre: 'Coca Cola', codigoEAN: '622754744', cantidad: 72},
+            { id: 3, nombre: 'Fanta', codigoEAN: '857596943', cantidad: 21 },
+            { id: 4, nombre: 'Sprite', codigoEAN: '478839974', cantidad: 40 },
+            { id: 5, nombre: 'Mirinda', codigoEAN: '434728488', cantidad: 61 }
+        ];
+
+        function Mostrar({ producto, alGuardar, alBorrar, alIncrementar }) {
+            const [editando, setEditando] = useState(false);
+            const [nombre, setNombre] = useState(producto.nombre);
+            const [codigoEAN, setCodigoEAN] = useState(producto.codigoEAN);
+            const [cantidad, setCantidad] = useState(producto.cantidad);
+            const [error, setError] = useState(false);
+
+            const cambiarNombre = (e) => setNombre(e.target.value);
+            const cambiarCodigoEAN = (e) => setCodigoEAN(e.target.value);
+            const cambiarCantidad = (e) => setCantidad(parseInt(e.target.value));
+
+            const guardar = (e) => {
+                e.preventDefault();
+                if (nombre.trim() === '' || codigoEAN.trim() === '' || isNaN(cantidad)) {
+                    setError(true);
+                    return;
+                }
+                alGuardar({ ...producto, nombre, codigoEAN, cantidad });
+                setEditando(false);
+            };
+
+            const cancelar = () => {
+                setEditando(false);
+                setNombre(producto.nombre);
+                setCodigoEAN(producto.codigoEAN);
+                setCantidad(producto.cantidad);
+                setError(false);
+            };
+
+            const handleCantidadClick = () => {
+                alIncrementar(producto.id);
+            };
+
+            return ( /// Añadir onClick al div de la tarjeta para manejar el incremento de cantidad
+                <div className="card"> 
+                    {editando ? (
+                        <>
+                            <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
+                            <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} placeholder="Código EAN" />
+                            <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
+                            <button className="aceptar" onClick={guardar}>Aceptar</button>
+                            <button className="cancelar" onClick={cancelar}>Cancelar</button>
+                            {error && <div style={{ color: 'red' }}>Todos los campos son obligatorios</div>}
+                        </>
+                    ) : (
+                        < >
+                            <strong className="cantidad" onClick={handleCantidadClick}>{producto.cantidad}</strong>
+                            <div className="info">
+                                <p><strong>{producto.nombre}</strong></p>
+                                <p>{producto.codigoEAN}</p>
+                            </div>
+                            <div className="acciones">
+                                <button onClick={() => setEditando(true)}><i class="fa-regular fa-pen-to-square"></i></button>
+                                <button onClick={alBorrar}><i class="fa-regular fa-trash-can"></i></button>
+                                <button onClick={alIncrementar}><i className="fas fa-plus"></i></button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function App() {
+            const [productos, setProductos] = useState(productosIniciales);
+
+            const guardar = (producto) => {
+                if (producto.id) {
+                    // Modificación
+                    const copia = productos.map(p => p.id === producto.id ? producto : p);
+                    setProductos(copia);
+                } else {
+                    // Alta
+                    const id = Math.max(...productos.map(p => p.id)) + 1;
+                    producto.id = id;
+                    const copia = [...productos, producto];
+                    setProductos(copia);
+                }
+            };
+
+            const borrar = (id) => {
+                const copia = productos.filter(p => p.id !== id);
+                setProductos(copia);
+            };
+
+            const agregar = () => {
+                const nuevoProducto = { id: null, nombre: '', codigoEAN: '', cantidad: 0 };
+                setProductos([...productos, nuevoProducto]);
+            };
+
+            const incrementar = (id) => {
+                const copia = productos.map(p => {
+                    if (p.id === id && p.cantidad < 100) p.cantidad += 1; // Limitar a 100
+                    return p;
+                });
+                setProductos(copia);
+            };
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <h1>CONTROL DE DEPÓSITO	</h1>
+                        <button onClick={agregar}><i className="fas fa-plus"></i></button>
+                    </div>
+                    {productos.sort((a, b) => a.nombre.localeCompare(b.nombre)).map(producto => (
+                        <Mostrar
+                            key={producto.id}
+                            producto={producto}
+                            alGuardar={guardar}
+                            alBorrar={() => borrar(producto.id)}
+                            alIncrementar={() => incrementar(producto.id)}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Enlaces a React, ReactDOM y Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Iconos FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <title>PRIMER PARCIAL</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .card {
+      border: 0.5px solid rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      margin: 10px;
+      width: 600px;
+      height: 100px;
+      justify-content: space-between;
+      font-family: Arial, sans-serif;
+      max-width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      text-align: left;
+      font-weight: bold;
+      border-radius: 10px;
+    }
+
+    .cantidad {
+      font-size: 65px;
+      font-weight: bold;
+      color: blue;
+      margin-left: 60px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .info {
+      font-size: 28px;
+      margin-right: 150px;
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+      margin-top: 5px;
+  
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    .funciones {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    span {
+      margin-bottom: 60px;
+    }
+
+    .formularios {
+      display: inline-block;
+    }
+
+    input {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5px;
+    }
+
+    button {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 5px;
+      border-radius: 10px;
+    }
+
+    .input-cantidad {
+      width: 170px;
+    }
+    h2
+     {
+
+      font-size: 50px;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+     }
+    .codigo
+    {
+      font-weight: lighter;
+    }  
+
+
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { createRoot } = ReactDOM;
+    const { useState } = React;
+       
+    const ContactolDeposito = [
+      { id: 1, marca: "Coca Cola", codigo: "1233311", stock: "75", editando: false },
+      { id: 2, marca: "Pepsi", codigo: "1234522", stock: "90", editando: false },
+      { id: 3, marca: "7up", codigo: "1234633", stock: "92", editando: false },
+      { id: 4, marca: "Fanta", codigo: "1236644", stock: "60", editando: false },
+      { id: 5, marca: "Sprite", codigo: "1235655", stock: "40", editando: false },
+    ]
+
+    function Mostrar({ control, alEditar, alBorrar }) {
+      const [stock,setStock]=useState(+control.stock)
+
+
+      let tachoborrar = <i className="fa-solid fa-trash"></i>
+      let lapizeditar = <i className="fa-regular fa-pen-to-square"></i>
+      const editar = (e) => alEditar(control.id)
+      const borrar = (e) => alBorrar(control.id)
+      const incrementar = () => {
+        
+        setStock(aumenta => aumenta + 1)
+           } 
+        
+      return (
+        <div className="card"onClick={incrementar} >
+          <div>
+            <p className="cantidad" >{stock}</p>
+          </div >
+          <div className="info">
+            <p>{control.marca}</p>
+            <p className="codigo">{control.codigo}</p>
+          </div>
+          <div className="funciones">
+            <span onClick={editar}>{lapizeditar}</span>
+            <span onClick={borrar}>{tachoborrar}</span>
+          </div>
+        </div>
+      )
+    }
+
+    function Editar({ control, alGuardar, alCancelar }) {
+      const [marca, setMarca] = useState(control.marca)
+      const [codigo, setCodigo] = useState(control.codigo)
+      const [stock, setStock] = useState(control.stock)
+      
+      
+      const guardar = () => alGuardar(control.id, marca, codigo, stock)
+   
+      const cancelar = () => alCancelar(control.id)
+      const cantidad = (e) => setStock(e.target.value)
+      const logo = (e) => setMarca(e.target.value)
+      const codig = (e) => setCodigo(e.target.value)
+
+      return (
+        <div className="card">
+          <div>
+            <input className="input-cantidad" type="text" value={stock} onChange={cantidad} />
+            <input className type="text" value={marca} onChange={logo} />
+            <input type="text" value={codigo} onChange={codig} />
+          </div>
+          <div className="funciones">
+            <button onClick={guardar}>Guardar</button>
+            <button onClick={cancelar}>Cancelar</button>
+          </div>
+        </div>
+      )
+    }
+
+    function Agregar({ alAgregarNuevo, alCancelar }) {
+      const [marca, setMarca] = useState("")
+      const [codigo, setCodigo] = useState("")
+      const [stock, setStock] = useState("")
+      const[error,setError]=useState(false)
+      const[error2,setError2]=useState(false)
+     
+      const agregar = () => {
+
+        if(marca.trim()==="" || codigo.trim()===""|| stock.trim()==="" )
+          {
+            setError(true)
+            return   }
+          
+        const existeProducto = ContactolDeposito.some(item => item.codigo === codigo)
+        if (existeProducto) {
+         setError2(true)
+          return }
+
+        alAgregarNuevo(marca, codigo, stock)
+    
+        setMarca("")
+        setCodigo("")
+        setStock("")   }
+
+      const stockk=(e)=>
+      {
+        setStock(e.target.value)
+        setError(false)
+        setError2(false)
+      }
+      const marc=(e)=>
+      {
+        setMarca(e.target.value)
+        setError(false)
+        setError2(false)
+      }
+    const codi=(e)=>
+    {
+      setCodigo(e.target.value)
+      setError2(false)
+    }
+
+      return (
+        <div className="card">
+          <div>
+
+             <input type="text" placeholder="Marca" value={marca} 
+            onChange={marc} />
+            <input className="input-cantidad" type="text" placeholder="Stock" value={stock} 
+            onChange={stockk} />
+           
+            <input type="text" placeholder="Código" value={codigo} 
+            onChange={codi} />
+            {error &&<p> todos los campos son requeridos</p>}
+            {error2 &&<p>El producto ya existe en el depósito</p>}
+
+          </div>
+          <div className="funciones">
+            <button onClick={agregar}>Agregar</button>
+            <button onClick={alCancelar}>Cancelar</button>
+          </div>
+        </div>
+      )
+    }
+
+    function Deposito({ control, alEditar, alGuardar, alCancelar, alBorrar, alAgregar, alAgregarNuevo }) {
+      let spanagregar = <i className="fa-regular fa-square-plus"></i>;
+      return (
+        <>
+          <h2>CONTROL DEPÓSITO <span onClick={alAgregar}>{spanagregar}</span></h2>
+          {control.agregando && <Agregar alAgregarNuevo={alAgregarNuevo} alCancelar={alCancelar} />}
+          {control.items.map((c) =>
+            c.editando ? (
+              <Editar key={c.id} control={c} alGuardar={alGuardar} alCancelar={alCancelar} />
+            ) : (
+              <Mostrar key={c.id} control={c} alEditar={alEditar} alBorrar={alBorrar} />
+            )
+          )}
+        </>
+      )
+    }
+
+
+    function ordenAlfabetico(a,b)
+    {
+      if(a.marca < b.marca) return -1
+      if(a.marca > b.marca) return +1
+      return 0
+  }
+  
+    const App = () => {
+      const [deposito, setDeposito] = useState({ items: ContactolDeposito, agregando: false });
+
+      const Editar = (id) => {
+        setDeposito({
+          ...deposito,
+          items: deposito.items.map((d) => d.id === id ? { ...d, editando: true } : d)
+        })
+      }
+
+      const Guardar = (id, marca, codigo, stock) => {
+        setDeposito({...deposito,  items: deposito.items.map((d) =>
+            d.id === id ? { ...d, marca, codigo, stock, editando: false } : d
+          )
+        })
+      }
+
+      const Cancelar = (id) => {
+        setDeposito({...deposito, agregando: false, items: deposito.items.map((d) =>
+            d.id === id ? { ...d, editando: false } : d
+          )
+        })
+      }
+
+      const Borrar = (id) => {
+        setDeposito({...deposito, items: deposito.items.filter((d) => d.id !== id)
+        })
+      }
+
+      const Agregar = () => {
+        setDeposito({ ...deposito, agregando: true });
+      }
+
+      const AgregarNuevo = (marca, codigo, stock) => {
+      
+        const existeProducto = deposito.items.some(item => item.codigo === codigo)
+
+        const nuevoProducto = {
+          id: deposito.items.length + 1,
+          marca,
+          codigo,
+          stock,
+          editando: false
+        }
+        setDeposito({
+          items: [...deposito.items, nuevoProducto],
+          agregando: false
+        })
+      }
+     
+      ContactolDeposito.sort(ordenAlfabetico)
+        
+      return (
+        <Deposito
+          control={deposito}
+          alEditar={Editar}
+          alGuardar={Guardar}
+          alCancelar={Cancelar}
+          alBorrar={Borrar}
+          alAgregar={Agregar}
+          alAgregarNuevo={AgregarNuevo}
+        />
+      )
+    }
+
+    const root = createRoot(document.getElementById('root'))
+    root.render(<App />)
+  </script>
+</body>
+
+</html>

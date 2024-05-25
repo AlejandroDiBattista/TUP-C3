@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <title>59092</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: left;
+            height: 100vh;
+            background-color: hsl(0, 0%, 100%);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .tarjeta {
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #5c5c5c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 289px;
+            height: 115px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .tarjeta input {
+            display: block;
+            width: 75%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .acciones {
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .acciones button {
+            width: 80px;
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .presentacion {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px;
+            border: 1px solid rgb(73, 72, 72);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            height: 150px;
+            margin: 10px;
+        }
+
+        .contador {
+            color: rgb(4, 0, 255);
+            border-radius: 5px;
+            padding: 10px 15px;
+            font-size: 65px;
+            margin-left: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .texto {
+            text-align: left;
+            margin: 1px;
+            font-size: x-large;
+        }
+
+        .producto {
+            margin-bottom: 45px;
+            font-weight: bold;
+        }
+
+        .barra {
+            margin-bottom: 5px;
+        }
+
+        .acciones2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin: 15px;
+            height: 140px;
+            margin-left: 30px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .acciones2 i {
+            margin: -8px 0;
+        }
+
+        .acciones2 button {
+            all: unset;
+        }
+
+        .agregarnuevo button {
+            border: 2px solid black;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+
+        const Deposito = [
+            { id: 1, producto: "Coca", barra: "454545454", cantidad: 1, editando: false },
+            { id: 2, producto: "Secco", barra: "5646546", cantidad: 3, editando: false },
+            { id: 3, producto: "Pepsi", barra: "123456789", cantidad: 5, editando: false },
+            { id: 4, producto: "Fanta", barra: "987654321", cantidad: 2, editando: false },
+            { id: 5, producto: "Sprite", barra: "112233445", cantidad: 4, editando: false },
+        ];
+
+        function Editar({ mercaderia, Guardado, Cancelado }) {
+
+            const [producto, setProducto] = useState(mercaderia.producto);
+            const [barra, setBarra] = useState(mercaderia.barra);
+            const [cantidad, setCantidad] = useState(mercaderia.cantidad);
+            const [error, setError] = useState(false);
+
+            const CambiarProducto = (e) => {
+                setProducto(e.target.value);
+                setError(false);
+            };
+
+            const CambiarBarra = (e) => {
+                setBarra(e.target.value);
+                setError(false);
+            };
+
+            const CambiarCantidad = (e) => {
+                setCantidad(e.target.value);
+                setError(false);
+            };
+
+            const aceptar = (e) => {
+                e.preventDefault();
+                if (producto.trim() === '' || barra.trim() === '' || cantidad.toString().trim() === '') {
+                    setError(true);
+                    return;
+                }
+                Guardado({ id: mercaderia.id, producto, barra, cantidad });
+            };
+
+            const cancelar = (e) => {
+                e.preventDefault();
+                Cancelado();
+            };
+
+            return (
+                <form className='tarjeta'>
+                    <input type="text" value={producto} onChange={CambiarProducto} placeholder="Producto" />
+                    <input type="text" value={barra} onChange={CambiarBarra} placeholder="Código de Barra" />
+                    <input type="number" value={cantidad} onChange={CambiarCantidad} placeholder="Cantidad" />
+                    {error && <p style={{ color: 'red' }}>No se permiten campos vacíos</p>}
+                    <div className='acciones'>
+                        <button onClick={aceptar}>Aceptar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </form>
+            );
+        }
+        function Visual({ mercaderias, alEditar, alBorrar, alGuardar, alCancelar }) {
+            const incrementarCantidad = (id) => {
+                const nuevasMercaderias = mercaderias.map(item =>
+                    item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
+                );
+                alGuardar(nuevasMercaderias.find(item => item.id === id));
+            };
+
+            return (
+                <div className="visual-container">
+                    {mercaderias.map(mercaderia => (
+                        <div key={mercaderia.id} className="elemento-container">
+                            <div className="presentacion">
+                                <div className="contador" onClick={() => incrementarCantidad(mercaderia.id)}>
+                                    {mercaderia.cantidad}
+                                </div>
+                                <div className="texto">
+                                    <div className="producto">{mercaderia.producto}</div>
+                                    <div className="barra">{mercaderia.barra}</div>
+                                </div>
+                                <div className="acciones2">
+                                    <button onClick={() => alEditar(mercaderia.id)}><i className="fas fa-edit"></i></button>
+                                    <button onClick={() => alBorrar(mercaderia.id)}><i className="fas fa-trash" style={{ color: '#000000' }}></i></button>
+                                </div>
+                            </div>
+                            {mercaderia.editando && (
+                                <div className="editar-form">
+                                    <Editar mercaderia={mercaderia} Guardado={alGuardar} Cancelado={alCancelar} />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+        function App() {
+            const [mercaderias, setMercaderias] = useState(Deposito);
+            const [nuevaMercaderia, setNuevaMercaderia] = useState(null);
+
+            const guardar = (nuevaMercaderia) => {
+                if (nuevaMercaderia.id > mercaderias.length) {
+                    setMercaderias([...mercaderias, { ...nuevaMercaderia, editando: false }]);
+                } else {
+                    const nuevasMercaderias = mercaderias.map(item =>
+                        item.id === nuevaMercaderia.id ? { ...nuevaMercaderia, editando: false } : item
+                    );
+                    setMercaderias(nuevasMercaderias);
+                }
+                setNuevaMercaderia(null);
+            };
+
+            const editar = (id) => {
+                const nuevasMercaderias = mercaderias.map(item =>
+                    item.id === id ? { ...item, editando: true } : { ...item, editando: false }
+                );
+                setMercaderias(nuevasMercaderias);
+            };
+
+            const cancelarEdicion = () => {
+                const nuevasMercaderias = mercaderias.map(item =>
+                    ({ ...item, editando: false })
+                );
+                setMercaderias(nuevasMercaderias);
+                setNuevaMercaderia(null);
+            };
+
+            const borrar = (id) => {
+                const nuevasMercaderias = mercaderias.filter(item => item.id !== id);
+                setMercaderias(nuevasMercaderias);
+            };
+
+            const crearNuevo = () => {
+                const nuevoId = mercaderias.length > 0 ? mercaderias[mercaderias.length - 1].id + 1 : 1;
+                setNuevaMercaderia({ id: nuevoId, producto: "", barra: "", cantidad: 0, editando: true });
+            };
+
+            return (
+                <div>
+                    <div className="agregarnuevo">
+                        <h1>
+                            Control de Depósito <button onClick={crearNuevo}><i className="fa-regular fa-plus fa-2xs"></i></button>
+                        </h1>
+                    </div>
+                    {nuevaMercaderia && (
+                        <Editar
+                            mercaderia={nuevaMercaderia}
+                            Guardado={guardar}
+                            Cancelado={cancelarEdicion}
+                        />
+                    )}
+                    <Visual
+                        mercaderias={mercaderias}
+                        alEditar={editar}
+                        alBorrar={borrar}
+                        alGuardar={guardar}
+                        alCancelar={cancelarEdicion}
+                    />
+                </div>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>

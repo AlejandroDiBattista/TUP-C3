@@ -1,0 +1,219 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <title>Legajo: 58881</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    const { useState } = React;
+
+    const ProductosStock = [
+        { producto: "Guitarra Electrica Fender", stock: "8", codigo: "040392856178" },
+        { producto: "Bajo Electrico Ibanez", stock: "6", codigo: "192857604231" },
+        { producto: "Teclado Yamaha", stock: "8", codigo: "301485697248" },
+        { producto: "Batería Pearl", stock: "4", codigo: "487126354970" },
+        { producto: "Violin Stradivarius", stock: "3", codigo: "576819042356" },
+        { producto: "Amplificador Marshall", stock: "8", codigo: "623948571020" },
+        { producto: "Amplificador Ampeg", stock: "6", codigo: "734109582437" },
+        { producto: "Microfonos Shure", stock: "10", codigo: "859623741509" }
+    ];
+
+    function Editar({ Producto, alAceptar, alCancelar }) {
+        let [producto, setProducto] = useState(Producto.producto || '');
+        let [stock, setStock] = useState(Producto.stock || '');
+        let [codigo, setCodigo] = useState(Producto.codigo || '');
+        let [error, setError] = useState(false);
+
+        const cambiarProducto = (e) => { setProducto(e.target.value); setError(false) };
+        const cambiarStock = (e) => { setStock(e.target.value); setError(false) };
+        const cambiarCodigo = (e) => { setCodigo(e.target.value); setError(false) };
+
+        const aceptar = (e) => {
+            e.preventDefault();
+            if (producto.trim() === "" || stock.trim() === "" || codigo.trim() === "") {
+                setError(true);
+                return;
+            } else if (parseInt(stock) > 99) {
+                setError(true);
+                return;
+            } else if (codigo.length !== 12) {
+                setError(true);
+                return;
+            }
+
+            alAceptar({ ...Producto, producto, stock, codigo });
+        };
+
+        const cancelar = (e) => {
+            e.preventDefault();
+            alCancelar();
+        };
+
+        return (
+            <form className="formulario">
+                <div className="editardatos">
+                    <input type="text" value={stock} onChange={cambiarStock} placeholder="Stock" /> 
+                    <input type="text" value={producto} onChange={cambiarProducto} placeholder="Producto" />
+                    <input type="text" value={codigo} onChange={cambiarCodigo} placeholder="Código" />
+                    {error && <p className="error">Todos los campos son obligatorios, el código debe tener 12 caracteres y el stock no puede ser mayor a 99</p>}
+                </div>
+
+                <div className="acciones">
+                    <button onClick={aceptar}>Aceptar</button>
+                    <button onClick={cancelar}>Cancelar</button>
+                </div>
+            </form>
+        );
+    }
+
+    function Mostrar({ Producto, alAceptar, alBorrar, incrementarStock }) {
+        let [editor, setEditor] = useState(false);
+
+        const editar = () => { setEditor(true) };
+        const incrementar = () => { incrementarStock(Producto.codigo) };
+        const cancelar = () => { setEditor(false) };
+        const borrar = () => alBorrar(Producto.codigo);
+
+        return (
+            <div className="contenedor">
+                {editor ? (
+                    <Editar Producto={Producto}
+                        alAceptar={(productoEditado) => { alAceptar(productoEditado); setEditor(false) }} alCancelar={cancelar} />
+                ) : (
+                    <>
+                        <div className="panel">
+                            <div className="stock" onClick={incrementar}>
+                                {Producto.stock}
+                            </div>
+                            <div className="nomcod">
+                                <h2>{Producto.producto}</h2>
+                                <p>{Producto.codigo}</p>
+                            </div>
+                            <div className="iconos">
+                                <span className="spanEditar" onClick={editar}>
+                                    <i className="fa-regular fa-pen-to-square"></i>
+                                </span>
+                                <span className="spanBorrar" onClick={borrar}>
+                                    <i className="fa-regular fa-trash-can"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </>
+                )}
+            </div>
+        );
+    }
+
+    function Lista({ Productos, alAgregar, alAceptar, alBorrar, incrementarStock }) {
+        if (Productos.length === 0) return <h1>No hay Productos</h1>;
+
+        return (
+            <>
+                {Productos.map(Producto =>
+                    <Mostrar
+                        key={Producto.codigo}
+                        Producto={Producto}
+                        alAceptar={alAceptar}
+                        alBorrar={alBorrar}
+                        incrementarStock={incrementarStock} />
+                )}
+            </>
+        );
+    }
+
+    function ordenAlfabetico(a, b) {
+        return a.producto.localeCompare(b.producto);
+    }
+
+    function App() {
+        let [Producto, setProducto] = useState({});
+        let [editando, setEditando] = useState(false);
+        let [Productos, setProductos] = useState(ProductosStock);
+
+        const aceptar = (Producto) => {
+            let copia;
+            if (Productos.some(p => p.codigo === Producto.codigo)) {
+                // Si el producto ya existe, actualizarlo
+                copia = Productos.map((c) => c.codigo === Producto.codigo ? Producto : c);
+            } else {
+                // Si el producto no existe, agregarlo
+                copia = [...Productos, Producto];
+            }
+            copia.sort(ordenAlfabetico);  // Ordenar alfabéticamente
+            setProductos(copia);
+            setEditando(false);
+        };
+
+        const cancelar = () => {
+            setProducto({});
+            setEditando(false);
+        };
+
+        const agregar = () => {
+            setProducto({});
+            setEditando(true);
+        };
+
+        const editar = (id) => {
+            let Producto = Productos.find((c) => c.codigo === id);
+            setProducto(Producto);
+            setEditando(true);
+        };
+
+        const borrar = (codigo) => {
+            let copia = Productos.filter((c) => c.codigo !== codigo);
+            copia.sort(ordenAlfabetico);  // Ordenar alfabéticamente
+            setProductos(copia);
+        };
+
+        const incrementarStock = (codigo) => {
+            let copia = Productos.map((c) => {
+                if (c.codigo === codigo) {
+                    return { ...c, stock: (parseInt(c.stock) + 1).toString() };
+                }
+                return c;
+            });
+            copia.sort(ordenAlfabetico);  // Ordenar alfabéticamente
+            setProductos(copia);
+        };
+
+        return (
+            <div>
+                <div className="titulo">
+                    <h1>Control Depósito</h1>
+                    <span className="spanAgregar" onClick={agregar}>
+                        <i className="fa-regular fa-square-plus"></i>
+                    </span>
+                </div>
+                {editando && (
+                    <Editar
+                        Producto={Producto}
+                        alAceptar={aceptar}
+                        alCancelar={cancelar}
+                    />
+                )}
+                <Lista
+                    Productos={Productos}
+                    alAgregar={agregar}
+                    alAceptar={aceptar}
+                    alBorrar={borrar}
+                    incrementarStock={incrementarStock}
+                />
+            </div>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+    </script>
+</body>
+</html>

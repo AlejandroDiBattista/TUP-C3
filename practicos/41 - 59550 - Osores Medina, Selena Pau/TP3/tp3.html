@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/cb2f8f9845.js" crossorigin="anonymous"></script>
+    <style>
+        .arriba {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        html,
+        body,
+        #root {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 3em;
+            color: black;
+        }
+
+        .agregarbutton {
+            display: block;
+            margin-top: 10px;
+            margin-left: 10px;
+            height: 50%;
+            padding: 1em;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .mostrando {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            height: 100%;
+        }
+
+        .panel {
+            height: 20%;
+        }
+
+        .mostrando .acciones button:first-child {
+            align-self: flex-end;
+        }
+
+        .mostrando .acciones button:last-child {
+            align-self: flex-end;
+            margin-bottom: 0px;
+        }
+
+        .mostrando .acciones {
+            display: flex;
+            flex-direction: column;
+            width: 15%;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .cantidad {
+            font-size: 5em;
+            color: blue;
+            font-weight: bold;
+            width: 25%;
+            text-align: center;
+            margin: 0;
+        }
+
+        .datos {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .datos p strong {
+            margin: 5px 0;
+            font-size: 1.7em;
+        }
+
+        .datos p {
+            font-size: 1.4em;
+        }
+
+        .acciones button {
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .acciones button:hover {
+            color: red;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.6em;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 1.2em;
+            height: 100%;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .editando {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            margin: auto;
+            background-color: white;
+            height: 100%;
+        }
+
+        .editando .input-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 80%;
+            gap: 10px;
+        }
+
+        .editando .contenedores {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0;
+            height: 30%;
+            justify-content: space-between;
+        }
+
+        .editando .acciones {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+            margin: 0 auto;
+            justify-content: space-between;
+            height: 66%;
+        }
+
+        .editando .acciones button {
+            font-size: 1.3em;
+            height: 45%;
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            width: 90%;
+        }
+
+        .editando .acciones button:hover {
+            background-color: lightgray;
+        }
+
+        .editando .acciones button p {
+            display: flex;
+            justify-content: center;
+            margin: auto 0;
+            width: 100%;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Editar({ producto, alGuardar, alCancelar }) {
+            let [nombre, setNombre] = useState(producto.nombre);
+            let [codigoEAN, setCodigoEAN] = useState(producto.codigoEAN);
+            let [cantidad, setCantidad] = useState(producto.cantidad);
+            let [error, setError] = useState(false);
+
+            const cambiarNombre = e => {
+                setNombre(e.target.value);
+                setError(false);
+            };
+            const cambiarCodigoEAN = e => {
+                setCodigoEAN(e.target.value);
+                setError(false);
+            };
+            const cambiarCantidad = e => {
+                setCantidad(parseInt(e.target.value));
+                setError(false);
+            };
+
+            const guardar = e => {
+                e.preventDefault();
+                if (nombre.trim() === '' || cantidad === 0 || codigoEAN.trim() === '') {
+                    setError(true);
+                    return;
+                }
+
+                alGuardar({ ...producto, codigoEAN, nombre, cantidad });
+            };
+            const cancelar = e => {
+                e.preventDefault();
+                alCancelar();
+            };
+
+            return (
+                <form className="editando">
+                    <div className="input-container">
+                        <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
+                        <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} placeholder="Código EAN" />
+                        <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
+                    </div>
+                    {error && <p className="error">Todos los campos son obligatorios</p>}
+                    <div className="acciones">
+                        <button onClick={guardar}><p>Aceptar</p></button>
+                        <button onClick={cancelar}><p>Cancelar</p></button>
+                    </div>
+                </form>
+            );
+        }
+
+        function Mostrar({ producto, alGuardar, alBorrar, incrementarCant }) {
+            const [editando, setEditando] = useState(false);
+
+            const editar = () => setEditando(true);
+            const cancelar = () => setEditando(false);
+            const incrementar = () => incrementarCant(producto.id);
+            const borrar = () => alBorrar(producto.id);
+
+            return (
+                <div className="mostrando">
+                    {editando ? (
+                        <Editar producto={producto} alGuardar={(productoEditado) => { alGuardar(productoEditado); setEditando(false); }} alCancelar={cancelar} />
+                    ) : (
+                        <>
+                            <p className="cantidad" onClick={incrementar}>{producto.cantidad}</p>
+                            <div className="datos" onClick={incrementar}>
+                                <p><strong>{producto.nombre}</strong></p>
+                                <p>{producto.codigoEAN}</p>
+                            </div>
+                            <div className="acciones">
+                                <button onClick={editar}><i className="fa-regular fa-pen-to-square"></i></button>
+                                <button onClick={borrar}><i className="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function Stock({ productos, alAgregar, alGuardar, alBorrar, incrementarCant }) {
+            if (productos.length === 0) return <><h1>NO HAY PRODUCTOS EN STOCK</h1></>;
+            return (
+                <>
+                    <div className="arriba">
+                        <h1>Control Depósito</h1>
+                        <button onClick={alAgregar} className="agregarbutton"><i className="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div className="panel">
+                        {productos.map(producto => (
+                            <Mostrar
+                                key={producto.id}
+                                producto={producto}
+                                alGuardar={alGuardar}
+                                alBorrar={alBorrar}
+                                incrementarCant={incrementarCant}
+                            />
+                        ))}
+                    </div>
+                </>
+            );
+        }
+
+        function App() {
+            let [productos, setProductos] = useState(ProductosIniciales);
+
+            const incrementarCant = (id) => {
+                setProductos(productos.map(producto =>
+                    producto.id === id ? { ...producto, cantidad: parseInt(producto.cantidad + 1) } : producto
+                ));
+            };
+
+            const agregarProducto = () => {
+                const id = uuidv4();
+                const codigoEAN = '';
+                const nombre = '';
+                const cantidad = 0;
+                setProductos([...productos, { id, codigoEAN, nombre, cantidad }]);
+            };
+
+            const guardarProducto = (productoEditado) => {
+                setProductos(productos.map(p =>
+                    p.id === productoEditado.id ? productoEditado : p
+                ));
+            };
+
+            const borrarProducto = id => setProductos(productos.filter(p => p.id !== id));
+
+            return (
+                <Stock
+                    productos={productos}
+                    alAgregar={agregarProducto}
+                    alGuardar={guardarProducto}
+                    alBorrar={borrarProducto}
+                    incrementarCant={incrementarCant}
+                />
+            );
+        }
+
+        const ProductosIniciales = [
+            { id: uuidv4(), codigoEAN: '7799876543210', nombre: '7up', cantidad: 7 },
+            { id: uuidv4(), codigoEAN: '7791234567890', nombre: 'Cola Cola', cantidad: 92 },
+            { id: uuidv4(), codigoEAN: '7793219876540', nombre: 'Fanta', cantidad: 5 },
+            { id: uuidv4(), codigoEAN: '7797894561230', nombre: 'Mirinda', cantidad: 6 },
+            { id: uuidv4(), codigoEAN: '7796543219870', nombre: 'Sprite', cantidad: 4 }
+        ];
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>

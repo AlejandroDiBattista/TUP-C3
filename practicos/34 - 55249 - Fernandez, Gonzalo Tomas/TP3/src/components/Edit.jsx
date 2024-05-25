@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import '../stylesheets/Edit.css';
 
-function Edit({ product, whenSave, whenCancel, error }) {
+function Edit({ product, whenSave, whenCancel, error, products }) {
   const [name, setName] = useState(product.name || '');
   const [code, setCode] = useState(product.code || '');
   const [count, setCount] = useState(product.count || '');
@@ -14,8 +14,34 @@ function Edit({ product, whenSave, whenCancel, error }) {
     setCount(product.count || '');
   }, [product]);
 
+  useEffect(() => {
+    if (error || localError) {
+      const timeout = setTimeout(() => {
+        setLocalError('');
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [error, localError]);
+
   const done = (e) => {
     e.preventDefault();
+
+    const noChanges =
+      name === product.name &&
+      code === product.code &&
+      count.toString() === product.count.toString();
+
+    if (!noChanges) {
+      const duplicate = products.some((p) => {
+        return p.id !== product.id && (p.name === name || p.code === code);
+      });
+
+      if (duplicate) {
+        setLocalError('Ya existe un producto con el mismo nombre o código EAN.');
+        return;
+      }
+    }
 
     if (name === '' || code === '' || count === '') {
       setLocalError('Todos los campos son obligatorios.');
@@ -49,8 +75,8 @@ function Edit({ product, whenSave, whenCancel, error }) {
         placeholder="Nombre"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        minLength={1}
-        maxLength={15}
+        minLength={5}
+        maxLength={12}
       />
       <input
         type="text"
@@ -68,7 +94,7 @@ function Edit({ product, whenSave, whenCancel, error }) {
         min="0"
         max="100"
       />
-      <div className="acciones">
+      <div className="actions">
         <button onClick={done}>Aceptar</button>
         <button onClick={cancel}>Cancelar</button>
       </div>
@@ -81,6 +107,7 @@ function Edit({ product, whenSave, whenCancel, error }) {
 
 Edit.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     code: PropTypes.string,
     count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -88,6 +115,14 @@ Edit.propTypes = {
   whenSave: PropTypes.func.isRequired,
   whenCancel: PropTypes.func.isRequired,
   error: PropTypes.string,
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired,
+      count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    })
+  ).isRequired,
 };
 
 export default Edit;

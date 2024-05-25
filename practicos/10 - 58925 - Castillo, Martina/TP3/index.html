@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Control Depósito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .titulo-con-boton {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-right: 10px;
+        }
+
+        .icono {
+            font-size: 1.5em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+            color: black;
+            padding: 5px;
+        }
+
+        .icono.agregar {
+            font-size: 1.5em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+            color: black;
+            padding: 5px;
+        }
+
+        .panel {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 800px;
+            flex-direction: row;
+            width: 400px;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+        }
+
+        .cantidad {
+            font-size: 3em;
+            font-weight: bold;
+            color: blue;
+            margin-right: 20px;
+        }
+
+        .panel p {
+            margin: 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .panel strong {
+            font-size: 1.2em;
+        }
+
+        .panel form {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel form .inputs {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+        }
+
+        .panel form .acciones {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            align-items: flex-end;
+        }
+
+        .panel input {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 60%;
+        }
+
+        .panel .acciones button {
+            background-color: white;
+            color: black;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .panel .acciones button:hover {
+            opacity: 0.8;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .acciones {
+            position: relative;
+        }
+
+        .acciones i {
+            font-size: 1.2em;
+            cursor: pointer;
+            color: black;
+            position: absolute;
+        }
+
+        .icono.eliminar {
+            top: 10px;
+            right: 10px;
+        }
+
+        .icono.editar {
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+        const { createRoot } = ReactDOM;
+
+        const bebidasIniciales = [
+            { ean: '2399678', nombre: "Agua", cantidad: 9 },
+            { ean: '2345678', nombre: "Coca Cola", cantidad: 2 },
+            { ean: '3124567', nombre: "Fanta", cantidad: 5 },
+            { ean: '4987654', nombre: "Pepsi", cantidad: 6 },
+            { ean: '5345552', nombre: "Sprite", cantidad: 4 },
+            { ean: '1234567', nombre: "Manaos", cantidad: 7 }
+
+        ]
+
+        function Editar({ bebida, alGuardar, alCancelar, bebidas }) {
+            const [nombre, setNombre] = useState(bebida.nombre)
+            const [cantidad, setCantidad] = useState(bebida.cantidad)
+            const [ean, setEan] = useState(bebida.ean)
+            const [error, setError] = useState('')
+
+            const cambiarNombre = e => setNombre(e.target.value)
+            const cambiarCantidad = e => setCantidad(e.target.value)
+            const cambiarEan = e => setEan(e.target.value)
+
+            const guardar = e => {
+                e.preventDefault();
+                if (nombre.trim() === '' || cantidad.trim() === '' || ean.trim() === '') {
+                    setError('Todos los campos son obligatorios')
+                    return
+                }
+                if (bebidas.some(b => b.ean === ean && b.ean !== bebida.ean)) {
+                    setError('El código EAN ya existe')
+                    return
+                }
+                alGuardar({ ...bebida, nombre, cantidad: parseInt(cantidad), ean })
+            }
+
+            const cancelar = e => {
+                e.preventDefault()
+                alCancelar()
+            }
+
+            return (
+                <form className="panel">
+                    <div className="inputs">
+                        <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
+                        <input type="text" value={ean} onChange={cambiarEan} placeholder="Código EAN" />
+                        <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
+                    </div>
+                    {error && <p className="error">{error}</p>}
+                    <div className="acciones">
+                        <button onClick={guardar}>Aceptar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </form>
+            )
+        }
+
+        function Mostrar({ bebida, alGuardar, alBorrar, bebidas, incrementarCantidad }) {
+            const [editando, setEditando] = useState(false)
+
+            const iniciarEdicion = () => setEditando(true)
+            const cancelarEdicion = () => setEditando(false)
+            const guardarEdicion = bebidaEditada => {
+                alGuardar(bebidaEditada)
+                cancelarEdicion()
+            }
+
+            return (
+                <div className="panel" onClick={() => incrementarCantidad(bebida.ean)}>
+                    {editando ? (
+                        <Editar
+                            bebida={bebida}
+                            alGuardar={guardarEdicion}
+                            alCancelar={cancelarEdicion}
+                            bebidas={bebidas}
+                        />
+                    ) : (
+                        <>
+                            <div className="info">
+                                <div className="cantidad">{bebida.cantidad}</div>
+                                <div>
+                                    <p><strong>{bebida.nombre}</strong></p>
+                                    <p>{bebida.ean}</p>
+                                </div>
+                            </div>
+                            <div className="acciones">
+                                <i className="fas fa-edit icono editar" onClick={(e) => {
+                                    e.stopPropagation()
+                                    iniciarEdicion()
+                                }}></i>
+                                <i className="fas fa-trash icono eliminar" onClick={(e) => {
+                                    e.stopPropagation()
+                                    alBorrar(bebida.ean)
+                                }}></i>
+                            </div>
+                        </>
+                    )}
+                </div>
+            )
+        }
+
+        function Stock({ bebidas }) {
+            const [nuevasBebidas, setNuevasBebidas] = useState(bebidas)
+            const [mostrarFormulario, setMostrarFormulario] = useState(false)
+            const [error, setError] = useState('')
+
+            const abrirFormulario = () => {
+                setMostrarFormulario(true)
+                setError('')
+            }
+            const cerrarFormulario = () => {
+                setMostrarFormulario(false)
+                setError('')
+            }
+
+            const agregar = (nuevaBebida) => {
+                if (nuevasBebidas.some(b => b.ean === nuevaBebida.ean)) {
+                    setError('El código EAN ya existe')
+                    return
+                }
+                const nuevasBebidasActualizadas = [...nuevasBebidas, nuevaBebida].sort((a, b) => a.nombre.localeCompare(b.nombre))
+                setNuevasBebidas(nuevasBebidasActualizadas)
+                cerrarFormulario()
+            }
+            const incrementarCantidad = (ean) => {
+                const bebidasActualizadas = nuevasBebidas.map(b =>
+                    b.ean === ean ? { ...b, cantidad: b.cantidad + 1 } : b
+                )
+                setNuevasBebidas(bebidasActualizadas)
+            }
+
+            return (
+                <div>
+                    <div className="titulo-con-boton">
+                        <h1>Control Depósito</h1>
+                        {!mostrarFormulario && (
+                            <button className="icono agregar" onClick={abrirFormulario}>
+                                <i className="fas fa-plus"></i>
+                            </button>
+                        )}
+                    </div>
+                    {mostrarFormulario && (
+                        <Editar
+                            bebida={{ ean: '', nombre: '', cantidad: 0 }}
+                            alGuardar={agregar}
+                            alCancelar={cerrarFormulario}
+                            bebidas={nuevasBebidas}
+                        />
+                    )}
+                    {error && <p className="error">{error}</p>}
+                    {nuevasBebidas.map(bebida => (
+                        <Mostrar
+                            key={bebida.ean}
+                            bebida={bebida}
+                            alGuardar={bebidaActualizada => {
+                                setNuevasBebidas(nuevasBebidas.map(b => (b.ean === bebidaActualizada.ean ? bebidaActualizada : b)));
+                            }}
+                            alBorrar={ean => {
+                                setNuevasBebidas(nuevasBebidas.filter(b => b.ean !== ean));
+                            }}
+                            incrementarCantidad={incrementarCantidad}
+                            bebidas={nuevasBebidas}
+                        />
+                    ))}
+                </div>
+            )
+        }
+
+        function App() {
+            return (
+                <Stock bebidas={bebidasIniciales} />
+            )
+        }
+
+        const root = createRoot(document.getElementById('root'))
+        root.render(<App />)
+    </script>
+</body>
+
+</html>

@@ -278,3 +278,98 @@
     </script>
 
     <script type="text/babel">
+       const { createRoot } = ReactDOM
+
+    const Contacto = ({ id, nombre, apellido, telefono, favorito, onToggleFavorito }) => {
+        const Sacar = (id) => {
+            let validar = confirm("Desea Sacarlo de Favorito?");
+         if (validar) {
+            onToggleFavorito(id);
+            alert("Se saco de favoritos");
+        }
+    };
+
+    const Agregar = (id) => {
+        let Confirmar = confirm("Desea agregarlo a Favorito?");
+        if (Confirmar) {
+            onToggleFavorito(id);
+            alert("Se agrego a favoritos");
+        }
+    };
+
+    return (
+        <div className="card">
+            <div>{nombre} <b>{apellido}</b>
+                {favorito ? (
+                    <button className='boton' onClick={() => Sacar(id)}><i className="fa-solid fa-star"></i></button>)
+                    :
+                    (<button className='boton' onClick={() => Agregar(id)}><i className="fa-regular fa-star"></i></button>)}
+            </div>
+            <div>{telefono}</div>
+        </div>
+    );
+};
+
+const Agenda = ({ datos, onToggleFavorito }) => (
+    <div className="agenda">
+        {datos.map(contacto => (
+            <Contacto
+                key={contacto.id}
+                {...contacto}
+                onToggleFavorito={onToggleFavorito}
+            />
+        ))};
+    </div>
+);
+
+const App = ({ datos }) => {
+    const [contactos, setContactos] = React.useState(datos);
+
+    const toggleFavorito = id => {
+        const NContactos = contactos.map(contacto => {
+            if (contacto.id === id) {
+                return { ...contacto, favorito: !contacto.favorito };
+            }
+            return contacto;
+        });
+        setContactos(NContactos);
+    };
+
+    const { favoritos, nofavoritos } = favorito(contactos);
+
+    return (
+        <div>
+            <h1>Agenda</h1>
+            <h2>Favoritos</h2>
+            <Agenda datos={favoritos} onToggleFavorito={toggleFavorito} />
+            <h2>General</h2>
+            <Agenda datos={nofavoritos} onToggleFavorito={toggleFavorito} />
+        </div>
+    );
+};
+
+const favorito = (datos) => {
+    const fav = [];
+    const nofav = [];
+    for (let i = 0; i < datos.length; i++) {
+        if (datos[i].favorito === true) {
+            fav.push(datos[i]);
+        }
+        else {
+            nofav.push(datos[i]);
+        }
+    }
+    return { favoritos: fav, nofavoritos: nofav };
+};
+datos.sort((a, b) => {
+    return a.nombre !== b.nombre ? a.nombre.localeCompare(b.nombre) : a.apellido.localeCompare(b.apellido);
+});
+
+const renderApp = () => {
+    const root = document.getElementById('root');
+    ReactDOM.render(<App datos={datos} />, root);
+};
+renderApp();
+    </script>
+</body>
+</html>

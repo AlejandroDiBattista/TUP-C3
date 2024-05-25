@@ -10,97 +10,57 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>58771</title>
     <style>
         /* reset */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+            background-color:rgb(117, 183, 250);
+        }
+
+        h1 {
+            text-align: center;
+            width: 200px;
+            background-color: rgb(98, 153, 207);
+            margin: 15px auto;
+            border-radius: 10px;
         }
 
         #root {
             max-width: 1280px;
-            display: flex;
-            justify-content: center;
             align-items: center;
             margin: 0 20px;
         }
 
-        .card {
+        .tarjeta {
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
             padding: 16px;
-            margin: 4px;
-            border-radius: 8px;
+            margin: 4px auto;
+            border-radius: 10px;
             background-color: #ffffff;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            height: 100px;
+
         }
 
         .agenda {
             margin-top: 16px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: start;
-
-            >div {
-                text-align: center;
-                width: 240px;
-                height: 96px;
-                position: relative;
-
-                span {
-                    position: absolute;
-                    top: 8px;
-                    right: 8px;
-                }
-
-                div {
-                    margin-top: 25px;
-                    font-size: 20px;
-                }
-
-                div:last-child {
-                    text-align: right;
-                    font-size: 14px;
-                }
-            }
         }
 
-        form {
-            width: 240px;
-            padding: 16px;
-            margin: 8px;
-            border-radius: 8px;
-
-            label {
-                display: block;
-                font-size: 12px;
-                color: #aaa;
-            }
-
-            input {
-                width: calc(100% - 8px);
-                border-radius: 4px;
-                margin: 4px 0;
-                border: 1px solid #ccc;
-                padding: 4px;
-                font-size: 16px;
-            }
-
-            div {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 16px;
-
-                button {
-                    padding: 8px 16px;
-                    border: none;
-                    border-radius: 4px;
-                    font-size: 14px;
-                    cursor: pointer;
-                }
-            }
+        .contenido {
+            padding: 20px 0px;
         }
+
+        i {
+            color:dodgerblue;
+        }
+
+        i:hover {
+            color:rgb(16, 81, 146);
+        }
+
     </style>
 </head>
 
@@ -133,21 +93,63 @@
 
     <script type="text/babel">
         const { createRoot } = ReactDOM
-
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
+        
+        const Contacto = ({id, nombre, apellido, telefono, favorito, cambiar }) =>
+            <div className="tarjeta">
+                <div className="Boton">
+                    <Favorito marcado={favorito} onClick={() => cambiar(id)}/>
+                </div>
+                <div className="contenido">
+                    <div>{nombre} <b>{apellido}</b></div>
+                    <div>{telefono}</div>
+                </div>
             </div>
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
+        const Favorito = ({ marcado, onClick }) => { 
+            return(
+                <span onClick = {onClick}> 
+                    {marcado ? (
+                        <i className="fa-solid fa-star fa-xl"></i> 
+                    ):(
+                        <i className="fa-regular fa-star fa-xl"></i> 
+                    )
+                    }
+                </span>
+            )
+        }
+        
+        const Agenda = ({ datos }) =>{
+            const favorito = datos.filter(contacto => contacto.favorito)
+            const renderizar = () =>{
+                ReactDOM.render(<Agenda datos = {datos}/>,document.getElementById('root'))
+            }
+            const cambiar=(id)=>{
+                datos.forEach(contacto=>{
+                    if(contacto.id === id){
+                        contacto.favorito = !contacto.favorito
+                    }
+                })
+                renderizar()
+            }
+            return(
+            <div>
+                <h1>Agenda</h1>
+                <div className="agenda">
+                    {datos
+                        .sort((a,b) =>{
+                            if(a.favorito === b.favorito){
+                                return (a.nombre + a.apellido).localeCompare(b.nombre + b.apellido)
+                            }
+                            return a.favorito ? -1 : 1
+                        })
+                        .map(contacto => <Contacto key={contacto.id} {...contacto} cambiar = {cambiar} />)}
+                </div>
             </div>
+            )
+        }
 
         const App = () =>
             <div>
-                <h1>Agenda</h1>
                 <Agenda datos={datos} />
             </div>
 

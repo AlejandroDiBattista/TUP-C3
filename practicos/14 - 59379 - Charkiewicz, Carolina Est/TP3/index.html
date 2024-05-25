@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        #root {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 0px;
+            width: calc(100% - 40px);
+            margin-left: 12px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin: 0;
+            margin-right: 8;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            height: calc(100px * 1.2);
+            
+        }
+
+        .item-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+        }
+
+        .item-name {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            
+        }
+
+        .item-phone {
+            font-size: 20px;
+            color: #070707;
+        }
+
+        .item-number {
+            font-size: 56px;
+            color: blue;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .item-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .item-buttons img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-container input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #717982;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-buttons button:hover {
+            background-color: #5a5f69;
+        }
+
+        .add-button {
+            background-color: white;
+            color: black;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-right: -50px;
+            
+        }
+
+        .add-button img {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+        }
+
+        .add-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const initialContacts = [
+            { id: 1, nombre: '7up', codigo: '7799876543210', cantidad: 7 },
+            { id: 2, nombre: 'Cola Cola',codigo: '7791234567890', cantidad: 92 },
+            { id: 3, nombre: 'Fanta', codigo: '7793219876540', cantidad: 5 },
+            { id: 4, nombre: 'Mirinda', codigo: '7797894561230', cantidad: 6 },
+            { id: 5, nombre: 'Sprite', codigo: '7796543219870', cantidad: 4 }
+        ];
+
+        function ContactForm({ contact, onSave, onCancel }) {
+            const [nombre, setNombre] = useState(contact.nombre || '');
+            const [codigo, setCodigo] = useState(contact.codigo || '');
+            const [cantidad, setCantidad] = useState(contact.cantidad || '');
+            const [error, setError] = useState('');
+
+            const handleSave = () => {
+                if (!nombre || !codigo || !cantidad) {
+                    setError('Todos los campos son obligatorios');
+                    return;
+                }
+                setError('');
+                onSave({ id: contact.id, nombre,codigo, cantidad: parseInt(cantidad) });
+            };
+
+            return (
+                <div className="form-container">
+                    <input
+                        type="text"
+                        value={nombre}
+                        placeholder=""
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        value={codigo}
+                        placeholder=""
+                        onChange={(e) => setCodigo(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        value={cantidad}
+                        placeholder=""
+                        onChange={(e) => setCantidad(e.target.value)}
+                    />
+                    {error && <div className="error-message">{error}</div>}
+                    <div className="form-buttons">
+                        <button onClick={handleSave}>Aceptar</button>
+                        <button onClick={onCancel}>Cancelar</button>
+                    </div>
+                </div>
+            );
+        }
+
+        function Contact({ contact, onEdit, onDelete, isEditing, onSave, onCancel }) {
+            return (
+                <div className="item">
+                    {isEditing ? (
+                        <ContactForm contact={contact} onSave={onSave} onCancel={onCancel} />
+                    ) : (
+                        <>
+                            <div className="item-number">{contact.cantidad}</div>
+                            <div className="item-content">
+                                <div className="item-name">{contact.nombre}</div>
+                                <div className="item-phone">{contact.codigo}</div>
+                            </div>
+                            <div className="item-buttons">
+                                <button onClick={() => onEdit(contact.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=SIvUzMn4cgQ6&format=png&color=000000" alt="Edit" />
+                                </button>
+                                <button onClick={() => onDelete(contact.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=ATzTLrwzRISB&format=png&color=000000" alt="Delete" />
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function App() {
+            const [contacts, setContacts] = useState(initialContacts);
+            const [editingContacts, setEditingContacts] = useState([]);
+
+            const handleSave = (contact) => {
+                setContacts(
+                    contacts.map((c) => (c.id === contact.id ? contact : c))
+                );
+                setEditingContacts(editingContacts.filter(id => id !== contact.id));
+            };
+
+            const handleEdit = (id) => {
+                setEditingContacts([...editingContacts, id]);
+            };
+
+            const handleDelete = (id) => {
+                setContacts(contacts.filter((c) => c.id !== id));
+                setEditingContacts(editingContacts.filter(editingId => editingId !== id));
+            };
+
+            const handleCancel = (id) => {
+                setEditingContacts(editingContacts.filter(editingId => editingId !== id));
+            };
+
+            const handleAdd = () => {
+                const newContact = { id: Date.now(), nombre: '', codigo: '', cantidad: '' };
+                setContacts([...contacts, newContact]);
+                setEditingContacts([...editingContacts, newContact.id]);
+            };
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <h1>Control Depósito</h1>
+                        <div className="add-button-container">
+                            <button className="add-button" onClick={handleAdd}>
+                                <img src="https://img.icons8.com/?size=100&id=I3zcwArp1Vgw&format=png&color=000000" alt="Agregar" />
+                            </button>
+                        </div>
+                    </div>
+                    {contacts.map((contact) => (
+                        <Contact
+                            key={contact.id}
+                            contact={contact}
+                            isEditing={editingContacts.includes(contact.id)}
+                            onEdit={handleEdit}
+                            onDelete={handleDelete}
+                            onSave={handleSave}
+                            onCancel={() => handleCancel(contact.id)}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

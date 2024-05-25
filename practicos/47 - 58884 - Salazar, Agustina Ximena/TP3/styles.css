@@ -1,0 +1,149 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+main {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+#app {
+    max-width: 2050px;
+    margin: 0 auto;
+}
+
+.producto {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(63, 63, 63, 0.2);
+    padding: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    width: 300px;
+}
+
+.producto p {
+    margin: 0;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.producto .detalles {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.producto .nombre {
+    font-weight: bold; 
+}
+
+.producto .stock button {
+    font-size: 60px; 
+    color: rgb(26, 0, 172); 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+}
+
+.producto .acciones {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto .acciones button {
+    margin-bottom: 60px;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+    
+}
+
+button {
+    padding: 10px 16px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: rgb(10, 10, 10);
+    cursor: pointer;
+    margin-bottom: 5px;
+    
+}
+
+button:hover {
+    background-color: #b6b6b6;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.fa {
+    margin-right: 5px;
+}
+
+p {
+    text-align: center;
+    font-size: larger;
+}
+
+.detalles p {
+    padding: 10px;
+}
+
+.panel {
+    position: relative;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+    width: 400px;
+    justify-self: unset;
+}
+
+.panel .acciones {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel .acciones .guardar,
+.panel .acciones .cancelar {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin: 5px 0;
+    margin-bottom: 10px;
+}

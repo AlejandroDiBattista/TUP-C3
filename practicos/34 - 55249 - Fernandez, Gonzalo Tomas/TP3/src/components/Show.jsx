@@ -1,26 +1,26 @@
+// Show.jsx
+
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../stylesheets/Show.css';
 import { BiEdit } from 'react-icons/bi';
 import { FiTrash } from 'react-icons/fi';
 
-function Show({ product, whenEdit, whenDelete }) {
+function Show({ product, whenEdit, whenDelete, updateCount }) {
   const [count, setCount] = useState(product.count);
 
   const getCountAlignmentClass = () => {
-    return count >= 10 || count >= 100
-      ? 'product-count align-right'
-      : 'product-count';
+    return count >= 10 || count >= 100 ? 'product-count align-right' : 'product-count';
   };
 
   const getDetailsAlignmentClass = () => {
-    return product.count >= 10 || product.count >= 100
-      ? 'product-details align-right'
-      : 'product-details';
+    return count >= 10 || count >= 100 ? 'product-details align-right' : 'product-details';
   };
 
   const incrementCount = () => {
-    setCount(Math.min(count + 1, 100));
+    const newCount = Math.min(count + 1, 100);
+    setCount(newCount);
+    updateCount(product.id, newCount);
   };
 
   return (
@@ -34,14 +34,14 @@ function Show({ product, whenEdit, whenDelete }) {
             <div className="product-name">{product.name}</div>
             <p className="product-code">{product.code}</p>
           </div>
-        </div>
-        <div>
-          <button className="edit-button" onClick={whenEdit}>
-            <BiEdit />
-          </button>
-          <button className="delete-button" onClick={whenDelete}>
-            <FiTrash />
-          </button>
+          <div className="button-product">
+            <button className="edit-button" onClick={whenEdit}>
+              <BiEdit />
+            </button>
+            <button className="delete-button" onClick={whenDelete}>
+              <FiTrash />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -50,12 +50,15 @@ function Show({ product, whenEdit, whenDelete }) {
 
 Show.propTypes = {
   product: PropTypes.shape({
-    count: PropTypes.number,
-    name: PropTypes.string,
-    code: PropTypes.string,
+    id: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
+    editing: PropTypes.bool,
   }).isRequired,
   whenEdit: PropTypes.func.isRequired,
   whenDelete: PropTypes.func.isRequired,
+  updateCount: PropTypes.func.isRequired,
 };
 
 export default Show;

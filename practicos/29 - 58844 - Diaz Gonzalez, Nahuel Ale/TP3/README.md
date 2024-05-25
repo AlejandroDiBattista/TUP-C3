@@ -20,4 +20,3 @@ Comisión 9: **Miercoles 22, 23:59hs**
 5. Confirmar los cambios (commint)
 5. Realizar un solicitud de publicación (pull request).
 6. Volver a la rama principal (main) para actualizar (fetch) el repositorio.
-

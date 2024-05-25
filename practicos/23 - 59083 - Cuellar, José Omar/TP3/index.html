@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Enlaces a React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <title>Document</title>
+    <style>
+      #root {
+        position: absolute;
+        height: 100%;
+        width: 55%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: fit-content;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+        background-color: white;
+      }
+
+      .encabezado {
+        font-size: 30px;
+        display: flex;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .encabezado h1 {
+        padding-left: 80px;
+        padding-right: 40px;
+        margin-bottom: 0px;
+        font-size: 60px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      #agregar {
+        cursor: pointer;
+        display: flex;
+        align-items: center; /* Centra verticalmente el contenido */
+        justify-content: center; /* Centra horizontalmente el contenido */
+        position: relative;
+        width: 40px; /* Ajusta el tamaño del contenedor */
+        height: 40px; /* Ajusta el tamaño del contenedor */
+        margin-bottom: 0px;
+        margin-top: 60px; /* Ajusta este valor para bajar el ícono */
+        border: 4px solid black; /* Ajusta el tamaño del borde */
+        border-radius: 30%; /* Hace el contenedor redondo */
+        font-size: 25px; /* Ajusta el tamaño del ícono */
+        margin-left: -10px; /* Reduce el margen izquierdo para acercarlo al título */
+      }
+
+      .paneles {
+        padding-left: 70px;
+        padding-right: 85px;
+      }
+
+      .panel {
+        display: flex;
+        position: relative;
+        width: 600px;
+        height: 200px;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border-radius: 25px;
+        box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
+        border: 0.5px solid rgba(0, 0, 0, 0.2);
+      }
+
+      #cantidad {
+        cursor: pointer;
+        width: 100px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        margin-left: 40px;
+        color: blue;
+        font-weight: bold;
+        font-size: 90px;
+      }
+
+      .principal-info {
+        display: block;
+        width: 50%;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        margin-left: 20px;
+        text-align: left;
+      }
+
+      #nombre {
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      #codigo {
+        font-size: 25px;
+      }
+
+      .opciones {
+        display: flex;
+        flex-direction: column; /* Cambiar a dirección de columna */
+        justify-content: flex-start; /* Alinear elementos al final */
+        width: 60px;
+        position: relative;
+        margin: 20px;
+        margin: 25px 50px 20px 0; /* Ajusta el margen izquierdo aquí */
+      }
+
+      .acciones {
+        display: flex; /* Hacer que los íconos estén en la misma línea */
+        flex-direction: column; /* Alinear los íconos en columnas */
+      }
+
+      .editar-iconoCont {
+        margin-top: 0; /* Ajusta este valor para subir el ícono de editar */
+      }
+
+      .borrar-iconoCont {
+        margin-top: 69px; /* Ajusta este valor para subir el ícono de borrar */
+      }
+
+      .editar-icon,
+      .borrar-icon {
+        cursor: pointer;
+        font-size: 25px; /* Aumenta el tamaño del ícono */
+      }
+
+      #editar {
+        margin-top: 0px;
+        margin-bottom: 70px;
+      }
+
+      #borrar {
+        margin-bottom: 0px;
+      }
+
+      .info-edit {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        margin: 20px;
+        gap: 10px;
+      }
+
+      .info-edit input {
+        height: 35px;
+        border-radius: 10px;
+        border: 0.1px solid rgba(0, 0, 0, 0.23);
+        font-size: 22px;
+        color: black;
+      }
+
+      .acciones {
+        display: flex;
+        flex-direction: column;
+        width: 120px;
+        margin: 20px;
+        gap: 10px;
+      }
+
+      .acciones button {
+        cursor: pointer;
+        height: 40px;
+        border: 2.5px solid black;
+        border-radius: 15px;
+        font-size: 22px;
+      }
+
+      .error {
+        font-weight: bold;
+        color: red;
+        font-style: italic;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState } = React;
+
+      const productosIniciales = [
+        { codigo: 46902649275, nombre: "Coca Cola", cantidad: 50 },
+        { codigo: 46902649276, nombre: "Fanta", cantidad: 20 },
+        { codigo: 46902649277, nombre: "Sprite", cantidad: 20 },
+        { codigo: 46902649278, nombre: "7up", cantidad: 20 },
+        { codigo: 46902649279, nombre: "Mirinda", cantidad: 20 },
+        { codigo: 46902649280, nombre: "Pepsi", cantidad: 20 },
+        { codigo: 46902649281, nombre: "Cerveza", cantidad: 20 },
+        ];
+        
+
+      function Editar(props) {
+        const { producto, alAgregar, alCancelar } = props;
+        const [nombre, setNombre] = useState(producto.nombre);
+        const [codigo, setCodigo] = useState(producto.codigo);
+        const [cantidad, setCantidad] = useState(producto.cantidad);
+        const [error, setError] = useState(false);
+
+        const cambiarNombre = (e) => {
+          setNombre(e.target.value);
+          setError(false);
+        };
+        const cambiarCodigo = (e) => {
+          setCodigo(e.target.value);
+          setError(false);
+        };
+        const cambiarCantidad = (e) => {
+          setCantidad(e.target.value);
+          setError(false);
+        };
+
+        const aceptar = (e) => {
+          e.preventDefault();
+          if (nombre.trim() === "" 
+          || codigo === "" 
+          || cantidad === "") {
+            setError(true);
+            return;
+          }
+
+          alAgregar({ ...producto, nombre, codigo, cantidad });
+        };
+
+        const cancelar = (e) => {
+          e.preventDefault();
+          alCancelar();
+        };
+
+        return (
+          <form className="panel">
+            <div className="info-edit">
+              <input
+                type="text"
+                id="editarNomb"
+                placeholder="Nombre"
+                value={nombre}
+                onChange={cambiarNombre}
+              />
+              <input
+                type="number"
+                id="editarCod"
+                placeholder="Codigo"
+                value={codigo}
+                onChange={cambiarCodigo}
+              />
+              <input
+                type="number"
+                id="editarCant"
+                placeholder="Cantidad"
+                value={cantidad}
+                onChange={cambiarCantidad}
+              />
+              {error && (
+                <p className="error">Todos los campos son obligatorios</p>
+              )}
+            </div>
+            <div className="acciones">
+              <button onClick={aceptar}>Agregar</button>
+              <button type="button" onClick={cancelar}>
+                Cancelar
+              </button>
+            </div>
+          </form>
+        );
+      }
+
+      function Mostrar(props) {
+        const { producto, alAgregar, alBorrar, aumentarStock } = props;
+        const [editando, setEditando] = useState(false);
+
+        const editar = () => {
+          setEditando(true);
+        };
+        const aumentar = () => {
+          aumentarStock(producto.codigo);
+        };
+        const cancelar = () => {
+          setEditando(false);
+        };
+
+        return (
+          <div>
+            {editando ? (
+              <Editar
+                producto={producto}
+                alAgregar={(productoEditado) => {
+                  alAgregar(productoEditado);
+                  setEditando(false);
+                }}
+                alCancelar={cancelar}
+              />
+            ) : (
+              <div className="panel">
+                <p id="cantidad" onClick={aumentar}>
+                  {producto.cantidad}
+                </p>
+                <div className="principal-info" onClick={aumentar}>
+                  <h1 id="nombre">{producto.nombre}</h1>
+                  <p id="codigo">{producto.codigo}</p>
+                </div>
+                <div className="opciones">
+                  <div className="acciones">
+                    <div className="editar-iconoCont">
+                      <i
+                        className="fas fa-edit editar-icon"
+                        onClick={editar}
+                      ></i>
+                    </div>
+                    <div className="borrar-iconoCont">
+                      <i
+                        className="fas fa-trash-alt borrar-icon"
+                        onClick={() => alBorrar(producto.codigo)}
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      function Inventario(props) {
+        const { productos, alBorrar, alAgregar, aumentarStock } = props;
+        return (
+          <>
+            {productos.map((producto) => (
+              <Mostrar
+                key={producto.codigo}
+                producto={producto}
+                alAgregar={alAgregar}
+                alBorrar={alBorrar}
+                aumentarStock={aumentarStock}
+              />
+            ))}
+          </>
+        );
+      }
+
+      function App() {
+        const [productos, setProductos] = useState(
+          productosIniciales.map((producto) => ({
+            ...producto,
+            id: Math.floor,
+          }))
+        );
+        const [panelEdicion, setPanelEdicion] = useState(false);
+
+        const aceptar = (productoEditado) => {
+          const copia = productos.map((p) =>
+            p.id === productoEditado.id ? productoEditado : p
+          );
+          setProductos(copia);
+          setPanelEdicion(false);
+        };
+
+        const borrar = (codigo) => {
+          let copia = productos.filter((p) => p.codigo !== codigo);
+          setProductos(copia);
+        };
+
+        const agregar = () => {
+          setPanelEdicion(true);
+        };
+
+        const aumentarStock = (codigo) => {
+          let nuevosProductos = productos.map((p) =>
+            p.codigo === codigo
+              ? { ...p, cantidad: parseInt(p.cantidad) + 1 }
+              : p
+          );
+          setProductos(nuevosProductos);
+        };
+
+        const cancelar = () => {
+          setPanelEdicion(false);
+        };
+
+        productos.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+        return (
+          <>
+            <div className="encabezado">
+              <h1>Control Deposito</h1>
+              <i
+                id="agregar"
+                className="fas fa-plus fa-border"
+                onClick={agregar}
+              ></i>
+            </div>
+
+            {panelEdicion && (
+              <div className="paneles">
+                <Editar
+                  producto={{ nombre: "", codigo: "", cantidad: "" }}
+                  alAgregar={(nuevoProducto) => {
+                    setProductos([
+                      ...productos,
+                      { ...nuevoProducto, id: Math.floor },
+                    ]);
+                    setPanelEdicion(false);
+                  }}
+                  alCancelar={cancelar}
+                />
+              </div>
+            )}
+            <div className="paneles">
+              <Inventario
+                productos={productos}
+                alBorrar={borrar}
+                alAgregar={aceptar}
+                aumentarStock={aumentarStock}
+              />
+            </div>
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #root {
+            padding: 20px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .Title {
+            display: flex;
+            align-items: flex-end;
+
+            span {
+                margin-left: 30px;
+                margin-bottom: 20px;
+                scale: 3;
+            }
+        }
+
+        h1 {
+            font-size: 46px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            width: 400px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px 0 5px 5px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .stock {
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: blue;
+            cursor: default;
+
+            p {
+                font-size: 65px;
+            }
+        }
+
+        .description {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            cursor: default;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            span:nth-child(1) {
+                margin-top: 5px;
+                margin-right: 5px;
+            }
+
+            span:nth-child(2) {
+                margin-bottom: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        span {
+            cursor: pointer;
+            scale: 1.7;
+        }
+
+        .error {
+            color: rgb(218, 13, 13);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .cardEdit {
+            width: 400px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .descriptionEdit {
+            width: 70%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            input {
+                border-color: #ccc;
+                border-style: solid;
+                border-radius: 5px;
+            }
+        }
+
+        .actionsEdit {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            button {
+                height: calc(100 / 3);
+                margin: 0 10px;
+                background-color: transparent;
+                border-color: black;
+                border-style: solid;
+                border-radius: 5px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            p {
+                margin: 0 10px;
+                text-align: center;
+            }
+        }
+
+        .card .cardEdit {
+            margin: 0;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .no-products {
+            font-size: 20px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const Depot = [
+            { id: '1', name: '7up', code: '7799876543210', stock: 89 },
+            { id: '2', name: 'Coca Cola', code: '7799876543211', stock: 40 },
+            { id: '3', name: 'Fanta', code: '7799876543212', stock: 12 },
+            { id: '4', name: 'Sprite', code: '7799876543213', stock: 23 },
+            { id: '5', name: 'Pepsi', code: '7799876543214', stock: 4 },
+        ];
+
+        function Edit({ product, onSave, onCancel }) {
+            const [name, setName] = useState(product.name);
+            const [code, setCode] = useState(product.code);
+            const [stock, setStock] = useState(product.stock);
+            const [error, setError] = useState(false);
+
+            const editName = (e) => {
+                setName(e.target.value);
+                setError(false);
+            };
+            const editCode = (e) => {
+                setCode(e.target.value);
+                setError(false);
+            };
+            const editStock = (e) => {
+                setStock(e.target.value);
+                setError(false);
+            };
+
+            const save = (e) => {
+                e.preventDefault();
+                if (name === '' || code === '' || stock <= 0 || stock > 99) {
+                    setError(true);
+                    return;
+                } else if (name !== product.name || code !== product.code || stock !== product.stock) {
+                    onSave({ ...product, name, code, stock: parseInt(stock) });
+                }
+            };
+            const cancel = (e) => {
+                e.preventDefault();
+                onCancel();
+            };
+
+            return (
+                <form className="cardEdit">
+                    <div className="descriptionEdit">
+                        <input type="text" value={name} onChange={editName} placeholder="Nombre del producto" />
+                        <input type="text" value={code} onChange={editCode} placeholder="Código EAN" />
+                        <input type="number" value={stock} onChange={editStock} placeholder="Cantidad del Stock" />
+                    </div>
+                    <div className="actionsEdit">
+                        <button onClick={save}>Guardar</button>
+                        <button onClick={cancel}>Cancelar</button>
+                        {error && <p className="error">Todos los campos son obligatorios</p>}
+                    </div>
+                </form>
+            );
+        }
+
+        const EditIcon = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-pen-to-square"></i></span>;
+        }
+
+        const DeleteIcon = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-trash-can"></i></span>;
+        }
+
+        const AddIcon = ({ onClick }) => {
+            return <span onClick={onClick}> <i className="fa-regular fa-square-plus"></i></span>;
+        }
+
+        function Display({ product, onSave, onDelete, incrementStock }) {
+            const [editing, setEditing] = useState(false);
+
+            const edit = () => {
+                setEditing(true);
+            };
+
+            const cancel = () => {
+                setEditing(false);
+            };
+
+            const increment = () => {
+                incrementStock(product.code);
+            };
+
+            return (
+                <div className="card">
+                    {editing ? (
+                        <Edit product={product} onSave={(editedProduct) => {
+                            onSave(editedProduct);
+                            setEditing(false);
+                        }} onCancel={cancel} />
+                    ) : (
+                        <>
+                            <div className="stock" onClick={increment}>
+                                <p><b>{product.stock}</b></p>
+                            </div>
+                            <div className="description" onClick={increment}>
+                                <p className="productName"><b>{product.name}</b></p>
+                                <p>{product.code}</p>
+                            </div>
+                            <div className="actions">
+                                <EditIcon onClick={edit} />
+                                <DeleteIcon onClick={() => onDelete(product.code)} />
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function Agenda({ products, onAdd, onSave, onDelete, incrementStock }) {
+            return (
+                <>
+                    {products.map(product => (
+                        <Display
+                            key={product.code}
+                            product={product}
+                            onSave={onSave}
+                            onDelete={onDelete}
+                            incrementStock={incrementStock}
+                        />
+                    ))}
+                </>
+            );
+        }
+
+        function App() {
+            const [products, setProducts] = useState(Depot.map(product => ({ ...product })));
+            const [showEditCard, setShowEditCard] = useState(false);
+
+            const save = (editedProduct) => {
+                setProducts(products.map(product => product.id === editedProduct.id ? editedProduct : product));
+            };
+            const add = () => {
+                setShowEditCard(true);
+            };
+            const cancel = () => {
+                setShowEditCard(false);
+            };
+            const deleteProduct = (code) => {
+                setProducts(products.filter(product => product.code !== code));
+            };
+            const incrementStock = (code) => {
+                setProducts(products.map(product =>
+                    product.code === code && product.stock < 99 ? { ...product, stock: product.stock + 1 } : product
+                ));
+            };
+
+            products.sort((a, b) => a.name.localeCompare(b.name));
+
+            return (
+                <>
+                    <div className="Title">
+                        <h1>Control Depósito</h1>
+                        <AddIcon onClick={add} />
+                    </div>
+                    {showEditCard && (
+                        <Edit product={
+                            { name: '', code: '', stock: '' }
+                        } onSave={(newProduct) => {
+                            setProducts([...products, { ...newProduct }]);
+                            setShowEditCard(false);
+                        }} onCancel={cancel} />
+                    )}
+                    {products.length === 0 ? (
+                        <p className="no-products">No hay productos en el depósito.</p>
+                    ) : (
+                        <Agenda
+                            products={products}
+                            onSave={save}
+                            onDelete={deleteProduct}
+                            incrementStock={incrementStock}
+                        />
+                    )}
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

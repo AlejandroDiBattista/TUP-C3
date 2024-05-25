@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        #root {
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        .encabezado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 0px;
+            width: calc(100% - 40px);
+            margin-left: 12px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin: 0;
+            margin-right: 8px;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .elemento {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            height: calc(100px * 1.2);
+        }
+
+        .contenido-elemento {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100%;
+        }
+
+        .nombre-elemento {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .codigo-elemento {
+            font-size: 20px;
+            color: #070707;
+        }
+
+        .numero-elemento {
+            font-size: 56px;
+            color: blue;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .botones-elemento {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .botones-elemento button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .botones-elemento img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .formulario-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .formulario-contenedor input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .botones-formulario {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .botones-formulario button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #717982;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .botones-formulario button:hover {
+            background-color: #5a5f69;
+        }
+
+        .boton-agregar {
+            background-color: white;
+            color: black;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-right: -50px;
+        }
+
+        .boton-agregar img {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+        }
+
+        .boton-agregar:hover {
+            background-color: #f0f0f0;
+        }
+
+        .mensaje-error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        const contactosIniciales = [
+            { id: 1, nombre: '7up', codigo: '7799876543210', cantidad: 7 },
+            { id: 2, nombre: 'Cola Cola', codigo: '7791234567890', cantidad: 92 },
+            { id: 3, nombre: 'Fanta', codigo: '7793219876540', cantidad: 5 },
+            { id: 4, nombre: 'Mirinda', codigo: '7797894561230', cantidad: 6 },
+            { id: 5, nombre: 'Sprite', codigo: '7796543219870', cantidad: 4 }
+        ];
+
+        function FormularioContacto({ contacto, onGuardar, onCancelar }) {
+            const [nombre, setNombre] = useState(contacto.nombre || '');
+            const [codigo, setCodigo] = useState(contacto.codigo || '');
+            const [cantidad, setCantidad] = useState(contacto.cantidad || '');
+            const [error, setError] = useState('');
+
+            const handleGuardar = () => {
+                if (!nombre || !codigo || !cantidad) {
+                    setError('Todos los campos son obligatorios');
+                    return;
+                }
+                setError('');
+                onGuardar({ id: contacto.id, nombre, codigo, cantidad: parseInt(cantidad) });
+            };
+
+            return (
+                <div className="formulario-contenedor">
+                    <input
+                        type="text"
+                        value={nombre}
+                        placeholder=""
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+                    <input
+                        type="text"
+                        value={codigo}
+                        placeholder=""
+                        onChange={(e) => setCodigo(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        value={cantidad}
+                        placeholder=""
+                        onChange={(e) => setCantidad(e.target.value)}
+                    />
+                    {error && <div className="mensaje-error">{error}</div>}
+                    <div className="botones-formulario">
+                        <button onClick={handleGuardar}>Aceptar</button>
+                        <button onClick={onCancelar}>Cancelar</button>
+                    </div>
+                </div>
+            );
+        }
+
+        function Contacto({ contacto, onEditar, onEliminar, estaEditando, onGuardar, onCancelar, onIncrementar }) {
+            return (
+                <div className="elemento">
+                    {estaEditando ? (
+                        <FormularioContacto contacto={contacto} onGuardar={onGuardar} onCancelar={onCancelar} />
+                    ) : (
+                        <>
+                            <div className="numero-elemento" onClick={() => onIncrementar(contacto.id)}>
+                                {contacto.cantidad}
+                            </div>
+                            <div className="contenido-elemento">
+                                <div className="nombre-elemento">{contacto.nombre}</div>
+                                <div className="codigo-elemento">{contacto.codigo}</div>
+                            </div>
+                            <div className="botones-elemento">
+                                <button onClick={() => onEditar(contacto.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=SIvUzMn4cgQ6&format=png&color=000000" alt="Editar" />
+                                </button>
+                                <button onClick={() => onEliminar(contacto.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=ATzTLrwzRISB&format=png&color=000000" alt="Eliminar" />
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        function App() {
+            const [contactos, setContactos] = useState(contactosIniciales);
+            const [contactosEditando, setContactosEditando] = useState([]);
+
+            const handleGuardar = (contacto) => {
+                setContactos(
+                    contactos.map((c) => (c.id === contacto.id ? contacto : c))
+                );
+                setContactosEditando(contactosEditando.filter(id => id !== contacto.id));
+            };
+
+            const handleEditar = (id) => {
+                setContactosEditando([...contactosEditando, id]);
+            };
+
+            const handleEliminar = (id) => {
+                setContactos(contactos.filter((c) => c.id !== id));
+                setContactosEditando(contactosEditando.filter(editandoId => editandoId !== id));
+            };
+
+            const handleCancelar = (id) => {
+                setContactosEditando(contactosEditando.filter(editandoId => editandoId !== id));
+            };
+
+            const handleAgregar = () => {
+                const nuevoContacto = { id: Date.now(), nombre: '', codigo: '', cantidad: '' };
+                setContactos([...contactos, nuevoContacto]);
+                setContactosEditando([...contactosEditando, nuevoContacto.id]);
+            };
+
+            const handleIncrementar = (id) => {
+                setContactos(
+                    contactos.map((c) => (c.id === id ? { ...c, cantidad: c.cantidad + 1 } : c))
+                );
+            };
+
+            return (
+                <div className="contenedor">
+                    <div className="encabezado">
+                        <h1>Control Depósito</h1>
+                        <div className="boton-agregar" onClick={handleAgregar}>
+                            <img src="https://img.icons8.com/?size=100&id=9BYS2mKCXYoj&format=png&color=000000" alt="Agregar" />
+                        </div>
+                    </div>
+                    {contactos.map((contacto) => (
+                        <Contacto
+                            key={contacto.id}
+                            contacto={contacto}
+                            onEditar={handleEditar}
+                            onEliminar={handleEliminar}
+                            estaEditando={contactosEditando.includes(contacto.id)}
+                            onGuardar={handleGuardar}
+                            onCancelar={() => handleCancelar(contacto.id)}
+                            onIncrementar={handleIncrementar}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
