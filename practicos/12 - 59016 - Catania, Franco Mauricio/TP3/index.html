@@ -23,14 +23,9 @@
       }
       h1 {
         text-align: center;
-        margin: 20px 0;
+        margin-right: 100px;
+        margin: 0;
         font-size: 40px;
-        display: flex;
-        align-items: center;
-      }
-      h1 i {
-        margin-left: 10px;
-        cursor: pointer;
       }
       .agenda {
         display: flex;
@@ -50,7 +45,6 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background-color: #f9f9f9;
         overflow: hidden;
-        cursor: pointer;
       }
       .cantidad {
         font-size: 70px;
@@ -94,10 +88,6 @@
         align-items: center;
         justify-content: center;
         margin: 0;
-        background-color: #f9f9f9;
-      }
-      .formulario-contenedor-agregar {
-        border: 3px solid #0b0a0a;
       }
       .formulario-contenedor input {
         margin: 5px 0;
@@ -143,13 +133,13 @@
       const { createRoot } = ReactDOM;
 
       const stockBebidas = [
-        { id: 1, nombre: "Coca Cola", cantidad: 2, codigo: 1234 },
-        { id: 2, nombre: "Pepsi", cantidad: 9, codigo: 1523 },
-        { id: 3, nombre: "Sprite", cantidad: 5, codigo: 1233 },
-        { id: 4, nombre: "Fanta", cantidad: 1, codigo: 1213 },
-        { id: 5, nombre: "Mirinda", cantidad: 6, codigo: 2321 },
-        { id: 6, nombre: "Marinaro", cantidad: 3, codigo: 2313 },
-        { id: 7, nombre: "Soda", cantidad: 4, codigo: 3213 },
+        { id: 1, nombre: "Soda", cantidad: 2, codigo: 12345 },
+        { id: 2, nombre: "Coca Cola", cantidad: 9, codigo: 123456 },
+        { id: 3, nombre: "Fanta", cantidad: 5, codigo: 1233456 },
+        { id: 4, nombre: "Manaos", cantidad: 1, codigo: 121324 },
+        { id: 5, nombre: "Mirinda", cantidad: 6, codigo: 232130 },
+        { id: 6, nombre: "Pepsi", cantidad: 3, codigo: 2313321 },
+        { id: 7, nombre: "Sprite", cantidad: 4, codigo: 32138 },
       ];
 
       const FormularioProducto = ({
@@ -179,7 +169,7 @@
             setError("");
           }
 
-          alEnviar({ nombre, cantidad: parseInt(cantidad), codigo });
+          alEnviar({ nombre, cantidad, codigo });
           limpiarFormulario();
         };
 
@@ -194,12 +184,7 @@
         };
 
         return (
-          <form
-            className={`formulario-contenedor ${
-              esEdicion ? "" : "formulario-contenedor-agregar"
-            }`}
-            onSubmit={manejarEnvio}
-          >
+          <form className="formulario-contenedor" onSubmit={manejarEnvio}>
             <input
               placeholder="Nombre"
               value={nombre}
@@ -244,26 +229,30 @@
         alCancelar,
       }) => {
         const ClickCantidad = () => {
-          if (!editando) {
-            alEnviar({
-              ...producto,
-              cantidad: parseInt(producto.cantidad) + 1,
-            });
-          }
+          alEnviar({
+            ...producto,
+            cantidad: producto.cantidad + 1,
+          });
         };
 
         return (
-          <div className="card" onClick={ClickCantidad}>
+          <div className="card">
             {editando ? (
               <FormularioProducto
                 producto={producto}
                 alEnviar={alEnviar}
                 alCancelar={alCancelar}
-                esEdicion={true}
               />
             ) : (
               <>
-                <span className="cantidad">{producto.cantidad}</span>
+                <span
+                  className="cantidad"
+                  onClick={ClickCantidad}
+                  style={{ cursor: "pointer" }}
+                >
+                  {producto.cantidad}
+                </span>
+
                 <div className="info">
                   <span>{producto.nombre}</span>
                   <br />
@@ -272,17 +261,11 @@
                 </div>
                 <i
                   className="fa-regular fa-pen-to-square iconos iconoEditar"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    alEditar(producto.codigo);
-                  }}
+                  onClick={() => alEditar(producto.codigo)}
                 ></i>
                 <i
                   className="fa-solid fa-trash iconos iconoBorrar"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    alBorrar(producto.codigo);
-                  }}
+                  onClick={() => alBorrar(producto.codigo)}
                 ></i>
               </>
             )}
@@ -331,8 +314,12 @@
           cancelarEdicion(producto.codigo);
         };
 
-        const cancelarEdicion = (codigo) => {
-          establecerEditando((prev) => prev.filter((c) => c !== codigo));
+        const manejarCancelar = (codigo) => {
+          if (editando.includes(codigo)) {
+            establecerEditando((prev) => prev.filter((c) => c !== codigo));
+          } else {
+            establecerAgregando(false);
+          }
         };
 
         // Ordenar productos por nombre alfabéticamente
@@ -346,38 +333,45 @@
           if (nombreA > nombreB) {
             return 1;
           }
+          // Si los nombres son iguales en mayúsculas, compara en minúsculas
+          if (a.nombre < b.nombre) {
+            return -1;
+          }
+          if (nombreA > nombreB) {
+            return 1;
+          }
           return 0;
         });
 
         return (
           <div className="agenda">
             <h1>
-              Control de Depósito
+              Control Deposito
               <i
                 className="fa-regular fa-square-plus"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: "10px" }}
                 onClick={() => establecerAgregando(true)}
               ></i>
             </h1>
-            {agregando && (
-              <FormularioProducto
-                alEnviar={manejarAgregar}
-                alCancelar={() => establecerAgregando(false)}
-                errorMensaje={errorMensaje}
-                esEdicion={false}
-              />
-            )}
-            {productosOrdenados.map((producto) => (
-              <Producto
-                key={producto.codigo}
-                producto={producto}
-                editando={editando.includes(producto.codigo)}
-                alEditar={manejarEditar}
-                alBorrar={manejarBorrar}
-                alEnviar={manejarGuardar}
-                alCancelar={() => cancelarEdicion(producto.codigo)}
-              />
-            ))}
+            <div className="agenda">
+              {agregando && (
+                <FormularioProducto
+                  alEnviar={manejarAgregar}
+                  alCancelar={() => establecerAgregando(false)}
+                />
+              )}
+              {productosOrdenados.map((producto) => (
+                <Producto
+                  key={producto.codigo}
+                  producto={producto}
+                  editando={editando.includes(producto.codigo)}
+                  alEditar={manejarEditar}
+                  alBorrar={manejarBorrar}
+                  alEnviar={manejarGuardar}
+                  alCancelar={() => manejarCancelar(producto.codigo)}
+                />
+              ))}
+            </div>
           </div>
         );
       };
