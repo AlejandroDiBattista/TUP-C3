@@ -39,7 +39,6 @@
             flex-direction: row;
             text-align: left;
             height: 70px;
-
         }
 
         .divUnidades {
@@ -91,31 +90,47 @@
         }
 
         .form {
-            width: 30em;
-            margin: 0 auto 10px;
-            padding: 10px;
+            width: 60%;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
             border-radius: 10px;
-            border: 1px solid;
+            padding: 20px;
+            margin-bottom: 20px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            position: relative;
+            text-align: left;
+            height: 140px;
         }
 
         form .acciones {
-            margin: 2%;
-            flex-direction: row;
-            padding: 5px;
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            cursor: pointer;
+            text-align: right;
+            padding: 2%;
+            margin-left: 75%;
+            margin-top: -20%;
         }
 
-        form label {
-            padding: 10px;
+        .formulario {
+            display: flex;
+            flex-direction: column;
         }
 
-        input {
+        .formulario input {
             margin-left: 2%;
             width: 60%;
+            justify-content: end;
         }
+
+        .error {
+            margin-bottom: -8%;
+        }
+
+
     </style>
 </head>
 
@@ -210,15 +225,17 @@
 
             return <>
                 <form className="form">
-                    <label>Mercadería</label>
-                    <input type="text" value={mercaderia} onChange={cambiarMercaderia} />
+                    <div className = "formulario">
+                        <label>Mercadería:</label>
+                        <input type="text" value={mercaderia} onChange={cambiarMercaderia} />
 
-                    <label>Unidades</label>
-                    <input type="text" value={unidades} onChange={cambiarUnidades} />
+                        <label>Unidades:</label>
+                        <input type="text" value={unidades} onChange={cambiarUnidades} />
 
-                    <label>Código</label>
-                    <input type="text" value={codigo} onChange={cambiarCodigo} />
-                    {error && <p className="error">¡Error! complete todos los campos</p>}
+                        <label>Código:</label>
+                        <input type="text" value={codigo} onChange={cambiarCodigo} />
+                        {error && <p className="error">¡Error! complete todos los campos</p>}
+                    </div>
 
                     <div className="acciones">
                         <button onClick={guardar}>Guardar</button>
@@ -230,9 +247,11 @@
 
         }
 
-        function Mostrar({ producto, alEditar, alBorrar }) {
-            const editar = (e) => alEditar()
-            const borrar = (e) => alBorrar()
+        function Mostrar({ producto, alEditar, alBorrar, editando, alGuardar, alCancelar }) {
+            if (editando) {
+                return <Editar producto={producto} alGuardar={alGuardar} alCancelar={alCancelar} />
+            }
+
             return <>
                 <div className="panel">
                     <div className="divUnidades">
@@ -246,13 +265,13 @@
 
                     <div className="acciones">
                         <div className="lapiz">
-                            <span className="spanEditar" onClick={editar}>
+                            <span className="spanEditar" onClick={alEditar}>
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </span>
                         </div>
 
                         <div className="tacho">
-                            <span className="spanBorrar" onClick={borrar}>
+                            <span className="spanBorrar" onClick={alBorrar}>
                                 <i class="fa-regular fa-trash-can"></i>
                             </span>
                         </div>
@@ -261,7 +280,7 @@
             </>
         }
 
-        function ListadoProductos({ productos, alAgregar, alEditar, alBorrar }) {
+        function ListadoProductos({ productos, alAgregar, alEditar, alBorrar, editandoId, alGuardar, alCancelar }) {
             if (productos.length === 0)
                 return <h1>No hay ningún producto</h1>
 
@@ -276,9 +295,14 @@
                 </div>
 
                 {productos.map(producto =>
-                    <Mostrar producto={producto}
+                    <Mostrar
+                        key={producto.id}
+                        producto={producto}
                         alEditar={() => alEditar(producto.id)}
-                        alBorrar={() => alBorrar(producto.id)} />
+                        alBorrar={() => alBorrar(producto.id)}
+                        editando={editandoId === producto.id}
+                        alGuardar={alGuardar}
+                        alCancelar={alCancelar} />
                 )}
 
             </>
@@ -295,57 +319,45 @@
         }
 
         function App() {
-            let [producto, setProducto] = useState({})
-            let [editando, setEditando] = useState(false)
             let [productos, setProductos] = useState(MercaderiaInicial)
+            let [editandoId, setEditandoId] = useState(null)
 
             const agregar = () => {
-                setProducto({});
-                setEditando(true);
+                setEditandoId(null);
+                setProductos([...productos, { id: productos.length + 1, mercaderia: '', unidades: '', codigo: '' }]);
+                setEditandoId(productos.length + 1);
             };
 
             const guardar = (producto) => {
-                if (producto.id) {
-                    let copia = productos.map(c => c.id === producto.id ? producto : c);
-                    setProductos(copia);
-                } else {
-                    let id = productos.length > 0 ? Math.max(...productos.map(c => c.id)) + 1 : 1;
-                    let copia = [...productos, { ...producto, id }];
-                    setProductos(copia);
-                }
+                let copia = productos.map(c => c.id === producto.id ? producto : c);
+                setProductos(copia);
+                setEditandoId(null);
             };
 
-
             const cancelar = () => {
-                setProducto({})
-                setEditando(false)
-                console.log("Cancelar")
+                setEditandoId(null);
             }
 
             const editar = (id) => {
-                let producto = productos.find(c => c.id === id)
-                setProducto(producto)
-                setEditando(true)
+                setEditandoId(id);
             }
 
             const borrar = (id) => {
-                let copia = productos.filter(c => c.id !== id)
-                setProductos(copia)
+                let copia = productos.filter(c => c.id !== id);
+                setProductos(copia);
+                if (editandoId === id) setEditandoId(null);
             }
 
             productos.sort(ordenAlfabetico)
             return <>
-                {editando
-                    ? <Editar
-                        producto={producto}
-                        alGuardar={guardar}
-                        alCancelar={cancelar} />
-
-                    : <ListadoProductos productos={productos}
-                        alAgregar={agregar}
-                        alEditar={editar}
-                        alBorrar={borrar} />
-                }
+                <ListadoProductos
+                    productos={productos}
+                    alAgregar={agregar}
+                    alEditar={editar}
+                    alBorrar={borrar}
+                    editandoId={editandoId}
+                    alGuardar={guardar}
+                    alCancelar={cancelar} />
             </>
         }
 
