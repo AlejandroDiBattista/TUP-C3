@@ -4,32 +4,26 @@ import { useState, useEffect } from 'react';
 import initialProducts from './data/initialProducts.js';
 import Edit from './components/Edit.jsx';
 import Show from './components/Show.jsx';
-import NavBar from './components/NavBar.jsx';
 
 function App() {
   // Estados
   const [products, setProducts] = useState(initialProducts); // Llamar mi localStorage
   const [editingProduct, setEditingProduct] = useState(null); // Añadir producto
-  const [searchTerm, setSearchTerm] = useState(''); // Buscar producto
   const [error, setError] = useState(''); // Controlar errores
-  const [theme, setTheme] = useState(() => {
-    const themeStorage = window.localStorage.getItem('theme');
-    return themeStorage ?? 'dark';
-  }); // Cambiar el tema
-  
-  // Renderizado
+
   useEffect(() => {
-    window.localStorage.setItem('theme', theme);
-  }, [theme]);
+    if (error || setError) {
+      const timeout = setTimeout(() => {
+        setError('');
+      }, 3000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [error, setError]);
 
   // Función para añadir producto
   const addProduct = () => {
-    setEditingProduct({ id: null, name: '', code: '', count: '', editing: true });
-  };
-
-  // Función de NavBar.jsx
-  const handleThemeChange = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setEditingProduct({ id: null, name: '', code: '', count: '' });
   };
 
   // Funciones de Edit.jsx
@@ -38,7 +32,7 @@ function App() {
       (p) => (p.name === product.name || p.code === product.code) && p.id !== product.id
     );
     if (duplicate) {
-      setError('Ya existe un producto con el mismo nombre y código EAN.');
+      setError('Ya existe un producto con el mismo nombre o código EAN.');
       return;
     }
 
@@ -89,33 +83,12 @@ function App() {
     );
   };
 
-  const toggleFavorite = (productId) => {
-    const updatedProducts = products.map((product) =>
-      product.id === productId ? { ...product, favorite: !product.favorite } : product
-    );
-    setProducts(updatedProducts);
-  };
-
-  const sortProductsByFavorite = (a, b) => {
-    if (a.favorite === b.favorite) {
-      return a.name.localeCompare(b.name);
-    }
-    return b.favorite - a.favorite;
-  };
-
   const updateCount = (productId, newCount) => {
     setProducts(products.map(p => p.id === productId ? { ...p, count: newCount } : p));
   };
 
   return (
     <>
-      <NavBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        theme={theme}
-        setTheme={handleThemeChange}
-      />
-      <br />
       <h1 className="title">
         Control Depósito
         <button className="buttonTitle" onClick={addProduct}>
@@ -138,10 +111,6 @@ function App() {
           </div>
         ) : (
           products
-            .filter((product) =>
-              product.name.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-            .sort(sortProductsByFavorite)
             .map((product) =>
               product.editing ? (
                 <Edit
@@ -158,7 +127,6 @@ function App() {
                   product={product}
                   whenEdit={() => editProduct(product)}
                   whenDelete={() => deleteProduct(product)}
-                  whenToggleFavorite={() => toggleFavorite(product.id)}
                   updateCount={updateCount}
                 />
               )

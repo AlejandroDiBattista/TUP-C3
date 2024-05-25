@@ -9,14 +9,23 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <title>TP3</title>
+    <title>Control de Depósito</title>
     <style>
+      body,
+      h1,
+      .agenda,
+      .card,
+      .formulario-contenedor,
+      .formulario-contenedor input,
+      .formulario-contenedor button,
+      .mensaje-error {
+        font-family: Arial, sans-serif;
+      }
       h1 {
         text-align: center;
-        font-size: 50px;
-        font-family: Arial, sans-serif;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin-right: 100px;
         margin: 0;
+        font-size: 40px;
       }
       .agenda {
         display: flex;
@@ -25,18 +34,20 @@
       }
       .card {
         position: relative;
-        border: 3.5px solid #0b0a0a;
-        padding: 10px;
+        border: 3px solid #0b0a0a;
+        padding: 20px;
         margin: 10px;
-        width: 600px;
-        height: auto;
-        font-family: Arial, sans-serif;
+        width: 450px;
+        min-height: 130px;
         display: flex;
         align-items: center;
-        border-radius: 10px;
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        overflow: hidden;
       }
       .cantidad {
-        font-size: 65px;
+        font-size: 70px;
         font-weight: bold;
         color: blue;
         margin-left: 20px;
@@ -48,37 +59,41 @@
         text-align: start;
         flex-grow: 1;
       }
+      .info span:first-child {
+        font-weight: bold;
+        font-size: 35px;
+      }
       .iconos {
         position: absolute;
         display: flex;
         flex-direction: column;
         align-items: center;
         cursor: pointer;
+        font-size: 1.5em;
       }
       .iconoEditar {
-        top: 10px;
-        right: 10px;
+        top: 12px;
+        right: 12px;
       }
       .iconoBorrar {
-        bottom: 10px;
-        right: 10px;
+        bottom: 12px;
+        right: 12px;
       }
       .formulario-contenedor {
         display: flex;
         flex-direction: column;
         padding: 10px;
         border-radius: 10px;
-        width: 600px;
+        width: 450px;
         align-items: center;
         justify-content: center;
-        background-color: white;
         margin: 0;
-        border: solid black;
       }
       .formulario-contenedor input {
         margin: 5px 0;
         padding: 5px;
         width: 90%;
+        border-radius: 6px;
       }
       .formulario-contenedor button {
         margin-top: 10px;
@@ -87,18 +102,23 @@
         font-weight: bold;
         cursor: pointer;
         border-radius: 5px;
-        background-color: #ffffff;
+        background-color: #f9f9f9;
         border: 3px solid #0b0a0a;
-        color: #0b0a0a;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #343a40;
+      }
+      .formulario-contenedor button:hover {
+        background-color: #9eb5c3;
       }
       .botones-formulario {
         display: flex;
         justify-content: space-between;
         width: 90%;
+        border-radius: 10px;
       }
       .mensaje-error {
         font-size: 14px;
-        color: #0b0a0a;
+        color: #ff0909;
         font-weight: bold;
         margin-top: 5px;
         text-align: center;
@@ -113,7 +133,7 @@
       const { createRoot } = ReactDOM;
 
       const stockBebidas = [
-        { id: 1, nombre: "7up", cantidad: 7, codigo: 12345 },
+        { id: 1, nombre: "Soda", cantidad: 2, codigo: 12345 },
         { id: 2, nombre: "Coca Cola", cantidad: 9, codigo: 123456 },
         { id: 3, nombre: "Fanta", cantidad: 5, codigo: 1233456 },
         { id: 4, nombre: "Manaos", cantidad: 1, codigo: 121324 },
@@ -122,7 +142,13 @@
         { id: 7, nombre: "Sprite", cantidad: 4, codigo: 32138 },
       ];
 
-      const FormularioProducto = ({ producto, alEnviar, alCancelar }) => {
+      const FormularioProducto = ({
+        producto,
+        alEnviar,
+        alCancelar,
+        errorMensaje,
+        esEdicion,
+      }) => {
         const [nombre, setNombre] = useState(producto ? producto.nombre : "");
         const [cantidad, setCantidad] = useState(
           producto ? producto.cantidad : ""
@@ -133,38 +159,60 @@
         const manejarEnvio = (e) => {
           e.preventDefault();
 
-          // Validar que todos los campos estén completos
           if (!nombre || !cantidad || !codigo) {
             setError("Todos los campos son obligatorios");
+            return;
+          } else if (errorMensaje) {
+            setError(errorMensaje);
             return;
           } else {
             setError("");
           }
 
           alEnviar({ nombre, cantidad, codigo });
+          limpiarFormulario();
+        };
+
+        const limpiarFormulario = () => {
+          setNombre("");
+          setCantidad("");
+          setCodigo("");
+        };
+
+        const manejarCambio = () => {
+          setError("");
         };
 
         return (
           <form className="formulario-contenedor" onSubmit={manejarEnvio}>
-            <input            
+            <input
               placeholder="Nombre"
               value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
+              onChange={(e) => {
+                setNombre(e.target.value);
+                manejarCambio();
+              }}
             />
             <input
               placeholder="Cantidad"
               value={cantidad}
-              onChange={(e) => setCantidad(e.target.value)}
+              onChange={(e) => {
+                setCantidad(e.target.value);
+                manejarCambio();
+              }}
             />
             <input
               placeholder="Código"
               value={codigo}
-              onChange={(e) => setCodigo(e.target.value)}
+              onChange={(e) => {
+                setCodigo(e.target.value);
+                manejarCambio();
+              }}
             />
-            <div className="mensaje-error">{error}</div>
+            <div className="mensaje-error">{error || errorMensaje}</div>
             <div className="botones-formulario">
               <button type="submit">Guardar</button>
-              <button type="button" onClick={() => alCancelar()}>
+              <button type="button" onClick={alCancelar}>
                 Cancelar
               </button>
             </div>
@@ -172,7 +220,6 @@
         );
       };
 
-      // Componente de producto que se puede editar o borrar
       const Producto = ({
         producto,
         alEditar,
@@ -180,46 +227,74 @@
         editando,
         alEnviar,
         alCancelar,
-      }) => (
-        <div className="card">
-          {editando ? (
-            <FormularioProducto
-              producto={producto}
-              alEnviar={alEnviar}
-              alCancelar={alCancelar}
-            />
-          ) : (
-            <>
-              <span className="cantidad">{producto.cantidad}</span>
-              <div className="info">
-                <span>{producto.nombre}</span>
-                <br></br>
-                <br></br>
-                <span>{producto.codigo}</span>
-              </div>
-              <i
-                className="fa-regular fa-pen-to-square iconos iconoEditar"
-                onClick={() => alEditar(producto.codigo)}
-              ></i>
-              <i
-                className="fa-solid fa-trash iconos iconoBorrar"
-                onClick={() => alBorrar(producto.codigo)}
-              ></i>
-            </>
-          )}
-        </div>
-      );
+      }) => {
+        const ClickCantidad = () => {
+          alEnviar({
+            ...producto,
+            cantidad: producto.cantidad + 1,
+          });
+        };
 
-      // Componente principal
+        return (
+          <div className="card">
+            {editando ? (
+              <FormularioProducto
+                producto={producto}
+                alEnviar={alEnviar}
+                alCancelar={alCancelar}
+              />
+            ) : (
+              <>
+                <span
+                  className="cantidad"
+                  onClick={ClickCantidad}
+                  style={{ cursor: "pointer" }}
+                >
+                  {producto.cantidad}
+                </span>
+
+                <div className="info">
+                  <span>{producto.nombre}</span>
+                  <br />
+                  <br />
+                  <span>{producto.codigo}</span>
+                </div>
+                <i
+                  className="fa-regular fa-pen-to-square iconos iconoEditar"
+                  onClick={() => alEditar(producto.codigo)}
+                ></i>
+                <i
+                  className="fa-solid fa-trash iconos iconoBorrar"
+                  onClick={() => alBorrar(producto.codigo)}
+                ></i>
+              </>
+            )}
+          </div>
+        );
+      };
+
       const App = () => {
         const [productos, establecerProductos] = useState(stockBebidas);
         const [editando, establecerEditando] = useState([]);
         const [agregando, establecerAgregando] = useState(false);
+        const [errorMensaje, setErrorMensaje] = useState("");
 
         const manejarAgregar = (producto) => {
-          const nuevoProducto = { ...producto, id: productos.length + 1 };
+          if (productos.some((p) => p.codigo === producto.codigo)) {
+            setErrorMensaje("El código ya existe.");
+            return;
+          }
+
+          const nuevoProducto = {
+            ...producto,
+            id:
+              productos.length > 0 ? productos[productos.length - 1].id + 1 : 1,
+            cantidad: parseInt(producto.cantidad),
+          };
+
           establecerProductos([...productos, nuevoProducto]);
           establecerAgregando(false);
+          setErrorMensaje("");
         };
 
         const manejarEditar = (codigo) => {
@@ -232,36 +307,49 @@
 
         const manejarGuardar = (producto) => {
           establecerProductos(
-            productos.map((p) => (p.codigo === producto.codigo ? producto : p))
+            productos.map((p) =>
+              p.codigo === producto.codigo ? { ...producto } : p
+            )
           );
-          establecerEditando((prev) =>
-            prev.filter((codigoEditando) => codigoEditando !== producto.codigo)
-          );
+          cancelarEdicion(producto.codigo);
         };
 
-        const manejarCancelar = () => {
-          establecerEditando([]);
-          establecerAgregando(false);
+        const manejarCancelar = (codigo) => {
+          if (editando.includes(codigo)) {
+            establecerEditando((prev) => prev.filter((c) => c !== codigo));
+          } else {
+            establecerAgregando(false);
+          }
         };
 
         // Ordenar productos por nombre alfabéticamente
         const productosOrdenados = productos.slice().sort((a, b) => {
+          const nombreA = a.nombre.toUpperCase();
+          const nombreB = b.nombre.toUpperCase();
+
+          if (nombreA < nombreB) {
+            return -1;
+          }
+          if (nombreA > nombreB) {
+            return 1;
+          }
+          // Si los nombres son iguales en mayúsculas, compara en minúsculas
           if (a.nombre < b.nombre) {
             return -1;
           }
-          if (a.nombre > b.nombre) {
+          if (nombreA > nombreB) {
             return 1;
           }
           return 0;
         });
 
         return (
-          <div>
+          <div className="agenda">
             <h1>
-              CONTROL DEPOSITO
+              Control Deposito
               <i
                 className="fa-regular fa-square-plus"
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", marginLeft: "10px" }}
                 onClick={() => establecerAgregando(true)}
               ></i>
             </h1>
@@ -269,7 +357,7 @@
               {agregando && (
                 <FormularioProducto
                   alEnviar={manejarAgregar}
-                  alCancelar={manejarCancelar}
+                  alCancelar={() => establecerAgregando(false)}
                 />
               )}
               {productosOrdenados.map((producto) => (
@@ -280,7 +368,7 @@
                   alEditar={manejarEditar}
                   alBorrar={manejarBorrar}
                   alEnviar={manejarGuardar}
-                  alCancelar={() => establecerEditando([])}
+                  alCancelar={() => manejarCancelar(producto.codigo)}
                 />
               ))}
             </div>
@@ -288,8 +376,7 @@
         );
       };
 
-      const root = createRoot(document.getElementById("root"));
-      root.render(<App />);
+      createRoot(document.getElementById("root")).render(<App />);
     </script>
   </body>
 </html>

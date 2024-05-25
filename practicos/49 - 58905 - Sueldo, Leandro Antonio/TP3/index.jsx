@@ -52,15 +52,15 @@ const EditarDatos = ({ producto, alGuardar, alCancelar }) => {
     }
     const Cancelar = (e) => {
         e.preventDefault();
-        alCancelar();
+        alCancelar(producto.id);
     }
 
     return (
         <form className="form">
             <div className="form-seccion1">
-                    <input type="text" placeholder="PRODUCTO" value={nombreProducto} onChange={cambiarNombreProducto} className="input-form"/>
-                    <input type="text" placeholder="STOCK" value={stock} onChange={cambiarStock} className="input-form"/>
-                    <input type="text" placeholder="CÓDIGO" value={codigo} onChange={cambiarCodigo} className="input-form"/>
+                <input type="text" placeholder="PRODUCTO" value={nombreProducto} onChange={cambiarNombreProducto} className="input-form" />
+                <input type="text" placeholder="CÓDIGO" value={codigo} onChange={cambiarCodigo} className="input-form" />
+                <input type="text" placeholder="STOCK" value={stock} onChange={cambiarStock} className="input-form" />
                 {error && <p className="error">Todos los campos son obligatorios</p>}
             </div>
             <div className="form-seccion2">
@@ -71,14 +71,14 @@ const EditarDatos = ({ producto, alGuardar, alCancelar }) => {
     );
 }
 
-const Mostrar = ({ producto, alEditar, alBorrar }) => {
+const Mostrar = ({ producto, alEditar, alBorrar, incrementarStock }) => {
     const editar = (e) => alEditar();
     const borrar = (e) => alBorrar();
 
     return (
         <div className="panel">
             <div className="panel-seccion-uno">
-                <p className="p-stock">{producto.stock}</p>
+                <p className="p-stock" onClick={incrementarStock}>{producto.stock}</p>
             </div>
             <div className="panel-seccion-dos">
                 <p className="p-nombre">{producto.nombreProducto}</p>
@@ -91,68 +91,82 @@ const Mostrar = ({ producto, alEditar, alBorrar }) => {
         </div>
     )
 }
-const ListaProductos = ({ productos, productoEditando, alAgregar, alEditar, alGuardar, alCancelar, alBorrar }) => {
+
+const ListaProductos = ({ productos, productosEditando, alAgregar, alEditar, alGuardar, alCancelar, alBorrar, incrementarStock }) => {
     return (
         <div className="Lista-productos">
             <div className="titulo-boton">
                 <h1 className="h1-deposito">Control Depósito</h1>
-                <span className="spanAgregar" onClick={() => alAgregar()}><i className="fa-regular fa-plus-square fa-2x botonAgregar"></i></span>
+                <span className="spanAgregar" onClick={() => alAgregar()}><i className="fa-regular fa-plus-square fa-2x"></i></span>
             </div>
+            {productosEditando.some(p => p.id === undefined) && (
+                <EditarDatos key="new" producto={{ id: undefined, nombreProducto: '', stock: '', codigo: '' }} alGuardar={alGuardar} alCancelar={() => alCancelar(undefined)} />
+            )}
             {productos.map(producto => (
-                productoEditando && productoEditando.id === producto.id
-                    ? <EditarDatos key={producto.id} producto={productoEditando} alGuardar={alGuardar} alCancelar={alCancelar} />
-                    : <Mostrar key={producto.id} producto={producto} alEditar={() => alEditar(producto.id)} alBorrar={() => alBorrar(producto.id)} />
+                productosEditando.some(p => p.id === producto.id)
+                    ? <EditarDatos key={producto.id} producto={producto} alGuardar={alGuardar} alCancelar={() => alCancelar(producto.id)} />
+                    : <Mostrar key={producto.id} producto={producto} alEditar={() => alEditar(producto.id)} alBorrar={() => alBorrar(producto.id)} incrementarStock={() => incrementarStock(producto.id)} />
             ))}
-            {productoEditando && !productoEditando.id && <EditarDatos key="new" producto={productoEditando} alGuardar={alGuardar} alCancelar={alCancelar} />}
         </div>
     )
 }
 
-
 const App = () => {
-    let [productoEditando, setProductoEditando] = useState(null);
+    let [productosEditando, setProductosEditando] = useState([]);
     let [productos, setProductos] = useState(ProductosIniciales);
+
+    const ordenarProductos = (productos) => {
+        return productos.slice().sort((a, b) => a.nombreProducto.localeCompare(b.nombreProducto));
+    }
 
     const Guardar = (producto) => {
         if (producto.id) {
             let copia = productos.map(c => c.id === producto.id ? producto : c);
-            setProductos(copia);
+            setProductos(ordenarProductos(copia));
         } else {
             let id = Math.max(...productos.map(c => c.id)) + 1;
             producto.id = id;
             let copia = [...productos, producto];
-            setProductos(copia);
+            setProductos(ordenarProductos(copia));
         }
-        setProductoEditando(null);
+        setProductosEditando(productosEditando.filter(p => p.id !== producto.id && p.id !== undefined));
     }
 
-    const Cancelar = () => {
-        setProductoEditando(null);
+    const Cancelar = (id) => {
+        setProductosEditando(productosEditando.filter(p => p.id !== id));
     }
 
     const Agregar = () => {
-        setProductoEditando({});
+        setProductosEditando([...productosEditando, { id: undefined, nombreProducto: '', stock: '', codigo: '' }]);
     }
 
     const Editar = (id) => {
         let producto = productos.find(c => c.id === id);
-        setProductoEditando(producto);
+        setProductosEditando([...productosEditando, producto]);
     }
 
     const Borrar = (id) => {
         let copia = productos.filter(c => c.id !== id);
-        setProductos(copia);
+        setProductos(ordenarProductos(copia));
+        setProductosEditando(productosEditando.filter(p => p.id !== id));
     }
+
+    const incrementarStock = (id) => {
+        setProductos(productos.map(producto => 
+            producto.id === id ? { ...producto, stock: (parseInt(producto.stock) + 1).toString() } : producto
+        ));
+    };
 
     return (
         <ListaProductos
             productos={productos}
-            productoEditando={productoEditando}
+            productosEditando={productosEditando}
             alAgregar={Agregar}
             alEditar={Editar}
             alGuardar={Guardar}
             alCancelar={Cancelar}
             alBorrar={Borrar}
+            incrementarStock={incrementarStock}
         />
     );
 }

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+    <title>Document</title>
+     <style>
+      
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    }
+
+#root {
+    padding: 20px;
+    margin: 0 auto;
+    width: 400px; 
+    position: relative;
+    flex-direction: column; 
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+li {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.panel1 {
+   
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    width: 100%; 
+    max-width: 280px; 
+    height: 100px;
+    margin: 0 auto; 
+    border-radius: 10px;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 20px 10px 10px 30px;
+
+}
+
+.Action {
+   justify-content: flex-end;
+    display: flex;
+    margin-left: 10px;
+    padding-left: 190px;
+    position: absolute;
+    flex-direction: column; 
+   
+}
+input {
+    width: 65%;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    border: 1px solid black;
+    position: relative;
+    border-radius: 5px ;
+    
+}  
+.btn-cancelar{
+    padding-top: 1px;
+    width: 52px;
+  
+    font-size: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.btn-guardar{
+    padding-bottom: 1px;
+    font-size: 10px;
+    border-radius: 5px;
+    width: 52px;
+    border: 2px solid black;
+    margin-bottom: 4px;
+    
+}
+
+
+.panel {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+    max-width: 300px; 
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    position: relative;
+    
+}
+
+button {
+    background-color: white;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+.Cantidad {
+    color: rgb(30, 19, 187);
+    font-size: 44px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    font-weight: 700;
+}
+
+.Producto {
+    font-weight: 700;
+    font-size: 23px;
+    margin: 0;
+    left: 100px;
+    top: 35px;
+     position: absolute;
+}
+
+.EAN {
+    font-size: 15px;
+    position: absolute;
+    bottom: 20px;
+   
+    left: 102px;
+}
+
+#btn-agregar {
+    font-size: 25px;
+    right: 110px;
+    top: 38px;
+    margin-bottom: 10px;
+    z-index: 2;
+    position: absolute;
+
+}
+
+
+#btn-editar {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    font-size: 20px;
+    z-index: 1;
+    
+}
+
+#btn-borrar {
+    bottom: 10px;
+    right: 10px;
+    position: absolute;
+    font-size: 20px;
+    z-index: 1;
+}
+    </style>
+</head>
+<body>
+    <div id="root"></div> 
+    <script>
+        const ListaProductos = 
+        [{id:1,Nombre:"Yerba Mate", EAN: "583837517", Cantidad:"45"},
+        {id:2,Nombre:"Shampoo", EAN: "633343951", Cantidad:"30"},
+        {id:3,Nombre:"Coca-Cola", EAN: "462490657", Cantidad:"60"},
+        {id:4,Nombre:"Dulce de Leche", EAN: "651536617", Cantidad:"80"},
+        {id:5,Nombre:"Manzana", EAN: "584202248", Cantidad:"90"},
+        {id:6,Nombre:"Banana", EAN: "901854244", Cantidad:"60"},
+        {id:7,Nombre:"Pera", EAN: "425920785", Cantidad:"60"},
+        {id:8,Nombre:"Kiwi", EAN: "763293773", Cantidad:"40"},
+        {id:9,Nombre:"Cerveza Quilmes", EAN: "572860978", Cantidad:"40"},
+        {id:10,Nombre:"Fernet Branca", EAN: "266696992", Cantidad:"15"},
+        {id:11,Nombre:"Jabon Avon", EAN: "765535068", Cantidad:"45"},
+        {id:12,Nombre:"Desinfectante", EAN: "162971758", Cantidad:"45"},
+        {id:13,Nombre:"Detergente", EAN: "625691882", Cantidad:"45"},
+        {id:14,Nombre:"Aromatizante", EAN: "611252726", Cantidad:"45"},
+        {id:15,Nombre:"Ternera", EAN: "473163571", Cantidad:"15"},
+        {id:16,Nombre:"Pollo", EAN: "608861076", Cantidad:"50"},
+        {id:17,Nombre:"Pescado", EAN: "925163430", Cantidad:"20"},
+        {id:18,Nombre:"Queso", EAN: "279303708", Cantidad:"55"},
+        {id:19,Nombre:"Jamon", EAN: "618411573", Cantidad:"55"},
+        {id:20,Nombre:"Salame", EAN: "426615999", Cantidad:"30"},
+        {id:21,Nombre:"Galletas Oreo", EAN: "448691404", Cantidad:"20"},
+        {id:22,Nombre:"Galletas Pepito", EAN: "918870528", Cantidad:"20"},
+        {id:23,Nombre:"Galletas Pepas", EAN: "994077020", Cantidad:"15"},
+        ];
+    </script>
+    <script type="text/babel">
+        const {useState} = React
+        const {createRoot} = ReactDOM
+        
+function Editar({ producto, alGuardar, alCancelar }) {
+        let [Nombre, setNombre] = useState(producto?.Nombre || '');
+        let [EAN, setEAN] = useState(producto?.EAN || '');
+        let [Cantidad, setCantidad] = useState(producto?.Cantidad || '');
+        let [error, setError] = useState(false);
+
+        const cambiarNombre = e => { setNombre(e.target.value); setError(false); }
+        const cambiarEAN = e => { setEAN(e.target.value); setError(false); }
+        const cambiarCantidad = e => { setCantidad(e.target.value); setError(false); }
+
+        const guardar = e => {
+            e.preventDefault();
+            if (Nombre.trim() === '' || EAN.trim() === '' || Cantidad === '') {
+                setError(true);
+                return;
+            }
+            alGuardar({ ...producto, Nombre, EAN, Cantidad });
+        };
+
+        const cancelar = e =>{
+                e.preventDefault()
+                alCancelar ({Nombre,EAN,Cantidad})
+            };
+
+         return (
+            <>
+            <form className="panel1">
+                <div className="Action">
+                    <button className="btn-guardar" onClick={guardar}>Guardar</button>
+                    <button className="btn-cancelar" onClick={cancelar}>Cancelar</button>
+                </div>
+                <input className="i-Nombre" type="text" value={Nombre} placeholder="Nombre Producto" onChange={cambiarNombre} />
+                <input className="i-EAN" type="text" value={EAN} placeholder="EAN" onChange={cambiarEAN} />
+                <input className="i-Cantidad" type="number" placeholder="Cantidad" value={Cantidad} onChange={cambiarCantidad} />
+
+                {error && <p className="error">Llene los Campos</p>}
+            </form>
+            </>
+          );
+        };
+    
+function Mostrar({ producto, alGuardar, alCancelar, alEditar, alBorrar, incrementarCantidad }) {
+    let [editando, setEditando] = useState(false);
+    const editar = (e) => { e.stopPropagation(); setEditando(true); };
+    const cancelar = () => { setEditando(false); };
+
+    return (
+        <div>
+            {editando ? (
+                <Editar 
+                    producto={producto} 
+                    alGuardar={(productoEditado) => {
+                        alGuardar(productoEditado);
+                        setEditando(false);
+                    }} 
+                    alCancelar={() => {
+                        cancelar();
+                        alCancelar();
+                    }} 
+                />
+            ) : (
+                <div onClick={() => incrementarCantidad(producto.id)} className="panel"> 
+                    <p className="Cantidad"> {producto.Cantidad} </p>
+                    <p className="Producto">{producto.Nombre}</p>
+                    <p className="EAN">{producto.EAN}</p>
+                    <button onClick={editar}>
+                        <i id="btn-editar" className="fa-regular fa-pen-to-square"></i>
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); alBorrar(producto.id); }}>
+                        <i id="btn-borrar" className="fa-regular fa-trash-can"></i>
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+}
+function Listado({ productos, alEditar, alBorrar, incrementarCantidad, alGuardar, alCancelar }) {
+    return (
+        <>
+            {productos.map(producto => 
+                <Mostrar 
+                    key={producto.id}
+                    producto={producto} 
+                    alEditar={alEditar}
+                    alBorrar={alBorrar}
+                    incrementarCantidad={incrementarCantidad}
+                    alGuardar={alGuardar}
+                    alCancelar={alCancelar}
+                />
+            )}
+        </>
+    );
+}
+
+function App() {
+    let [producto, setProducto] = useState({});
+    let [editando, setEditando] = useState(false);
+    let [productos, setProductos] = useState(ListaProductos);
+
+    const agregarProducto = (producto) => {
+        let id = Math.max(...productos.map(c => c.id)) + 1;
+        producto.id = id;
+        let copia = [...productos, producto];
+        setProductos(copia);
+        setEditando(false);
+    }
+
+    const guardar = (producto) => {
+        if (producto.id) {
+            let copia = productos.map(c => c.id === producto.id ? producto : c);
+            setProductos(copia);
+        } else {
+            agregarProducto(producto);
+        }
+        setEditando(false);
+    };
+
+    const cancelar = () => {
+        setProducto({});
+        setEditando(false);
+    };
+
+    const editar = (id) => {
+        let producto = productos.find(c => c.id === id);
+        setProducto(producto);
+        setEditando(true);
+    };
+
+    const borrar = (id) => {
+        let copia = productos.filter(c => c.id !== id);
+        setProductos(copia);
+    };
+
+    const agregar = () => {
+        setProducto({});
+        setEditando(true);
+    };
+
+    productos.sort((a, b) => {
+        if (a.Nombre < b.Nombre) {
+            return -1;
+        }
+        if (a.Nombre > b.Nombre) {
+            return 1;
+        }
+        return 0;
+    });
+
+    const incrementarCantidad = (id) => {
+        let copia = productos.map(c => {
+            if (c.id === id && parseInt(c.Cantidad) < 99) {
+                return { ...c, Cantidad: parseInt(c.Cantidad) + 1 };
+            } else {
+                return c;
+            }
+        });
+        setProductos(copia);
+    };
+
+    return (
+        <>
+            <div>
+                <h1>Listado de Productos</h1>
+                <button onClick={agregar}><i id="btn-agregar" className="fa-regular fa-square-plus"></i></button>
+            </div>
+            {editando && (
+                <div>
+                    <Editar producto={producto} alGuardar={guardar} alCancelar={cancelar} />
+                </div>
+            )}
+            <div>
+                <Listado 
+                    productos={productos} 
+                    alEditar={editar} 
+                    alBorrar={borrar} 
+                    incrementarCantidad={incrementarCantidad} 
+                    alGuardar={guardar} 
+                    alCancelar={cancelar} 
+                />
+            </div>
+        </>
+    );
+}
+    const root =createRoot (document.getElementById('root'))
+    root.render(<App />)
+</script>
+</body>
+</html>
