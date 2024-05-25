@@ -10,16 +10,14 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Control dee Deposito</title>
-
+    <title>Control de Depósito</title>
     <style>
         body {
             display: flex;
             justify-content: center;
         }
-
         .card {
-            border: 3.5px solid #580101;
+            border: 3.5px solid #040405;
             padding: 10px;
             margin: 10px;
             width: 600px;
@@ -34,19 +32,18 @@
             font-weight: bold;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
         }
-
         .cantidad {
             font-size: 65px;
             font-weight: bold;
-            color: rgb(74, 1, 1);
+            color: rgb(12, 15, 180);
             margin-left: 60px;
             margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
         }
-
         .info {
             font-size: 28px;
             margin-right: 200px;
@@ -55,67 +52,64 @@
             text-align: start;
             margin-top: 5px;
         }
-
         p {
             margin: 0;
             padding: 0;
         }
-
         .funciones {
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
         }
-
         span {
             margin-bottom: 60px;
         }
-
         .formularios {
             display: inline-block;
         }
-
         input {
             display: flex;
             flex-direction: column;
             margin-bottom: 5px;
         }
-
         button {
             display: flex;
             flex-direction: column;
             margin-bottom: 5px;
             border-radius: 10px;
         }
-
         .input-cantidad {
             width: 170px;
         }
     </style>
 </head>
-
 <body>
     <div id="root"></div>
-
     <script type="text/babel">
         const { createRoot } = ReactDOM;
         const { useState } = React;
-
         const ContactolDeposito = [
-        { id: 1, marca: "Mirinda", codigo: "123789", stock: "15", editando: false },
-        { id: 2, marca: "Schweppes", codigo: "123890", stock: "20", editando: false },
-        { id: 3, marca: "Tonica", codigo: "123891", stock: "30", editando: false },
-        { id: 4, marca: "Manaos", codigo: "123892", stock: "25", editando: false },
-        { id: 5, marca: "Guarana", codigo: "123893", stock: "18", editando: false }
+            { id: 1, marca: "Mirinda", codigo: "1237893423", stock: "15", editando: false },
+            { id: 2, marca: "Schweppes", codigo: "1238903249", stock: "20", editando: false },
+            { id: 3, marca: "Tonica", codigo: "1238914324", stock: "30", editando: false },
+            { id: 4, marca: "Manaos", codigo: "1238923357", stock: "25", editando: false },
+            { id: 5, marca: "Guarana", codigo: "1238936586", stock: "18", editando: false },
+            { id: 6, marca: "Paol", codigo: "9876098745", stock:"10", editando: false }
         ];
-
-        function Mostrar({ control, alEditar, alBorrar }) {
+        function Mostrar({ control, alEditar, alBorrar, AumentarStock }) {
             let tachoborrar = <i className="fa-solid fa-trash"></i>;
             let lapizeditar = <i className="fa-regular fa-pen-to-square"></i>;
-            const editar = (e) => alEditar(control.id);
-            const borrar = (e) => alBorrar(control.id);
+            const editar = (e) => {
+                e.stopPropagation();
+                alEditar(control.id);
+            };
+            const aumentar = () => AumentarStock(control.id);
+            const borrar = (e) => {
+                e.stopPropagation();
+                alBorrar(control.id);
+            };
             return (
-                <div className="card">
+                <div className="card" onClick={aumentar}>
                     <div>
                         <p className="cantidad">{control.stock}</p>
                     </div>
@@ -130,18 +124,15 @@
                 </div>
             );
         }
-
         function Editar({ control, alGuardar, alCancelar }) {
             const [marca, setMarca] = useState(control.marca);
             const [codigo, setCodigo] = useState(control.codigo);
             const [stock, setStock] = useState(control.stock);
-
             const guardar = () => alGuardar(control.id, marca, codigo, stock);
             const cancelar = () => alCancelar(control.id);
             const cantidad = (e) => setStock(e.target.value);
             const logo = (e) => setMarca(e.target.value);
             const codig = (e) => setCodigo(e.target.value);
-
             return (
                 <div className="card">
                     <div>
@@ -156,19 +147,17 @@
                 </div>
             );
         }
-
-        function Agregar({ alAgregarNuevo}) {
+        function Agregar({ alAgregarNuevo, alCancelarAgregar }) {
             const [marca, setMarca] = useState("");
             const [codigo, setCodigo] = useState("");
             const [stock, setStock] = useState("");
-            const cancelar = () => alCancelar();
             const agregar = () => {
                 alAgregarNuevo(marca, codigo, stock);
                 setMarca("");
                 setCodigo("");
                 setStock("");
             };
-
+            const cancelar = () => alCancelarAgregar();
             return (
                 <div className="card">
                     <div>
@@ -183,34 +172,30 @@
                 </div>
             )
         }
-
-        function Deposito({ control, alEditar, alGuardar, alCancelar, alBorrar, alAgregar, alAgregarNuevo }) {
+        function Deposito({ control, alEditar, alGuardar, alCancelar, alBorrar, alAgregar, alAgregarNuevo, alCancelarAgregar, AumentarStock }) {
             let spanagregar = <i className="fa-regular fa-square-plus"></i>;
             return (
                 <>
                     <h2>CONTROL DEPÓSITO <span onClick={alAgregar}>{spanagregar}</span></h2>
-                    {control.agregando && <Agregar alAgregarNuevo={alAgregarNuevo} />}
+                    {control.agregando && <Agregar alAgregarNuevo={alAgregarNuevo} alCancelarAgregar={alCancelarAgregar} />}
                     {control.items.map((item) =>
                         item.editando ? (
                             <Editar key={item.id} control={item} alGuardar={alGuardar} alCancelar={alCancelar} />
                         ) : (
-                            <Mostrar key={item.id} control={item} alEditar={alEditar} alBorrar={alBorrar} />
+                            <Mostrar key={item.id} control={item} alEditar={alEditar} alBorrar={alBorrar} AumentarStock={AumentarStock} />
                         )
                     )}
                 </>
             );
         }
-
         const App = () => {
             const [deposito, setDeposito] = useState({ items: ContactolDeposito, agregando: false });
-
             const Editar = (id) => {
                 setDeposito({
                     ...deposito,
                     items: deposito.items.map((d) => d.id === id ? { ...d, editando: true } : d)
                 });
             };
-
             const Guardar = (id, marca, codigo, stock) => {
                 setDeposito({
                     ...deposito,
@@ -219,7 +204,6 @@
                     )
                 });
             };
-
             const Cancelar = (id) => {
                 setDeposito({
                     ...deposito,
@@ -228,18 +212,19 @@
                     )
                 });
             };
-
             const Borrar = (id) => {
                 setDeposito({
                     ...deposito,
                     items: deposito.items.filter((d) => d.id !== id)
                 });
             };
-
             const Agregar = () => {
                 setDeposito({ ...deposito, agregando: true });
             };
 
+            const CancelarAgregar = () => {
+                setDeposito({ ...deposito, agregando: false });
+            };
             const AgregarNuevo = (marca, codigo, stock) => {
                 const nuevoProducto = {
                     id: deposito.items.length + 1,
@@ -253,7 +238,14 @@
                     agregando: false
                 });
             };
-
+            const AumentarStock = (id) => {
+                setDeposito({
+                    ...deposito,
+                    items: deposito.items.map((d) =>
+                        d.id === id && d.stock < 99 ? { ...d, stock: parseInt(d.stock) + 1 } : d
+                    )
+                });
+            };
             return (
                 <Deposito
                     control={deposito}
@@ -263,9 +255,14 @@
                     alBorrar={Borrar}
                     alAgregar={Agregar}
                     alAgregarNuevo={AgregarNuevo}
+                    alCancelarAgregar={CancelarAgregar}
+                    AumentarStock={AumentarStock}
                 />
             );
         };
-
         const root = createRoot(document.getElementById('root'));
-        root.render(<App />);
+        root.render(<App />);
+    </script>
+</body>
+</html>
+ 
