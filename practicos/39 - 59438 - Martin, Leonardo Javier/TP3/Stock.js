@@ -5,5 +5,4 @@ const StockDisponible = [
     { id: 3, nombre: 'Monitor Samsung SM S20b300 24', codEAN: '333344445555', cantidad: 22 },
     { id: 4, nombre: 'Teclado Redragon Kumara RGB', codEAN: '444455556666', cantidad: 15 },
     { id: 5, nombre: 'Mouse Glorius Gaming - D model', codEAN: '666677778888', cantidad: 13 }
-
 ];

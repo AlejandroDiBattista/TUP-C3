@@ -2,12 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0%;
     padding: 22px;
-    background-color: #1600642a;
+    background-color:white;
 }
 
 #root {
     width: 100%;
-    max-width: 720px;
+    max-width: 590px;
     margin: 0 auto;
 }
 
@@ -20,7 +20,7 @@ h1 {
 
 .panel {
     width: 100%;
-    border: 1px solid #440a919f;
+    border: 1px solid #2509c09f;
     background-color: #fff;
     margin-bottom: 11px;
     border-radius: 11px;
@@ -39,6 +39,7 @@ input {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    display: flex;
 }
 
 label {
@@ -61,7 +62,7 @@ button {
     font-size: 25px;
     border: none;
     border-radius: 12px;
-    background-color: #380446b2;
+    background-color: #060f8bb2;
     color: #fff;
     cursor: pointer;
 }
@@ -76,10 +77,10 @@ button svg {
     font-size: 25px;
     flex-direction: column;
     display: flex;
-    color: #64086d;
+    color: #08206d;
 }
 
-/* Parte de los productos para libros y etc. */
+/* Parte de los productos para componentes y etc. */
 .stock-info {
     padding: 5px;
     flex-grow: 3;
@@ -102,7 +103,7 @@ button svg {
     font-size: 55px;
     font-weight: bold;
     display: flex;
-    color: rgb(162, 0, 255);
+    color: rgb(0, 89, 255);
 }
 
 .edit-inputs {
