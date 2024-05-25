@@ -6,45 +6,155 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <title>58771</title>
+
     <style>
-        body {
-            background-color: lightblue;
-        }
-
-        h1 {
-            font-family: sans-serif;
-
-        }
-
-        .tarjetaCambiar {
+        #root {
+            position: absolute;
+            height: 100%;
+            width: 55%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: fit-content;
+            color: black;
+            font-family:Arial, Helvetica, sans-serif;
+            text-align: center;
             background-color: white;
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-            width:420px;
-            border: 1px solid;
-            box-shadow: 5px 5px 5px;
-            border-radius:15px;
-            font-family: sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-        .tarjetaNormal {
-            margin: 10px;
-            background-color: white;
-            justify-content:space-between;
-            width:420px;
-            border: 1px solid;
-            box-shadow: 5px 5px 5px;
-            border-radius: 15px;
-            font-family: sans-serif;
+        .encabezado{
+            display: flex;
+            position: relative;
+            padding-bottom: 20px;
         }
         
-        .acciones {
-            
+        .encabezado h1{
+            padding-left: 80px;
+            padding-right: 40px;
+            margin-bottom: 0px;
+            font-size: 60px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        
+        #agregar{
+            cursor: pointer;
+            display: flex;
+            position: relative;
+            width: 65px;
+            height: 65px;
+            margin-right: 80px;
+            margin-bottom: 0px;
+            margin-top: 40px;
+            border-radius: 15px;
         }
 
-        .botonAcciones {
-            background-color: dodgerblue;
+        .paneles{
+            padding-left: 70px;
+            padding-right: 80px;
+        }
+
+        .panel{
+            display: flex;
+            position: relative;
+            width: 600px;
+            height: 200px;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-radius: 25px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0);
+            border: 3px solid rgba(0, 0, 0);
+        }
+
+        #cantidad{
+            cursor: pointer;
+            width: 100px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            margin-left: 40px;
+            color: blue;
+            font-weight: bold;
+            font-size: 90px;
+        }
+
+        .principal-info{
+            display: block;
+            width: 50%;
+            padding-top: 10px;
+            padding-bottom: 0px;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        #nombre{
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        #ean{
+            font-size: 25px;
+        }
+
+        .opciones{
+            width: 60px;
+            position: relative;
+            display: block;
+            margin: 20px;
+        }
+
+        #editar{
+            margin-top: 0px;
+            margin-bottom: 70px;
+        }
+
+        #borrar{
+            margin-bottom: 0px;
+        }
+
+        .info-edit{
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            margin: 20px;
+            gap: 10px;
+        }
+
+        .info-edit input{
+            height: 35px;
+            border-radius: 10px;
+            border: 0.1px solid rgba(0, 0, 0, 0.23);
+            font-size: 22px;
+            color: black;
+        }
+
+        .acciones{
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            margin: 20px;
+            gap: 10px;
+        }
+
+        .acciones button{
+            cursor: pointer;
+            height: 40px;
+            border: 2.5px solid black;
+            border-radius: 15px;
+            font-size: 22px;
+        }
+
+        .error{
+            font-weight: bold;
+            color: red;
+            font-style: italic;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
         }
 
     </style>
@@ -56,10 +166,10 @@
         const { createRoot } = ReactDOM
 
         const ProductosIniciales = [
-            {id: 1, nombre: 'Coca Cola', cantidad: '10', codigo: '12345'},
-            {id: 2, nombre: 'Fanta', cantidad: '10', codigo: '23456'},
-            {id: 3, nombre: 'Pepsi', cantidad: '10', codigo: '34567'},
-            {id: 4, nombre: 'Mirinda', cantidad: '10', codigo: '45678'}
+            {codigo: 12345, nombre: 'Coca Cola', cantidad: '10'},
+            {codigo: 23456, nombre: 'Fanta', cantidad: '10'},
+            {codigo: 34567, nombre: 'Pepsi', cantidad: '10'},
+            {codigo: 45678, nombre: 'Mirinda', cantidad: '10'}
         ]
 
         function Editar({producto, alGuardar, alCancelar}) {
@@ -68,26 +178,21 @@
             let [codigo, setCodigo] = useState(producto.codigo)
             let [error, setError] = useState(false)
 
-            const cambiarNombre = e => {// Funciones para manejar los eventos
-                setNombre(e.target.value) 
-                setError(false)
-            }
-            const cambiarCantidad = e => {
-                setCantidad(e.target.value)
-                setError(false)
-            }
-            const cambiarCodigo = e => {
-                setCodigo(e.target.value)
-                setError(false)
-            }
+            const cambiarNombre = e => {setNombre(e.target.value), setError(false)}
+            const cambiarCantidad = e => {setCantidad(e.target.value), setError(false)}
+            const cambiarCodigo = e => {setCodigo(e.target.value), setError(false)}
 
             const guardar = e => {
                 e.preventDefault()
-                if(nombre.trim() === '' || cantidad.trim() === '' || codigo.trim() === ''){
+                if(nombre.trim() === '' || codigo === '' || cantidad === ''){
+                    setError(true)
+                    return
+                } else if(cantidad > 99){
                     setError(true)
                     return
                 }
-                alGuardar({...producto, nombre, cantidad, codigo})
+
+                alGuardar({...producto, nombre, codigo, cantidad})
             }
 
             const cancelar = e => {
@@ -95,115 +200,116 @@
                 alCancelar()
             }
 
-            return <>
-                <form className="tarjetaCambiar">
-                    <label>Nombre</label>
-                    <input type="text" value={nombre} onChange={cambiarNombre}/>
-
-                    <label>Cantidad</label>
-                    <input type="text" value={cantidad} onChange={cambiarCantidad}/>
-
-                    <label>Codigo</label>
-                    <input type="text" value={codigo} onChange={cambiarCodigo}/>
-                    {error && <p className="error">Todos los campos son obligatorios</p>}
+            return(
+                <form className="panel">
+                    <div className="info-edit">
+                        <input type="text" value={nombre} id="nombre-edit" placeholder="Nombre" onChange={cambiarNombre}/>
+                        <input type="text" value={codigo} id="codigo-edit" placeholder="Codigo" onChange={cambiarCodigo}/>
+                        <input type="text" value={cantidad} id="cantidad-edit" placeholder="Cantidad" onChange={cambiarCantidad}/>
+                    
+                        {error && <p className="error">Todos los campos son obligatorios</p>}
+                    </div>
                     <div className="acciones">
                         <button onClick={guardar}>Guardar</button>
-                        <button onClick={cancelar}>Cancelar</button>
+                        <button type="button" onClick={cancelar}>Cancelar</button>
                     </div>
                 </form>
-            </>
+            )
         }
 
-        function Mostrar({ producto, alEditar, alBorrar }) {
-            const editar = (e) => alEditar()
-            const borrar = (e) => alBorrar()
-            return <>
-                <div className="tarjetaNormal">
-                    <p><strong>Nombre:</strong> {producto.nombre}</p>
-                    <p><strong>Cantidad:</strong> {producto.cantidad}</p>
-                    <p><strong>Codigo:</strong> {producto.codigo}</p>
-                    <div className="acciones">
-                        <button className="botonAcciones" onClick={editar}>Editar</button>
-                        <button className="botonAcciones" onClick={borrar}>Borrar</button>
+        function Mostrar({ producto, alGuardar, alBorrar, alSumar, alCancelar }) {
+            let [editando, setEditando] = useState(false)
+
+            const editar = (e) => {setEditando(true)}
+            const sumar = () =>{alSumar(producto.codigo)}
+            const borrar = (e) => setEditando(false)
+            const cancelar = (e) => setEditando(false)
+
+            return (
+                <div>
+                    {editando ? (
+                        <Editar producto={producto} alGuardar={(productoEditado) => {alGuardar(productoEditado); setEditando(false)}} alCancelar={cancelar}/>
+                    ):(<>
+                    <div className="panel">
+                        <p id="cantidad" onClick={sumar}>{producto.cantidad}</p>
+                        <div className="principal-info" onClick={sumar}>
+                            <h1 id="nombre">{producto.nombre}</h1>
+                            <p id="codigo">{producto.codigo}</p>
+                        </div>
+                        <div className="opciones">
+                            <input id="editar" onClick={editar} type="image" src="./iconos/edit.svg"></input>
+                            <input id="borrar" className="botonAcciones" onClick={() => alBorrar(producto.codigo)} type="image" src="./iconos/trash.svg"></input>
+                        </div>
                     </div>
+                    </>)}
                 </div>
-            </>
+
+            )
         }
 
-        function Ficha({productos, alAgregar, alEditar, alBorrar}){
-            if(productos.length === 0)
-                return <h1>No hay productos</h1>
-
+        function Ficha({productos, alBorrar, alEditar, alGuardar, alSumar}){
             return <>
-                <h1>Carrito de Compras</h1>
-                <button onClick={()=>alAgregar()}>Agregar</button>
-                {productos.map(producto => 
-                    <Mostrar producto={producto} 
-                        alEditar={()=>alEditar(producto.id)}
-                        alBorrar={()=>alBorrar(producto.id)}/>
-                    )}
-            </>
-        }
+                {productos.map(producto =>
+                    <Mostrar
+                    key={producto.codigo}
+                    producto={producto}
+                    alGuardar={alGuardar}
+                    alBorrar={alBorrar}
+                    alEditar={alEditar}
+                    alSumar={alSumar}/>)
 
-        function ordenAlfabetico(a, b){
-            if(a.nombre < b.nombre) return -1
-            if(a.nombre > b.nombre) return +1
-            return 0
+                }
+            </>
         }
 
         function App() {
-            let [producto, setProducto] = useState({})
-            let [editando, setEditando] = useState(false)
-            let [productos, setProductos] = useState(ProductosIniciales)
-
-            const guardar = (producto) => {
-                if(producto.id){
-                    //Modificar elemento
-                    let copia = productos.map(c => c.id === producto.id ? producto : c)
-                    setProductos(copia)
-                } else {
-                    //Alta
-                    let id = Math.max(...productos.map(c => c.id)) + 1
-                    let copia = [...productos, {...productos, id}]
-                    setProductos(copia)
-                }
+            const [productos, setProductos] = useState(ProductosIniciales.map(producto => ({...producto, id: `${Math.floor(Math.random()*(9999999999 - 1000000000) + 1000000000)}`})))
+            const [editando, setEditando] = useState(false)
+            
+            const guardar = (productoEditado) => {
+                const copia = productos.map(p => p.id === productoEditado.id ? productoEditado : p)
+                setProductos(copia)
                 setEditando(false)
             }
 
-            const cancelar = () => {
-                setProducto({})
-                setEditando(false)
-                console.log("Cancelar")
-            }
-
-            const agregar = () => {
-                setProducto({})
-                setEditando(true)
-            }
-
-            const editar = (id) => {
-                let producto = productos.find(c => c.id === id) // Busca una id dentro de la lista de los contactos iniciales y cuando lo localiza lo deja en contacto
-                setProducto(producto)
-                setEditando(true) // y la pone en modo edicion
-            }
-
-            const borrar = (id) => {
+            const borrar = (codigo) => {
                 // Baja
-                let copia = productos.filter(c => c.id !== id)
+                let copia = productos.filter(p => p.codigo !== codigo)
                 setProductos(copia)
             }
 
-            productos.sort(ordenAlfabetico)
+            const agregar = () => {
+                setEditando(true)
+            }
 
-            return <>
-                {editando
-                    ?   <Editar producto={producto} alGuardar={guardar} alCancelar={cancelar}/>
-                    :   <Ficha productos={productos} 
-                        alAgregar={agregar}
-                        alEditar={editar} 
-                        alBorrar={borrar}/>
-                }
-            </>
+            const sumar = (codigo) => {
+                let nuevosProductos = productos.map(p => p.codigo === codigo && parseInt(p.cantidad) < 99 ? {...p, cantidad: parseInt(p.cantidad) + 1} : p)
+                setProductos(nuevosProductos)
+            }
+
+            const cancelar = () => {
+                setEditando(false)
+            }
+
+
+            productos.sort((a,b) => a.nombre.localeCompare(b.nombre))
+
+            return (
+                <>
+                    <div className="encabezado">
+                        <h1>Control Depósito</h1>
+                        <input id="agregar" onClick={agregar} type="image" src="./iconos/plus-square.svg"></input>
+                    </div>
+                    {editando && (
+                        <div className="paneles">
+                            <Editar producto={{ nombre: '', codigo: '', cantidad: ''}} alGuardar={(nuevoProducto) => { setProductos([...productos, { ...nuevoProducto }]); setEditando(false); }} alCancelar={cancelar} />
+                        </div>
+                    )}
+                    <div className="paneles">
+                        <Ficha productos={productos} alBorrar={borrar} alGuardar={guardar} alSumar={sumar}/>
+                    </div>
+                </>
+            )
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'))
