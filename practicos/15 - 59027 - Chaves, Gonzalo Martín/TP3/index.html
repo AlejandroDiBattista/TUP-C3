@@ -11,7 +11,8 @@
     <title>Parcial N°3</title>
 
     <style>
-        h1 {
+
+    h1 {
     text-align: center;
     font-size: 50px;
     font-family: Arial, sans-serif;
@@ -26,30 +27,34 @@
 
     .card {
     position: relative;
-    border: 3.5px solid #0b0a0a;
+    border: 0.5px solid rgb(0, 0, 0, 0.2);
     padding: 10px;
     margin: 10px;
     width: 500px;
-    height: 150px;
+    height: 180px;
     font-family: Arial, sans-serif;
     display: flex;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
 } 
 
 .cantidad {
-    font-size: 80px;
+    font-size: 90px;
     font-weight: bold;
     color: blue;
-    margin-left: 20px;
+    margin-left: 30px;
     flex-shrink: 0;
 }
 
 .info {
     font-size: 20px;
-    margin-left: 60px;
-    text-align: start;
+    margin-left: 20px;
+    text-align: left;
     flex-grow: 1;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .iconos {
@@ -61,13 +66,15 @@
 }
 
 .iconoEditar {
-    top: 20px;
-    right: 7px;
+    top: 25px;
+    right: 10px;
+    font-size: xx-large;
 }
 
 .iconoBorrar {
     bottom: 20px;
     right: 10px;
+    font-size: xx-large;
 }
 
 .formulario-contenedor {
@@ -78,43 +85,47 @@
     width: 600px;
     align-items: center;
     justify-content: center;
-    background-color: white;
     margin: 0;
-    border: solid black;
 } 
 
-.formulario-contenedor input {
-    margin: 5px 0;
-    padding: 5px;
-    width: 90%;
+.agregar{
+    border: black solid;
 }
 
+.formulario-contenedor input {
+    margin: 3px 0;
+    padding: 3px;
+    width: 70%;
+} 
+
 .formulario-contenedor button {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
+    height: 25px;
+    font-size: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    background-color: #ffffff;
-    border: 3px solid #0b0a0a;
-    color: #0b0a0a;
+    border-radius: 15px;
+    border:2.5px solid black;
 }
 
 .botones-formulario {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 90%;
-}
+} 
 
 .mensaje-error {
     font-size: 14px;
     color: red;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 3px;
     text-align: center;
     width: 100%;
 }
+
+.nombre{
+    font-size: 40px;
+}
+
+
     </style>
 
 </head>
@@ -173,36 +184,47 @@
                     <div className="mensaje-error">{error}</div>
                     <div className="botones-formulario">
                         <button type="submit">Guardar</button>
-                        <button type="button" onClick={() => alCancelar()}>Cancelar</button>
+                        <button type="button" onClick={() => alCancelar(producto?.codigo)}>Cancelar</button>
                     </div>
                 </form>
             );
         };
 
-        const Producto = ({producto, alEditar, alBorrar, editando, alEnviar, alCancelar,}) => (
-            <div className="card">
+        const Producto = ({producto, alEditar, alBorrar, editando, alEnviar, alCancelar, alIncrementar}) => (
+
+            <button className="card" onClick={()=>!editando && alIncrementar(producto.codigo)}>
+                
                 {editando ? (
                     <ListadoProductos
-                        producto={producto}
-                        alEnviar={alEnviar}
-                        alCancelar={alCancelar}/>):(
+                    producto={producto}
+                    alEnviar={alEnviar}
+                    alCancelar={alCancelar}/>
+                    ):(
+                        
                     <>
-                    <span className="cantidad">{producto.cantidad}</span>
+                    <div className="cantidad">{producto.cantidad}</div>
+
                         <div className="info">
-                            <span>{producto.marca}</span>
-                            <br></br>
+                            <div className="nombre">
+                                <span><strong>{producto.marca}</strong></span>
+                            </div>
                             <br></br>
                             <br></br>
                             <span>{producto.codigo}</span>
                         </div>
-                        <i className="fa-regular fa-pen-to-square iconos iconoEditar"
-                            onClick={() => alEditar(producto.codigo)}></i>
 
-                        <i className="fa-solid fa-trash iconos iconoBorrar"
-                            onClick={() => alBorrar(producto.codigo)}></i>
-                    </>
+                        <i class="fa-regular fa-pen-to-square iconos iconoEditar"
+                            onClick={(e) =>{
+                            e.stopPropagation();
+                            alEditar(producto.codigo)}}></i>
+
+                        <i class="fa-solid fa-trash iconos iconoBorrar"
+                            onClick={(e) =>{
+                            e.stopPropagation();
+                            alBorrar(producto.codigo)}}></i>
+                    </>   
                 )}
-            </div>
+            </button>
         );
 
         const App = () => {
@@ -233,9 +255,19 @@
                 );
             };
 
-            const manejarCancelar = () => {
-                establecerEditando([]);
-                establecerAgregando(false);
+            const manejarCancelar = (codigo) => {
+                if (codigo === undefined){
+                    establecerAgregando(false);
+                }else{
+                establecerEditando((prev)=> 
+                prev.filter((codigoEditando)=> codigoEditando !== codigo));}
+                
+            };
+
+            const incrementarCantidad = (codigo)=>{
+                establecerProductos(
+                    productos.map((p)=>p.codigo === codigo?{...p, cantidad:p.cantidad +1} :p)
+                );
             };
 
             const productosOrdenados = productos.slice().sort((a, b) => {
@@ -270,7 +302,8 @@
                                 alEditar={manejarEditar}
                                 alBorrar={manejarBorrar}
                                 alEnviar={manejarGuardar}
-                                alCancelar={() => establecerEditando([])}
+                                alCancelar={manejarCancelar}
+                                alIncrementar={incrementarCantidad}
                             />
                         ))}
                     </div>
