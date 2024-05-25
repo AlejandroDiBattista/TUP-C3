@@ -64,7 +64,7 @@
             justify-content: space-between;
             max-width: 800px;
             flex-direction: row;
-            width: 800px;
+            width: 400px;
         }
 
         .info {
@@ -115,7 +115,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
-            width: 80%;
+            width: 60%;
         }
 
         .panel .acciones button {
@@ -210,8 +210,8 @@
                 <form className="panel">
                     <div className="inputs">
                         <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
-                        <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
                         <input type="text" value={ean} onChange={cambiarEan} placeholder="Código EAN" />
+                        <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
                     </div>
                     {error && <p className="error">{error}</p>}
                     <div className="acciones">
@@ -222,7 +222,7 @@
             )
         }
 
-        function Mostrar({ bebida, alGuardar, alBorrar, bebidas }) {
+        function Mostrar({ bebida, alGuardar, alBorrar, bebidas, incrementarCantidad }) {
             const [editando, setEditando] = useState(false)
 
             const iniciarEdicion = () => setEditando(true)
@@ -233,7 +233,7 @@
             }
 
             return (
-                <div className="panel">
+                <div className="panel" onClick={() => incrementarCantidad(bebida.ean)}>
                     {editando ? (
                         <Editar
                             bebida={bebida}
@@ -251,8 +251,14 @@
                                 </div>
                             </div>
                             <div className="acciones">
-                                <i className="fas fa-edit icono editar" onClick={iniciarEdicion}></i>
-                                <i className="fas fa-trash icono eliminar" onClick={() => alBorrar(bebida.ean)}></i>
+                                <i className="fas fa-edit icono editar" onClick={(e) => {
+                                    e.stopPropagation()
+                                    iniciarEdicion()
+                                }}></i>
+                                <i className="fas fa-trash icono eliminar" onClick={(e) => {
+                                    e.stopPropagation()
+                                    alBorrar(bebida.ean)
+                                }}></i>
                             </div>
                         </>
                     )}
@@ -283,12 +289,22 @@
                 setNuevasBebidas(nuevasBebidasActualizadas)
                 cerrarFormulario()
             }
+            const incrementarCantidad = (ean) => {
+                const bebidasActualizadas = nuevasBebidas.map(b =>
+                    b.ean === ean ? { ...b, cantidad: b.cantidad + 1 } : b
+                )
+                setNuevasBebidas(bebidasActualizadas)
+            }
 
             return (
                 <div>
                     <div className="titulo-con-boton">
                         <h1>Control Depósito</h1>
-                        {!mostrarFormulario && <button className="icono agregar" onClick={abrirFormulario}><i className="fas fa-plus"></i></button>}
+                        {!mostrarFormulario && (
+                            <button className="icono agregar" onClick={abrirFormulario}>
+                                <i className="fas fa-plus"></i>
+                            </button>
+                        )}
                     </div>
                     {mostrarFormulario && (
                         <Editar
@@ -303,8 +319,13 @@
                         <Mostrar
                             key={bebida.ean}
                             bebida={bebida}
-                            alGuardar={bebidaActualizada => setNuevasBebidas(nuevasBebidas.map(b => b.ean === bebidaActualizada.ean ? bebidaActualizada : b))}
-                            alBorrar={ean => setNuevasBebidas(nuevasBebidas.filter(b => b.ean !== ean))}
+                            alGuardar={bebidaActualizada => {
+                                setNuevasBebidas(nuevasBebidas.map(b => (b.ean === bebidaActualizada.ean ? bebidaActualizada : b)));
+                            }}
+                            alBorrar={ean => {
+                                setNuevasBebidas(nuevasBebidas.filter(b => b.ean !== ean));
+                            }}
+                            incrementarCantidad={incrementarCantidad}
                             bebidas={nuevasBebidas}
                         />
                     ))}
