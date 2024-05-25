@@ -1,0 +1,431 @@
+/* reboot.css */
+
+
+/* index.css */
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* App.css */
+
+/* REBOOTS.css */
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: var(--bs-body-bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* END Reboots */
+footer {
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.title {
+  text-align: center;
+  font-size: 3em;
+  position: relative;
+  right: 0.3em;
+}
+
+.buttonTitle {
+  border: none;
+  color: #111;
+  background-color: #fff;
+  font-size: 1.1em;
+  position: relative;
+  left: 0.6em;
+  bottom: 0.01em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nothing {
+  text-align: center;
+  font-size: 2.25em;
+  font-weight: 500;
+  padding: 4em;
+}
+
+/*Mobile L (425px)*/
+
+@media (max-width: 505px) {
+  footer {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 2.44em;
+  }
+
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}
+
+/*Mobile M (375px)*/
+
+@media (max-width: 405px) {
+  footer {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 2.15em;
+  }
+
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  footer {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 1.8em;
+  }
+
+  .buttonTitle {
+    font-size: 1.2em;
+  }
+
+  .nothing {
+    font-size: 1.5em;
+    padding: 2em;
+  }
+}
+
+/*Edit.css*/
+
+form {
+  width: 460px !important;
+  height: 140px !important;
+  margin: 0 auto 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 3px 6px #00000066;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+input {
+  font-weight: bold;
+  width: calc(100% - 7em);
+  padding: 0.3em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 7px !important;
+  color: #111;
+  background: #fff;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 1.25em;
+  right: 0.75em;
+}
+
+.actions button {
+  font-size: 1.1em;
+  font-weight: 400;
+  width: 5em;
+  padding: 0.1em;
+  border: 2px solid #111;
+  border-radius: 10px;
+  color: #111;
+  background-color: #fff;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.actions button:hover {
+  background-color: #eee;
+  cursor: pointer;
+  user-select: none;
+}
+
+.error {
+  color: #ff0000;
+  margin-top: 0.625em;
+  text-align: center;
+}
+
+/*Mobile L (425px) and Mobile M (375px)*/
+
+@media (max-width: 505px) {
+  form {
+    width: auto;
+    margin: 2.8%;
+  }
+
+  input {
+    width: 70%;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+  form {
+    width: auto;
+    margin: 2%;
+  }
+
+  input {
+    width: 60%;
+    font-size: 0.9em;
+  }
+
+  .actions button {
+    font-size: 1em;
+    border: 1.5px solid #111;
+  }
+}
+
+/*Show.css*/
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 25vh; */
+}
+
+.panel {
+  background-color: #fff;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 6px #00000066;
+  border: 1px solid #ccc;
+  width: 30em;
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.product-info {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.product-count {
+  font-size: 4em;
+  color: #0000ff;
+  text-align: left;
+  margin-top: 0.6em;
+  margin-left: 0.5em;
+  user-select: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.product-count.align-right {
+  margin-right: 0.1em;
+  margin-left: 0.5em;
+}
+
+.product-details {
+  margin-top: 1.6em;
+  margin-left: 1.875em;
+}
+
+.product-details.align-right {
+  margin-top: 1.85em;
+  margin-left: 1.25em;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0;
+}
+
+.product-code {
+  font-size: 1.3em;
+  text-align: left;
+  margin: 0.888em 0 0 0;
+}
+
+.button-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-button,
+.delete-button {
+  width: 0;
+  height: 0;
+  color: #111;
+  background-color: #fff;
+  position: absolute;
+  border: none;
+  border-radius: 1px;
+  cursor: pointer;
+  font-size: 2.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.edit-button {
+  top: 0;
+  left: 12.1em;
+}
+
+.delete-button {
+  top: 2.5em;
+  left: 12.1em;
+}
+
+/*Mobile L (425px)*/
+
+@media (max-width: 505px) {
+
+  .edit-button,
+  .delete-button {
+    position: static;
+    font-size: 2.2em;
+    margin: 0 1em 1.2em 0;
+    padding: 0;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+  }
+
+  .product-name {
+    font-size: 1.8em;
+  }
+
+  .product-code {
+    font-size: 1.1em;
+  }
+
+  .product-count {
+    font-size: 4rem;
+  }
+}
+
+/*Mobile M (375px)*/
+
+@media (max-width: 405px) {
+
+  .edit-button,
+  .delete-button {
+    position: static;
+    font-size: 1.9em;
+    margin: 0 1.2em 1.2em 0;
+    padding: 0;
+  }
+
+  .product-details.align-right {
+    margin-right: 0.6em;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+  }
+
+  .product-name {
+    font-size: 1.8em;
+  }
+
+  .product-code {
+    font-size: 1.1em;
+  }
+
+  .product-count {
+    font-size: 4rem;
+  }
+}
+
+/*Mobile S (320px)*/
+
+@media (max-width: 325px) {
+
+  .edit-button,
+  .delete-button {
+    font-size: 2em;
+    margin: 0 1em 1.3em 0.5em;
+    padding: 0;
+  }
+
+  .product-details.align-right {
+    margin-left: -0.1em;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+  }
+
+  .product-name {
+    font-size: 1.6em;
+  }
+
+  .product-code {
+    font-size: 0.8em;
+  }
+
+  .product-count {
+    font-size: 2.8rem;
+  }
+}
