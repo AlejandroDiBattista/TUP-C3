@@ -4,11 +4,11 @@ body {
     padding: 0;
     background-color: #f5f5f5;
 }
+
 main {
     padding: 40px;
     display: flex;
     justify-content: center;
-    
 }
 
 #app {
@@ -25,29 +25,33 @@ main {
     display: flex;
     align-items: center;
     position: relative;
-    height: 90px;
+    height: 60px;
     width: 300px;
 }
 
 .producto p {
     margin: 0;
     text-align: center;
+    padding-top: 30px;
 }
 
 .producto .detalles {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 40px; 
+    margin-left: 10px;
 }
 
 .producto .nombre {
     font-weight: bold; 
 }
 
-.producto .stock {
-    font-size: 50px; 
-    color: #5703f4;
+.producto .stock button {
+    font-size: 60px; 
+    color: rgb(26, 0, 172); 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
 }
 
 .producto .acciones {
@@ -56,10 +60,11 @@ main {
     right: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    
 }
 
+.producto .acciones button {
+    margin-bottom: 60px;
+}
 
 h1 {
     margin-top: 0;
@@ -73,24 +78,26 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     margin-bottom: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    
+    
 }
 
 button {
-    padding: 10px 16px; 
-    font-size: 20px;
-    border: none;
-    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     background-color: #ffffff;
     color: rgb(10, 10, 10);
     cursor: pointer;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
+    
 }
 
 button:hover {
@@ -115,3 +122,28 @@ p {
     padding: 10px;
 }
 
+.panel {
+    position: relative;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+    width: 400px;
+    justify-self: unset;
+}
+
+.panel .acciones {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel .acciones .guardar,
+.panel .acciones .cancelar {
+    padding: 8px 12px;
+    font-size: 16px;
+    margin: 5px 0;
+    margin-bottom: 10px;
+}
