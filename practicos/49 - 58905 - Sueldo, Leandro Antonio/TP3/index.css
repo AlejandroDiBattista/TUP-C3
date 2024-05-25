@@ -32,13 +32,8 @@
     justify-content: flex-start;
 }
 
-.botonAgregar{
-    justify-content:flex-end;
-    margin-left: 20px;
-}
-
-
 .panel{
+
     width: 90%;
     height: 120px;
     display: flex;
@@ -70,6 +65,7 @@
     width: 32%;
     justify-content: space-around;
 }
+
 .p-stock{
 
     margin-top: 31px;
@@ -89,12 +85,20 @@
     font-size: 20px;
 }
 
-.spanBorrar{
-    justify-content: space-between;
+.spanAgregar{
+    width: 10%;
+    height: 33px;
+    margin-left: 20px;
 }
 
-.spanAgregar{
-    width: 20%;
+.spanEditar{
+    width: 50%;
+    margin:auto;
+}
+
+.spanBorrar{
+    width: 50%;
+    margin:auto;
 }
 
 .form{
