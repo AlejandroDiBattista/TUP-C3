@@ -1,7 +1,7 @@
 # Evaluación TP3 - C3
 
 ## 03 - 58931 - Cabrera, Lucas Nahuel
-- Aprobado: copia 
+- Aprobado: 0 copia 
 - nota: Es copia exacta con C9 - 08 - 59058 - Monaco Torrente, Matias
 
 ## 04 - 58771 - Calvo Maderuelo, Carlos M
