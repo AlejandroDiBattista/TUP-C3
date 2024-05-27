@@ -279,7 +279,7 @@
                         <label>Código EAN</label>
                         <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} />
                         <label>Cantidad</label>
-                        <input type="number" value={cantidad} onChange={cambiarCantidad} onKeyDown={handleKeyDown} />
+                        <input type="number" value={cantidad} onChange={cambiarCantidad} />
                         {error && <p className="error">Todos los campos son obligatorios y la cantidad debe ser mayor que 0</p>}
                         <div className="actions">
                             <button className="save" onClick={guardar}>Aceptar</button>

@@ -1,8 +1,8 @@
 # Evaluación TP3 - C3
 
 ## 03 - 58931 - Cabrera, Lucas Nahuel
-- Aprobado: 0 copia 
-- nota: Es copia exacta con C9 - 08 - 59058 - Monaco Torrente, Matias
+- Aprobado: 9
+- nota: Uso extraño del KeyDown, no funcion el formulario de agregar
 
 ## 04 - 58771 - Calvo Maderuelo, Carlos M
 - Aprobado: 9
@@ -17,7 +17,7 @@
 - Aprobado: 10
 - No guarda los datos en localStorage
 
-## 07 - 58770 - Carabajal, Ariadna Micael
+## 07 - 58770 - Carabajal, Ariadna Micaela
 - Aprobado: 10 perfecto!
 - En la validación de errores no indica cuál fue el error. (código EAN)
 
