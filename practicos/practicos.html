@@ -862,7 +862,7 @@
                 <div className="ver">
                     {
                     alumno[entrega] 
-                        ? <a href={ubicar(alumno.ubicacion, entrega)}>Ver Trabajo {(entrega == "TP3") && <b>(nota {nota})</b>}</a> 
+                        ? <a href={ubicar(alumno.ubicacion, entrega)}>{entrega} | Ver Trabajo {(entrega == "TP3") && nota && <b>(nota {nota})</b>}</a> 
                         : <span className="falta">{entrega} ❌</span>
                     }
                 </div>
