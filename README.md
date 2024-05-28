@@ -15,6 +15,7 @@ Hacer una aplicacion que permita mostrar el clima actual en la ciudad elegida.
 Para hacer la aplicación recomendamos usar los siguientes recursos:
 - https://openweathermap.org/ 
     Para consultar el API del clima
+    API -> "Current weather data" -> "Built-in API request by city name"
 
 - https://picocss.com/
     Para dar formato a la pagina
