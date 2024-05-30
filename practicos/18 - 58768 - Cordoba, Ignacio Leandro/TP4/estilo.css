@@ -1,9 +1,38 @@
 body {
     background-color: #ccc;
-    height: 100vh;
+    height: auto;
+    
 }
-
 #root {
     margin: 0 auto;
     max-width: 500px;
+    padding-bottom: 20px;
+}
+
+.ciudades{
+    display: flex;
+    align-items: flex-end;
+}
+
+.contenedor h2, p{
+    color: #393d44;
+}
+
+p{
+    font-size: 20px;
+}
+
+.contenedor footer{
+    background-color: white;
+    border-top:  1px solid #edeef0;
+}
+
+.iconos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: lightblue;
+    border-radius: 10px;
 }
