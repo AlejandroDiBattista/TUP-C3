@@ -8,7 +8,7 @@ body {
     max-width: 500px;
 }
 
-.cabecera{
+.cabecera {
     display: flex;
     justify-content: space-between;
 
@@ -19,11 +19,11 @@ body {
     }
 }
 
-.panelClima{
+.panelClima {
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
-    
+
 }
 
 .icono {
@@ -32,7 +32,8 @@ body {
     background-color: cornflowerblue;
     border-radius: 10px;
     justify-content: center;
-margin: 10vh 0 5vh;
+    margin: 5vh 0 5vh;
+
     img {
         width: 100%;
     }

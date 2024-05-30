@@ -51,10 +51,10 @@ const WeatherApp = () => {
                 <div className="panelClima">
                     <h2>{weatherData.name}</h2>
                     <div className="icono">
-                        <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="weather icon" />
+                        <img src={`./iconos/${weatherData.weather[0].icon}.svg`} alt="weather icon" />
                     </div>
-                    <h1>Temp: {weatherData.main.temp} °C</h1>
-                    <p>Mínima: {weatherData.main.temp_min} °C / Máxima: {weatherData.main.temp_max} °C</p>
+                    <h1>Temp: {weatherData.main.temp.toFixed(1)} °C</h1>
+                    <p>Mínima: {weatherData.main.temp_min.toFixed(1)} °C / Máxima: {weatherData.main.temp_max.toFixed(1)} °C</p>
                     <p>Humedad: {weatherData.main.humidity}%</p>
                 </div>
             )}
