@@ -7,3 +7,39 @@ body {
     margin: 0 auto;
     max-width: 500px;
 }
+strong
+ {
+color: black;
+font-size: 30px;
+ }
+
+
+ h1,p,h2
+ {
+    color: black;
+    padding-right: 50px;
+ 
+ }
+ .contenedor
+ {
+    width: 500px;
+    height: 470px;
+
+   
+ }
+ .imagen
+ {
+   width:450px ;
+   height: 150px;
+
+
+ }
+ .card
+ {
+    display: flex;
+   justify-content: left;
+    margin-top: 20px;
+    background-color: antiquewhite;
+    margin-left:10px;
+
+ }
