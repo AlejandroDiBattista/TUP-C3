@@ -2,8 +2,40 @@ body {
     background-color: #ccc;
     height: 100vh;
 }
-
 #root {
     margin: 0 auto;
     max-width: 500px;
+}
+strong
+ {
+color: black;
+font-size: 30px;
+ }
+ h1,p,h2
+ {
+    color: black;
+    padding-right: 1px;
+    margin-bottom: 5px;
+ }
+ 
+ .imagen
+ {
+   width: 600pxpx;
+   height: 500px;
+
+  background-color:#cef1fc;
+  border-radius: 10px;
+
+ }
+ .card
+ {
+    background-color: rgb(255, 255, 255);
+    
+    justify-content: center;
+   
+ }
+ .input
+ {
+    background-color: rgb(255, 255, 255);
+    color:black;
 }
