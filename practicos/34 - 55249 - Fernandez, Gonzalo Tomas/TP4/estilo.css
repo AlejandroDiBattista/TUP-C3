@@ -1,9 +1,112 @@
 body {
-    background-color: #ccc;
-    height: 100vh;
-}
+  background-color: #ccc;
+  height: auto;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
 
 #root {
-    margin: 0 auto;
-    max-width: 500px;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+nav {
+  width: 23.7em;
+  height: 3em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0;
+}
+
+nav h2 {
+  color: #2e3337;
+  margin: 0;
+  font-size: 1.8;
+}
+
+nav ul li {
+  cursor: pointer;
+  font-size: smaller;
+  height: auto;
+}
+
+nav ul li a {
+  color: #286591;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+input[type="search"] {
+  width: calc(107% - 2em);
+  height: calc(10% - 2em);
+  font-size: 0.8em;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4em;
+  color: #2e3337;
+  background-color: #f0f0f0;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%232e3337" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>') no-repeat center;
+  cursor: pointer;
+} /*Para cambiar el color de background, en el atributo stoke dentro de url, empezando por %23'código hexadecimal'*/
+
+article {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+article header {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-right: 1em;
+  margin-bottom: 1rem;
+  background-color: #f0f0f0;
+  color: #2e3337;
+  border-bottom: 1px #ddd solid;
+}
+
+img {
+  margin: 0 1em;
+  border-radius: 2em;
+  background-color: #add9e6;
+}
+
+article footer {
+  border-top: 1px #ddd solid;
+  margin-top: 1rem;
+  background-color: #f0f0f0;
+}
+
+footer h3 {
+  color: #2e3337;
+  font-size: 1.25rem;
+}
+
+footer p {
+  color: #2e3337;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.footer-text {
+  text-align: center;
+  color: #2e3337;
 }
