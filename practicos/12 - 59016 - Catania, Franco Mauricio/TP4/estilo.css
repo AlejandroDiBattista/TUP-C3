@@ -15,7 +15,7 @@ main {
 }
 
 .card {
-  background-color: aliceblue;
+  background-color: white;;
   border-radius: 10px;
   padding: 20px;
   height: 500px;
@@ -44,15 +44,15 @@ main {
 }
 
 .card header {
-  background-color: aliceblue;
-  border: aliceblue;
+   background-color: white; 
+  border: white;
   margin-bottom: 0x;
   padding: 10px 20px;
 }
 
 footer {
-  background-color: aliceblue;
-  border: aliceblue;
+ background-color: white; /* Super blanca */
+  border: white; 
   padding: 10px 20px;
 }
 
@@ -128,11 +128,13 @@ input[type="search"] {
   border-radius: 30px;
   width: 100%;
   height: 40px;
-  background-color: aliceblue;
+  background-color: white;
   margin-bottom: 20px;
 }
 
 input[type="search"]::placeholder {
   color: #999;
 }
-
+.contenedor{
+  border-radius: solid black 10px;
+}
