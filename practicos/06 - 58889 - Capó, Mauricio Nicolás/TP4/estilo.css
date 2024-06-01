@@ -1,9 +1,80 @@
 body {
     background-color: #ccc;
-    height: 100vh;
+   padding-bottom: 1px;
+    text-decoration: none;
 }
 
 #root {
     margin: 0 auto;
     max-width: 500px;
+}
+.Buscador {
+    text-align: center; 
+}
+.Buscador input {
+    width: 75%;
+    height: 45px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 30px;
+    border: 1px solid #ffffff;
+    border-color: white;
+    background-color: white;
+    color: black;
+}
+nav{
+    justify-content: space-around;
+}
+a{
+    text-decoration: none;
+    color: rgb(43, 124, 201);
+}
+li{
+    color: black;
+}
+ul{
+    background-color: #ccc;
+}
+.Titulo {
+    font-size: 30px;
+}
+article>footer, article>header{
+    background-color: white;
+}
+article{
+    background-color: white;
+}
+.Favoritos{
+    font-size: 15px;
+    padding-top: 15px;
+}
+p{
+    color: #181c25;
+}
+.No-Encontrado {
+    color: #181c25;
+}
+.icono{
+    width: 200px;
+    height: 210px;
+   
+}
+.icono-container {
+    display: flex;
+    justify-content: center; 
+    background-color: rgb(144, 190, 211);
+    border-radius: 10px;
+  }
+.card-container{
+    width: 87%;
+    justify-content: center;
+    padding-left: 68px;
+}
+.card-container h1  {
+    color: #181c25;
+    font-size: 25px;
+}
+.Msj{
+    text-align: center;
+   
 }
