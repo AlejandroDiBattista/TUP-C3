@@ -1,3 +1,7 @@
+html{
+    background-color: #ccc;
+}
+
 body {
     background-color: #ccc;
     height: 100vh;
@@ -6,4 +10,65 @@ body {
 #root {
     margin: 0 auto;
     max-width: 500px;
+    padding-bottom: 20px;
+}
+
+.titulo{
+    color: #393d44;
+    font-size: 40px;
+}
+
+.ciudad{
+    font-size: 22px;
+    color: #008cc4;
+    text-decoration: none;
+}
+
+.ciudades{
+    display: flex;
+    align-items: flex-end;
+}
+
+.buscar{
+    background-color: white;
+    border: none;
+    color: #393d44;
+}
+
+.contenedor{
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.contenedor h2, p{
+    color: #393d44;
+}
+
+p{
+    font-size: 20px;
+}
+
+.contenedor header{
+    background-color: white;
+    border-bottom: 0.05px solid #edeef0;
+}
+
+.contenedor footer{
+    background-color: white;
+    border-top:  1px solid #edeef0;
+}
+
+.iconos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: lightblue;
+    border-radius: 10px;
+}
+
+.iconos img{
+    width: 70%;
 }
