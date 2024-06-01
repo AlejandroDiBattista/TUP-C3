@@ -1,0 +1,38 @@
+/* App.css */
+@import url('https://unpkg.com/@picocss/pico@1.*/css/pico.min.css');
+
+.container {
+  padding: 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.card {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 1rem;
+}
+
+.card-container {
+  text-align: center;
+}
+
+.icono {
+  width: 100px;
+  height: 100px;
+}
+
+.footer-card {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
