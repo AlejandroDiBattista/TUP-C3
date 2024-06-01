@@ -101,7 +101,7 @@ return(
 </nav>
  
   <input
-
+  className="input"
   type="search"
   placeholder="BUSCAR"
   onKeyDown={Buscar}
@@ -111,18 +111,28 @@ return(
 <div className="card">
  
  { (valores) ? ( 
-  <div className="contendor">  
-    <h1> {valores.name}</h1> 
-    <img src={Iconos(iconos)} className="imagen" />
-     <p> <strong>Temperatura:{valores.main.temp}&deg;</strong></p>
 
-    <div>
-      <p> maxima:{valores.main.temp_max}&deg; /
+<div>
+<article className="card">
+  <header className="card">
+     <h1> {valores.name} </h1>
+    </header>
+    <img src={Iconos(iconos)} className="imagen" />
+  <footer className="card">
+  <p> <strong>Temperatura:{valores.main.temp}&deg;</strong></p>
+  <p> maxima:{valores.main.temp_max}&deg; /
       minima: {valores.main.temp_min}&deg; </p>
       <p>humedad:{valores.main.humidity}</p>
-    </div>
+    
+  </footer>
+</article>
 
-    </div>
+
+</div>
+      
+
+      
+    
    ) :
     ( 
       <h2>{"dato no encontrado"} </h2>

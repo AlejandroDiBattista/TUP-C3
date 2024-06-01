@@ -17,29 +17,30 @@ font-size: 30px;
  h1,p,h2
  {
     color: black;
-    padding-right: 50px;
+    padding-right: 1px;
+    margin-bottom: 5px;
  
  }
- .contenedor
- {
-    width: 500px;
-    height: 470px;
-
-   
- }
+ 
  .imagen
  {
-   width:450px ;
+   width:500px;
    height: 150px;
 
+  background-color: rgb(122, 195, 227);
+  border-radius: 10px;
 
  }
  .card
  {
-    display: flex;
-   justify-content: left;
-    margin-top: 20px;
     background-color: antiquewhite;
-    margin-left:10px;
-
+  
+    justify-content: center;
+   
  }
+ .input
+ {
+    background-color: antiquewhite;
+    color: black;  
+ }
+ 
