@@ -1,5 +1,7 @@
 // const express = require('express');
 import express from "express"
+import morgan from "morgan"
+import cors from "cors"
 
 const app = express();
 
@@ -15,6 +17,11 @@ const app = express();
 //delete -> DELETE /productos/:id (devuelve json con los datos eliminados)
 app.use(express.json())
 
+app.use(morgan("dev"))
+app.use(express.static("dist"))
+
+app.use(cors("http://localhost:3000"))
+
 // REST
 let personas = [
     { id: 1, nombre: "Alejandro", apellido: "Gonzalez" },
@@ -25,6 +32,7 @@ let personas = [
 
 // READ_ALL
 app.get("/personas", (req, res) => {
+    res.status(202)
     res.json(personas)
 })
 
@@ -65,6 +73,12 @@ app.put("/personas/:id", (req, res) => {
 // DELETE
 app.delete("/personas/:id", (req, res) => {
     const { id } = req.params
+    let persona = personas.find(p => p.id == id)
+    if (!persona) {
+        res.status(404)
+        res.send("Persona no encontrada")
+        return
+    }
     personas = personas.filter(persona => persona.id != id)
     res.json(personas)
 })
