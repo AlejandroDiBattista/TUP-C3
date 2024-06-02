@@ -1,9 +1,40 @@
 body {
     background-color: #ccc;
-    height: 100vh;
+    padding: 2vh 0;
 }
 
 #root {
     margin: 0 auto;
     max-width: 500px;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        color: cornflowerblue;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.panelClima {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+
+.icono {
+    display: flex;
+    width: 100%;
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    justify-content: center;
+    margin: 5vh 0 5vh;
+
+    img {
+        width: 100%;
+    }
 }

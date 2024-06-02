@@ -1,0 +1,71 @@
+body {
+    background-color: #ccc;
+    height: 100vh;
+    padding: 2vh 0;
+    font-family: Arial, sans-serif; /* Utiliza la fuente que prefieras */
+}
+
+#root {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra verticalmente los elementos de la cabecera */
+
+    button {
+        color: cornflowerblue;
+        background-color: transparent;
+        border: none;
+        font-size: 16px; /* Tamaño de fuente ajustado */
+        cursor: pointer;
+        transition: color 0.3s; /* Efecto de transición al pasar el ratón */
+    }
+
+    button:hover {
+        color: #6495ED; /* Cambia el color al pasar el ratón */
+    }
+}
+
+.panelClima {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px; /* Reducir el padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.panelClima h2 {
+    font-size: 20px; /* Reducir el tamaño de fuente del título */
+}
+
+.panelClima p {
+    font-size: 14px; /* Reducir el tamaño de fuente del texto */
+    margin: 5px 0; /* Reducir el margen */
+}
+
+.icono {
+    margin: 3vh 0; /* Reducir el margen vertical */
+    border-radius: 8px; /* Reducir el radio de borde */
+}
+
+.icono img {
+    width: 80px; /* Reducir el tamaño del icono */
+    height: auto;
+}
+.icono-fondo {
+    background-color: rgba(173, 216, 230, 0.5); /* Celeste suave con una opacidad del 50% */
+    border-radius: 10px; /* Ajusta el radio de borde para crear bordes suaves */
+    padding: 10px; /* Ajusta el espacio alrededor del logo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave al fondo */
+    width: 120px; /* Ajusta el ancho del contenedor al tamaño del icono */
+    height: 120px; /* Ajusta el alto del contenedor al tamaño del icono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

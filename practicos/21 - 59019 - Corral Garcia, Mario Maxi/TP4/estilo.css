@@ -1,5 +1,5 @@
 body {
-    background-color: #ccc;
+    background-color: #cef1fc;;
     height: 100vh;
 }
 
@@ -7,3 +7,39 @@ body {
     margin: 0 auto;
     max-width: 500px;
 }
+strong
+ {
+color: black;
+font-size: 30px;
+ }
+
+
+ h1,p,h2
+ {
+    color: black;
+    padding-right: 1px;
+    margin-bottom: 5px;
+ 
+ }
+ 
+ .imagen
+ {
+   width:500px;
+   height: 150px;
+
+  background-color: #3dc5f5;
+  border-radius: 10px;
+
+ }
+ .card
+ {
+    background-color: rgb(255, 255, 255);
+    
+    justify-content: center;
+   
+ }
+ .input
+ {
+    background-color: rgb(255, 255, 255);
+    color: black;  
+ }

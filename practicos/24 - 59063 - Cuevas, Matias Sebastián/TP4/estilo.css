@@ -7,3 +7,40 @@ body {
     margin: 0 auto;
     max-width: 500px;
 }
+strong
+ {
+color: black;
+font-size: 30px;
+ }
+
+
+ h1,p,h2
+ {
+    color: black;
+    padding-right: 1px;
+    margin-bottom: 5px;
+ 
+ }
+ 
+ .imagen
+ {
+   width:500px;
+   height: 150px;
+
+  background-color: rgb(122, 195, 227);
+  border-radius: 10px;
+
+ }
+ .card
+ {
+    background-color: antiquewhite;
+  
+    justify-content: center;
+   
+ }
+ .input
+ {
+    background-color: antiquewhite;
+    color: black;  
+ }
+ 

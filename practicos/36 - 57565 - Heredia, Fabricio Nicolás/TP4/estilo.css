@@ -1,9 +1,80 @@
 body {
     background-color: #ccc;
-    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 #root {
     margin: 0 auto;
     max-width: 500px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: #000;
+    text-align: center;
+}
+
+.lista-ciudades {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.enlace-ciudad {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.enlace-ciudad:hover {
+    text-decoration: underline;
+}
+
+.entrada-busqueda {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.contenedor-clima {
+    background-color: #edeef0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.contenedor-clima header,
+.contenedor-clima footer {
+    padding: 10px;
+    background-color: #edeef0;
+}
+
+.contenedor-clima h2,
+.contenedor-clima p {
+    color: #000;
+    margin: 0;
+}
+
+.contenedor-clima p {
+    font-size: 20px;
+}
+
+.contenedor-clima footer {
+    background-color: white;
+    border-top: 1px solid #edeef0;
+}
+
+.icono-clima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+    background-color: rgb(172, 215, 229);
+    border-radius: 10px;
+    margin: 10px 0;
 }

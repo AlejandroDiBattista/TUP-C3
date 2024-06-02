@@ -1,9 +1,45 @@
 body {
-    background-color: #ccc;
-    height: 100vh;
+    background-color: #cccccc;
+    min-height: 100vh;
+}
+
+html{
+    min-height: 100vh;
+    background-color: #cccccc;
+
 }
 
 #root {
     margin: 0 auto;
     max-width: 500px;
+}
+
+.TITULO{
+    color: #2E3237;
+    font-size: 50px;
+}
+
+input{
+    color: #2E3237;
+    background-color: #ffffff;
+    border: #ffffff;
+}
+
+article{
+    background-color: #ffffff;
+}
+
+hr{
+    border-style: none;
+    height: 1px;
+    background-color: #8f8e8e50;
+}
+#imagen{
+    margin: 3%;
+    background-color: #ADD9E6;
+    border-radius: 3%;
+}
+
+h2,h3,p{
+    color: #2E3237;
 }

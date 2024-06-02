@@ -1,9 +1,76 @@
 body {
     background-color: #ccc;
-    height: 100vh;
+    
 }
 
 #root {
     margin: 0 auto;
     max-width: 500px;
+    padding-bottom: 20px;
+}
+
+.clima{
+    color: rgb(31, 31, 31);
+    font-size: 40px;
+}
+
+.ciudad{
+    font-size: 22px;
+    color: rgb(101, 170, 190);
+    text-decoration: none;
+}
+
+.ciudades{
+    display: flex;
+    align-items: flex-end;
+}
+
+.buscar{
+    background-color: rgb(250, 250, 250);
+    border: none;
+    color: rgb(20, 20, 20);
+}
+
+.contenedor{
+    padding: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+.contenedor h2, p{
+    color: rgb(90, 90, 90, .8);
+}
+
+p{
+    font-size: 20px;
+    text-align: center;
+    color: rgb(30, 30, 30);
+}
+
+.contenedor header{
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(100, 100, 100);
+    border-radius: 5px;
+}
+
+.contenedor footer{
+    background-color: rgb(255, 255, 255);
+    border-top:  1px solid rgb(100, 100, 100);
+}
+
+.iconos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+    background-color: rgb(100, 190, 210);
+    border-radius: 15px;
+}
+
+.iconos img{
+    width: 70%;
+}
+.error{
+    color: rgb(240, 10, 10);
+    font-size: 25px;
 }
