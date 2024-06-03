@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 
 const API_KEY = 'b76cc060695cc26ce15771836164cc66';
 
@@ -114,7 +114,7 @@ function App() {
           values !== false ? (
             <article>
               <header><h2>{values.name}</h2></header>
-              <img src={Icons(icon)} alt="Ícono del clima" />
+              <img src={`./iconos/${icon}.svg`} alt="Ícono del clima" />
               <footer>
                 <div className="ContenedorCard">
                   <p className="temp">Temperatura: {values.main.temp.toFixed(0)}&deg;C</p>
@@ -135,5 +135,3 @@ function App() {
     </>
   );
 }
-
-export default App;
