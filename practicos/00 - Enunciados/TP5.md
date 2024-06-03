@@ -17,7 +17,7 @@ Si la persona a actualizar tiene el campo "borrado = true", debe realizarse un b
 Para verificar que la funcionalidad ha sido realizada con éxito, se han provisto **pruebas automatizadas**. 
 Todas las pruebas deben ser superadas correctamente para que se considere que el trabajo está bien realizado.
 
-Para realizar las funciones, se deben modificar las dos funciones "GET" y "PUT" en el archivo "app.js".
+Para realizar las funciones, se deben modificar las dos funciones "GET" y "PUT" en el archivo "src/app.js".
 
 Para correr las pruebas, deben instalarse las dependencias una única vez mediante el comando `npm install`, y luego se deben correr los tests con el comando `npm run test`.
 
