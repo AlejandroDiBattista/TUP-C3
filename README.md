@@ -29,7 +29,7 @@ Para correr las pruebas, deben instalarse las dependencias una única vez median
 > 2. Descargar la última versión del repositorio del curso (fetch).
 > 3. Crear una nueva rama para tus cambios (new branch) (TP5-{alumno}).
 > 4. Abrir la carpeta correspondiente a tu nombre de usuario (practicos/{alumno}/TP5).
-> 5. **Implementar las funciones GET y PUT en src/app.js** (sin alterar ninguna otra carpeta).
+> 5. **Implementar las funciones GET y PUT en app.js** (sin alterar ninguna otra carpeta).
 > 6. **Correr todos los tests con `npm run test`**.
 > 7. Confirmar los cambios (commit).
 > 8. Realizar una solicitud de publicación (pull request).
