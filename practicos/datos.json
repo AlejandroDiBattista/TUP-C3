@@ -11,7 +11,8 @@
     "TP1": false,
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-02",
@@ -25,7 +26,8 @@
     "ubicacion": "./02 - 59204 - Aybar, Anibal Cesar Daniel",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-03",
@@ -41,7 +43,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "nota: Uso extraño del KeyDown, no funcion el formulario de agregar",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-04",
@@ -57,7 +60,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "Falta iconos \nNo convierte cantidad a entero en el ingreso de datos.",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-05",
@@ -73,7 +77,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "La alta no permite editar los campos, la agrega directamente",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-06",
@@ -89,7 +94,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "No guarda los datos en localStorage",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-07",
@@ -105,7 +111,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "En la validación de errores no indica cuál fue el error. (código EAN)",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-08",
@@ -121,7 +128,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "No valida que la cantidad sea un número",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-09",
@@ -135,7 +143,8 @@
     "ubicacion": "./09 - 55839 - Castillo, Ignacio Agustín",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-10",
@@ -151,7 +160,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencia mínima de formato",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-11",
@@ -165,7 +175,8 @@
     "ubicacion": "./11 - 59181 - Castro, Maria Belén",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-12",
@@ -181,7 +192,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencia mínima de formato",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-13",
@@ -197,7 +209,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "El ordenamiento alfabético está raro, compara mayúsculas luego compara de nuevo",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-14",
@@ -213,7 +226,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "No incrementa y los formularios están mal.",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-15",
@@ -229,7 +243,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-16",
@@ -245,7 +260,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Ordena los datos al inicializar useState(productos.sort)",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-17",
@@ -261,7 +277,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-18",
@@ -277,7 +294,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-19",
@@ -293,7 +311,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "Se rompe el formulario en la edición",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-20",
@@ -309,7 +328,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-21",
@@ -325,7 +345,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas de diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-22",
@@ -341,7 +362,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-23",
@@ -357,7 +379,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Funciona inexplicablemente el id = Math.floor",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-24",
@@ -373,7 +396,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Cálculo del ID mal",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-25",
@@ -387,7 +411,8 @@
     "ubicacion": "./25 - 57534 - Delani, Luca",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-26",
@@ -403,7 +428,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Cálculo de ID mal",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-27",
@@ -419,7 +445,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "Agrega directamente sin mostrar formulario\nEl diseño no se adapta",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-28",
@@ -433,7 +460,8 @@
     "ubicacion": "./28 - 58888 - Diaz Gómez, Andrés Dario",
     "TP2": true,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-29",
@@ -449,7 +477,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "No incrementar si no apuntas al número",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-30",
@@ -463,7 +492,8 @@
     "ubicacion": "./30 - 58956 - Diaz, Viviana Lorena",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-31",
@@ -477,7 +507,8 @@
     "ubicacion": "./31 - 58747 - Diez Del Valle, Lucciano",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-32",
@@ -493,7 +524,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "¿Cómo gestiona el id?",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-33",
@@ -507,7 +539,8 @@
     "ubicacion": "./33 - 55847 - Elizondo Carreras, Lautaro",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-34",
@@ -523,7 +556,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Calcula el id con reduce",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-35",
@@ -537,7 +571,8 @@
     "ubicacion": "./35 - 59183 - Fernandez, Ignacio",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-36",
@@ -553,7 +588,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "El formulario se rompe\nid mal calculado",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-38",
@@ -569,7 +605,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-39",
@@ -585,7 +622,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-40",
@@ -601,7 +639,8 @@
     "TP3": true,
     "nota_tp3": 7,
     "comentario_tp3": "No cuenta los productos\nNo funciona el cancelar",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-41",
@@ -617,7 +656,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "Agrega directamente un producto sin permitir editarlo",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-42",
@@ -633,7 +673,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencia mínima en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-43",
@@ -647,7 +688,8 @@
     "ubicacion": "./43 - 59197 - Peralta, Antonio Nicolás",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-44",
@@ -663,7 +705,8 @@
     "TP3": true,
     "nota_tp3": 8,
     "comentario_tp3": "La edición en el lugar no aparece en el lugar\nEdita un solo producto\nEl cálculo de ID está mal.",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-46",
@@ -677,7 +720,8 @@
     "ubicacion": "./46 - 59037 - Rodriguez, Antonella Fern",
     "TP2": false,
     "TP3": false,
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-47",
@@ -693,7 +737,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "Solo incrementa en el número\nNo agrega arriba de la lista",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-48",
@@ -709,7 +754,8 @@
     "TP3": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-49",
@@ -725,7 +771,8 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "Incrementa solo en el número",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   },
   {
     "id": "C3-50",
@@ -741,6 +788,7 @@
     "TP3": true,
     "nota_tp3": 9,
     "comentario_tp3": "Formulario con diseño incorrecto.\nMal cálculo del ID",
-    "TP4": true
+    "TP4": true,
+    "TP5": true
   }
 ]
