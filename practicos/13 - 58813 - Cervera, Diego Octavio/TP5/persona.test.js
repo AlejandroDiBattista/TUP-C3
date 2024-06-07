@@ -70,7 +70,6 @@ describe("Crear una persona", () => {
 
         expect(despues).toBe(antes + 1)
     })
-
 })
 
 describe("Actualizar una persona", () => {
@@ -110,7 +109,6 @@ describe("Borrar una persona", () => {
         const res = await request(app).put("/personas").send(persona)
         expect(res.statusCode).toBe(404)
     })
-
 
     test("3. Borrar una persona (y retorna la persona borrada)", async () => {
         const persona = { id: 3, borrado: true }
