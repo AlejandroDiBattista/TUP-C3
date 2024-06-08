@@ -40,7 +40,7 @@ app.put('/personas', (req, res) => {
     }
 });
 
-app.delete('/personas/:id', (req, res) => {
+app.put('/personas/borrar/:id', (req, res) => {
     const idPersona = parseInt(req.params.id);
     const indicePersona = personas.findIndex(p => p.id === idPersona);
     if (indicePersona !== -1) {
