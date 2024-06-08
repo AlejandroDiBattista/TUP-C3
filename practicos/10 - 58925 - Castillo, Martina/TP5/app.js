@@ -54,7 +54,7 @@ app.put('/personas', (req, res) => {
 });
 
 // Borrar una persona
-app.delete('/personas/:id', (req, res) => {
+app.delete('/personas/:id', (req, res) =>  {
     const { id } = req.params;
     const personaIndex = personas.findIndex(persona => persona.id === parseInt(id));
 
