@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<h href="./estilo.css" />
 
+    <title>Clima</title>
+</head>
+<body>tml lang="es">
 <head>
     <meta charset="UTF-8">
     <!-- Enlaces a React, ReactDOM y Babel -->
@@ -9,21 +12,80 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-    <link rel="stylesheet" href="./estilo.css" />
-
-    <script type="text/babel" src="main.jsx"></script>
-    <!-- Agregar aca otros modulos -->
-    <script type="text/babel" src="XXX.jsx"></script>
-    <title>Clima</title>
-</head>
-
-<body>
-    <div id="root"></div>
+    <link rel="stylesheet"
+    <div class="container">
+        <nav class="full-width centered-nav">
+            <ul class="nav-left">
+                <li><strong>Clima</strong></li>
+            </ul>
+            <ul class="nav-right">
+                <li><a href="#" onClick="fetchWeather('Tucumán')">Tucumán</a></li>
+                <li><a href="#" onClick="fetchWeather('Salta')">Salta</a></li>
+                <li><a href="#" onClick="fetchWeather('Buenos Aires')">Buenos Aires</a></li>
+            </ul>
+        </nav>
+        <input
+            id="cityInput"
+            class="full-width"
+            type="search"
+            name="search"
+            placeholder="Buscar ciudad..."
+            aria-label="Buscar"
+            onKeyDown="handleSearch(event)"
+        />
+        <div id="root"></div>
+    </div>
     <script type="text/babel">
-        const { useState, useEffect } = React
-        const root = ReactDOM.createRoot(document.getElementById('root'))
-        root.render(<App />); // Renderizar el componente principal
+        const { useState } = React;
+
+        function App() {
+            const [weatherData, setWeatherData] = useState(null);
+            const [city, setCity] = useState('');
+
+            window.fetchWeather = (city) => {
+                const API_KEY = '30d38b26954359266708f92e1317dac0';
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        setWeatherData(data);
+                        setCity(city);
+                    })
+                    .catch(error => console.error('Error fetching weather data:', error));
+            };
+
+            return (
+                <div className="app">
+                    {weatherData && (
+                        <WeatherCard weatherData={weatherData} city={city} />
+                    )}
+                </div>
+            );
+        }
+
+        function WeatherCard({ weatherData, city }) {
+            const icon = weatherData.weather[0].icon;
+            return (
+                <div className="weather-card">
+                    <h2>{city}</h2>
+                    <div className="weather-icon">
+                        <img src={`./openweathermap/${icon}.svg`} alt="Weather Icon" />
+                    </div>
+                    <div className="weather-info">
+                        <p><strong>Temperatura: {weatherData.main.temp}°C</strong></p>
+                        <p>Mínima: {weatherData.main.temp_min}°C / Máxima: {weatherData.main.temp_max}°C</p>
+                        <p>Humedad: {weatherData.main.humidity}%</p>
+                    </div>
+                </div>
+            );
+        }
+
+        window.handleSearch = (event) => {
+            if (event.key === 'Enter') {
+                fetchWeather(event.target.value);
+            }
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
-
 </html>
