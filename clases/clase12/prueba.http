@@ -1,0 +1,28 @@
+@url = http://localhost:3000
+
+
+### Voy a leer un valor
+
+GET {{url}}/valor
+x-valor: 100
+
+
+### Incrementar el contador
+
+PUT {{url}}/incrementar
+Content-Type: application/json
+
+{
+    "incremento": 10
+}
+
+
+### Logearme al sistema
+
+PUT {{url}}/login
+Content-Type: application/json
+
+{
+    "usuario": "admin",
+    "password": "admin"
+} 

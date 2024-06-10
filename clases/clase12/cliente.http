@@ -1,0 +1,33 @@
+
+## Trae los datos
+
+GET http://localhost:3000/leer 
+
+Esto se esta grabando.
+
+No puse el microfono...
+
+igual se escucha?
+
+
+
+
+Ocula
+Cumo se graba el sonido
+si toma esonda de las teclas
+
+
+i como chace la rrna
+
+
+tambien quier over como como POST url HTTP/1.1
+Content-Type: application/soap+xml
+header name: header value
+
+<soap:Envelope
+    xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+    soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+    <soap:Body>
+        content
+    </soap:Body>
+</soap:Envelope>
