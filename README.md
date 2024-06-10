@@ -28,4 +28,4 @@ Debe hacer:
 
 > [!NOTE]
 > Fecha de entrega: 
-> - *Viernes 21 de Julio hasta las 23:59hs*
+> - *Viernes 21 de Junio hasta las 23:59hs*
