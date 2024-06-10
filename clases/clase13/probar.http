@@ -1,0 +1,30 @@
+
+### Leer Usuarios (solo para pruebas)
+GET http://localhost:3000/usuarios
+
+### Registrar un usuario
+POST http://localhost:3000/registrar
+Content-Type: application/json
+
+{
+    "user": "adibattista",
+    "password": "00000000"
+}
+
+### Login con adibattista
+PUT http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "user": "adibattista",
+    "password": "00000000"
+}
+
+### Logout con adibattista
+PUT http://localhost:3000/logout
+Authorization: 08172638944076405
+
+
+### Pedir informacion (cuando esta logeado)
+GET http://localhost:3000/info
+Authorization: 08172638944076405
