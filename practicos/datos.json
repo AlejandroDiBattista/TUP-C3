@@ -11,9 +11,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-02",
@@ -27,9 +27,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-03",
@@ -44,10 +44,10 @@
     "comentario_tp3": "nota: Uso extraño del KeyDown, no funcion el formulario de agregar",
     "tp1": false,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
-    "tp5": false,
-    "tp6": false
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-04",
@@ -62,10 +62,10 @@
     "comentario_tp3": "Falta iconos \nNo convierte cantidad a entero en el ingreso de datos.",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-05",
@@ -80,10 +80,10 @@
     "comentario_tp3": "La alta no permite editar los campos, la agrega directamente",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-06",
@@ -98,10 +98,10 @@
     "comentario_tp3": "No guarda los datos en localStorage",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-07",
@@ -116,10 +116,10 @@
     "comentario_tp3": "En la validación de errores no indica cuál fue el error. (código EAN)",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-08",
@@ -134,10 +134,10 @@
     "comentario_tp3": "No valida que la cantidad sea un número",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-09",
@@ -151,9 +151,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-10",
@@ -168,10 +168,10 @@
     "comentario_tp3": "Diferencia mínima de formato",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-11",
@@ -185,9 +185,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-12",
@@ -202,10 +202,10 @@
     "comentario_tp3": "Diferencia mínima de formato",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-13",
@@ -220,10 +220,10 @@
     "comentario_tp3": "El ordenamiento alfabético está raro, compara mayúsculas luego compara de nuevo",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-14",
@@ -238,10 +238,10 @@
     "comentario_tp3": "No incrementa y los formularios están mal.",
     "tp1": true,
     "tp2": false,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-15",
@@ -256,10 +256,10 @@
     "comentario_tp3": "No controla que la cantidad sea un número",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-16",
@@ -274,10 +274,10 @@
     "comentario_tp3": "Ordena los datos al inicializar useState(productos.sort)",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-17",
@@ -292,10 +292,10 @@
     "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
-    "tp5": false,
-    "tp6": false
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-18",
@@ -310,10 +310,10 @@
     "comentario_tp3": "Diferencias mínimas en diseño",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-19",
@@ -328,10 +328,10 @@
     "comentario_tp3": "Se rompe el formulario en la edición",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-20",
@@ -346,10 +346,10 @@
     "comentario_tp3": "Diferencias mínimas en diseño",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-21",
@@ -364,10 +364,10 @@
     "comentario_tp3": "Diferencias mínimas de diseño",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-22",
@@ -382,10 +382,10 @@
     "comentario_tp3": "Diferencias menores en diseño",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-23",
@@ -400,10 +400,10 @@
     "comentario_tp3": "Funciona inexplicablemente el id = Math.floor",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-24",
@@ -418,10 +418,10 @@
     "comentario_tp3": "Cálculo del ID mal",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-25",
@@ -435,9 +435,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-26",
@@ -452,10 +452,10 @@
     "comentario_tp3": "Cálculo de ID mal",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-27",
@@ -470,10 +470,10 @@
     "comentario_tp3": "Agrega directamente sin mostrar formulario\nEl diseño no se adapta",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-29",
@@ -488,10 +488,10 @@
     "comentario_tp3": "No incrementar si no apuntas al número",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-28",
@@ -505,9 +505,9 @@
     "tp1": true,
     "tp2": true,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-30",
@@ -521,9 +521,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-31",
@@ -537,9 +537,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-32",
@@ -554,10 +554,10 @@
     "comentario_tp3": "¿Cómo gestiona el id?",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-33",
@@ -571,9 +571,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-34",
@@ -588,10 +588,10 @@
     "comentario_tp3": "Calcula el id con reduce",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-35",
@@ -605,9 +605,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-36",
@@ -622,10 +622,10 @@
     "comentario_tp3": "El formulario se rompe\nid mal calculado",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-38",
@@ -640,10 +640,10 @@
     "comentario_tp3": "No controla que la cantidad sea un número",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-39",
@@ -658,10 +658,10 @@
     "comentario_tp3": "Diferencias menores en diseño",
     "tp1": true,
     "tp2": false,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
-    "tp5": false,
-    "tp6": false
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-40",
@@ -676,10 +676,10 @@
     "comentario_tp3": "No cuenta los productos\nNo funciona el cancelar",
     "tp1": true,
     "tp2": false,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-41",
@@ -694,10 +694,10 @@
     "comentario_tp3": "Agrega directamente un producto sin permitir editarlo",
     "tp1": false,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-42",
@@ -712,10 +712,10 @@
     "comentario_tp3": "Diferencia mínima en diseño",
     "tp1": false,
     "tp2": true,
-    "tp3": false,
-    "tp4": false,
+    "tp3": true,
+    "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-43",
@@ -729,9 +729,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-44",
@@ -746,10 +746,10 @@
     "comentario_tp3": "La edición en el lugar no aparece en el lugar\nEdita un solo producto\nEl cálculo de ID está mal.",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-46",
@@ -763,9 +763,9 @@
     "tp1": false,
     "tp2": false,
     "tp3": false,
-    "tp4": false,
-    "tp5": false,
-    "tp6": false
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
   },
   {
     "id": "C3-47",
@@ -780,10 +780,10 @@
     "comentario_tp3": "Solo incrementa en el número\nNo agrega arriba de la lista",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-48",
@@ -798,10 +798,10 @@
     "comentario_tp3": "Diferencias menores en diseño",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-49",
@@ -816,10 +816,10 @@
     "comentario_tp3": "Incrementa solo en el número",
     "tp1": true,
     "tp2": true,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-50",
@@ -834,9 +834,9 @@
     "comentario_tp3": "Formulario con diseño incorrecto.\nMal cálculo del ID",
     "tp1": true,
     "tp2": false,
-    "tp3": false,
+    "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   }
 ]
