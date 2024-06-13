@@ -10,7 +10,7 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>59438 - Martin Leonardo Javier</title>
     <style>
         /* reset */
         body {
@@ -131,29 +131,64 @@
         ]
     </script>
 
-    <script type="text/babel">
-        const { createRoot } = ReactDOM
+<script type="text/babel">
+    const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
-            <div className="card">
-                <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
-            </div>
+    const Favorito = ({marcado, onClick}) => {
+        return <span onClick={onClick}>{
+            marcado?
+            <i className="fas fa-star"></i>:
+            <i className="far fa-star"></i>
+        } </span>
+    }
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+    const Contacto = ({id, nombre, apellido, telefono, favorito, toggleFavorito }) =>
+        <div className="card">
+            <div>{nombre} <b>{apellido}</b></div>
+            <div>{telefono}</div>
+            <Favorito marcado={favorito} onClick={() => toggleFavorito(id)} />
+        </div>
 
-        const App = () =>
+    const Agenda = ({ datos }) => {
+        const alfabetico = datos.sort((a, b) => a.apellido.localeCompare(b.apellido))
+        const favorito = datos.filter(contacto => contacto.favorito)
+        const noFavorito = datos.filter(contacto => !contacto.favorito)
+        
+        const toggleFavorito = (id) => {
+            datos.forEach(contacto => {
+                if(contacto.id === id) {
+                    contacto.favorito = !contacto.favorito
+                }
+            })
+            renderizar()
+        }
+        const renderizar = () => {
+            ReactDOM.render(<Agenda datos={datos} />, document.getElementById('root'))
+        }
+
+        return (
             <div>
                 <h1>Agenda</h1>
-                <Agenda datos={datos} />
+                <p><b>Contactos Favoritos:</b></p>
+                <div className="agenda">
+                    {favorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                </div>
+                <p><b>Contactos:</b></p>
+                <div className="agenda">
+                    {noFavorito.map(contacto => <Contacto key={contacto.id} {...contacto} toggleFavorito={toggleFavorito} />)}
+                </div>
             </div>
+        )
+    }
+        
+    const App = () =>
+        <div>
+            <Agenda datos={datos} />
+        </div>
 
-        const root = createRoot(document.getElementById('root'))
-        root.render(<App />);
-    </script>
+    const root = createRoot(document.getElementById('root'))
+    root.render(<App />);
+</script>
 </body>
 
 </html>
