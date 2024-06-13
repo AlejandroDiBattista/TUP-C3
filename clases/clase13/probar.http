@@ -22,9 +22,7 @@ Content-Type: application/json
 
 ### Logout con adibattista
 PUT http://localhost:3000/logout
-Authorization: 08172638944076405
 
 
 ### Pedir informacion (cuando esta logeado)
 GET http://localhost:3000/info
-Authorization: 08172638944076405
