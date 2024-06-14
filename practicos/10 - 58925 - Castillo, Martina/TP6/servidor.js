@@ -1,15 +1,23 @@
 import express from 'express';
-import cookieParser from 'cookie-parser';
-import morgan
- from 'morgan';
+import morgan from 'morgan';
+import CookieParser from 'cookie-parser';
+import usuario from './routers/usuario.router.js';
+
 const app = express();
+app.disable('x-powered-by');
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(CookieParser());
+app.use(usuario)
 
-app.use(morgan('dev'));     // Loggea cada request en consola
-app.use(cookieParser());    // Para leer cookies
-app.use(express.json());    // Para leer JSONs
-app.use(express.static('public'));  // Para servir archivos estáticos
+app.use(express.static('public'));
 
-// Implementar las rutas necesarias
-app.listen(3000, () => {
-    console.log('Servidor iniciado en http://localhost:3000');
+app.get('/poner', (req, res) => {
+    res.cookie('mensaje', 'Esto lo acabo de escribir',
+        { expires: new Date(Date.now() + 1000 * 5) });
+    res.json({ ok: true });
 });
+
+app.listen(3001, () => {
+    console.log("Servidor en http://localhost:3001");
+});	
