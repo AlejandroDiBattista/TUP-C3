@@ -1,0 +1,36 @@
+### Users
+GET http://localhost:3000/users
+
+###
+
+### Register
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+  "username": "gonzalof2002",
+  "password": "0309020000"
+}
+
+###
+
+### Login
+PUT http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "gonzalof2002",
+  "password": "0309020000"
+}
+
+###
+
+### Logout
+PUT http://localhost:3000/logout
+Authorization: 9297500740923874 
+
+###
+
+### Info (cuando esta logeado)
+GET http://localhost:3000/info
+Authorization: 9297500740923874 
