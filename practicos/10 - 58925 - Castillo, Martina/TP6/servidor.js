@@ -1,23 +1,24 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
-import CookieParser from 'cookie-parser';
-import usuario from './routers/usuario.router.js';
+import usuarioRouter from './routers/usuario.router.js'; // Importa el router de usuario
 
 const app = express();
+const PORT = 3001;
+
+// Middleware
 app.disable('x-powered-by');
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(CookieParser());
-app.use(usuario)
+app.use(cookieParser());
 
+// Rutas
+app.use(usuarioRouter);
+
+// Servir archivos estáticos
 app.use(express.static('public'));
 
-app.get('/poner', (req, res) => {
-    res.cookie('mensaje', 'Esto lo acabo de escribir',
-        { expires: new Date(Date.now() + 1000 * 5) });
-    res.json({ ok: true });
+// Iniciar el servidor
+app.listen(PORT, () => {
+    console.log(`Servidor en http://localhost:${PORT}`);
 });
-
-app.listen(3001, () => {
-    console.log("Servidor en http://localhost:3001");
-});	

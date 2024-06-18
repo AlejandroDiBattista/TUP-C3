@@ -1,65 +1,106 @@
+const { useState } = React;
+
 function App() {
-    let [mensaje, setMensaje] = React.useState('');
+    const [etapa, setEtapa] = useState('registrar');
+    const [usuario, setUsuario] = useState('');
+    const [contrasena, setContrasena] = useState('');
+    const [mensaje, setMensaje] = useState('');
+    const [usuarioLogueado, setUsuarioLogueado] = useState(null);
 
-    async function usuarios() {
-        let res = await fetch('/usuarios');
-        let data = await res.json();
-        setMensaje(JSON.stringify(data, null, 2));
-    }
+    const manejarRegistro = async (e) => {
+        e.preventDefault();
+        try {
+            const respuesta = await axios.post('/registrar', { user: usuario, password: contrasena });
+            setMensaje(respuesta.data.mensaje);
+            setEtapa('registrado');
+        } catch (error) {
+            setMensaje(error.response.data.mensaje);
+        }
+    };
 
-    async function registrar() {
-        let usuario = { user: 'Martina', password: '555666' }
-        let res = await fetch('/registrar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(usuario)
-        });
-        let data = await res.json();
-        setMensaje(JSON.stringify(data, null, 2));
-    }
+    const manejarInicioSesion = async (e) => {
+        e.preventDefault();
+        try {
+            const respuesta = await axios.put('/login', { user: usuario, password: contrasena });
+            setMensaje(respuesta.data.mensaje);
+            setUsuarioLogueado(usuario);
+            setEtapa('logueado');
+        } catch (error) {
+            setMensaje(error.response.data.mensaje);
+        }
+    };
 
-    async function login() {
-        let usuario = { user: 'Martina', password: '555666' }
-        let res = await fetch('/login', {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(usuario),
-            credentials: 'include'
-        });
-        let data = await res.json();
-        setMensaje(JSON.stringify(data, null, 2));
-    }
+    const obtenerInformacion = async () => {
+        try {
+            const respuesta = await axios.get('/info');
+            setMensaje(`Información: ${respuesta.data.mensaje}, Usuario: ${respuesta.data.usuario}`);
+        } catch (error) {
+            setMensaje(error.response.data.mensaje);
+        }
+    };
 
-    async function logout() {
-        let res = await fetch('/logout', {
-            method: 'PUT',
-            credentials: 'include'
-        });
-        let data = await res.json();
-        setMensaje(JSON.stringify(data, null, 2));
-    }
-
-    async function info() {
-        let res = await fetch('/info', {
-            method: 'GET',
-            credentials: 'include'
-        });
-        let data = await res.json();
-        setMensaje(JSON.stringify(data, null, 2));
-    }
+    const manejarCerrarSesion = async () => {
+        try {
+            const respuesta = await axios.put('/logout');
+            setMensaje(respuesta.data.mensaje);
+            setEtapa('registrar');
+            setUsuarioLogueado(null);
+            setUsuario('');
+            setContrasena('');
+        } catch (error) {
+            setMensaje(error.response.data.mensaje);
+        }
+    };
 
     return (
-        <div>
-            <h1>Demo Login</h1>
-            <button onClick={usuarios}>Ver Usuarios</button>
-            <button onClick={registrar}>Registrar</button>
-            <button onClick={login}>Login</button>
-            <button onClick={logout}>Logout</button>
-            <button onClick={info}>Info</button>
-
-            <pre>
-                {mensaje}
-            </pre>
+        <div className="container">
+            <h1>App de Inicio de Sesión</h1>
+            {etapa === 'registrar' && (
+                <div>
+                    <h2>Registrar</h2>
+                    <form onSubmit={manejarRegistro}>
+                        <label>Usuario:</label>
+                        <input type="text" value={usuario} onChange={(e) => setUsuario(e.target.value)} required />
+                        <label>Contraseña:</label>
+                        <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} required />
+                        <button type="submit">Registrar</button>
+                    </form>
+                </div>
+            )}
+            {etapa === 'registrado' && (
+                <div>
+                    <p>{mensaje}</p>
+                    <button onClick={() => setEtapa('loguear')}>Iniciar sesión</button>
+                </div>
+            )}
+            {etapa === 'loguear' && (
+                <div>
+                    <h2>Iniciar Sesión</h2>
+                    <form onSubmit={manejarInicioSesion}>
+                        <label>Usuario:</label>
+                        <input type="text" value={usuario} onChange={(e) => setUsuario(e.target.value)} required />
+                        <label>Contraseña:</label>
+                        <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} required />
+                        <button type="submit">Iniciar sesión</button>
+                    </form>
+                    <button onClick={() => setEtapa('registrar')}>Volver</button>
+                </div>
+            )}
+            {etapa === 'logueado' && (
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Usuario: {usuarioLogueado}</p>
+                    <div className="actions">
+                        <button onClick={obtenerInformacion}>Obtener información</button>
+                        <button onClick={manejarCerrarSesion}>Cerrar sesión</button>
+                    </div>
+                    <p>{mensaje}</p>
+                    <button onClick={() => setEtapa('registrar')}>Volver</button>
+                </div>
+            )}
         </div>
-    );;
+    );
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
