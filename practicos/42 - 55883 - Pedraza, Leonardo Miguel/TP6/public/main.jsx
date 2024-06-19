@@ -54,7 +54,7 @@ function App() {
 
     return (
         <div>
-            <h2>Autenticación</h2>
+            <h2>Gestion de sesiones</h2>
             <input 
                 type="text" 
                 placeholder="Usuario" 
