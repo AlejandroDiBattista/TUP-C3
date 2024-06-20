@@ -1,15 +1,17 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import morgan
- from 'morgan';
+const express = require('express');
+const path = require('path');
+
 const app = express();
 
-app.use(morgan('dev'));     // Loggea cada request en consola
-app.use(cookieParser());    // Para leer cookies
-app.use(express.json());    // Para leer JSONs
-app.use(express.static('public'));  // Para servir archivos estáticos
+const PORT = process.env.PORT || 3000;
 
-// Implementar las rutas necesarias
-app.listen(3000, () => {
-    console.log('Servidor iniciado en http://localhost:3000');
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
