@@ -2,6 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
         <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
@@ -154,26 +155,31 @@
 			const Ver = ({ alumno, entrega }) => {
 				const nota = alumno['nota_tp3'];
 				const comentario = alumno['comentario_tp3'];
-
+				
+				const conIndex = entrega <= 'tp4'
+				const conNota = entrega == 'tp3' && nota;
+				const link = conIndex ? ubicar(alumno.ubicacion, entrega) : null;
 				return (
 					<div className='ver'>
 						{alumno[entrega] ? (
-							<a href={ubicar(alumno.ubicacion, entrega)}>
-								{entrega} | Ver Trabajo{' '}
-								{entrega == 'TP3' && nota && <b>(nota {nota})</b>}
+							<a href={link}>
+								{entrega} | 🟢 {conIndex && "Ver Trabajo"}
+								{conNota && <b>(nota {nota})</b>}
 							</a>
-						) : <span className='falta'>{entrega} ❌</span>}
+						) : <span className='falta'>{entrega} | 🔴 </span>}
+						
 					</div>
 				);
 			};
 
 			const Alumno = ({ alumno, practicos }) => {
 				const [apellido, nombre] = alumno.nombre.split(', ');
+				const verificar = alumno.inicial.includes('verificar')
+
 				return (
 					<div className='alumno'>
 						<h2>
-							<span>{alumno.orden}</span> <b>{apellido}</b>,{' '}
-							<i>{nombre}</i>
+							<span>{alumno.orden}</span> {nombre} <b>{apellido}</b>{verificar && <span>🤔</span>}
 						</h2>
 						{practicos.map(practico => <Ver key={practico} alumno={alumno} entrega={practico} />)}
 					</div>
@@ -221,8 +227,8 @@
             }
 
             function incluyePractico(alumno, palabra){
-                let incluir = !palabra.startsWith('-');
-                let practico = palabra.toUpperCase().replace('-', '');
+                let incluir  = !palabra.startsWith('-');
+                let practico = palabra.replace('-', '');
                 return incluir == alumno[practico];
             }
 
@@ -234,7 +240,7 @@
             }
 
             function incluyePalabra(alumno, palabra){
-                let texto = normalizar(`${alumno.ubicacion} ${alumno.comentario_tp3} ${alumno.nota_tp3}`)
+                let texto = normalizar(`${alumno.ubicacion} ${alumno.comentario_tp3} ${alumno.nota_tp3} ${alumno.inicial}`)
                 return texto.includes(palabra);
             }
 
@@ -252,7 +258,7 @@
 			}
 
 			function calcularPracticos(alumno) {
-				return Object.keys(alumno).filter((k) => k.startsWith('TP'));
+				return Object.keys(alumno).filter((k) => k.startsWith('tp'));
 			}
 
 			function cantidadPresentados(alumno) {
