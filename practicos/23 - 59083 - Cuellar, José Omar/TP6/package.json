@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "argon2": "^0.40.3",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "morgan": "^1.10.0"
