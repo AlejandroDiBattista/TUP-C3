@@ -1,7 +1,7 @@
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 24px;
-    background-color: #eee;
+    background-color: #e7e6e6;
     box-sizing:content-box;
 }
 
@@ -13,6 +13,13 @@ html {
     width: 400px;
     margin: 0 auto;
     padding: 10px;
+}
+
+.card{
+    border: 6px solid black;
+    border-radius: 22px;
+    padding: 0 108px;
+    background-color: rgba(176, 160, 248, 0.301);
 }
 
 h1,h2,h3,h4,h5,h6 {
