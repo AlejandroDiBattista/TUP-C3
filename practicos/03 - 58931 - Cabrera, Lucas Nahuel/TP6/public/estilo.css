@@ -1,83 +1,104 @@
-html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 24px;
-    background-color: #eee;
-    box-sizing:content-box;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
 }
 
-#root {
-    width: 400px;
+.container {
+    width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 60px;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1, h2 {
+    text-align: center;
     color: #333;
-    margin: 8px 0;
-}
-
-button {
-    padding: 4px 6px;
-    min-width: 100px;
-    cursor: pointer;
-    border: 0.5px solid #bbb;
-    border-radius: 5px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    padding-left: 10px;
+    align-content: center;
+}
+
+form input {
     width: 100%;
-    button[type='submit'] {
-        font-weight: bold;
-    }
-    label {
-        display: block;
-        margin: 8px 0;
-        font-size: 14px;
-        color: #666;
-        width: 100%;
-        input {
-            display: block;
-            width: calc(100% - 20px);
-            padding: 5px 10px;
-            margin-top: 5px;
-            border: 0.5px solid #bbb;
-            border-radius: 5px;
-            box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
-            font-size: 20px;
-            font-weight: bold;
-        }
-    }
-    h3 {
-        margin: -5px 0 0 0;
-        padding: 0;
-    }
-    span:has(> button) {
-        padding-top: 10px;
-    }
-}
-
-span:has(> button) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 16px;
-    gap: 10px;
-}
-
-div:has(> button) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 16px;
-    gap: 10px;
-}
-
-section {
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 35px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.register-link, .login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link button, .login-link button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.register-link button:hover, .login-link button:hover {
+    text-decoration: underline;
+}
+
+.info-section {
     background-color: #fff;
-    border: 0.5px solid #bbb;
-    border-radius: 15px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.info-section button {
+    margin: 10px;
+}
+
+.info-section .secret-info {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.info-section .secret-info p {
+    word-break: break-all;
 }

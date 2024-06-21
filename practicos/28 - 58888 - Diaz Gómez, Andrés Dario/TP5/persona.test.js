@@ -1,7 +1,7 @@
-import request from "supertest";
-import { expect, describe, test } from "@jest/globals";
+import request from "supertest"
+import { expect, describe, test } from "@jest/globals"
 
-import app from "./app.js";
+import app from "./app.js"
 
 describe("GET All", () => {
     test("1. Debe responder con un status 200", async () => {

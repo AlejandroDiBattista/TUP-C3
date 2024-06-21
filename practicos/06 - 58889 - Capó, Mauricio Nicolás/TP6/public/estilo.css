@@ -5,7 +5,11 @@ html {
     box-sizing:content-box;
 }
 
-#root {
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+#root body{
     width: 400px;
     margin: 0 auto;
     padding: 10px;
@@ -23,6 +27,10 @@ button {
     border: 0.5px solid #bbb;
     border-radius: 5px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #ddd;
 }
 
 form {
@@ -80,4 +88,22 @@ section {
     border: 0.5px solid #bbb;
     border-radius: 15px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    li {
+        padding: 5px 0;
+    }
+}
+header{
+    height: 100px;
+    
+}.header .links li {
+    display: inline-block;
+    padding: 0 20px;
+}
+.header a {
+    text-decoration: none;
+    color: #333;
 }
