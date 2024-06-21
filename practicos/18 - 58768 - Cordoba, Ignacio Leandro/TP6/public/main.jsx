@@ -49,7 +49,7 @@ function App() {
 
     return (
         <div>
-            <h1>TP6 Registro de Usuarios</h1>
+            <h1>TP6 - Sesiones</h1>
             <div>
                 <button onClick={handleViewUsers}>Ver Usuarios</button>
             </div>
