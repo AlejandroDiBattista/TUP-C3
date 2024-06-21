@@ -96,3 +96,10 @@ ul {
         padding: 5px 0;
     }
 }
+
+.card{
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 0 100px;
+    background-color: antiquewhite;
+}
