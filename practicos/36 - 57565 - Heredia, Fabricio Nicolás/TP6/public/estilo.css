@@ -1,98 +1,117 @@
-html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 24px;
-    background-color: #eee;
-    box-sizing:content-box;
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-#root {
-    width: 400px;
-    margin: 0 auto;
-    padding: 10px;
-}
-
-h1,h2,h3,h4,h5,h6 {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
     color: #333;
-    margin: 8px 0;
+    margin: 0;
+    padding: 0;
 }
 
-button {
-    padding: 4px 6px;
-    min-width: 100px;
-    cursor: pointer;
-    border: 0.5px solid #bbb;
-    border-radius: 5px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: #ddd;
+.header {
+    text-align: center;
+    color: #007BFF;
+    margin-bottom: 1rem;
+}
+
+.form-section-one,
+.form-section-two {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.registration-form,
+.login-form {
+    width: 48%;
+    padding: 1rem;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+}
+
+.form-header {
+    color: #0d47a1;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 form {
-    width: 100%;
-    button[type='submit'] {
-        font-weight: bold;
-    }
-    label {
-        display: block;
-        margin: 8px 0;
-        font-size: 14px;
-        color: #666;
-        width: 100%;
-        input {
-            display: block;
-            width: calc(100% - 20px);
-            padding: 5px 10px;
-            margin-top: 5px;
-            border: 0.5px solid #bbb;
-            border-radius: 5px;
-            box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
-            font-size: 20px;
-            font-weight: bold;
-        }
-    }
-    h3 {
-        margin: -5px 0 0 0;
-        padding: 0;
-    }
-    span:has(> button) {
-        padding-top: 10px;
-    }
-}
-
-span:has(> button) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 16px;
-    gap: 10px;
-}
-
-div:has(> button) {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-top: 16px;
-    gap: 10px;
 }
 
-section {
-    padding: 10px;
-    margin: 10px 0;
-    background-color: #fff;
-    border: 0.5px solid #bbb;
-    border-radius: 15px;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+input {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #90caf9;
+    border-radius: 4px;
 }
 
-ul {
-    list-style-type: none;
-    li {
-        padding: 5px 0;
-    }
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: #ffffff;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.messages {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #d32f2f;
+    margin-bottom: 0.5rem;
+}
+
+.success-message {
+    color: #388e3c;
+    margin-bottom: 0.5rem;
+}
+
+.user-info {
+    text-align: center;
+    padding: 1rem;
+    background-color: #e3f2fd;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+}
+
+.warning {
+    color: #f57c00;
+}
+
+.info-logeado {
+    color: #0d47a1;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.container {
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #90caf9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
