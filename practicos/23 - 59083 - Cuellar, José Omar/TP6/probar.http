@@ -1,0 +1,28 @@
+
+### Leer Usuarios (solo para pruebas)
+GET http://localhost:3000/usuarios
+
+### Registrar un usuario
+POST http://localhost:3000/registrar
+Content-Type: application/json
+
+{
+    "user": "aleatorio",
+    "password": "123456789"
+}
+
+### Login con aleatorio
+PUT http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "user": "aleatorio",
+    "password": "123456789"
+}
+
+### Logout con aletorio
+PUT http://localhost:3000/logout
+
+
+### Pedir informacion (cuando esta logeado)
+GET http://localhost:3000/info
