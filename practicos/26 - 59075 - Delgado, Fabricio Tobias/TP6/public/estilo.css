@@ -3,6 +3,9 @@ html {
     font-size: 24px;
     background-color: #eee;
     box-sizing:content-box;
+    text-align: center;
+    background-color: #222;
+   
 }
 
 *, *:before, *:after {
@@ -10,9 +13,10 @@ html {
 }
 
 #root {
-    width: 400px;
+    width: 450px;
     margin: 0 auto;
     padding: 10px;
+    
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -27,10 +31,11 @@ button {
     border: 0.5px solid #bbb;
     border-radius: 5px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    margin: 20px 0 0 0;
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #f1e3e3;
 }
 
 form {
@@ -42,8 +47,11 @@ form {
         display: block;
         margin: 8px 0;
         font-size: 14px;
-        color: #666;
+        color: #0d8809;
         width: 100%;
+        font-size: 20px;
+        text-transform: uppercase;
+        
         input {
             display: block;
             width: calc(100% - 20px);
@@ -51,7 +59,7 @@ form {
             margin-top: 5px;
             border: 0.5px solid #bbb;
             border-radius: 5px;
-            box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 4px 0 rgba(161, 52, 52, 0.2);
             font-size: 20px;
             font-weight: bold;
         }
@@ -95,4 +103,58 @@ ul {
     li {
         padding: 5px 0;
     }
+}
+.H2_TITULO
+{
+    color: #1ae613;
+    padding: 10px 0;
+    transition: 0.3s;
+}
+.H2_TITULO:hover
+{
+    
+    border: solid 0.5px #fff;
+    padding: 10px 10px;
+    transition: 0.3s;
+    letter-spacing: 2px;
+}
+.buton_largo
+{
+    background-color: #1ae613;
+    border: none;
+    padding: 20px 0;
+    width: 30%;
+    margin: auto;
+}
+
+.input_1
+{
+    width: 300px;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #1ae613;
+    background-color: transparent;
+    transition: 0.5s;
+}
+.input_1:hover
+{
+    background-color: #fff;
+    border-radius: 1rem;
+    transition: 0.5s;
+}
+
+.boton_regis
+{
+    background-color: transparent;
+    border: none;
+    margin: 20px 0;
+    background-color: transparent;
+    color: #fff;
+    transition: 0.5s;
+}
+.boton_regis:hover{
+    background-color: #1ae613;
+    padding: 20px 30px;
+    border: 1px solid #222;
+    transition: 0.5s;
 }
