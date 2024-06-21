@@ -4,22 +4,18 @@ html {
     background-color: #eee;
     box-sizing:content-box;
 }
-
 *, *:before, *:after {
     box-sizing: inherit;
 }
-
 #root {
     width: 400px;
     margin: 0 auto;
     padding: 10px;
 }
-
 h1,h2,h3,h4,h5,h6 {
     color: #333;
     margin: 8px 0;
 }
-
 button {
     padding: 4px 6px;
     min-width: 100px;
@@ -28,11 +24,9 @@ button {
     border-radius: 5px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
-
 button:hover {
     background-color: #ddd;
 }
-
 form {
     width: 100%;
     button[type='submit'] {
@@ -64,7 +58,6 @@ form {
         padding-top: 10px;
     }
 }
-
 span:has(> button) {
     display: flex;
     flex-direction: row;
@@ -72,7 +65,6 @@ span:has(> button) {
     margin-top: 16px;
     gap: 10px;
 }
-
 div:has(> button) {
     display: flex;
     flex-direction: column;
@@ -80,7 +72,6 @@ div:has(> button) {
     margin-top: 16px;
     gap: 10px;
 }
-
 section {
     padding: 10px;
     margin: 10px 0;
@@ -89,10 +80,16 @@ section {
     border-radius: 15px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
 }
-
 ul {
     list-style-type: none;
     li {
         padding: 5px 0;
     }
+}
+
+.card{
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 0 100px;
+    background-color: antiquewhite;
 }
