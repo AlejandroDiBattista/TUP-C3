@@ -9,7 +9,7 @@ html {
     box-sizing: inherit;
 }
 
-#root {
+#root body{
     width: 400px;
     margin: 0 auto;
     padding: 10px;
@@ -95,4 +95,15 @@ ul {
     li {
         padding: 5px 0;
     }
+}
+header{
+    height: 100px;
+    
+}.header .links li {
+    display: inline-block;
+    padding: 0 20px;
+}
+.header a {
+    text-decoration: none;
+    color: #333;
 }
