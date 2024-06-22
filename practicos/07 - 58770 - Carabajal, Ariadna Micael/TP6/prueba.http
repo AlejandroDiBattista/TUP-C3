@@ -1,0 +1,26 @@
+###USUARIOS CARGADOS
+GET http://localhost:3000/usuarios
+
+###REGISTRO
+POST http://localhost:3000/registro
+Content-Type: application/json
+
+{
+    "usuario": "user2",
+    "contrasena": "123"
+}
+
+###LOGIN
+PUT http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "usuario": "user2",
+    "contrasena": "123"
+}
+
+###LOGOUT
+POST http://localhost:3000/logout
+
+###INFO SECRETA
+GET http://localhost:3000/informacion
