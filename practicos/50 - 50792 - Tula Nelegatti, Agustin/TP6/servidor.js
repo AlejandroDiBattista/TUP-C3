@@ -20,5 +20,5 @@ const Usuarios = [
     { username: 'Jose', password: '6789' },
     { username: 'Martina', password: '12345' },
     { username: 'Guillermo', password: '1234' },
-    { username: 'Lucas', password: '12344' },
+    { username: 'Lucas', password: '123445' },
 ]; 
