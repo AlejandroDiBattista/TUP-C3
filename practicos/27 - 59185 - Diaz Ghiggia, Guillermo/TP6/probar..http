@@ -1,0 +1,26 @@
+### Leer Usuarios 
+GET http://localhost:3000/usuarios
+
+### Registrar un usuario
+POST http://localhost:3000/registrar
+Content-Type: application/json
+
+{
+    "user": "Guille",
+    "password": "44028814"
+}
+
+### Login 
+PUT http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "user": "Guille",
+    "password": "44028814"
+}
+
+### Logout 
+PUT http://localhost:3000/logout
+
+### Pedir informacion
+GET http://localhost:3000/info
