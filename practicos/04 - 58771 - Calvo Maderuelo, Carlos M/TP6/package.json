@@ -1,7 +1,6 @@
 {
   "name": "tp6",
   "version": "1.0.0",
-  "description": "",
   "main": "servidor.js",
   "type": "module",
   "scripts": {
@@ -12,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "morgan": "^1.10.0"
-  }
+  },
+  "description": ""
 }
