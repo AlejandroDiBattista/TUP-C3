@@ -47,7 +47,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": false,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-04",
@@ -65,7 +65,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-05",
@@ -83,7 +83,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-06",
@@ -101,7 +101,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-07",
@@ -119,7 +119,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-08",
@@ -137,7 +137,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-09",
@@ -171,7 +171,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-11",
@@ -223,7 +223,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-14",
@@ -259,7 +259,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-16",
@@ -277,7 +277,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-17",
@@ -295,7 +295,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-18",
@@ -313,7 +313,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-19",
@@ -331,7 +331,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-20",
@@ -367,7 +367,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-22",
@@ -385,7 +385,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-23",
@@ -403,7 +403,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-24",
@@ -455,7 +455,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-27",
@@ -473,7 +473,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-29",
@@ -491,7 +491,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-28",
@@ -557,7 +557,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-33",
@@ -625,7 +625,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-38",
@@ -643,7 +643,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-39",
@@ -661,7 +661,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": false,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-40",
@@ -697,7 +697,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-42",
@@ -837,6 +837,6 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   }
 ]
