@@ -165,7 +165,9 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": true
+    "tp6": true,
+    "nota_tp3": 6,
+    "comentario_tp3": "No cancela Agregar\nNo hace edicion en el lugar\nNo permite edicion simultanea\nNo incrementa productgo"
   },
   {
     "id": "C3-10",
@@ -531,7 +533,9 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": true
+    "tp6": true,
+    "nota_tp3": 9,
+    "comentario_tp3": "La validación es confusa y me impedia agregar un producto"
   },
   {
     "id": "C3-29",

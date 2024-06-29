@@ -25,6 +25,13 @@
 - Aprobado: 10
 - No valida que la cantidad sea un número
 
+## 09 - 55839 - Castillo, Ignacio Agustín
+- Aprobado: 6
+- No cancela Agregar
+- No hace edicion en el lugar
+- No permite edicion simultanea
+- No incrementa productgo
+
 ## 10 - 58925 - Castillo, Martina
 - Aprobado: 10
 - Diferencia mínima de formato
@@ -89,6 +96,10 @@
 - Aprobado: 8
 - Agrega directamente sin mostrar formulario
 - El diseño no se adapta
+
+## 28 - 58888 - Diaz Gómez, Andrés Dario
+- Aprobado: 9
+- La validación es confusa y me impedia agregar un producto
 
 ## 29 - 58844 - Diaz Gonzalez, Nahuel Ale
 - Aprobado: 9
