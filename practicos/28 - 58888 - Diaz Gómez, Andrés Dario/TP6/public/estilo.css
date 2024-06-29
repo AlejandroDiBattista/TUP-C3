@@ -64,7 +64,9 @@ form {
         padding-top: 10px;
     }
 }
-
+form p {
+    color: red;
+}
 span:has(> button) {
     display: flex;
     flex-direction: row;
