@@ -518,6 +518,22 @@
     "comentario_tp6": ""
   },
   {
+    "id": "C3-28",
+    "comision": "C3",
+    "orden": 28,
+    "legajo": 58888,
+    "nombre": "Diaz Gómez, Andrés Dario",
+    "inicial": "ADDG",
+    "cambio": false,
+    "ubicacion": "./28 - 58888 - Diaz Gómez, Andrés Dario",
+    "tp1": true,
+    "tp2": true,
+    "tp3": true,
+    "tp4": true,
+    "tp5": true,
+    "tp6": true
+  },
+  {
     "id": "C3-29",
     "comision": "C3",
     "orden": 29,
@@ -536,22 +552,6 @@
     "tp6": true,
     "nota_tp6": 0,
     "comentario_tp6": ""
-  },
-  {
-    "id": "C3-28",
-    "comision": "C3",
-    "orden": 28,
-    "legajo": 58888,
-    "nombre": "Diaz Gómez, Andrés Dario",
-    "inicial": "ADDG",
-    "cambio": false,
-    "ubicacion": "./28 - 58888 - Diaz Gómez, Andrés Dario",
-    "tp1": true,
-    "tp2": true,
-    "tp3": true,
-    "tp4": true,
-    "tp5": true,
-    "tp6": true
   },
   {
     "id": "C3-30",
