@@ -255,11 +255,11 @@
     "nota_tp3": 8,
     "comentario_tp3": "No incrementa y los formularios están mal.",
     "tp1": true,
-    "tp2": false,
+    "tp2": true,
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-15",
@@ -551,7 +551,7 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": false
+    "tp6": true
   },
   {
     "id": "C3-30",
