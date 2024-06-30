@@ -1,4 +1,4 @@
-# Evaluación TP3 - C3
+# Evaluación TP3 en C3
 
 ## 03 - 58931 - Cabrera, Lucas Nahuel
 - Nota: 9
@@ -17,8 +17,8 @@
 - Nota: 10
 - No guarda los datos en localStorage
 
-## 07 - 58770 - Carabajal, Ariadna Micaela
-- Nota: 10 perfecto!
+## 07 - 58770 - Carabajal, Ariadna Micael
+- Nota: 10
 - En la validación de errores no indica cuál fue el error. (código EAN)
 
 ## 08 - 59046 - Carrizo, Angel Nahuel
@@ -151,10 +151,6 @@
 - No agrega arriba de la lista
 
 ## 48 - 58881 - Sosa Juarez, Malena Lujan
-- Nota: 10
-- Diferencias menores en diseño
-
-## 49 - 58905 - Sueldo, Leandro Antonio
 - Nota: 10
 - Diferencias menores en diseño
 
