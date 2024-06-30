@@ -83,7 +83,7 @@ function App() {
         }
     }
 
-    const cerrarSesionUsuario = async () => {
+    const cerrarSesionUsuario = async () => { //verificar
         try {
             const response = await fetch('/logout', {
                 method: 'PUT',

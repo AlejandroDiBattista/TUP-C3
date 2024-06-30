@@ -20,8 +20,6 @@ const Usuarios = [
     { username: 'seba', password: '1234' },
 ]; 
 
-
-
 // Ruta de registro
 app.post('/register', (req, res) => {
     const { nombreUsuario, contraseña } = req.body; 

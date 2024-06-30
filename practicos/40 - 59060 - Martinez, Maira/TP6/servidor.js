@@ -83,7 +83,7 @@ app.put('/iniciarSesion', (req, res) => {
         user.token = token;
         res.cookie('token', token, {
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 60 * 10)
+            expires: new Date(Date.now() + 1000 * 60 * 10) //verificar
         });
         res.status(200);
         res.json({ ok: true, mensaje: 'Usuario Registrado' });

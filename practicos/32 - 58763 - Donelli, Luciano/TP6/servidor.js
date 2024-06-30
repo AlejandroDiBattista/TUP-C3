@@ -27,7 +27,6 @@ let nextUserId = 6; // Para asignar automáticamente el siguiente ID al registra
 
 app.post('/registro', (req, res) => {
     const { nombreUsuario, contraseña } = req.body;
-    
     const usuarioExistente = usuariosRegistrados.find(user => user.username === nombreUsuario);
     if (usuarioExistente) {
         return res.status(400).json({ error: 'Usuario existente en la base de datos' });
@@ -41,14 +40,11 @@ app.post('/registro', (req, res) => {
 
 app.post('/acceso', (req, res) => {
     const { nombreUsuario, contraseña } = req.body;
-
     const usuario = usuariosRegistrados.find(user => user.username === nombreUsuario && user.password === contraseña);
     if (!usuario) {
         return res.status(401).json({ error: 'Credenciales incorrectas' });
     }
-
     res.cookie('sesionUsuario', nombreUsuario, { maxAge: 3600000, httpOnly: true });
-    console.log('Inicio de sesión exitoso:', usuario);
     res.status(200).json({ message: 'Inicio de sesión exitoso', user: usuario });
 });
 

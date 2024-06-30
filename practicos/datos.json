@@ -14,7 +14,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-02",
@@ -31,7 +32,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-03",
@@ -50,9 +52,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-04",
@@ -71,9 +74,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales #04, #038",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-05",
@@ -92,9 +96,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-06",
@@ -113,9 +118,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-07",
@@ -134,9 +140,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-08",
@@ -155,9 +162,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 9,
+    "comentario_tp6": "Usa Alert en el servidor",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-09",
@@ -176,7 +184,10 @@
     "tp6": true,
     "nota_tp3": 6,
     "comentario_tp3": "No cancela Agregar;No hace edicion en el lugar;No permite edicion simultanea;No incrementa productgo",
-    "TP3": true
+    "TP3": true,
+    "TP6": true,
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)"
   },
   {
     "id": "C3-10",
@@ -195,9 +206,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #10, #27 (Express)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-11",
@@ -214,7 +226,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-12",
@@ -233,9 +246,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-13",
@@ -254,9 +268,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-14",
@@ -275,7 +290,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "TP3": true
+    "TP3": true,
+    "TP6": true,
+    "nota_tp6": 9,
+    "comentario_tp6": ""
   },
   {
     "id": "C3-15",
@@ -294,9 +312,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-16",
@@ -315,9 +334,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 9,
+    "comentario_tp6": "La dinamica de registrar/login es confusa",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-17",
@@ -336,9 +356,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "La dinámica de registrar es confusa.;Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-18",
@@ -357,9 +378,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 7,
+    "comentario_tp6": "La dinamica de registrar es confusa;Pone una funcion no demanda (borrar usuario) y no funciona",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-19",
@@ -378,9 +400,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 7,
+    "comentario_tp6": "Proyecto sin importar Argon2;Hace el logout sin haber hecho login",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-20",
@@ -399,9 +422,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 7,
+    "comentario_tp6": "Dinamica de registracion logeo muy confusa;Son iguales #20, #29 y #32",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-21",
@@ -420,9 +444,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-22",
@@ -441,9 +466,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29 (Express);Son iguales #22, #50 (React)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-23",
@@ -462,9 +488,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-24",
@@ -483,9 +510,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-25",
@@ -502,7 +530,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-26",
@@ -521,9 +550,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-27",
@@ -542,9 +572,10 @@
     "tp4": false,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #10, #27 (Express)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-28",
@@ -563,7 +594,10 @@
     "tp6": true,
     "nota_tp3": 9,
     "comentario_tp3": "La validación es confusa y me impedia agregar un producto",
-    "TP3": true
+    "TP3": true,
+    "TP6": true,
+    "nota_tp6": 10,
+    "comentario_tp6": ""
   },
   {
     "id": "C3-29",
@@ -582,9 +616,10 @@
     "tp4": false,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 7,
+    "comentario_tp6": "La navegacion confunde.;Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-30",
@@ -601,7 +636,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-31",
@@ -618,7 +654,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-32",
@@ -637,9 +674,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 7,
+    "comentario_tp6": "Son iguales #20, #29 y #32",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-33",
@@ -656,7 +694,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-34",
@@ -675,9 +714,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 10,
+    "comentario_tp6": "Muy cuidada la estética y la navegación;Faltaria cerrar el formulario de registrar (lo cierra al cancelar pero no al aceptar)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-35",
@@ -694,7 +734,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-36",
@@ -713,9 +754,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "No realiza la navegacion de pantalla. Hace todo en una sola pagina;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-38",
@@ -734,9 +776,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Confusa la navegacion;Son iguales #04, #038",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-39",
@@ -755,9 +798,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-40",
@@ -776,9 +820,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 9,
+    "comentario_tp6": "Los colores dificulta mucho el uso",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-41",
@@ -797,9 +842,10 @@
     "tp4": false,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 9,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-42",
@@ -810,17 +856,18 @@
     "inicial": "LMP",
     "cambio": true,
     "ubicacion": "./42 - 55883 - Pedraza, Leonardo Miguel",
-    "nota_tp3": 10,
-    "comentario_tp3": "Diferencia mínima en diseño",
+    "nota_tp3": 9,
+    "comentario_tp3": "No cancela el agregar",
     "tp1": false,
     "tp2": true,
     "tp3": true,
     "tp4": false,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 9,
+    "comentario_tp6": "La navegacion es dificil porque muestra todo en una sola pantalla",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-43",
@@ -837,7 +884,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-44",
@@ -856,9 +904,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
+    "nota_tp6": 10,
     "comentario_tp6": "",
-    "TP3": true
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-46",
@@ -875,7 +924,8 @@
     "tp4": false,
     "tp5": false,
     "tp6": false,
-    "TP3": false
+    "TP3": false,
+    "TP6": false
   },
   {
     "id": "C3-47",
@@ -894,9 +944,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-48",
@@ -915,9 +966,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Presenta todo en una sola pantalla. ;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-49",
@@ -936,9 +988,10 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 8,
+    "comentario_tp6": "Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "TP3": true,
+    "TP6": true
   },
   {
     "id": "C3-50",
@@ -957,8 +1010,9 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp6": 0,
-    "comentario_tp6": "",
-    "TP3": true
+    "nota_tp6": 3,
+    "comentario_tp6": "No tiene el servidor;Son iguales #22, #50 (React)",
+    "TP3": true,
+    "TP6": true
   }
 ]

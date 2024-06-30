@@ -35,8 +35,6 @@ app.post('/login', (req, res) => {
         return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
     res.cookie('usuario', nombreUsuario, { maxAge: 900000, httpOnly: true });
-    console.log('Inicio de sesion exitoso');
-    console.log('Usuario logueado:', { username: nombreUsuario, password: contraseña });
     res.status(200).json({ message: 'Usuario logueado correctamente' });
 });
 

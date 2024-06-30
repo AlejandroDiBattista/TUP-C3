@@ -39,7 +39,6 @@ app.post('/registro', (req, res) => {
         usuarios.push({ user, password });
         res.status(201).json({ ok: true, mensaje: 'Usuario registrado' });
     }
-   
 });
 
 app.put('/logout',(req, res) =>  {
@@ -85,12 +84,10 @@ console.log(usuarios);
     if (usuario) {
         let token = generarToken();
         usuario.token = token;
-        res.cookie('token', token,
-            {
-                httpOnly: true,
-
-                expires: new Date(Date.now() + 1000 * 60 * 10)
-            });
+        res.cookie('token', token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + 1000 * 60 * 10) //verificar
+        });
         res.status(200);
         res.json({ ok: true, mensaje: 'Usuario logueado' });
     }

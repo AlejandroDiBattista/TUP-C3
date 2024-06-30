@@ -136,8 +136,8 @@
 - Agrega directamente un producto sin permitir editarlo
 
 ## 42 - 55883 - Pedraza, Leonardo Miguel
-- Nota: 10
-- Diferencia mínima en diseño
+- Nota: 9
+- No cancela el agregar
 
 ## 44 - 59092 - Perez, Luciano Damian
 - Nota: 8

@@ -25,6 +25,7 @@ app.post('/register', (req, res) => {
     console.log('Usuario registrado:', { username: nombreUsuario, password: contraseña }); 
     res.status(200).json({ message: 'Usuario registrado' }); 
 });
+
 // Ruta de login
 app.post('/login', (req, res) => {
     const { nombreUsuario, contraseña } = req.body; 

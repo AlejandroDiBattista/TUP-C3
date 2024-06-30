@@ -9,7 +9,6 @@ function App() {
     
         useEffect(() => {
             const valorCookie = getCookie('usuario');
-    
             if (valorCookie) {
                 setEstaLogueado(true);
                 setNombreUsuario(valorCookie);

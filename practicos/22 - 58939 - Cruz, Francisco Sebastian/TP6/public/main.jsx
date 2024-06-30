@@ -1,10 +1,12 @@
 function App() {
+    
     const [nombreUsuario, setnombreUsuario] = useState(''); 
         const [contraseña, setContraseña] = useState(''); 
         const [mensaje, setMensaje] = useState(''); 
         const [modo, setModo] = useState('registrar'); 
         const [estaLogueado, setusuarioLogeado] = useState(false); 
         const [mostrarInfo, setMuestroInfo] = useState(false); 
+    
         useEffect(() => {
             const valordeCookie = getCookie('usuario');
             if (valordeCookie) {
@@ -12,6 +14,7 @@ function App() {
                 setnombreUsuario(valordeCookie);
             }
         }, []);
+    
         const getCookie = (nombre) => {
             const cookieString = document.cookie;
             const cookies = cookieString.split('; ');

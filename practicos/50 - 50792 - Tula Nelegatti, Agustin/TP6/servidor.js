@@ -1,7 +1,6 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import morgan
- from 'morgan';
+import morgan from 'morgan';
 
 const app = express();
 const puerto = 3000;
@@ -15,6 +14,7 @@ app.use(express.static('public'));  // Para servir archivos estáticos
 app.listen(3000, () => {
     console.log('Servidor iniciado en http://localhost:3000');
 });
+
 const Usuarios = [
     { username: 'Agustin', password: '12345' },
     { username: 'Jose', password: '6789' },

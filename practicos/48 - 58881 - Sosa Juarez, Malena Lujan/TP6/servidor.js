@@ -83,7 +83,7 @@ app.put('/login', (req, res) => {
         user.sessionToken = token;
         res.cookie('token', token, {
             httpOnly: true,
-            expires: new Date(Date.now() + 1000 * 60 * 10)
+            expires: new Date(Date.now() + 1000 * 60 * 10) //verificar
         });
         res.status(200)
         res.json({ ok: true, message: 'Logeado Correctamente' })
