@@ -1,141 +1,107 @@
-# Evaluación tp6 - C3
+# Evaluación tp6 en C3
 
 ## 03 - 58931 - Cabrera, Lucas Nahuel
-- Aprobado: 
-- 
+- Nota:  
 
 ## 04 - 58771 - Calvo Maderuelo, Carlos M
-- Aprobado: 
-- 
+- Nota:  
 
 ## 05 - 59022 - Camaño Terán, Nicolás
-- Aprobado: 
-- 
+- Nota:  
 
 ## 06 - 58889 - Capó, Mauricio Nicolás
-- Aprobado: 
-- 
+- Nota:  
 
 ## 07 - 58770 - Carabajal, Ariadna Micael
-- Aprobado: 
-- 
+- Nota:  
 
 ## 08 - 59046 - Carrizo, Angel Nahuel
-- Aprobado: 
-- 
+- Nota:  
 
 ## 10 - 58925 - Castillo, Martina
-- Aprobado: 
-- 
+- Nota:  
 
 ## 12 - 59016 - Catania, Franco Mauricio
-- Aprobado: 
-- 
+- Nota:  
 
 ## 13 - 58813 - Cervera, Diego Octavio
-- Aprobado: 
-- 
+- Nota:  
 
 ## 15 - 59027 - Chaves, Gonzalo Martín
-- Aprobado: 
-- 
+- Nota:  
 
 ## 16 - 59347 - Chein, Amir Elias
-- Aprobado: 
-- 
+- Nota:  
 
 ## 17 - 59315 - Chein, Santiago
-- Aprobado: 
-- 
+- Nota:  
 
 ## 18 - 58768 - Cordoba, Ignacio Leandro
-- Aprobado: 
-- 
+- Nota:  
 
 ## 19 - 58780 - Coronel, Juan Carlos
-- Aprobado: 
-- 
+- Nota:  
 
 ## 20 - 58937 - Coronel, Lucas Francisco
-- Aprobado: 
-- 
+- Nota:  
 
 ## 21 - 59019 - Corral Garcia, Mario Maxi
-- Aprobado: 
-- 
+- Nota:  
 
 ## 22 - 58939 - Cruz, Francisco Sebastian
-- Aprobado: 
-- 
+- Nota:  
 
 ## 23 - 59083 - Cuellar, José Omar
-- Aprobado: 
-- 
+- Nota:  
 
 ## 24 - 59063 - Cuevas, Matias Sebastián
-- Aprobado: 
-- 
+- Nota:  
 
 ## 26 - 59075 - Delgado, Fabricio Tobias
-- Aprobado: 
-- 
+- Nota:  
 
 ## 27 - 59185 - Diaz Ghiggia, Guillermo
-- Aprobado: 
-- 
+- Nota:  
 
 ## 29 - 58844 - Diaz Gonzalez, Nahuel Ale
-- Aprobado: 
-- 
+- Nota:  
 
 ## 32 - 58763 - Donelli, Luciano
-- Aprobado: 
-- 
+- Nota:  
 
 ## 34 - 55249 - Fernandez, Gonzalo Tomas
-- Aprobado: 
-- 
+- Nota:  
 
 ## 36 - 57565 - Heredia, Fabricio Nicolás
-- Aprobado: 
-- 
+- Nota:  
 
 ## 38 - 59184 - Lucena, Matias Leandro
-- Aprobado: 
-- 
+- Nota:  
 
 ## 39 - 59438 - Martin, Leonardo Javier
-- Aprobado: 
-- 
+- Nota:  
 
 ## 40 - 59060 - Martinez, Maira
-- Aprobado: 
-- 
+- Nota:  
 
 ## 41 - 59550 - Osores Medina, Selena Pau
-- Aprobado: 
-- 
+- Nota:  
 
 ## 42 - 55883 - Pedraza, Leonardo Miguel
-- Aprobado: 
-- 
+- Nota:  
 
 ## 44 - 59092 - Perez, Luciano Damian
-- Aprobado: 
-- 
+- Nota:  
 
 ## 47 - 58884 - Salazar, Agustina Ximena
-- Aprobado: 
-- 
+- Nota:  
 
 ## 48 - 58881 - Sosa Juarez, Malena Lujan
-- Aprobado: 
-- 
+- Nota:  
 
 ## 49 - 58905 - Sueldo, Leandro Antonio
-- Aprobado: 
-- 
+- Nota:  
 
 ## 50 - 50792 - Tula Nelegatti, Agustin
-- Aprobado: 
+- Nota:  
 - 

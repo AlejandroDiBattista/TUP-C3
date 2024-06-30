@@ -13,7 +13,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-02",
@@ -29,7 +30,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-03",
@@ -41,7 +43,7 @@
     "cambio": true,
     "ubicacion": "./03 - 58931 - Cabrera, Lucas Nahuel",
     "nota_tp3": 9,
-    "comentario_tp3": "nota: Uso extraño del KeyDown, no funcion el formulario de agregar",
+    "comentario_tp3": "Uso extraño del KeyDown, no funcion el formulario de agregar",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -49,7 +51,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-04",
@@ -61,7 +64,7 @@
     "cambio": true,
     "ubicacion": "./04 - 58771 - Calvo Maderuelo, Carlos M",
     "nota_tp3": 9,
-    "comentario_tp3": "Falta iconos \nNo convierte cantidad a entero en el ingreso de datos.",
+    "comentario_tp3": "Falta iconos ;No convierte cantidad a entero en el ingreso de datos.",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -69,7 +72,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-05",
@@ -89,7 +93,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-06",
@@ -109,7 +114,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-07",
@@ -129,7 +135,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-08",
@@ -149,7 +156,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-09",
@@ -167,7 +175,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp3": 6,
-    "comentario_tp3": "No cancela Agregar\nNo hace edicion en el lugar\nNo permite edicion simultanea\nNo incrementa productgo"
+    "comentario_tp3": "No cancela Agregar;No hace edicion en el lugar;No permite edicion simultanea;No incrementa productgo",
+    "TP3": true
   },
   {
     "id": "C3-10",
@@ -187,7 +196,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-11",
@@ -203,7 +213,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-12",
@@ -223,7 +234,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-13",
@@ -243,7 +255,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-14",
@@ -261,7 +274,8 @@
     "tp3": true,
     "tp4": true,
     "tp5": true,
-    "tp6": true
+    "tp6": true,
+    "TP3": true
   },
   {
     "id": "C3-15",
@@ -281,7 +295,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-16",
@@ -301,7 +316,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-17",
@@ -321,7 +337,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-18",
@@ -341,7 +358,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-19",
@@ -361,7 +379,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-20",
@@ -381,7 +400,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-21",
@@ -401,7 +421,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-22",
@@ -421,7 +442,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-23",
@@ -441,7 +463,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-24",
@@ -461,7 +484,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-25",
@@ -477,7 +501,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-26",
@@ -497,7 +522,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-27",
@@ -509,7 +535,7 @@
     "cambio": true,
     "ubicacion": "./27 - 59185 - Diaz Ghiggia, Guillermo",
     "nota_tp3": 8,
-    "comentario_tp3": "Agrega directamente sin mostrar formulario\nEl diseño no se adapta",
+    "comentario_tp3": "Agrega directamente sin mostrar formulario;El diseño no se adapta",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -517,7 +543,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-28",
@@ -535,7 +562,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp3": 9,
-    "comentario_tp3": "La validación es confusa y me impedia agregar un producto"
+    "comentario_tp3": "La validación es confusa y me impedia agregar un producto",
+    "TP3": true
   },
   {
     "id": "C3-29",
@@ -555,7 +583,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-30",
@@ -571,7 +600,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-31",
@@ -587,7 +617,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-32",
@@ -607,7 +638,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-33",
@@ -623,7 +655,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-34",
@@ -643,7 +676,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-35",
@@ -659,7 +693,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-36",
@@ -671,7 +706,7 @@
     "cambio": true,
     "ubicacion": "./36 - 57565 - Heredia, Fabricio Nicolás",
     "nota_tp3": 9,
-    "comentario_tp3": "El formulario se rompe\nid mal calculado",
+    "comentario_tp3": "El formulario se rompe;id mal calculado",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -679,7 +714,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-38",
@@ -699,7 +735,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-39",
@@ -719,7 +756,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-40",
@@ -731,7 +769,7 @@
     "cambio": true,
     "ubicacion": "./40 - 59060 - Martinez, Maira",
     "nota_tp3": 7,
-    "comentario_tp3": "No cuenta los productos\nNo funciona el cancelar",
+    "comentario_tp3": "No cuenta los productos;No funciona el cancelar",
     "tp1": true,
     "tp2": false,
     "tp3": true,
@@ -739,7 +777,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-41",
@@ -759,7 +798,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-42",
@@ -779,7 +819,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-43",
@@ -795,7 +836,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-44",
@@ -807,7 +849,7 @@
     "cambio": true,
     "ubicacion": "./44 - 59092 - Perez, Luciano Damian",
     "nota_tp3": 8,
-    "comentario_tp3": "La edición en el lugar no aparece en el lugar\nEdita un solo producto\nEl cálculo de ID está mal.",
+    "comentario_tp3": "La edición en el lugar no aparece en el lugar;Edita un solo producto;El cálculo de ID está mal.",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -815,7 +857,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-46",
@@ -831,7 +874,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "TP3": false
   },
   {
     "id": "C3-47",
@@ -843,7 +887,7 @@
     "cambio": true,
     "ubicacion": "./47 - 58884 - Salazar, Agustina Ximena",
     "nota_tp3": 9,
-    "comentario_tp3": "Solo incrementa en el número\nNo agrega arriba de la lista",
+    "comentario_tp3": "Solo incrementa en el número;No agrega arriba de la lista",
     "tp1": true,
     "tp2": true,
     "tp3": true,
@@ -851,7 +895,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-48",
@@ -871,7 +916,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-49",
@@ -891,7 +937,8 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   },
   {
     "id": "C3-50",
@@ -903,7 +950,7 @@
     "cambio": true,
     "ubicacion": "./50 - 50792 - Tula Nelegatti, Agustin",
     "nota_tp3": 9,
-    "comentario_tp3": "Formulario con diseño incorrecto.\nMal cálculo del ID",
+    "comentario_tp3": "Formulario con diseño incorrecto.;Mal cálculo del ID",
     "tp1": true,
     "tp2": false,
     "tp3": true,
@@ -911,6 +958,7 @@
     "tp5": true,
     "tp6": true,
     "nota_tp6": 0,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "TP3": true
   }
 ]
