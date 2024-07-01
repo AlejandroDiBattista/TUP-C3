@@ -40,7 +40,8 @@
 - Nota: 9
 
 ## 15 - 59027 - Chaves, Gonzalo Martín
-- Nota: 10
+- Nota: 7
+- Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 16 - 59347 - Chein, Amir Elias
 - Nota: 9

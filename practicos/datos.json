@@ -269,8 +269,8 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
-    "nota_tp6": 10,
-    "comentario_tp6": ""
+    "nota_tp6": 7,
+    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
   },
   {
     "id": "C3-16",
