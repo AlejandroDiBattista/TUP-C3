@@ -4,8 +4,8 @@
 - Nota: 10
 
 ## 04 - 58771 - Calvo Maderuelo, Carlos M
-- Nota: 8
-- Son iguales #04, #038
+- Nota: 7
+- Son iguales #04, #38
 
 ## 05 - 59022 - Camaño Terán, Nicolás
 - Nota: 10
@@ -21,16 +21,16 @@
 - Usa Alert en el servidor
 
 ## 09 - 55839 - Castillo, Ignacio Agustín
-- Nota: 8
+- Nota: 7
 - Son iguales #09, #47, #49
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 10 - 58925 - Castillo, Martina
-- Nota: 8
+- Nota: 7
 - Son iguales: #10, #27 (Express)
 
 ## 12 - 59016 - Catania, Franco Mauricio
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 13 - 58813 - Cervera, Diego Octavio
@@ -47,7 +47,7 @@
 - La dinamica de registrar/login es confusa
 
 ## 17 - 59315 - Chein, Santiago
-- Nota: 8
+- Nota: 7
 - La dinámica de registrar es confusa.
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
@@ -67,11 +67,11 @@
 - Son iguales #20, #29 y #32
 
 ## 21 - 59019 - Corral Garcia, Mario Maxi
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 22 - 58939 - Cruz, Francisco Sebastian
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29 (Express)
 - Son iguales #22, #50 (React)
 
@@ -79,15 +79,15 @@
 - Nota: 10
 
 ## 24 - 59063 - Cuevas, Matias Sebastián
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 26 - 59075 - Delgado, Fabricio Tobias
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 27 - 59185 - Diaz Ghiggia, Guillermo
-- Nota: 8
+- Nota: 7
 - Son iguales: #10, #27 (Express)
 
 ## 28 - 58888 - Diaz Gómez, Andrés Dario
@@ -108,17 +108,17 @@
 - Faltaria cerrar el formulario de registrar (lo cierra al cancelar pero no al aceptar)
 
 ## 36 - 57565 - Heredia, Fabricio Nicolás
-- Nota: 8
+- Nota: 7
 - No realiza la navegacion de pantalla. Hace todo en una sola pagina
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 38 - 59184 - Lucena, Matias Leandro
-- Nota: 8
+- Nota: 7
 - Confusa la navegacion
 - Son iguales #04, #038
 
 ## 39 - 59438 - Martin, Leonardo Javier
-- Nota: 8
+- Nota: 7
 - Son iguales: #12, #15, #21, #22, #24, #26, #29
 
 ## 40 - 59060 - Martinez, Maira
@@ -136,17 +136,17 @@
 - Nota: 10
 
 ## 47 - 58884 - Salazar, Agustina Ximena
-- Nota: 8
+- Nota: 7
 - Son iguales #09, #47, #49
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 48 - 58881 - Sosa Juarez, Malena Lujan
-- Nota: 8
+- Nota: 7
 - Presenta todo en una sola pantalla. 
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 49 - 58905 - Sueldo, Leandro Antonio
-- Nota: 8
+- Nota: 7
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 50 - 50792 - Tula Nelegatti, Agustin
