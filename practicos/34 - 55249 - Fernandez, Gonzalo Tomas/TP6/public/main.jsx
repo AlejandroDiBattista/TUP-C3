@@ -109,7 +109,7 @@ function App() {
     let data = await res.json();
     showMessage(data.message, data.ok ? 'success' : 'error');
     if (data.ok) {
-      setCurrentPage('login');
+      setCurrentPage('main');
       playSound('success');
     } else {
       playSound('error');
