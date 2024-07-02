@@ -50,12 +50,12 @@
 ## 17 - 59315 - Chein, Santiago
 - Nota: 7
 - La dinámica de registrar es confusa.
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #17, #18
 
 ## 18 - 58768 - Cordoba, Ignacio Leandro
 - Nota: 7
 - La dinamica de registrar es confusa
-- Pone una funcion no demanda (borrar usuario) y no funciona
+- Son iguales: #17, #18
 
 ## 19 - 58780 - Coronel, Juan Carlos
 - Nota: 7

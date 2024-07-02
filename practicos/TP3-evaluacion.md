@@ -11,7 +11,9 @@
 
 ## 05 - 59022 - Camaño Terán, Nicolás
 - Nota: 8
-- La alta no permite editar los campos, la agrega directamente
+- No incrementa el producto, en su lugar lo edita
+- No realiza edicion en el lugar
+- No permite editar cuando esta dando de alta.
 
 ## 06 - 58889 - Capó, Mauricio Nicolás
 - Nota: 10

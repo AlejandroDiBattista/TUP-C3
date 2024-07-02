@@ -82,7 +82,7 @@
     "tp5": true,
     "tp6": true,
     "nota_tp3": 8,
-    "comentario_tp3": "La alta no permite editar los campos, la agrega directamente",
+    "comentario_tp3": "No incrementa el producto, en su lugar lo edita;No realiza edicion en el lugar;No permite editar cuando esta dando de alta.",
     "nota_tp6": 10,
     "comentario_tp6": ""
   },
