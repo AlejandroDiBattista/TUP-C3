@@ -129,8 +129,7 @@
             { id: 5, nombre: 'Sprite', codigoEAN: '7796543219870', cantidad: 4 }
         ];
 
-        function Producto({ producto, alGuardar, alBorrar }) {
-            const [editando, setEditando] = useState(false);
+        function Producto({ producto, alGuardar, alCancelar, alBorrar }) {
             const [nombre, setNombre] = useState(producto.nombre);
             const [codigoEAN, setCodigoEAN] = useState(producto.codigoEAN);
             const [cantidad, setCantidad] = useState(producto.cantidad);
@@ -158,73 +157,68 @@
                     return;
                 }
                 alGuardar({ ...producto, nombre, codigoEAN, cantidad });
-                setEditando(false);
             };
 
             const cancelar = e => {
                 e.preventDefault();
-                setEditando(false);
+                alCancelar();
             };
 
-            const editar = () => setEditando(true);
-            const borrar = () => alBorrar(producto.id);
+            return (
+                <div className="panel">
+                    <div className="edit-inputs">
+                        <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
+                        <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} placeholder="Código EAN" />
+                        <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
+                    </div>
+                    {error && <p className="error">Todos los campos son obligatorios</p>}
+                    <div className="acciones">
+                        <button onClick={guardar}>Aceptar</button>
+                        <button onClick={cancelar}>Cancelar</button>
+                    </div>
+                </div>
+            );
+        }
 
-            const handleClick = (e) => {
-                if (!editando && e.currentTarget === e.target) {
-                    setCantidad(cantidad + 1);
-                }
+        function ProductoInfo({ producto, alEditar, alBorrar }) {
+            const handleClick = () => {
+                alEditar(producto.id);
             };
 
             return (
                 <div className="panel" onClick={handleClick}>
-                    {editando ? (
-                        <>
-                            <div className="edit-inputs">
-                                <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
-                                <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} placeholder="Código EAN" />
-                                <input type="number" value={cantidad} onChange={cambiarCantidad} placeholder="Cantidad" />
-                            </div>
-                            {error && <p className="error">Todos los campos son obligatorios</p>}
-                            <div className="acciones">
-                                <button onClick={guardar}>Aceptar</button>
-                                <button onClick={cancelar}>Cancelar</button>
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div className="cantidad">{cantidad}</div>
-                            <div className="producto-info" onClick={handleClick}>
-                                <p className="producto-nombre">{producto.nombre}</p>
-                                <p className="producto-codigo">{producto.codigoEAN}</p>
-                            </div>
-                            <div className="acciones">
-                                <div className="icon" onClick={editar}><i className="fa-solid fa-pencil"></i></div>
-                                <div className="icon" onClick={borrar}><i className="fa-solid fa-trash"></i></div>
-                            </div>
-                        </>
-                    )}
+                    <div className="cantidad">{producto.cantidad}</div>
+                    <div className="producto-info">
+                        <p className="producto-nombre">{producto.nombre}</p>
+                        <p className="producto-codigo">{producto.codigoEAN}</p>
+                    </div>
+                    <div className="acciones">
+                        <div className="icon" onClick={() => alEditar(producto.id)}><i className="fa-solid fa-pencil"></i></div>
+                        <div className="icon" onClick={() => alBorrar(producto.id)}><i className="fa-solid fa-trash"></i></div>
+                    </div>
                 </div>
-    );
-}
+            );
+        }
 
-  
-
-    
-
-        
-
-        function Inventario({ productos, alAgregar, alGuardar, alBorrar }) {
+        function Inventario({ productos, editandoProducto, alAgregar, alGuardar, alCancelar, alEditar, alBorrar }) {
             return (
                 <>
                     <h1>Control Depósito</h1>
                     <div className="acciones" style={{ justifyContent: 'center', marginBottom: '20px' }}>
-                        <button onClick={() => alAgregar()}>&#43;</button>
+                        <button onClick={alAgregar}>&#43;</button>
                     </div>
-                    {productos.map(producto => (
+                    {editandoProducto && (
                         <Producto
+                            producto={editandoProducto}
+                            alGuardar={alGuardar}
+                            alCancelar={alCancelar}
+                        />
+                    )}
+                    {productos.map(producto => (
+                        <ProductoInfo
                             key={producto.id}
                             producto={producto}
-                            alGuardar={alGuardar}
+                            alEditar={alEditar}
                             alBorrar={alBorrar}
                         />
                     ))}
@@ -240,28 +234,34 @@
 
         function App() {
             const [productos, setProductos] = useState(ProductosIniciales);
+            const [editandoProducto, setEditandoProducto] = useState(null);
 
             const guardar = (producto) => {
                 if (producto.id) {
-                    // Modificación
                     const copia = productos.map(p => p.id === producto.id ? producto : p);
                     setProductos(copia);
                 } else {
-                    // Alta
                     const id = Math.max(...productos.map(p => p.id)) + 1;
                     const copia = [...productos, { ...producto, id }];
                     setProductos(copia);
                 }
+                setEditandoProducto(null);
             };
 
             const agregar = () => {
-                const id = Math.max(...productos.map(p => p.id)) + 1;
-                const nuevoProducto = { id, nombre: '', codigoEAN: '', cantidad: 0 };
-                setProductos([...productos, nuevoProducto]);
+                setEditandoProducto({ id: null, nombre: '', codigoEAN: '', cantidad: 0 });
+            };
+
+            const cancelar = () => {
+                setEditandoProducto(null);
+            };
+
+            const editar = (id) => {
+                const producto = productos.find(p => p.id === id);
+                setEditandoProducto(producto);
             };
 
             const borrar = (id) => {
-                // Baja
                 const copia = productos.filter(p => p.id !== id);
                 setProductos(copia);
             };
@@ -270,26 +270,13 @@
             return (
                 <Inventario
                     productos={productos}
+                    editandoProducto={editandoProducto}
                     alAgregar={agregar}
                     alGuardar={guardar}
+                    alCancelar={cancelar}
+                    alEditar={editar}
                     alBorrar={borrar}
                 />
-            );
-        }
-
-        function Agenda({ productos, alAgregar, alGuardar, alBorrar, incrementarStock }) {
-            return (
-                <>
-                    {productos.map(producto => (
-                        <Mostrar
-                            key={producto.codigo}
-                            producto={producto}
-                            alGuardar={alGuardar}
-                            alBorrar={alBorrar}
-                            incrementarStock={incrementarStock}
-                        />
-                    ))}
-                </>
             );
         }
 
