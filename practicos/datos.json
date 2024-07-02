@@ -308,7 +308,7 @@
     "nota_tp3": 8,
     "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
     "nota_tp6": 7,
-    "comentario_tp6": "La dinámica de registrar es confusa.;Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "La dinámica de registrar es confusa.;Son iguales: #17, #18"
   },
   {
     "id": "C3-18",
@@ -327,7 +327,7 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "La dinamica de registrar es confusa;Pone una funcion no demanda (borrar usuario) y no funciona"
+    "comentario_tp6": "La dinamica de registrar es confusa;Son iguales: #17, #18"
   },
   {
     "id": "C3-19",
