@@ -6,6 +6,7 @@ const app = express()
 app.use(express.json());
 app.use(cors())
 
+
 let datos = [
     { id: 1, nombre: "matias", apellido: "Cuevas", edad: 29, borrado: false, actualizado: 0 },
     { id: 2, nombre: "franco", apellido: "Catania", edad: 28, borrado: false, actualizado: 0 },
@@ -13,6 +14,8 @@ let datos = [
     { id: 4, nombre: "sebastian", apellido: "Cruz", edad: 19, borrado: false, actualizado:0 },
     { id: 5, nombre: "fabricio", apellido: "Delgado", edad: 20, borrado: false, actualizado: 0 }
 ]
+
+
 
 app.get('/personas', (req, res) => {
   

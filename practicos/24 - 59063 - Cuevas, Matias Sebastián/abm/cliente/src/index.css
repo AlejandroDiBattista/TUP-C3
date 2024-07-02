@@ -1,0 +1,198 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #282424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+.card {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  margin: 2em auto;
+  max-width: 400px;
+}
+
+.card h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.card .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card .form label {
+  margin-bottom: 1em;
+}
+
+.card .form input {
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+}
+
+.card .button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+/* Additional styles based on your existing CSS */
+@media (prefers-color-scheme: light) {
+  .card {
+    background-color: #ffffff;
+    color: #213547;
+  }
+
+  .card a:hover {
+    color: #747bff;
+  }
+
+  .card button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+
+.card {
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  margin: 1em;
+  max-width: 400px;
+}
+
+.card h4 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.card p {
+  margin-bottom: 1em;
+}
+
+.card .actions {
+  display: flex;
+ justify-content: center;
+}
+
+.card .actions button {
+  margin-left: 0.5em;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  border: none;
+  background-color: #535bf2;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card .actions button:hover {
+  background-color: #4349d6;
+}
+
+.arriba {
+  background-color: #242424;
+  padding: 1em;
+}
+
+.arriba h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.arriba .btnarriba {
+  background-color: #535bf2;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: center;
+}
+
+.arriba .btnarriba:hover {
+  background-color: #4349d6;
+  justify-content: center;
+}
+
+
+.form-input {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
