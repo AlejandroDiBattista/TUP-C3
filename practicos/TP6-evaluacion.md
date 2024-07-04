@@ -26,12 +26,10 @@
 - Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 10 - 58925 - Castillo, Martina
-- Nota: 7
-- Son iguales: #10, #27 (Express)
+- Nota: 9
 
 ## 12 - 59016 - Catania, Franco Mauricio
-- Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Nota: 9
 
 ## 13 - 58813 - Cervera, Diego Octavio
 - Nota: 10
@@ -41,21 +39,19 @@
 
 ## 15 - 59027 - Chaves, Gonzalo Martín
 - Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #15, #21, #22, #26, #29
 
 ## 16 - 59347 - Chein, Amir Elias
 - Nota: 9
 - La dinamica de registrar/login es confusa
 
 ## 17 - 59315 - Chein, Santiago
-- Nota: 7
-- La dinámica de registrar es confusa.
-- Son iguales: #17, #18
+- Nota: 9
 
 ## 18 - 58768 - Cordoba, Ignacio Leandro
 - Nota: 7
 - La dinamica de registrar es confusa
-- Son iguales: #17, #18
+- Se guió de #17
 
 ## 19 - 58780 - Coronel, Juan Carlos
 - Nota: 7
@@ -69,23 +65,22 @@
 
 ## 21 - 59019 - Corral Garcia, Mario Maxi
 - Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #15, #21, #22, #26, #29
 
 ## 22 - 58939 - Cruz, Francisco Sebastian
 - Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29 (Express)
+- Son iguales: #15, #21, #22, #26, #29 (Express)
 - Son iguales #22, #50 (React)
 
 ## 23 - 59083 - Cuellar, José Omar
 - Nota: 10
 
 ## 24 - 59063 - Cuevas, Matias Sebastián
-- Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Nota: 9
 
 ## 26 - 59075 - Delgado, Fabricio Tobias
 - Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #15, #21, #22, #26, #29
 
 ## 27 - 59185 - Diaz Ghiggia, Guillermo
 - Nota: 7
@@ -97,7 +92,7 @@
 ## 29 - 58844 - Diaz Gonzalez, Nahuel Ale
 - Nota: 7
 - La navegacion confunde.
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #15, #21, #22, #26, #29
 
 ## 32 - 58763 - Donelli, Luciano
 - Nota: 7
@@ -116,11 +111,11 @@
 ## 38 - 59184 - Lucena, Matias Leandro
 - Nota: 7
 - Confusa la navegacion
-- Son iguales #04, #038
+- Son iguales #04, #38
 
 ## 39 - 59438 - Martin, Leonardo Javier
 - Nota: 7
-- Son iguales: #12, #15, #21, #22, #24, #26, #29
+- Son iguales: #15, #21, #22, #26, #29
 
 ## 40 - 59060 - Martinez, Maira
 - Nota: 9

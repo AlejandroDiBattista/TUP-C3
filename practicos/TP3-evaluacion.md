@@ -129,9 +129,8 @@
 - Diferencias menores en diseño
 
 ## 40 - 59060 - Martinez, Maira
-- Nota: 7
-- No cuenta los productos
-- No funciona el cancelar
+- Nota: 9
+- No edita en el lugar
 
 ## 41 - 59550 - Osores Medina, Selena Pau
 - Nota: 8

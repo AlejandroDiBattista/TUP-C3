@@ -12,7 +12,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-02",
@@ -27,7 +28,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-03",
@@ -46,7 +48,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "Uso extraño del KeyDown, no funcion el formulario de agregar",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-04",
@@ -65,7 +68,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "Falta iconos ;No convierte cantidad a entero en el ingreso de datos.",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #04, #38"
+    "comentario_tp6": "Son iguales #04, #38",
+    "estado": "regular"
   },
   {
     "id": "C3-05",
@@ -84,7 +88,8 @@
     "nota_tp3": 8,
     "comentario_tp3": "No incrementa el producto, en su lugar lo edita;No realiza edicion en el lugar;No permite editar cuando esta dando de alta.",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-06",
@@ -103,7 +108,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "No guarda los datos en localStorage",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-07",
@@ -122,7 +128,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "En la validación de errores no indica cuál fue el error. (código EAN)",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-08",
@@ -141,7 +148,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "No valida que la cantidad sea un número",
     "nota_tp6": 9,
-    "comentario_tp6": "Usa Alert en el servidor"
+    "comentario_tp6": "Usa Alert en el servidor",
+    "estado": "promocionado"
   },
   {
     "id": "C3-09",
@@ -160,7 +168,8 @@
     "nota_tp3": 6,
     "comentario_tp3": "No cancela Agregar;No hace edicion en el lugar;No permite edicion simultanea;No incrementa productgo",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)"
+    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-10",
@@ -178,8 +187,9 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencia mínima de formato",
-    "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #10, #27 (Express)"
+    "nota_tp6": 9,
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-11",
@@ -194,7 +204,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-12",
@@ -212,8 +223,9 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencia mínima de formato",
-    "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "nota_tp6": 9,
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-13",
@@ -232,7 +244,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "El ordenamiento alfabético está raro, compara mayúsculas luego compara de nuevo",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-14",
@@ -251,7 +264,8 @@
     "nota_tp3": 8,
     "comentario_tp3": "No incrementa y los formularios están mal.",
     "nota_tp6": 9,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-15",
@@ -270,7 +284,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "Son iguales: #15, #21, #22, #26, #29",
+    "estado": "regular"
   },
   {
     "id": "C3-16",
@@ -289,7 +304,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Ordena los datos al inicializar useState(productos.sort)",
     "nota_tp6": 9,
-    "comentario_tp6": "La dinamica de registrar/login es confusa"
+    "comentario_tp6": "La dinamica de registrar/login es confusa",
+    "estado": "promocionado"
   },
   {
     "id": "C3-17",
@@ -307,8 +323,9 @@
     "tp6": true,
     "nota_tp3": 8,
     "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
-    "nota_tp6": 7,
-    "comentario_tp6": "La dinámica de registrar es confusa.;Son iguales: #17, #18"
+    "nota_tp6": 9,
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-18",
@@ -327,7 +344,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "La dinamica de registrar es confusa;Son iguales: #17, #18"
+    "comentario_tp6": "La dinamica de registrar es confusa;Se guió de #17",
+    "estado": "regular"
   },
   {
     "id": "C3-19",
@@ -346,7 +364,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "Se rompe el formulario en la edición",
     "nota_tp6": 7,
-    "comentario_tp6": "Proyecto sin importar Argon2;Hace el logout sin haber hecho login"
+    "comentario_tp6": "Proyecto sin importar Argon2;Hace el logout sin haber hecho login",
+    "estado": "regular"
   },
   {
     "id": "C3-20",
@@ -365,7 +384,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "Dinamica de registracion logeo muy confusa;Son iguales #20, #29 y #32"
+    "comentario_tp6": "Dinamica de registracion logeo muy confusa;Son iguales #20, #29 y #32",
+    "estado": "regular"
   },
   {
     "id": "C3-21",
@@ -384,7 +404,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias mínimas de diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "Son iguales: #15, #21, #22, #26, #29",
+    "estado": "regular"
   },
   {
     "id": "C3-22",
@@ -403,7 +424,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29 (Express);Son iguales #22, #50 (React)"
+    "comentario_tp6": "Son iguales: #15, #21, #22, #26, #29 (Express);Son iguales #22, #50 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-23",
@@ -422,7 +444,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Funciona inexplicablemente el id = Math.floor",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-24",
@@ -440,8 +463,9 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "Cálculo del ID mal",
-    "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "nota_tp6": 9,
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-25",
@@ -456,7 +480,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-26",
@@ -475,7 +500,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Cálculo de ID mal",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "Son iguales: #15, #21, #22, #26, #29",
+    "estado": "regular"
   },
   {
     "id": "C3-27",
@@ -494,7 +520,8 @@
     "nota_tp3": 8,
     "comentario_tp3": "Agrega directamente sin mostrar formulario;El diseño no se adapta",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #10, #27 (Express)"
+    "comentario_tp6": "Son iguales: #10, #27 (Express)",
+    "estado": "regular"
   },
   {
     "id": "C3-28",
@@ -513,7 +540,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "La validación es confusa y me impedia agregar un producto",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "promocionado"
   },
   {
     "id": "C3-29",
@@ -532,7 +560,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "No incrementar si no apuntas al número",
     "nota_tp6": 7,
-    "comentario_tp6": "La navegacion confunde.;Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "La navegacion confunde.;Son iguales: #15, #21, #22, #26, #29",
+    "estado": "regular"
   },
   {
     "id": "C3-30",
@@ -547,7 +576,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-31",
@@ -562,7 +592,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-32",
@@ -581,7 +612,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "¿Cómo gestiona el id?",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #20, #29 y #32"
+    "comentario_tp6": "Son iguales #20, #29 y #32",
+    "estado": "regular"
   },
   {
     "id": "C3-33",
@@ -596,7 +628,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-34",
@@ -615,7 +648,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Calcula el id con reduce",
     "nota_tp6": 10,
-    "comentario_tp6": "Muy cuidada la estética y la navegación;Faltaria cerrar el formulario de registrar (lo cierra al cancelar pero no al aceptar)"
+    "comentario_tp6": "Muy cuidada la estética y la navegación;Faltaria cerrar el formulario de registrar (lo cierra al cancelar pero no al aceptar)",
+    "estado": "promocionado"
   },
   {
     "id": "C3-35",
@@ -630,7 +664,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-36",
@@ -649,7 +684,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "El formulario se rompe;id mal calculado",
     "nota_tp6": 7,
-    "comentario_tp6": "No realiza la navegacion de pantalla. Hace todo en una sola pagina;Son iguales #09, #36, #40, #47, #48, #49 (React)"
+    "comentario_tp6": "No realiza la navegacion de pantalla. Hace todo en una sola pagina;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-38",
@@ -668,7 +704,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
     "nota_tp6": 7,
-    "comentario_tp6": "Confusa la navegacion;Son iguales #04, #038"
+    "comentario_tp6": "Confusa la navegacion;Son iguales #04, #38",
+    "estado": "regular"
   },
   {
     "id": "C3-39",
@@ -687,7 +724,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales: #12, #15, #21, #22, #24, #26, #29"
+    "comentario_tp6": "Son iguales: #15, #21, #22, #26, #29",
+    "estado": "regular"
   },
   {
     "id": "C3-40",
@@ -703,10 +741,11 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp3": 7,
-    "comentario_tp3": "No cuenta los productos;No funciona el cancelar",
+    "nota_tp3": 9,
+    "comentario_tp3": "No edita en el lugar",
     "nota_tp6": 9,
-    "comentario_tp6": "Los colores dificulta mucho el uso"
+    "comentario_tp6": "Los colores dificulta mucho el uso",
+    "estado": "regular"
   },
   {
     "id": "C3-41",
@@ -725,7 +764,8 @@
     "nota_tp3": 8,
     "comentario_tp3": "Agrega directamente un producto sin permitir editarlo",
     "nota_tp6": 9,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-42",
@@ -744,7 +784,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "No cancela el agregar",
     "nota_tp6": 9,
-    "comentario_tp6": "La navegacion es dificil porque muestra todo en una sola pantalla"
+    "comentario_tp6": "La navegacion es dificil porque muestra todo en una sola pantalla",
+    "estado": "regular"
   },
   {
     "id": "C3-43",
@@ -759,7 +800,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-44",
@@ -778,7 +820,8 @@
     "nota_tp3": 8,
     "comentario_tp3": "La edición en el lugar no aparece en el lugar;Edita un solo producto;El cálculo de ID está mal.",
     "nota_tp6": 10,
-    "comentario_tp6": ""
+    "comentario_tp6": "",
+    "estado": "regular"
   },
   {
     "id": "C3-46",
@@ -793,7 +836,8 @@
     "tp3": false,
     "tp4": false,
     "tp5": false,
-    "tp6": false
+    "tp6": false,
+    "estado": "libre"
   },
   {
     "id": "C3-47",
@@ -812,7 +856,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "Solo incrementa en el número;No agrega arriba de la lista",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)"
+    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-48",
@@ -831,7 +876,8 @@
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
     "nota_tp6": 7,
-    "comentario_tp6": "Presenta todo en una sola pantalla. ;Son iguales #09, #36, #40, #47, #48, #49 (React)"
+    "comentario_tp6": "Presenta todo en una sola pantalla. ;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-49",
@@ -850,7 +896,8 @@
     "nota_tp3": 9,
     "comentario_tp3": "Incrementa solo en el número",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #36, #40, #47, #48, #49 (React)"
+    "comentario_tp6": "Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "estado": "regular"
   },
   {
     "id": "C3-50",
@@ -869,6 +916,7 @@
     "nota_tp3": 9,
     "comentario_tp3": "Formulario con diseño incorrecto.;Mal cálculo del ID",
     "nota_tp6": 3,
-    "comentario_tp6": "No tiene el servidor;Son iguales #22, #50 (React)"
+    "comentario_tp6": "No tiene el servidor;Son iguales #22, #50 (React)",
+    "estado": "regular"
   }
 ]
