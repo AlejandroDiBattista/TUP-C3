@@ -71,7 +71,7 @@
     "nota_tp3": 9,
     "comentario_tp3": "Falta iconos ;No convierte cantidad a entero en el ingreso de datos.",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #04, #38",
+    "comentario_tp6": "Se basó en #38",
     "estado": "regular",
     "subio": "21-Jun 23:28"
   },
@@ -89,11 +89,11 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp3": 8,
-    "comentario_tp3": "No incrementa el producto, en su lugar lo edita;No realiza edicion en el lugar;No permite editar cuando esta dando de alta.",
+    "nota_tp3": 9,
+    "comentario_tp3": "No realiza edicion en el lugar;No permite editar cuando esta dando de alta.",
     "nota_tp6": 10,
     "comentario_tp6": "",
-    "estado": "regular",
+    "estado": "promocionado",
     "subio": "21-Jun 18:49"
   },
   {
@@ -175,8 +175,8 @@
     "tp6": true,
     "nota_tp3": 6,
     "comentario_tp3": "No cancela Agregar;No hace edicion en el lugar;No permite edicion simultanea;No incrementa productgo",
-    "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "nota_tp6": 9,
+    "comentario_tp6": "Son iguales #09, #47, #49",
     "estado": "regular",
     "subio": "24-Jun 16:41"
   },
@@ -278,7 +278,7 @@
     "comentario_tp3": "No incrementa y los formularios están mal.",
     "nota_tp6": 9,
     "comentario_tp6": "",
-    "estado": "regular",
+    "estado": "recuperar",
     "subio": "28-Jun 00:27"
   },
   {
@@ -341,7 +341,7 @@
     "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
     "nota_tp6": 9,
     "comentario_tp6": "",
-    "estado": "regular",
+    "estado": "recuperar",
     "subio": "20-Jun 18:18"
   },
   {
@@ -718,9 +718,9 @@
     "tp6": true,
     "nota_tp3": 9,
     "comentario_tp3": "El formulario se rompe;id mal calculado",
-    "nota_tp6": 7,
-    "comentario_tp6": "No realiza la navegacion de pantalla. Hace todo en una sola pagina;Son iguales #09, #36, #40, #47, #48, #49 (React)",
-    "estado": "regular",
+    "nota_tp6": 9,
+    "comentario_tp6": "No realiza la navegacion de pantalla. Hace todo en una sola pagina",
+    "estado": "promocionado",
     "subio": "21-Jun 00:30"
   },
   {
@@ -739,9 +739,9 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "No controla que la cantidad sea un número",
-    "nota_tp6": 7,
-    "comentario_tp6": "Confusa la navegacion;Son iguales #04, #38",
-    "estado": "regular",
+    "nota_tp6": 9,
+    "comentario_tp6": "Confusa la navegacion",
+    "estado": "promocionado",
     "subio": "21-Jun 14:25"
   },
   {
@@ -804,7 +804,7 @@
     "comentario_tp3": "Agrega directamente un producto sin permitir editarlo",
     "nota_tp6": 9,
     "comentario_tp6": "",
-    "estado": "regular",
+    "estado": "recuperar",
     "subio": "21-Jun 20:10"
   },
   {
@@ -863,7 +863,7 @@
     "comentario_tp3": "La edición en el lugar no aparece en el lugar;Edita un solo producto;El cálculo de ID está mal.",
     "nota_tp6": 10,
     "comentario_tp6": "",
-    "estado": "regular",
+    "estado": "recuperar",
     "subio": "19-Jun 22:52"
   },
   {
@@ -899,9 +899,9 @@
     "tp6": true,
     "nota_tp3": 9,
     "comentario_tp3": "Solo incrementa en el número;No agrega arriba de la lista",
-    "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #47, #49;Son iguales #09, #36, #40, #47, #48, #49 (React)",
-    "estado": "regular",
+    "nota_tp6": 9,
+    "comentario_tp6": "Son iguales #09, #47, #49",
+    "estado": "promocionado",
     "subio": "19-Jun 23:44"
   },
   {
@@ -920,9 +920,9 @@
     "tp6": true,
     "nota_tp3": 10,
     "comentario_tp3": "Diferencias menores en diseño",
-    "nota_tp6": 7,
-    "comentario_tp6": "Presenta todo en una sola pantalla. ;Son iguales #09, #36, #40, #47, #48, #49 (React)",
-    "estado": "regular",
+    "nota_tp6": 9,
+    "comentario_tp6": "Presenta todo en una sola pantalla. ",
+    "estado": "promocionado",
     "subio": "19-Jun 21:38"
   },
   {
@@ -942,7 +942,7 @@
     "nota_tp3": 9,
     "comentario_tp3": "Incrementa solo en el número",
     "nota_tp6": 7,
-    "comentario_tp6": "Son iguales #09, #36, #40, #47, #48, #49 (React)",
+    "comentario_tp6": "",
     "estado": "regular",
     "subio": "19-Jun 16:46"
   },

@@ -10,8 +10,7 @@
 - No convierte cantidad a entero en el ingreso de datos.
 
 ## 05 - 59022 - Camaño Terán, Nicolás
-- Nota: 8
-- No incrementa el producto, en su lugar lo edita
+- Nota: 9
 - No realiza edicion en el lugar
 - No permite editar cuando esta dando de alta.
 

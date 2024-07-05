@@ -5,7 +5,7 @@
 
 ## 04 - 58771 - Calvo Maderuelo, Carlos M
 - Nota: 7
-- Son iguales #04, #38
+- Se basó en #38
 
 ## 05 - 59022 - Camaño Terán, Nicolás
 - Nota: 10
@@ -21,9 +21,8 @@
 - Usa Alert en el servidor
 
 ## 09 - 55839 - Castillo, Ignacio Agustín
-- Nota: 7
+- Nota: 9
 - Son iguales #09, #47, #49
-- Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 10 - 58925 - Castillo, Martina
 - Nota: 9
@@ -104,14 +103,12 @@
 - Faltaria cerrar el formulario de registrar (lo cierra al cancelar pero no al aceptar)
 
 ## 36 - 57565 - Heredia, Fabricio Nicolás
-- Nota: 7
+- Nota: 9
 - No realiza la navegacion de pantalla. Hace todo en una sola pagina
-- Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 38 - 59184 - Lucena, Matias Leandro
-- Nota: 7
+- Nota: 9
 - Confusa la navegacion
-- Son iguales #04, #38
 
 ## 39 - 59438 - Martin, Leonardo Javier
 - Nota: 7
@@ -132,18 +129,15 @@
 - Nota: 10
 
 ## 47 - 58884 - Salazar, Agustina Ximena
-- Nota: 7
+- Nota: 9
 - Son iguales #09, #47, #49
-- Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 48 - 58881 - Sosa Juarez, Malena Lujan
-- Nota: 7
+- Nota: 9
 - Presenta todo en una sola pantalla. 
-- Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 49 - 58905 - Sueldo, Leandro Antonio
 - Nota: 7
-- Son iguales #09, #36, #40, #47, #48, #49 (React)
 
 ## 50 - 50792 - Tula Nelegatti, Agustin
 - Nota: 3
