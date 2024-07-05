@@ -90,13 +90,14 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 24px; 
+            font-size: 24px; /* Tamaño del ícono */
         }
         .cantidad {
             font-size: 50px;
             font-weight: bold;
             color: blue;
             margin-right: 50px;
+            cursor: pointer;
         }
         .nombre {
             font-size: 30px;
@@ -151,8 +152,8 @@
             { id: 3, nombre: 'Fanta', codigo: '7793219876540', cantidad: 5 },
             { id: 4, nombre: 'Mirinda', codigo: '7797894561230', cantidad: 6 },
             { id: 5, nombre: 'Sprite', codigo: '7796543219870', cantidad: 4 },
-            { id: 6, nombre: 'Pepsi Cola', codigo: '7799876543210', cantidad: 3},
-            { id: 7, nombre: 'Manaos', codigo: '7794567891230', cantidad: 1}
+            { id: 6, nombre: 'Pepsi Cola', codigo: '7799876543210', cantidad: 3 },
+            { id: 7, nombre: 'Manaos', codigo: '7794567891230', cantidad: 1 }
         ];
 
         function Editar({ producto, alGuardar, alCancelar }) {
@@ -176,7 +177,7 @@
 
             const cancelar = e => {
                 e.preventDefault();
-                alCancelar();
+                alCancelar(producto.id);
             };
 
             return (
@@ -195,27 +196,27 @@
             );
         }
 
-        function Mostrar({ producto, alEditar, alBorrar }) {
+        function Mostrar({ producto, alEditar, alBorrar, incrementarCantidad }) {
             return (
                 <div className="panel">
                     <button className="icon-button edit-button" onClick={() => alEditar(producto.id)}>
-                        <i class="fa-regular fa-pen-to-square"></i>
+                        <i className="fa-regular fa-pen-to-square"></i>
                     </button>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <span className="cantidad">{producto.cantidad}</span>
+                        <span className="cantidad" onClick={() => incrementarCantidad(producto.id)}>{producto.cantidad}</span>
                         <div>
                             <p className="nombre">{producto.nombre}</p>
                             <p className="codigo">{producto.codigo}</p>
                         </div>
                     </div>
                     <button className="icon-button delete-button" onClick={() => alBorrar(producto.id)}>
-                        <i class="fa-regular fa-trash-can"></i>
+                        <i className="fa-regular fa-trash-can"></i>
                     </button>
                 </div>
             );
         }
 
-        function Agenda({ productos, alAgregar, alEditar, alBorrar, editandoId, alGuardar, alCancelar }) {
+        function Agenda({ productos, alAgregar, alEditar, alBorrar, editandoIds, alGuardar, alCancelar, nuevoProducto, incrementarCantidad }) {
             if (productos.length === 0) return <h1>No hay productos</h1>;
 
             return (
@@ -223,16 +224,26 @@
                     <div className="header">
                         <h1>Control Depósito
                             <button className="add-button" onClick={alAgregar}>
-                                <i class="fa-regular fa-square-plus"></i>
+                                <i className="fa-regular fa-square-plus"></i>
                             </button>
                         </h1>
                     </div>
+                    {nuevoProducto && (
+                        <Editar
+                            key={nuevoProducto.id}
+                            producto={nuevoProducto}
+                            alGuardar={alGuardar}
+                            alCancelar={alCancelar}
+                        />
+                    )}
                     {productos.map(producto =>
-                        producto.id === editandoId
+                        editandoIds.includes(producto.id)
                             ? <Editar key={producto.id} producto={producto} alGuardar={alGuardar} alCancelar={alCancelar} />
                             : <Mostrar key={producto.id} producto={producto}
                                 alEditar={() => alEditar(producto.id)}
-                                alBorrar={() => alBorrar(producto.id)} />
+                                alBorrar={() => alBorrar(producto.id)}
+                                incrementarCantidad={incrementarCantidad}
+                            />
                     )}
                 </>
             );
@@ -245,7 +256,7 @@
         }
 
         function App() {
-            const [editandoId, setEditandoId] = useState(null);
+            const [editandoIds, setEditandoIds] = useState([]);
             const [productos, setProductos] = useState(ProductosIniciales);
             const [nuevoProducto, setNuevoProducto] = useState(null);
 
@@ -260,44 +271,52 @@
                     const copia = [...productos, { ...producto, id }];
                     setProductos(copia);
                 }
-                setEditandoId(null);
+                setEditandoIds(editandoIds.filter(id => id !== producto.id));
                 setNuevoProducto(null);
             };
 
-            const cancelar = () => {
-                setEditandoId(null);
+            const cancelar = (id) => {
+                setEditandoIds(editandoIds.filter(editandoId => editandoId !== id));
                 setNuevoProducto(null);
             };
 
             const agregar = () => {
                 const nuevo = { id: null, nombre: '', codigo: '', cantidad: 0 };
                 setNuevoProducto(nuevo);
-                setEditandoId(nuevo.id);
             };
 
             const editar = (id) => {
-                setEditandoId(id);
+                setEditandoIds([...editandoIds, id]);
                 setNuevoProducto(null);
             };
 
             const borrar = (id) => {
                 const copia = productos.filter(p => p.id !== id);
                 setProductos(copia);
-                if (editandoId === id) {
-                    setEditandoId(null);
-                }
+                setEditandoIds(editandoIds.filter(editandoId => editandoId !== id));
+            };
+
+            const incrementarCantidad = (id) => {
+                setProductos(productos.map(producto => 
+                    producto.id === id && producto.cantidad < 100 
+                        ? { ...producto, cantidad: producto.cantidad + 1 } 
+                        : producto
+                ));
             };
 
             productos.sort(ordenAlfabetico);
 
             return (
-                <Agenda productos={nuevoProducto ? [...productos, nuevoProducto] : productos}
+                <Agenda productos={productos}
                     alAgregar={agregar}
                     alEditar={editar}
                     alBorrar={borrar}
-                    editandoId={editandoId}
+                    editandoIds={editandoIds}
                     alGuardar={guardar}
-                    alCancelar={cancelar} />
+                    alCancelar={cancelar}
+                    nuevoProducto={nuevoProducto}
+                    incrementarCantidad={incrementarCantidad}
+                />
             );
         }
 
