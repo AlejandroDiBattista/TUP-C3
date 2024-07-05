@@ -10,7 +10,7 @@
 
 59315 - **Chein**, Santiago                     
 > **Corregir TP3**
-> *Agrega al final, no realiza el conteo y solo permite una edición. *
+> *Agrega al final, no realiza el conteo y solo permite una edición.*
 
 59550 - **Osores Medina**, Selena Pau           
 > **Presentar: TP4**
