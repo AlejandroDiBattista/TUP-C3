@@ -7,21 +7,28 @@
 59379 - **Charkiewicz**, Carolina Est           
 > **Corregir TP3**
 > *No incrementa y los formularios están mal.*
+>
 
 59315 - **Chein**, Santiago                     
 > **Corregir TP3**
 > *Agrega al final, no realiza el conteo y solo permite una edición.*
+>
 
 59550 - **Osores Medina**, Selena Pau           
 > **Presentar: TP4**
+>
 > **Corregir TP3**
 > *Agrega directamente un producto sin permitir editarlo*
+>
 
 59092 - **Perez**, Luciano Damian               
 > **Corregir TP3**
 > *La edición en el lugar no aparece en el lugar*
+>
 > *Edita un solo producto*
+>
 > *El cálculo de ID está mal.*
+>
 
 
 #### Promocionados
