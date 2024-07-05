@@ -38,6 +38,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
         }
 
         label {
@@ -129,7 +130,7 @@
             { id: 5, nombre: 'Sprite', codigoEAN: '7796543219870', cantidad: 4 }
         ];
 
-        function Producto({ producto, alGuardar, alCancelar, alBorrar }) {
+        function Producto({ producto, alGuardar, alCancelar }) {
             const [nombre, setNombre] = useState(producto.nombre);
             const [codigoEAN, setCodigoEAN] = useState(producto.codigoEAN);
             const [cantidad, setCantidad] = useState(producto.cantidad);
@@ -146,7 +147,7 @@
             };
 
             const cambiarCantidad = e => {
-                setCantidad(e.target.value);
+                setCantidad(Number(e.target.value)); // Convertir a número
                 setError(false);
             };
 
@@ -157,6 +158,9 @@
                     return;
                 }
                 alGuardar({ ...producto, nombre, codigoEAN, cantidad });
+                setNombre('');
+                setCodigoEAN('');
+                setCantidad(0);
             };
 
             const cancelar = e => {
@@ -165,7 +169,7 @@
             };
 
             return (
-                <div className="panel">
+                <div className="panel" onClick={(e) => e.stopPropagation()}>
                     <div className="edit-inputs">
                         <input type="text" value={nombre} onChange={cambiarNombre} placeholder="Nombre" />
                         <input type="text" value={codigoEAN} onChange={cambiarCodigoEAN} placeholder="Código EAN" />
@@ -180,27 +184,38 @@
             );
         }
 
-        function ProductoInfo({ producto, alEditar, alBorrar }) {
-            const handleClick = () => {
+        function ProductoInfo({ producto, alEditar, alBorrar, alIncrementar }) {
+            const handleIncrement = (e) => {
+                e.stopPropagation(); // Detener la propagación del evento para que no active el clic en el panel
+                alIncrementar(producto.id);
+            };
+
+            const handleEdit = (e) => {
+                e.stopPropagation(); // Detener la propagación del evento para que no active el clic en el panel
                 alEditar(producto.id);
             };
 
+            const handleDelete = (e) => {
+                e.stopPropagation(); // Detener la propagación del evento para que no active el clic en el panel
+                alBorrar(producto.id);
+            };
+
             return (
-                <div className="panel" onClick={handleClick}>
+                <div className="panel" onClick={handleIncrement}>
                     <div className="cantidad">{producto.cantidad}</div>
                     <div className="producto-info">
                         <p className="producto-nombre">{producto.nombre}</p>
                         <p className="producto-codigo">{producto.codigoEAN}</p>
                     </div>
                     <div className="acciones">
-                        <div className="icon" onClick={() => alEditar(producto.id)}><i className="fa-solid fa-pencil"></i></div>
-                        <div className="icon" onClick={() => alBorrar(producto.id)}><i className="fa-solid fa-trash"></i></div>
+                        <div className="icon" onClick={handleEdit}><i className="fa-solid fa-pencil"></i></div>
+                        <div className="icon" onClick={handleDelete}><i className="fa-solid fa-trash"></i></div>
                     </div>
                 </div>
             );
         }
 
-        function Inventario({ productos, editandoProducto, alAgregar, alGuardar, alCancelar, alEditar, alBorrar }) {
+        function Inventario({ productos, editandoProducto, alAgregar, alGuardar, alCancelar, alEditar, alBorrar, alIncrementar }) {
             return (
                 <>
                     <h1>Control Depósito</h1>
@@ -220,6 +235,7 @@
                             producto={producto}
                             alEditar={alEditar}
                             alBorrar={alBorrar}
+                            alIncrementar={alIncrementar}
                         />
                     ))}
                 </>
@@ -235,13 +251,15 @@
         function App() {
             const [productos, setProductos] = useState(ProductosIniciales);
             const [editandoProducto, setEditandoProducto] = useState(null);
+            const [nextId, setNextId] = useState(ProductosIniciales.length + 1); // Track the next ID to use
 
             const guardar = (producto) => {
                 if (producto.id) {
                     const copia = productos.map(p => p.id === producto.id ? producto : p);
                     setProductos(copia);
                 } else {
-                    const id = Math.max(...productos.map(p => p.id)) + 1;
+                    const id = nextId;
+                    setNextId(id + 1);
                     const copia = [...productos, { ...producto, id }];
                     setProductos(copia);
                 }
@@ -266,6 +284,13 @@
                 setProductos(copia);
             };
 
+            const incrementarCantidad = (id) => {
+                const copia = productos.map(p =>
+                    p.id === id ? { ...p, cantidad: p.cantidad + 1 } : p
+                );
+                setProductos(copia);
+            };
+
             productos.sort(ordenAlfabetico);
             return (
                 <Inventario
@@ -276,6 +301,7 @@
                     alCancelar={cancelar}
                     alEditar={editar}
                     alBorrar={borrar}
+                    alIncrementar={incrementarCantidad}
                 />
             );
         }
