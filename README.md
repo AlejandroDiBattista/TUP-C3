@@ -1,7 +1,7 @@
 # Resultado Final
 
+## RECUPERACIÓN
 > [!NOTE]
-> RECUPERACIÓN
 > Estos alumnos tienen hasta el lunes 8 para presentar las correcciones
 >
 59379 - **Charkiewicz**, Carolina Est           
