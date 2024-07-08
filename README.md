@@ -10,11 +10,11 @@
 >
 
 59550 - **Osores Medina**, Selena Pau             <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/amarillo.png" width="6" height="6"> <img src="./material/rojo.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="6" height="6">
-> **Presentar: TP4**
->
-> **Corregir TP3**
+> **Corregir: TP3**
 >
 > *Agrega directamente un producto sin permitir editarlo*
+>
+> **Presentar: TP4**
 >
 
 
