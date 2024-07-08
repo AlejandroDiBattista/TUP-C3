@@ -11,28 +11,12 @@
 > *No incrementa y los formularios están mal.*
 >
 
-59315 - **Chein**, Santiago                     
-> **Corregir TP3**
->
-> *Agrega al final, no realiza el conteo y solo permite una edición.*
->
-
 59550 - **Osores Medina**, Selena Pau           
 > **Presentar: TP4**
 >
 > **Corregir TP3**
 >
 > *Agrega directamente un producto sin permitir editarlo*
->
-
-59092 - **Perez**, Luciano Damian               
-> **Corregir TP3**
->
-> *La edición en el lugar no aparece en el lugar*
->
-> *Edita un solo producto*
->
-> *El cálculo de ID está mal.*
 >
 
 
@@ -46,12 +30,14 @@
 1. 59016 - **Catania**, Franco Mauricio            
 1. 58813 - **Cervera**, Diego Octavio              
 1. 59347 - **Chein**, Amir Elias                   
+1. 59315 - **Chein**, Santiago                     
 1. 59083 - **Cuellar**, José Omar                  
 1. 59063 - **Cuevas**, Matias Sebastián            
 1. 58888 - **Diaz Gómez**, Andrés Dario            
 1. 55249 - **Fernandez**, Gonzalo Tomas            
 1. 57565 - **Heredia**, Fabricio Nicolás           
 1. 59184 - **Lucena**, Matias Leandro              
+1. 59092 - **Perez**, Luciano Damian               
 1. 58884 - **Salazar**, Agustina Ximena            
 1. 58881 - **Sosa Juarez**, Malena Lujan           
 

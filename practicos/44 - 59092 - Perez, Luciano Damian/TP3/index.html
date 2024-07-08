@@ -333,9 +333,8 @@
 
         const editar = (id) => {
           const nuevasMercaderias = mercaderias.map((item) =>
-            item.id === id
-              ? { ...item, editando: true }
-              : { ...item, editando: false }
+            // item.id === id ? { ...item, editando: true } : { ...item, editando: false }  // Original (solo una edición a la vez)
+            item.id === id ? { ...item, editando: true } : item                             // Modificado (igual que cancelarEdición)
           );
           setMercaderias(nuevasMercaderias);
         };

@@ -58,8 +58,7 @@
 - Ordena los datos al inicializar useState(productos.sort)
 
 ## 17 - 59315 - Chein, Santiago
-- Nota: 8
-- Agrega al final, no realiza el conteo y solo permite una edición. 
+- Nota: 9
 
 ## 18 - 58768 - Cordoba, Ignacio Leandro
 - Nota: 10
@@ -140,10 +139,8 @@
 - No cancela el agregar
 
 ## 44 - 59092 - Perez, Luciano Damian
-- Nota: 8
+- Nota: 9
 - La edición en el lugar no aparece en el lugar
-- Edita un solo producto
-- El cálculo de ID está mal.
 
 ## 47 - 58884 - Salazar, Agustina Ximena
 - Nota: 9

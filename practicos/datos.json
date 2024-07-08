@@ -337,11 +337,11 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp3": 8,
-    "comentario_tp3": "Agrega al final, no realiza el conteo y solo permite una edición. ",
+    "nota_tp3": 9,
+    "comentario_tp3": "",
     "nota_tp6": 9,
     "comentario_tp6": "",
-    "estado": "recuperar",
+    "estado": "promocionado",
     "subio": "20-Jun 18:18"
   },
   {
@@ -859,11 +859,11 @@
     "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp3": 8,
-    "comentario_tp3": "La edición en el lugar no aparece en el lugar;Edita un solo producto;El cálculo de ID está mal.",
+    "nota_tp3": 9,
+    "comentario_tp3": "La edición en el lugar no aparece en el lugar",
     "nota_tp6": 10,
     "comentario_tp6": "",
-    "estado": "recuperar",
+    "estado": "promocionado",
     "subio": "19-Jun 22:52"
   },
   {
