@@ -20,7 +20,7 @@
             max-width: 400px;
         }
 
-        .encabezado {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,16 +33,16 @@
         h1 {
             font-size: 42px;
             margin: 0;
-            margin-right: 8px;
+            margin-right: 8;
         }
 
-        .contenedor {
+        .container {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .elemento {
+        .item {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -52,9 +52,10 @@
             padding: 15px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             height: calc(100px * 1.2);
+            
         }
 
-        .contenido-elemento {
+        .item-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -62,64 +63,61 @@
             height: 100%;
         }
 
-        .nombre-elemento {
+        .item-name {
             font-size: 30px;
             font-weight: bold;
             margin-bottom: 20px;
+            
         }
 
-        .codigo-elemento {
+        .item-phone {
             font-size: 20px;
             color: #070707;
         }
 
-        .numero-elemento {
+        .item-number {
             font-size: 56px;
             color: blue;
             margin-left: 20px;
             font-weight: bold;
-            cursor: pointer;
         }
 
-        .botones-elemento {
+        .item-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            height: 100%;
-            justify-content: space-between;
+            align-items: center;
         }
 
-        .botones-elemento button {
+        .item-buttons button {
             background: none;
             border: none;
             cursor: pointer;
-            margin: 0;
+            margin-left: 10px;
         }
 
-        .botones-elemento img {
+        .item-buttons img {
             width: 20px;
             height: 20px;
         }
 
-        .formulario-contenedor {
+        .form-container {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        .formulario-contenedor input {
+        .form-container input {
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
 
-        .botones-formulario {
+        .form-buttons {
             display: flex;
             justify-content: space-between;
         }
 
-        .botones-formulario button {
+        .form-buttons button {
             padding: 10px 20px;
             font-size: 16px;
             border: none;
@@ -129,11 +127,11 @@
             cursor: pointer;
         }
 
-        .botones-formulario button:hover {
+        .form-buttons button:hover {
             background-color: #5a5f69;
         }
 
-        .boton-agregar {
+        .add-button {
             background-color: white;
             color: black;
             padding: 5px;
@@ -148,19 +146,20 @@
             height: 35px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             margin-right: -50px;
+            
         }
 
-        .boton-agregar img {
+        .add-button img {
             width: 15px;
             height: 15px;
             margin: 0;
         }
 
-        .boton-agregar:hover {
+        .add-button:hover {
             background-color: #f0f0f0;
         }
 
-        .mensaje-error {
+        .error-message {
             color: red;
             font-size: 14px;
         }
@@ -172,78 +171,76 @@
     <script type="text/babel">
         const { useState } = React;
 
-        const contactosIniciales = [
+        const initialContacts = [
             { id: 1, nombre: '7up', codigo: '7799876543210', cantidad: 7 },
-            { id: 2, nombre: 'Cola Cola', codigo: '7791234567890', cantidad: 92 },
+            { id: 2, nombre: 'Cola Cola',codigo: '7791234567890', cantidad: 92 },
             { id: 3, nombre: 'Fanta', codigo: '7793219876540', cantidad: 5 },
             { id: 4, nombre: 'Mirinda', codigo: '7797894561230', cantidad: 6 },
             { id: 5, nombre: 'Sprite', codigo: '7796543219870', cantidad: 4 }
         ];
 
-        function FormularioContacto({ contacto, onGuardar, onCancelar }) {
-            const [nombre, setNombre] = useState(contacto.nombre || '');
-            const [codigo, setCodigo] = useState(contacto.codigo || '');
-            const [cantidad, setCantidad] = useState(contacto.cantidad || '');
+        function ContactForm({ contact, onSave, onCancel }) {
+            const [nombre, setNombre] = useState(contact.nombre || '');
+            const [codigo, setCodigo] = useState(contact.codigo || '');
+            const [cantidad, setCantidad] = useState(contact.cantidad || '');
             const [error, setError] = useState('');
 
-            const handleGuardar = () => {
+            const handleSave = () => {
                 if (!nombre || !codigo || !cantidad) {
                     setError('Todos los campos son obligatorios');
                     return;
                 }
                 setError('');
-                onGuardar({ id: contacto.id, nombre, codigo, cantidad: parseInt(cantidad) });
+                onSave({ id: contact.id, nombre,codigo, cantidad: parseInt(cantidad) });
             };
 
             return (
-                <div className="formulario-contenedor">
+                <div className="form-container">
                     <input
                         type="text"
                         value={nombre}
-                        placeholder="Nombre"
+                        placeholder=""
                         onChange={(e) => setNombre(e.target.value)}
                     />
                     <input
                         type="text"
                         value={codigo}
-                        placeholder="Código"
+                        placeholder=""
                         onChange={(e) => setCodigo(e.target.value)}
                     />
                     <input
                         type="number"
                         value={cantidad}
-                        placeholder="Cantidad"
+                        placeholder=""
                         onChange={(e) => setCantidad(e.target.value)}
                     />
-                    {error && <div className="mensaje-error">{error}</div>}
-                    <div className="botones-formulario">
-                        <button onClick={handleGuardar}>Aceptar</button>
-                        <button onClick={onCancelar}>Cancelar</button>
+                    {error && <div className="error-message">{error}</div>}
+                    <div className="form-buttons">
+                        <button onClick={handleSave}>Aceptar</button>
+                        <button onClick={onCancel}>Cancelar</button>
                     </div>
                 </div>
             );
         }
 
-        function Contacto({ contacto, onEditar, onEliminar, estaEditando, onGuardar, onCancelar, onIncrementar }) {
+        function Contact({ contact, onEdit, onDelete, isEditing, onSave, onCancel }) {
             return (
-                <div className="elemento">
-                    {estaEditando ? (
-                        <FormularioContacto contacto={contacto} onGuardar={onGuardar} onCancelar={onCancelar} />
+                <div className="item">
+                    {isEditing ? (
+                        <ContactForm contact={contact} onSave={onSave} onCancel={onCancel} />
                     ) : (
                         <>
-                            <div className="numero-elemento" onClick={() => onIncrementar(contacto.id)}>
-                                {contacto.cantidad}
+                            <div className="item-number">{contact.cantidad}</div>
+                            <div className="item-content">
+                                <div className="item-name">{contact.nombre}</div>
+                                <div className="item-phone">{contact.codigo}</div>
                             </div>
-                            <div className="contenido-elemento">
-                                <div className="nombre-elemento">{contacto.nombre}</div>
-                                <div className="codigo-elemento">{contacto.codigo}</div>
-                            </div>
-                            <div className="botones-elemento">
-                                <button onClick={() => onEditar(contacto.id)}>
-                                    <img src="https://img.icons8.com/?size=100&id=SIvUzMn4cgQ6&format=png&color=000000" alt="Editar" />
+                            <div className="item-buttons">
+                                <button onClick={() => onEdit(contact.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=SIvUzMn4cgQ6&format=png&color=000000" alt="Edit" />
                                 </button>
-                                <button onClick={() => onEliminar(contacto.id)}>
-                                    <img src="https://img.icons8.com/?size=100&id=ATzTLrwzRISB&format=png&color=000000" alt="Eliminar" />
+                                <button onClick={() => onDelete(contact.id)}>
+                                    <img src="https://img.icons8.com/?size=100&id=ATzTLrwzRISB&format=png&color=000000" alt="Delete" />
                                 </button>
                             </div>
                         </>
@@ -253,66 +250,62 @@
         }
 
         function App() {
-            const [contactos, setContactos] = useState(contactosIniciales);
-            const [contactosEditando, setContactosEditando] = useState([]);
+            const [contacts, setContacts] = useState(initialContacts);
+            const [editingContacts, setEditingContacts] = useState([]);
 
-            const handleGuardar = (contacto) => {
-                setContactos(
-                    contactos.map((c) => (c.id === contacto.id ? contacto : c))
+            const handleSave = (contact) => {
+                setContacts(
+                    contacts.map((c) => (c.id === contact.id ? contact : c))
                 );
-                setContactosEditando(contactosEditando.filter(id => id !== contacto.id));
+                setEditingContacts(editingContacts.filter(id => id !== contact.id));
             };
 
-            const handleEditar = (id) => {
-                setContactosEditando([...contactosEditando, id]);
+            const handleEdit = (id) => {
+                setEditingContacts([...editingContacts, id]);
             };
 
-            const handleEliminar = (id) => {
-                setContactos(contactos.filter((c) => c.id !== id));
-                setContactosEditando(contactosEditando.filter(editandoId => editandoId !== id));
+            const handleDelete = (id) => {
+                setContacts(contacts.filter((c) => c.id !== id));
+                setEditingContacts(editingContacts.filter(editingId => editingId !== id));
             };
 
-            const handleCancelar = (id) => {
-                setContactosEditando(contactosEditando.filter(editandoId => editandoId !== id));
+            const handleCancel = (id) => {
+                setEditingContacts(editingContacts.filter(editingId => editingId !== id));
             };
 
-            const handleAgregar = () => {
-                const nuevoContacto = { id: Date.now(), nombre: '', codigo: '', cantidad: 0 };
-                setContactos([...contactos, nuevoContacto]);
-                setContactosEditando([...contactosEditando, nuevoContacto.id]);
-            };
-
-            const handleIncrementar = (id) => {
-                setContactos(
-                    contactos.map((c) => (c.id === id ? { ...c, cantidad: c.cantidad + 1 } : c))
-                );
+            const handleAdd = () => {
+                const newContact = { id: Date.now(), nombre: '', codigo: '', cantidad: '' };
+                setContacts([...contacts, newContact]);
+                setEditingContacts([...editingContacts, newContact.id]);
             };
 
             return (
-                <div className="contenedor">
-                    <div className="encabezado">
+                <div className="container">
+                    <div className="header">
                         <h1>Control Depósito</h1>
-                        <div className="boton-agregar" onClick={handleAgregar}>
-                            <img src="https://img.icons8.com/?size=100&id=9BYS2mKCXYoj&format=png&color=000000" alt="Agregar" />
+                        <div className="add-button-container">
+                            <button className="add-button" onClick={handleAdd}>
+                                <img src="https://img.icons8.com/?size=100&id=I3zcwArp1Vgw&format=png&color=000000" alt="Agregar" />
+                            </button>
                         </div>
                     </div>
-                    {contactos.map((contacto) => (
-                        <Contacto
-                            key={contacto.id}
-                            contacto={contacto}
-                            onEditar={handleEditar}
-                            onEliminar={handleEliminar}
-                            estaEditando={contactosEditando.includes(contacto.id)}
-                            onGuardar={handleGuardar}
-                            onCancelar={() => handleCancelar(contacto.id)}
-                            onIncrementar={handleIncrementar}
+                    {contacts.map((contact) => (
+                        <Contact
+                            key={contact.id}
+                            contact={contact}
+                            isEditing={editingContacts.includes(contact.id)}
+                            onEdit={handleEdit}
+                            onDelete={handleDelete}
+                            onSave={handleSave}
+                            onCancel={() => handleCancel(contact.id)}
                         />
                     ))}
                 </div>
             );
         }
 
-        ReactDOM.render(<App />, document.getElementById('root'));
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 

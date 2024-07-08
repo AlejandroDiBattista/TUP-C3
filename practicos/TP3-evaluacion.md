@@ -46,8 +46,8 @@
 - El ordenamiento alfabético está raro, compara mayúsculas luego compara de nuevo
 
 ## 14 - 59379 - Charkiewicz, Carolina Est
-- Nota: 8
-- No incrementa y los formularios están mal.
+- Nota: 9
+- Mal la presentación de los formularios
 
 ## 15 - 59027 - Chaves, Gonzalo Martín
 - Nota: 10

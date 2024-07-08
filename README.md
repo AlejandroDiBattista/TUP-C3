@@ -5,12 +5,6 @@
 > [!NOTE]
 > Estos alumnos tienen hasta el lunes 8 para presentar las correcciones
 >
-59379 - **Charkiewicz**, Carolina Est           
-> **Corregir TP3**
->
-> *No incrementa y los formularios están mal.*
->
-
 59550 - **Osores Medina**, Selena Pau           
 > **Presentar: TP4**
 >
@@ -29,6 +23,7 @@
 1. 58925 - **Castillo**, Martina                   
 1. 59016 - **Catania**, Franco Mauricio            
 1. 58813 - **Cervera**, Diego Octavio              
+1. 59379 - **Charkiewicz**, Carolina Est           
 1. 59347 - **Chein**, Amir Elias                   
 1. 59315 - **Chein**, Santiago                     
 1. 59083 - **Cuellar**, José Omar                  
