@@ -10,7 +10,7 @@
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <title>Demo 1</title>
+    <title>59060</title>
     <style>
         /* reset */
         body {
@@ -34,9 +34,15 @@
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+
+            .num {
+                display: flex;
+                justify-content: center;
+            }
         }
 
-        .agenda {
+        .favs,
+        .contacto {
             margin-top: 16px;
             display: flex;
             flex-wrap: wrap;
@@ -101,6 +107,10 @@
                 }
             }
         }
+
+        i {
+            color: #e4e81f;
+        }
     </style>
 </head>
 
@@ -134,24 +144,76 @@
     <script type="text/babel">
         const { createRoot } = ReactDOM
 
-        const Contacto = ({ nombre, apellido, telefono }) =>
+        const Favorito = ({ marcado, cambiar }) => {
+            let estrella;
+
+            if (marcado) {
+                estrella = <i className="fas fa-star" onClick={cambiar}></i>;
+            } else {
+                estrella = <i className="far fa-star" onClick={cambiar}></i>;
+            }
+
+            return <span>{estrella}</span>;
+        };
+
+        const Contacto = ({ id, nombre, apellido, telefono, favorito, cambiarFav }) => (
             <div className="card">
+                <Favorito
+                    marcado={favorito}
+                    cambiar={() => cambiarFav(id)}
+                />
                 <div>{nombre} <b>{apellido}</b></div>
-                <div>{telefono}</div>
+                <div className="num">{telefono}</div>
             </div>
+        );
 
-        const Agenda = ({ datos }) =>
-            <div className="agenda">
-                {datos.map(contacto => <Contacto key={contacto.id} {...contacto} />)}
-            </div>
+        const Agenda = ({ datos, cambiarFav }) => {
+            const marcados = datos.filter(contacto => contacto.favorito);
+            const noMarcados = datos.filter(contacto => !contacto.favorito);
 
-        const App = () =>
-            <div>
-                <h1>Agenda</h1>
-                <Agenda datos={datos} />
-            </div>
+            marcados.sort((a, b) => a.apellido.localeCompare(b.apellido));
+            noMarcados.sort((a, b) => a.apellido.localeCompare(b.apellido));
 
-        const root = createRoot(document.getElementById('root'))
+            return (
+                <div className="agendas">
+                    <h2>Favoritos</h2>
+                    <div className="favs">
+                        {marcados.map(contacto => (
+                            <Contacto key={contacto.id} {...contacto} cambiarFav={cambiarFav} />
+                        ))}
+                    </div>
+                    <h2>Contactos</h2>
+                    <div className="contacto">
+                        {noMarcados.map(contacto => (
+                            <Contacto key={contacto.id} {...contacto} cambiarFav={cambiarFav} />
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [contactos, setContactos] = React.useState(datos);
+
+            const cambiarFav = (id) => {
+                const contactosActualizados = contactos.map((contacto) => {
+                    if (contacto.id === id) {
+                        return { ...contacto, favorito: !contacto.favorito };
+                    }
+                    return contacto;
+                });
+                setContactos(contactosActualizados);
+            };
+
+            return (
+                <div>
+                    <h1>Agenda</h1>
+                    <Agenda datos={contactos} cambiarFav={cambiarFav} />
+                </div>
+            );
+        };
+        
+        const root = createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
 </body>
