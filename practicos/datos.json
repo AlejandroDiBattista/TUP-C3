@@ -774,7 +774,7 @@
     "inicial": "MMA",
     "ubicacion": "./40 - 59060 - Martinez, Maira",
     "tp1": true,
-    "tp2": false,
+    "tp2": true,
     "tp3": true,
     "tp4": true,
     "tp5": true,
@@ -783,7 +783,7 @@
     "comentario_tp3": "No edita en el lugar",
     "nota_tp6": 9,
     "comentario_tp6": "Los colores dificulta mucho el uso",
-    "estado": "recuperar",
+    "estado": "promocionado",
     "subio": "19-Jun 22:00"
   },
   {
@@ -797,14 +797,14 @@
     "tp1": true,
     "tp2": true,
     "tp3": true,
-    "tp4": false,
+    "tp4": true,
     "tp5": true,
     "tp6": true,
-    "nota_tp3": 8,
-    "comentario_tp3": "Agrega directamente un producto sin permitir editarlo",
+    "nota_tp3": 9,
+    "comentario_tp3": "",
     "nota_tp6": 9,
     "comentario_tp6": "",
-    "estado": "recuperar",
+    "estado": "promocionado",
     "subio": "21-Jun 20:10"
   },
   {

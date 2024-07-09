@@ -131,8 +131,7 @@
 - No edita en el lugar
 
 ## 41 - 59550 - Osores Medina, Selena Pau
-- Nota: 8
-- Agrega directamente un producto sin permitir editarlo
+- Nota: 9
 
 ## 42 - 55883 - Pedraza, Leonardo Miguel
 - Nota: 9
