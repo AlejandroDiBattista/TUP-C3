@@ -16,6 +16,7 @@
             width: 100%;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         html,
@@ -55,14 +56,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 80%;
+            width: 800px;
             margin: 10px auto;
             padding: 10px;
             border: 2px solid black;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             background-color: white;
-            height: 100%;
+            height:  200px;
         }
 
         .panel {
@@ -141,10 +142,14 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            width: 100%;
-            margin: auto;
-            background-color: white;
-            height: 100%;
+            width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            height: 200px;
         }
 
         .editando .input-container {
@@ -193,7 +198,6 @@
             margin: auto 0;
             width: 100%;
         }
-    </style>
     </style>
 </head>
 
@@ -280,31 +284,26 @@
             );
         }
 
-        function Stock({ productos, alAgregar, alGuardar, alBorrar, incrementarCant }) {
+        function Stock({ productos, alGuardar, alBorrar, incrementarCant }) {
             if (productos.length === 0) return <><h1>NO HAY PRODUCTOS EN STOCK</h1></>;
             return (
-                <>
-                    <div className="arriba">
-                        <h1>Control Depósito</h1>
-                        <button onClick={alAgregar} className="agregarbutton"><i className="fa-solid fa-plus"></i></button>
-                    </div>
-                    <div className="panel">
-                        {productos.map(producto => (
-                            <Mostrar
-                                key={producto.id}
-                                producto={producto}
-                                alGuardar={alGuardar}
-                                alBorrar={alBorrar}
-                                incrementarCant={incrementarCant}
-                            />
-                        ))}
-                    </div>
-                </>
+                <div className="panel">
+                    {productos.map(producto => (
+                        <Mostrar
+                            key={producto.id}
+                            producto={producto}
+                            alGuardar={alGuardar}
+                            alBorrar={alBorrar}
+                            incrementarCant={incrementarCant}
+                        />
+                    ))}
+                </div>
             );
         }
 
         function App() {
             let [productos, setProductos] = useState(ProductosIniciales);
+            let [productoEditando, setProductoEditando] = useState(null);
 
             const incrementarCant = (id) => {
                 setProductos(productos.map(producto =>
@@ -314,34 +313,54 @@
 
             const agregarProducto = () => {
                 const id = uuidv4();
-                const codigoEAN = '';
-                const nombre = '';
-                const cantidad = 0;
-                setProductos([...productos, { id, codigoEAN, nombre, cantidad }]);
+                const nuevoProducto = { id, codigoEAN: '', nombre: '', cantidad: 0 };
+                setProductoEditando(nuevoProducto);
             };
 
             const guardarProducto = (productoEditado) => {
+                setProductos([...productos, productoEditado]);
+                setProductoEditando(null);
+            };
+
+            const cancelarEdicion = () => {
+                setProductoEditando(null);
+            };
+
+            const actualizarProducto = (productoEditado) => {
                 setProductos(productos.map(p =>
                     p.id === productoEditado.id ? productoEditado : p
                 ));
+                setProductoEditando(null);
             };
 
             const borrarProducto = id => setProductos(productos.filter(p => p.id !== id));
 
             return (
-                <Stock
-                    productos={productos}
-                    alAgregar={agregarProducto}
-                    alGuardar={guardarProducto}
-                    alBorrar={borrarProducto}
-                    incrementarCant={incrementarCant}
-                />
+                <>
+                    <div className="arriba">
+                        <h1>Control Depósito</h1>
+                        <button onClick={agregarProducto} className="agregarbutton"><i className="fa-solid fa-plus"></i></button>
+                    </div>
+                    {productoEditando && (
+                        <Editar 
+                            producto={productoEditando} 
+                            alGuardar={guardarProducto} 
+                            alCancelar={cancelarEdicion} 
+                        />
+                    )}
+                    <Stock
+                        productos={productos}
+                        alGuardar={actualizarProducto}
+                        alBorrar={borrarProducto}
+                        incrementarCant={incrementarCant}
+                    />
+                </>
             );
         }
 
         const ProductosIniciales = [
             { id: uuidv4(), codigoEAN: '7799876543210', nombre: '7up', cantidad: 7 },
-            { id: uuidv4(), codigoEAN: '7791234567890', nombre: 'Cola Cola', cantidad: 92 },
+            { id: uuidv4(), codigoEAN: '7791234567890', nombre: 'Coca Cola', cantidad: 92 },
             { id: uuidv4(), codigoEAN: '7793219876540', nombre: 'Fanta', cantidad: 5 },
             { id: uuidv4(), codigoEAN: '7797894561230', nombre: 'Mirinda', cantidad: 6 },
             { id: uuidv4(), codigoEAN: '7796543219870', nombre: 'Sprite', cantidad: 4 }
@@ -349,3 +368,5 @@
         ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
+
+</html>
