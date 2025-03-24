@@ -1,8 +1,3 @@
-# Resultado Final - Comisión 3
-(Estamos revisando el material, puede haber cambios)
-
-
-
 #### Promocionados
 1. 58931 - **Cabrera**, Lucas Nahuel                 <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="6" height="6"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="6" height="6">
 1. 59022 - **Camaño Terán**, Nicolás                 <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="6" height="6"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="4" height="4"> <img src="./material/verde.png" width="6" height="6">
