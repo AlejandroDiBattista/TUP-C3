@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones - TUP24 Lab3 C3</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .categoria {
+            margin: 30px 0;
+        }
+        
+        .categoria h4 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .estudiante {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .numero {
+            min-width: 30px;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .info {
+            flex: 1;
+            margin-right: 20px;
+        }
+        
+        .legajo {
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        .nombre {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .calificaciones {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        
+        .calificacion {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .calificacion.parcial {
+            width: 6px;
+            height: 6px;
+        }
+        
+        .calificacion.verde {
+            background-color: #22c55e;
+        }
+        
+        .calificacion.amarillo {
+            background-color: #eab308;
+        }
+        
+        .calificacion.rojo {
+            background-color: #ef4444;
+        }
+        
+        .promocionado { background-color: #f0fdf4; }
+        .regular { background-color: #fffbeb; }
+        .libre { background-color: #fef2f2; }
+        
+        .estadisticas {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .estadisticas h3 {
+            margin-top: 0;
+            color: #334155;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+        
+        .leyenda {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 6px;
+        }
+        
+        .leyenda-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .leyenda-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📊 Calificaciones - TUP24 Lab3 C3</h1>
+    
+    <div class="estadisticas">
+        <h3>📈 Estadísticas del Curso</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" id="total-estudiantes">0</div>
+                <div class="stat-label">Total Estudiantes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="promocionados">0</div>
+                <div class="stat-label">Promocionados</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="regulares">0</div>
+                <div class="stat-label">Regulares</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="libres">0</div>
+                <div class="stat-label">Libres</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="leyenda">
+        <h4>🎯 Leyenda de Calificaciones</h4>
+        <div class="leyenda-item">
+            <div class="leyenda-color verde"></div>
+            <span>Aprobado (Verde)</span>
+        </div>
+        <div class="leyenda-item">
+            <div class="leyenda-color amarillo"></div>
+            <span>Recuperatorio (Amarillo)</span>
+        </div>
+        <div class="leyenda-item">
+            <div class="leyenda-color rojo"></div>
+            <span>Desaprobado (Rojo)</span>
+        </div>
+        <p><small>💡 Las calificaciones de mayor tamaño corresponden a parciales</small></p>
+    </div>
+    
+    <div id="contenido"></div>
+    
+    <hr style="margin: 40px 0;">
+    
+    <h2>🎓 ¿Cómo se rinde el examen final?</h2>
+    
+    <p>Para rendir el examen, debes desarrollar y defender una aplicación que:</p>
+    
+    <blockquote>
+        <strong>Implemente una agenda de contactos multiusuario</strong>
+    </blockquote>
+    
+    <p>Esta aplicación debe ser desarrollada en <em>React</em>, implementando la funcionalidad usando <em>Express</em> y persistiendo los datos con <em>MongoDB</em>.</p>
+    
+    <p>La defensa consistirá en ejecutar la aplicación para mostrar su funcionalidad y, si está correctamente implementada, deberás mostrar el código fuente y explicar cómo funcionan las partes que se te indiquen.</p>
+    
+    <h3>📋 Funcionalidad requerida</h3>
+    <ol>
+        <li>En la esquina superior izquierda debe ir el nombre del sitio.</li>
+        <li>En la esquina superior derecha deben haber dos botones: "Registrar" e "Ingresar", cuando no haya ningún usuario identificado.</li>
+        <li>Cuando el usuario haya ingresado, en la esquina izquierda debe estar el nombre del usuario y un botón "Salir".</li>
+        <li>Al pulsar en el nombre del usuario, se deberá poder editar los datos del mismo.</li>
+        <li>El sitio debe mostrar inicialmente una lista de contactos públicos ordenados por apellido y nombre.</li>
+        <li>El usuario que se registre podrá agregar nuevos contactos.</li>
+        <li>Los usuarios, al identificarse, podrán ver sus propios contactos y los contactos públicos que estén visibles.</li>
+        <li>Los usuarios son propietarios de los contactos que crean, siempre podrán visualizar sus contactos, editarlos o borrarlos.</li>
+        <li>Los usuarios podrán hacer público o privado sus contactos mediante un botón asociado a los mismos.</li>
+        <li>Las altas y la edición, así como la registración y el ingreso, se deben hacer en una página separada y, al completar la misma, debe regresar a la página principal.</li>
+        <li>Debe existir un usuario administrador que pueda visualizar todos los contactos, ya sean públicos o privados, estén visibles o no.</li>
+        <li>El usuario administrador puede ocultar o mostrar los contactos públicos mediante un botón que aparece en cada contacto.</li>
+        <li>Los usuarios se deben guardar como contactos privados con una contraseña asociada.</li>
+        <li>Los usuarios no deberán aparecer en el listado de contactos.</li>
+    </ol>
+    
+    <h4>👤 Los contactos deben tener:</h4>
+    <ul>
+        <li><strong>Nombre y Apellido</strong> (obligatorio)</li>
+        <li>Empresa</li>
+        <li>Domicilio</li>
+        <li>Teléfonos</li>
+        <li><strong>Email</strong> (obligatorio)</li>
+        <li>Propietario (usuario que lo creó)</li>
+        <li>Es Público (definido por el usuario propietario)</li>
+        <li>Es Visible (definido por el administrador)</li>
+        <li>Contraseña (en caso de ser un usuario)</li>
+    </ul>
+
+    <script>
+        // Función para cargar y mostrar los datos
+        async function cargarDatos() {
+            try {
+                const response = await fetch('./calificaciones.json');
+                const data = await response.json();
+                
+                // Actualizar estadísticas
+                const promocionados = data.estudiantes.filter(e => e.estado === 'promocionado');
+                const regulares = data.estudiantes.filter(e => e.estado === 'regular');
+                const libres = data.estudiantes.filter(e => e.estado === 'libre');
+                
+                document.getElementById('total-estudiantes').textContent = data.estudiantes.length;
+                document.getElementById('promocionados').textContent = promocionados.length;
+                document.getElementById('regulares').textContent = regulares.length;
+                document.getElementById('libres').textContent = libres.length;
+                
+                // Generar contenido
+                const contenido = document.getElementById('contenido');
+                
+                // Función para crear una sección
+                function crearSeccion(titulo, estudiantes, clase) {
+                    const seccion = document.createElement('div');
+                    seccion.className = `categoria ${clase}`;
+                    
+                    const tituloElement = document.createElement('h4');
+                    tituloElement.textContent = `${titulo} (${estudiantes.length})`;
+                    seccion.appendChild(tituloElement);
+                    
+                    estudiantes.forEach((estudiante, index) => {
+                        const estudianteDiv = document.createElement('div');
+                        estudianteDiv.className = 'estudiante';
+                        
+                        estudianteDiv.innerHTML = `
+                            <div class="numero">${index + 1}.</div>
+                            <div class="info">
+                                <span class="legajo">${estudiante.legajo}</span> - 
+                                <span class="nombre">${estudiante.apellido}, ${estudiante.nombre}</span>
+                            </div>
+                            <div class="calificaciones">
+                                ${estudiante.calificaciones.map((color, i) => {
+                                    const esParcial = i === 2 || i === 5;
+                                    return `<div class="calificacion ${color} ${esParcial ? 'parcial' : ''}"></div>`;
+                                }).join('')}
+                            </div>
+                        `;
+                        
+                        seccion.appendChild(estudianteDiv);
+                    });
+                    
+                    return seccion;
+                }
+                
+                // Crear las secciones
+                contenido.appendChild(crearSeccion('✅ Promocionados', promocionados, 'promocionado'));
+                contenido.appendChild(crearSeccion('⚠️ Regulares', regulares, 'regular'));
+                contenido.appendChild(crearSeccion('❌ Libres', libres, 'libre'));
+                
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+                document.getElementById('contenido').innerHTML = '<p>Error al cargar los datos</p>';
+            }
+        }
+        
+        // Cargar datos al cargar la página
+        document.addEventListener('DOMContentLoaded', cargarDatos);
+    </script>
+</body>
+</html>

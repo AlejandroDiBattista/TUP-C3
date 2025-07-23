@@ -1,0 +1,88 @@
+/* Estilos para el README mejorado */
+.calificaciones {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.categoria {
+    margin: 30px 0;
+}
+
+.estudiante {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.estudiante:hover {
+    background-color: #f8f9fa;
+}
+
+.numero {
+    min-width: 30px;
+    font-weight: bold;
+    color: #666;
+}
+
+.info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.legajo {
+    font-weight: 500;
+    color: #2563eb;
+}
+
+.nombre {
+    font-weight: bold;
+}
+
+.calificaciones-visual {
+    display: flex;
+    gap: 2px;
+}
+
+.cal {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.cal.parcial {
+    width: 12px;
+    height: 12px;
+}
+
+.cal.verde {
+    background-color: #22c55e;
+}
+
+.cal.amarillo {
+    background-color: #eab308;
+}
+
+.cal.rojo {
+    background-color: #ef4444;
+}
+
+/* Estados */
+.promocionado { 
+    background-color: #f0fdf4; 
+    border-left: 4px solid #22c55e;
+    padding-left: 10px;
+}
+
+.regular { 
+    background-color: #fffbeb; 
+    border-left: 4px solid #eab308;
+    padding-left: 10px;
+}
+
+.libre { 
+    background-color: #fef2f2; 
+    border-left: 4px solid #ef4444;
+    padding-left: 10px;
+}

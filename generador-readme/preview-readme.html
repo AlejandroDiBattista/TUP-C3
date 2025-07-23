@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview README con CSS</title>
+    <style>
+        body {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+        }
+        
+        /* Estilos base para el contenido markdown convertido */
+        h1, h2, h3, h4 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            border-bottom: 2px solid #e1e5e9;
+            padding-bottom: 10px;
+        }
+        
+        blockquote {
+            border-left: 4px solid #2563eb;
+            padding-left: 15px;
+            margin-left: 0;
+            color: #374151;
+            font-style: italic;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        strong {
+            font-weight: 700;
+        }
+        
+        em {
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="markdown-content">
+        <!-- El contenido del README se cargará aquí -->
+    </div>
+
+    <script>
+        // Simular el contenido del README (primeras líneas para preview)
+        const readmeContent = `
+        <style>
+        .calificaciones-container {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+
+        .categoria {
+            margin: 25px 0;
+        }
+
+        .categoria h4 {
+            color: #333;
+            border-bottom: 2px solid #e1e5e9;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .estudiante {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            margin: 4px 0;
+            border-left: 3px solid transparent;
+        }
+
+        .estudiante.promocionado {
+            background-color: #f0fdf4;
+            border-left-color: #22c55e;
+            padding-left: 8px;
+        }
+
+        .estudiante.regular {
+            background-color: #fffbeb;
+            border-left-color: #eab308;
+            padding-left: 8px;
+        }
+
+        .estudiante.libre {
+            background-color: #fef2f2;
+            border-left-color: #ef4444;
+            padding-left: 8px;
+        }
+
+        .numero {
+            min-width: 25px;
+            font-weight: 600;
+            color: #64748b;
+            margin-right: 8px;
+        }
+
+        .info-estudiante {
+            flex: 1;
+            margin-right: 15px;
+        }
+
+        .legajo {
+            font-weight: 500;
+            color: #2563eb;
+        }
+
+        .nombre {
+            font-weight: 700;
+        }
+
+        .calificaciones {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .cal {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .cal.parcial {
+            width: 12px;
+            height: 12px;
+        }
+
+        .cal.verde {
+            background-color: #22c55e;
+            border-color: #16a34a;
+        }
+
+        .cal.amarillo {
+            background-color: #eab308;
+            border-color: #ca8a04;
+        }
+
+        .cal.rojo {
+            background-color: #ef4444;
+            border-color: #dc2626;
+        }
+
+        .estadisticas {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+
+        .leyenda {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .leyenda-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .leyenda-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .estudiante {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .info-estudiante {
+                margin-right: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        </style>
+
+        <div class="calificaciones-container">
+
+        <h1>📚 Calificaciones - TUP24 Lab3 C3</h1>
+
+        <div class="estadisticas">
+            <h3>📊 Estadísticas del Curso</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">48</div>
+                    <div class="stat-label">Total</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">22</div>
+                    <div class="stat-label">Promocionados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">Regulares</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Libres</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="leyenda">
+            <h4>🎯 Leyenda de Calificaciones</h4>
+            <div class="leyenda-items">
+                <div class="leyenda-item">
+                    <span class="leyenda-color verde" style="background-color: #22c55e;"></span>
+                    <span>Aprobado</span>
+                </div>
+                <div class="leyenda-item">
+                    <span class="leyenda-color amarillo" style="background-color: #eab308;"></span>
+                    <span>Recuperatorio</span>
+                </div>
+                <div class="leyenda-item">
+                    <span class="leyenda-color rojo" style="background-color: #ef4444;"></span>
+                    <span>Desaprobado</span>
+                </div>
+            </div>
+            <p><small>💡 Los círculos más grandes representan parciales</small></p>
+        </div>
+
+        <div class="categoria">
+        <h4>✅ Promocionados</h4>
+        <div class="estudiante promocionado">
+            <span class="numero">1.</span>
+            <div class="info-estudiante">
+                <span class="legajo">58931</span> - 
+                <span class="nombre">Cabrera, Lucas Nahuel</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span><span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span>
+            </div>
+        </div>
+        <div class="estudiante promocionado">
+            <span class="numero">2.</span>
+            <div class="info-estudiante">
+                <span class="legajo">59022</span> - 
+                <span class="nombre">Camaño Terán, Nicolás</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span><span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span>
+            </div>
+        </div>
+        <div class="estudiante promocionado">
+            <span class="numero">3.</span>
+            <div class="info-estudiante">
+                <span class="legajo">58889</span> - 
+                <span class="nombre">Capó, Mauricio Nicolás</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span><span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span>
+            </div>
+        </div>
+        </div>
+
+        <div class="categoria">
+        <h4>⚠️ Regulares</h4>
+        <div class="estudiante regular">
+            <span class="numero">1.</span>
+            <div class="info-estudiante">
+                <span class="legajo">58771</span> - 
+                <span class="nombre">Calvo Maderuelo, Carlos M</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal verde"></span><span class="cal verde"></span><span class="cal verde parcial"></span><span class="cal verde"></span><span class="cal verde"></span><span class="cal amarillo parcial"></span>
+            </div>
+        </div>
+        <div class="estudiante regular">
+            <span class="numero">2.</span>
+            <div class="info-estudiante">
+                <span class="legajo">59185</span> - 
+                <span class="nombre">Diaz Ghiggia, Guillermo</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal verde"></span><span class="cal verde"></span><span class="cal amarillo parcial"></span><span class="cal rojo"></span><span class="cal verde"></span><span class="cal amarillo parcial"></span>
+            </div>
+        </div>
+        </div>
+
+        <div class="categoria">
+        <h4>❌ Libres</h4>
+        <div class="estudiante libre">
+            <span class="numero">1.</span>
+            <div class="info-estudiante">
+                <span class="legajo">57605</span> - 
+                <span class="nombre">Auad, Gerónimo</span>
+            </div>
+            <div class="calificaciones">
+                <span class="cal rojo"></span><span class="cal rojo"></span><span class="cal rojo parcial"></span><span class="cal rojo"></span><span class="cal rojo"></span><span class="cal rojo parcial"></span>
+            </div>
+        </div>
+        </div>
+
+        </div>
+        `;
+        
+        document.getElementById('markdown-content').innerHTML = readmeContent;
+    </script>
+</body>
+</html>
